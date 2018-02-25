@@ -1,0 +1,12 @@
+[include]
+
+[ignore]
+.*/node_modules/*
+.*/test/.*\.spec\.js
+
+[libs]
+flow-typed/
+
+[lints]
+
+[options]

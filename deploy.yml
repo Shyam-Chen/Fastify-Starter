@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+
+kind: Deploy
+
+metadata:
+  name: Kubernetes-Engine-Starter
+
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: Kubernetes-Engine-Starter
+    spec:
+      containers:
+        - name: Kubernetes-Engine-Starter
+          image: Shyam-Chen/Kubernetes-Engine-Starter
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          resources:
+              limits:
+                cpu: "0.5"
+              requests:
+                cpu: "0.25"
