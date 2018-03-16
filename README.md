@@ -1,6 +1,9 @@
 # Kubernetes Engine Starter
 
-:beetle: A boilerplate for Kubernetes, Terraform, Drone, Caddy, Nodemon, PM2, and Babel.
+:beetle: A boilerplate for Kubernetes, Terraform, Drone, Traefik, Nodemon, PM2, and Babel.
+
+[![Dependency Status](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter.svg)](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter)
+[![devDependency Status](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter/dev-status.svg)](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter?type=dev)
 
 ## Getting Started
 

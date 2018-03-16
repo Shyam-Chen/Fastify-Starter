@@ -1,7 +1,7 @@
 {
   "name": "Kubernetes-Engine-Starter",
   "version": "1.0.0",
-  "description": "A boilerplate for Kubernetes, Terraform, Drone, Caddy, Nodemon, PM2, and Babel.",
+  "description": "A boilerplate for Kubernetes, Terraform, Drone, Traefik, Nodemon, PM2, and Babel.",
   "scripts": {
     "start": "nodemon src/api.js --exec babel-node",
     "test": "jest --coverage --forceExit",
