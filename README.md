@@ -1,6 +1,6 @@
 # Kubernetes Engine Starter
 
-:beetle: A boilerplate for Kubernetes, Terraform, Drone, Traefik, Nodemon, PM2, and Babel.
+:beetle: A boilerplate for Kubernetes, Packer, Terraform, Drone, Traefik, Nodemon, PM2, and Babel.
 
 [![Dependency Status](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter.svg)](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter)
 [![devDependency Status](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter/dev-status.svg)](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter?type=dev)
@@ -24,20 +24,14 @@ $ kubectl apply -f k8s
 
 ```bash
 $ kubectl get services
-# or
-$ kubectl get svc
 ```
 
 ```bash
 $ kubectl get deployments
-# or
-$ kubectl get deploy
 ```
 
 ```bash
 $ kubectl get pods
-# or
-$ kubectl get po
 ```
 
 4. Open the Dashboard
@@ -50,4 +44,12 @@ $ minikube dashboard
 
 ```bash
 $ minikube service Kubernetes-Engine-Starter
+```
+
+## Projects
+
+```bash
+$ kubectl create namespace development
+$ kubectl create namespace staging
+$ kubectl create namespace production
 ```
