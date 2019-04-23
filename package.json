@@ -1,27 +1,50 @@
 {
-  "name": "Kubernetes-Engine-Starter",
+  "name": "fastify-play",
   "version": "1.0.0",
-  "description": "A boilerplate for Kubernetes, Packer, Terraform, Drone, Traefik, Nodemon, PM2, and Babel.",
+  "description": "",
   "scripts": {
-    "start": "nodemon src/api.js --exec babel-node",
-    "test": "jest --coverage --forceExit",
-    "build": "babel src -d dist"
+    "start": "rimraf dist && webpack -w",
+    "build": "rimraf dist && webpack --env.prod",
+    "lint": "eslint 'src/**/*.js'",
+    "test": "jest \"src/.*\\.js$\" --coverage --detectOpenHandles --forceExit",
+    "_codecov": "codecov"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shyam-Chen/Fastify-Play.git"
+  },
+  "author": "Shyam Chen",
   "license": "MIT",
   "dependencies": {
-    "express": "4.16.2"
+    "bcrypt": "^3.0.6",
+    "connect-redis": "^3.4.1",
+    "fastify": "^2.2.0",
+    "fastify-auth": "^0.5.0",
+    "fastify-compress": "^0.8.1",
+    "fastify-cookie": "^3.0.2",
+    "fastify-cors": "^2.1.2",
+    "fastify-gql": "^1.0.0",
+    "fastify-helmet": "^3.0.0",
+    "fastify-jwt": "^0.10.0",
+    "fastify-oauth2": "^2.0.0",
+    "fastify-rate-limit": "^2.1.0",
+    "fastify-session": "^2.0.0",
+    "mongoose": "^5.5.1"
   },
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-eslint": "8.2.2",
-    "babel-jest": "22.4.1",
-    "babel-preset-env": "1.6.1",
-    "eslint": "4.18.1",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-plugin-import": "2.9.0",
-    "flow-bin": "0.66.0",
-    "flow-typed": "2.3.0",
-    "jest": "22.4.2",
-    "nodemon": "1.15.1"
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
+    "babel-loader": "^8.0.5",
+    "codecov": "^3.2.0",
+    "eslint": "^5.14.1",
+    "jest": "^24.1.0",
+    "nodemon-webpack-plugin": "^4.0.7",
+    "process-envify": "^0.1.3",
+    "rimraf": "^2.6.3",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
   }
 }

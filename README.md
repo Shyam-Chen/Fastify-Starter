@@ -1,55 +1,51 @@
-# Kubernetes Engine Starter
-
-:beetle: A boilerplate for Kubernetes, Packer, Terraform, Drone, Traefik, Nodemon, PM2, and Babel.
-
-[![Dependency Status](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter.svg)](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter)
-[![devDependency Status](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter/dev-status.svg)](https://david-dm.org/Shyam-Chen/Kubernetes-Engine-Starter?type=dev)
+# Fastify Play
 
 ## Getting Started
 
-1. Clone this Boilerplate
+Follow steps to execute this boilerplate.
+
+1. Clone this boilerplate
 
 ```bash
-$ git clone --depth 1 https://github.com/Shyam-Chen/Kubernetes-Engine-Starter.git <PROJECT_NAME>
+$ git clone --depth 1 https://github.com/Shyam-Chen/Fastify-Play.git <PROJECT_NAME>
 $ cd <PROJECT_NAME>
 ```
 
-2. Apply a config to a resource
+2. Install dependencies
 
 ```bash
-$ kubectl apply -f k8s
+$ yarn install
 ```
 
-3. Display Resources
+3. Start a local server
 
 ```bash
-$ kubectl get services
+$ yarn start
 ```
+
+4. Compile and bundle code
 
 ```bash
-$ kubectl get deployments
+$ yarn build
 ```
+
+5. Check code quality
 
 ```bash
-$ kubectl get pods
+$ yarn lint
 ```
 
-4. Open the Dashboard
+6. Runs unit tests
 
 ```bash
-$ minikube dashboard
+$ yarn test
 ```
 
-5. Access the Service
+## Play Station
 
-```bash
-$ minikube service Kubernetes-Engine-Starter
-```
+Develop, test, deploy, and scale web apps in the happy way.
 
-## Projects
-
-```bash
-$ kubectl create namespace development
-$ kubectl create namespace staging
-$ kubectl create namespace production
-```
+* [Vue-Play](https://github.com/Shyam-Chen/Vue-Play) - Front-end Web Developer
+* [Fastify-Play](https://github.com/Shyam-Chen/Fastify-Play) - Back-end Web Developer
+* [Puppeteer-Play](https://github.com/Shyam-Chen/Puppeteer-Play) - Quality Assurance Web Tester
+* [Kubernetes-Play](https://github.com/Shyam-Chen/Kubernetes-Play) - Web Site Reliability Operator

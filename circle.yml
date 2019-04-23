@@ -1,0 +1,44 @@
+version: 2
+
+base: &base
+  working_directory: ~/Fastify-Play
+  docker:
+    - image: circleci/node:10
+
+jobs:
+
+  build:
+    <<: *base
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Combat preparation
+          command: docker-compose up -d default
+      - run:
+          name: Build the application
+          command: docker-compose exec default yarn build
+
+  test:
+    <<: *base
+    steps:
+      - checkout
+      - setup_remote_docker
+
+  deploy:
+    <<: *base
+    steps:
+      - checkout
+      - setup_remote_docker
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
