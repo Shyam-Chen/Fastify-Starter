@@ -11,4 +11,9 @@ const resolvers = mergeResolvers([
   helloWorld.resolvers,
 ]);
 
+// const context = async ({ req }) => {
+//   const token = req.headers['Authorization'];
+//   return { token, user };
+// };
+
 export default new ApolloServer({ typeDefs, resolvers });

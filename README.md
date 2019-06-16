@@ -40,12 +40,3 @@ $ yarn lint
 ```bash
 $ yarn test
 ```
-
-## Play Station
-
-Develop, test, deploy, and scale web apps in the happy way.
-
-* [Vue-Play](https://github.com/Shyam-Chen/Vue-Play) - Front-end Web Developer
-* [Fastify-Play](https://github.com/Shyam-Chen/Fastify-Play) - Back-end Web Developer
-* [Puppeteer-Play](https://github.com/Shyam-Chen/Puppeteer-Play) - Quality Assurance Web Tester
-* [Kubernetes-Play](https://github.com/Shyam-Chen/Kubernetes-Play) - Web Site Reliability Operator
