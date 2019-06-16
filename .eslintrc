@@ -1,6 +1,6 @@
 {
   "extends": [
-    "eslint:recommended"
+    "airbnb-base"
   ],
   "env": {
     "node": true,
@@ -15,5 +15,11 @@
   },
   "plugins": [],
   "rules": {},
-  "settings": {}
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
+  }
 }

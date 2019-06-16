@@ -37,6 +37,7 @@ module.exports = ({ prod } = {}) => ({
     new webpack.DefinePlugin(envify(env)),
     !prod && new webpack.HotModuleReplacementPlugin(),
     !prod && new NodemonPlugin(),
+    prod && new webpack.optimize.AggressiveSplittingPlugin(),
   ].filter(Boolean),
   devtool: prod ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   target: 'node',
