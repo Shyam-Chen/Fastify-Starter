@@ -11,5 +11,12 @@ module.exports = (api) => {
         },
       ],
     ],
+    plugins: [
+      [
+        'babel-plugin-root-import', {
+          paths: [{ rootPathPrefix: '~', rootPathSuffix: 'src' }],
+        },
+      ],
+    ],
   };
 };

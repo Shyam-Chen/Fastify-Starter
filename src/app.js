@@ -9,7 +9,7 @@ import compress from 'fastify-compress';
 import cookie from 'fastify-cookie';
 import session from 'fastify-session';
 
-import router from './core/router';
+import router from '~/core/router';
 
 const app = fastify({ logger: true });
 
