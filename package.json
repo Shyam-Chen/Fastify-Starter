@@ -24,7 +24,6 @@
     "fastify-compress": "^0.10.0",
     "fastify-cookie": "^3.0.2",
     "fastify-cors": "^2.1.3",
-    "fastify-gql": "^1.3.0",
     "fastify-helmet": "^3.0.0",
     "fastify-jwt": "^1.0.0",
     "fastify-oauth2": "^2.0.0",
