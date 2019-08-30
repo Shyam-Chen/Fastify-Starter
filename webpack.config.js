@@ -12,9 +12,7 @@ const DISTRIBUTION_ROOT = path.join(__dirname, 'dist');
 module.exports = ({ prod } = {}) => ({
   mode: prod ? 'production' : 'development',
   context: SOURCE_ROOT,
-  entry: {
-    app: './app.js',
-  },
+  entry: ['./main.js'],
   output: {
     path: DISTRIBUTION_ROOT,
     filename: '[name].js',
@@ -41,7 +39,5 @@ module.exports = ({ prod } = {}) => ({
   ].filter(Boolean),
   devtool: prod ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   target: 'node',
-  externals: [
-    nodeExternals(),
-  ],
+  externals: [nodeExternals()],
 });
