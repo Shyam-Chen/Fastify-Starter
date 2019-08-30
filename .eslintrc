@@ -1,6 +1,7 @@
 {
   "extends": [
-    "airbnb-base"
+    "airbnb-base",
+    "prettier"
   ],
   "env": {
     "node": true,
@@ -13,8 +14,12 @@
   "parserOptions": {
     "sourceType": "module"
   },
-  "plugins": [],
-  "rules": {},
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  },
   "settings": {
     "import/resolver": {
       "webpack": {
