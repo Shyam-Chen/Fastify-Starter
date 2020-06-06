@@ -16,7 +16,7 @@
   "author": "Shyam Chen",
   "license": "MIT",
   "dependencies": {
-    "apollo-server-fastify": "^2.9.2",
+    "apollo-server-fastify": "^2.14.2",
     "bcrypt": "^3.0.6",
     "connect-redis": "^4.0.0",
     "fastify": "^2.8.0",
