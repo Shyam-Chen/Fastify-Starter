@@ -1,4 +1,4 @@
-# Fastify Play
+# Fastify Starter
 
 ## Getting Started
 
@@ -7,7 +7,7 @@ Follow steps to execute this boilerplate.
 1. Clone this boilerplate
 
 ```bash
-$ git clone --depth 1 https://github.com/Shyam-Chen/Fastify-Play.git <PROJECT_NAME>
+$ git clone --depth 1 https://github.com/Shyam-Chen/Fastify-Starter.git <PROJECT_NAME>
 $ cd <PROJECT_NAME>
 ```
 
@@ -20,7 +20,7 @@ $ yarn install
 3. Start a local server
 
 ```bash
-$ yarn start
+$ yarn serve
 ```
 
 4. Compile and bundle code
@@ -38,5 +38,11 @@ $ yarn lint
 6. Runs unit tests
 
 ```bash
-$ yarn test
+$ yarn unit
+```
+
+7. Run end-to-end tests
+
+```sh
+$ yarn e2e
 ```

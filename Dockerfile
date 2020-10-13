@@ -1,6 +1,6 @@
-FROM node:10
+FROM node:12
 
-ENV HOME /Fastify-Play
+ENV HOME /Fastify-Starter
 
 WORKDIR ${HOME}
 ADD . $HOME

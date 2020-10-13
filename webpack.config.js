@@ -12,7 +12,7 @@ const DISTRIBUTION_ROOT = path.join(__dirname, 'dist');
 module.exports = ({ prod } = {}) => ({
   mode: prod ? 'production' : 'development',
   context: SOURCE_ROOT,
-  entry: ['./main.js'],
+  entry: [!prod && 'webpack/hot/poll?1000', './app.js'].filter(Boolean),
   output: {
     path: DISTRIBUTION_ROOT,
     filename: '[name].js',
@@ -37,6 +37,19 @@ module.exports = ({ prod } = {}) => ({
     !prod && new NodemonPlugin(),
     prod && new webpack.optimize.AggressiveSplittingPlugin(),
   ].filter(Boolean),
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+        },
+      },
+    },
+  },
   devtool: prod ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   target: 'node',
   externals: [nodeExternals()],
