@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const NodemonPlugin = require('nodemon-webpack-plugin');
+const StartServerPlugin = require('start-server-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const envify = require('process-envify');
 
@@ -12,10 +12,10 @@ const DISTRIBUTION_ROOT = path.join(__dirname, 'dist');
 module.exports = ({ prod } = {}) => ({
   mode: prod ? 'production' : 'development',
   context: SOURCE_ROOT,
-  entry: [!prod && 'webpack/hot/poll?1000', './app.js'].filter(Boolean),
+  entry: [!prod && 'webpack/hot/poll?1000', './main.js'].filter(Boolean),
   output: {
     path: DISTRIBUTION_ROOT,
-    filename: '[name].js',
+    filename: 'main.js',
   },
   module: {
     rules: [
@@ -34,23 +34,13 @@ module.exports = ({ prod } = {}) => ({
   plugins: [
     new webpack.DefinePlugin(envify(env)),
     !prod && new webpack.HotModuleReplacementPlugin(),
-    !prod && new NodemonPlugin(),
-    prod && new webpack.optimize.AggressiveSplittingPlugin(),
+    !prod && new StartServerPlugin({ name: 'main.js' }),
   ].filter(Boolean),
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      chunks: 'all',
-      maxInitialRequests: Infinity,
-      minSize: 0,
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-        },
-      },
-    },
-  },
   devtool: prod ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   target: 'node',
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      allowlist: ['webpack/hot/poll?1000'],
+    }),
+  ],
 });
