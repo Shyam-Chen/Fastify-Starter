@@ -34,7 +34,7 @@ module.exports = ({ prod } = {}) => ({
   plugins: [
     new webpack.DefinePlugin(envify(env)),
     !prod && new webpack.HotModuleReplacementPlugin(),
-    !prod && new StartServerPlugin({ name: 'main.js' }),
+    !prod && new StartServerPlugin({ name: 'main.js', keyboard: true }),
   ].filter(Boolean),
   devtool: prod ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   target: 'node',

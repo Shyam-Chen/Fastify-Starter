@@ -7,7 +7,7 @@
     "build": "rimraf dist && webpack --env.prod",
     "lint": "eslint 'src/**/*.js'",
     "unit": "jest \"src/.*\\.js$\" --coverage --detectOpenHandles --forceExit",
-    "e2e": "",
+    "e2e": "JEST_ENV=e2e jest \"src/.*\\.js$\" --forceExit",
     "_codecov": "codecov"
   },
   "repository": {
