@@ -1,12 +1,12 @@
 import { gql } from 'apollo-server-fastify';
 
-const typeDefs = gql`
+export const typeDef = gql`
   type Query {
     helloWorld: String
   }
 `;
 
-const resolvers = {
+export default {
   /**
    * @example query { helloWorld }
    */
@@ -16,5 +16,3 @@ const resolvers = {
     },
   },
 };
-
-export default { typeDefs, resolvers };

@@ -1,18 +1,18 @@
 import { ApolloServer } from 'apollo-server-fastify';
 import { mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 
-import helloWorld from '~/hello-world/graphql';
+import { HelloWorld } from '~/hello-world';
 
 const typeDefs = mergeTypes(
   [
-    helloWorld.typeDefs,
+    HelloWorld.typeDef,
     // ...
   ],
   { all: true },
 );
 
 const resolvers = mergeResolvers([
-  helloWorld.resolvers,
+  HelloWorld.resolver,
   // ...
 ]);
 
