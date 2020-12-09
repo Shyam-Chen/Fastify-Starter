@@ -14,7 +14,7 @@ $ cd <PROJECT_NAME>
 2. Install dependencies
 
 ```bash
-$ yarn install
+$ npm install
 ```
 
 3. Start a development server
@@ -48,6 +48,72 @@ $ yarn e2e
 ```
 
 Note: If you see the `[HMR] You need to restart the application!` message to type `rs` and press Enter to restart the server. Don't forget to fix the build failure.
+
+## Examples
+
+- Hello World
+- CRUD Operations
+- Authentication
+- File Uploads
+- Realtime Data
+
+## Directory Structure
+
+```ts
+.
+├── src
+│   ├── core
+│   │   └── ...
+│   ├── <FEATURE> -> feature module
+│   │   ├── __tests__
+│   │   │   ├── controller.spec.js
+│   │   │   ├── resolver.spec.js
+│   │   │   ├── document.spec.js
+│   │   │   ├── relational.spec.js
+│   │   │   ├── service.spec.js
+│   │   │   ├── rest.e2e-spec.js
+│   │   │   └── graphql.e2e-spec.js
+│   │   ├── controller.js -> rest controller
+│   │   ├── resolver.js -> graphql resolver
+│   │   ├── document.js -> mongodb odm
+│   │   ├── relational.js -> postgresql orm
+│   │   ├── service.js -> provider
+│   │   └── index.js
+│   ├── <GROUP> -> module group
+│   │   └── <FEATURE> -> feature module
+│   │       ├── __tests__
+│   │       │   ├── controller.spec.js
+│   │       │   ├── resolver.spec.js
+│   │       │   ├── document.spec.js
+│   │       │   ├── relational.spec.js
+│   │       │   ├── service.spec.js
+│   │       │   ├── rest.e2e-spec.js
+│   │       │   └── graphql.e2e-spec.js
+│   │       ├── controller.js -> rest controller
+│   │       ├── resolver.js -> graphql resolver
+│   │       ├── document.js -> mongodb odm
+│   │       ├── relational.js -> postgresql orm
+│   │       ├── service.js -> provider
+│   │       └── index.js
+│   ├── shared
+│   │   └── ...
+│   ├── app.js
+│   └── main.js
+├── .editorconfig
+├── .eslintrc
+├── .gitignore
+├── .prettierrc
+├── babel.config.js
+├── circle.yml
+├── docker-compose.yml
+├── Dockerfile
+├── env.js
+├── jest.config.js
+├── LICENSE
+├── package.json
+├── README.md
+└── webpack.config.js
+```
 
 ## Microservices
 
