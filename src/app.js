@@ -10,21 +10,23 @@ import cookie from 'fastify-cookie';
 import session from 'fastify-session';
 
 import router from '~/core/router';
-import apolloServer from '~/core/apollo-server';
+// import apolloServer from '~/core/apollo-server';
 
-const app = fastify({ logger: true });
+export default (opts = {}) => {
+  const app = fastify(opts);
 
-app.register(helmet);
-app.register(cors);
-app.register(rateLimit);
-app.register(compress);
-// app.register(jwt);
-// app.register(auth);
-// app.register(oauth2);
-app.register(cookie);
-app.register(session, { secret: process.env.SECRET });
+  app.register(helmet);
+  app.register(cors);
+  app.register(rateLimit);
+  app.register(compress);
+  // app.register(jwt);
+  // app.register(auth);
+  // app.register(oauth2);
+  app.register(cookie);
+  app.register(session, { secret: process.env.SECRET });
 
-app.register(router, { prefix: '/' });
-app.register(apolloServer.createHandler());
+  app.register(router, { prefix: '/' });
+  // app.register(apolloServer.createHandler());
 
-export default app;
+  return app;
+};

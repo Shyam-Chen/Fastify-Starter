@@ -12,10 +12,10 @@ const DISTRIBUTION_ROOT = path.join(__dirname, 'dist');
 module.exports = ({ prod } = {}) => ({
   mode: prod ? 'production' : 'development',
   context: SOURCE_ROOT,
-  entry: [!prod && 'webpack/hot/poll?1000', './main.js'].filter(Boolean),
+  entry: [!prod && 'webpack/hot/poll?1000', './server.js'].filter(Boolean),
   output: {
     path: DISTRIBUTION_ROOT,
-    filename: 'main.js',
+    filename: 'server.js',
   },
   module: {
     rules: [
@@ -34,7 +34,7 @@ module.exports = ({ prod } = {}) => ({
   plugins: [
     new webpack.DefinePlugin(envify(env)),
     !prod && new webpack.HotModuleReplacementPlugin(),
-    !prod && new StartServerPlugin({ name: 'main.js', keyboard: true }),
+    !prod && new StartServerPlugin({ name: 'server.js', keyboard: true }),
   ].filter(Boolean),
   devtool: prod ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   target: 'node',
