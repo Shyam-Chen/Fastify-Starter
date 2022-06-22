@@ -1,31 +1,14 @@
-let app = require('./app').default;
+const app = require('./dist/app').default;
 
-const server = app({
-  logger: {
-    level: 'info',
-    // prettyPrint: true
-  },
-});
+const start = async () => {
+  const server = await app({ logger: true });
 
-server.listen(process.env.SITE_PORT, (err, address) => {
-  if (err) {
-    console.log(err);
+  try {
+    server.listen({ port: 3000 });
+  } catch (err) {
+    server.log.error(err);
     process.exit(1);
   }
-});
+};
 
-if (module.hot) {
-  // module.hot.accept('./app', () => {
-  //   try {
-  //     server.removeAllListeners('request', server);
-  //     // eslint-disable-next-line global-require
-  //     app = require('./app').default;
-  //     server.on('request', app.callback());
-  //   } catch (err) {
-  //     // The exception is handled by Webpack.
-  //   }
-  // });
-
-  module.hot.accept();
-  module.hot.dispose(() => server.close());
-}
+start();
