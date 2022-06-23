@@ -1,4 +1,4 @@
-const app = require('./dist/app').default;
+const app = require('./app').default;
 
 const start = async () => {
   const server = await app({ logger: true });
