@@ -9,6 +9,9 @@ $ pnpm dev
 # build for production
 $ pnpm build
 
+# locally preview production build
+$ pnpm preview
+
 # run tests
 $ pnpm test
 
