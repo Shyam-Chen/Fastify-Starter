@@ -1,6 +1,8 @@
 import fastify from 'fastify';
 // import mongodb from '@fastify/mongodb';
 
+import helloWorld from './hello-world/routes';
+
 const app = async (options = {}) => {
   const app = fastify(options);
 
@@ -10,10 +12,7 @@ const app = async (options = {}) => {
     reply.send('change me to see updates, fastify!');
   });
 
-  app.get('/hello-world', async (req, reply) => {
-    reply.type('application/json').code(200);
-    return { hello: 'world' };
-  });
+  app.register(helloWorld);
 
   return app;
 };

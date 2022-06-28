@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@fastify/mongodb': ^6.0.1
   fastify: ^4.1.0
+  fastify-plugin: ^3.0.1
   vite: ^2.9.12
   vite-plugin-node: ^1.0.0
   vite-plugin-static-copy: ^0.5.1
@@ -11,6 +12,7 @@ specifiers:
 dependencies:
   '@fastify/mongodb': 6.0.1
   fastify: 4.1.0
+  fastify-plugin: 3.0.1
 
 devDependencies:
   vite: 2.9.12
