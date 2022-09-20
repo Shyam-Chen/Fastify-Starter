@@ -1,7 +1,6 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import { VitePluginNode } from 'vite-plugin-node';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+import fastify from './vite-plugin-fastify';
 import envify from 'process-envify';
 
 import env from './env';
@@ -12,12 +11,10 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [
-    ...VitePluginNode({
-      adapter: 'fastify',
+    fastify({
       appPath: './src/app.ts',
-    }),
-    viteStaticCopy({
-      targets: [{ src: 'src/server.js', dest: '' }],
+      serverPath: './src/server.ts',
+      adapter: 'fastify',
     }),
   ],
   resolve: {

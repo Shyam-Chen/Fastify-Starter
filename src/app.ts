@@ -1,7 +1,7 @@
 import fastify from 'fastify';
 // import mongodb from '@fastify/mongodb';
 
-import helloWorld from './hello-world/routes';
+import helloWorld from '~/hello-world/routes';
 
 const app = async (options = {}) => {
   const app = fastify(options);
@@ -19,7 +19,5 @@ const app = async (options = {}) => {
 
   return app;
 };
-
-export const viteNodeApp = app({ logger: true });
 
 export default app;
