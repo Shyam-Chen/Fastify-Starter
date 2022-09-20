@@ -28,22 +28,18 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
         },
         server: {
           hmr: false,
-        },
-        optimizeDeps: {
-          // Vite does not work well with optionnal dependencies,
-          // mark them as ignored for now
-          exclude: [],
+          host: true,
         },
         VitePluginNodeConfig: config,
       };
-
-
-
 
       return plugincConfig;
     },
     configureServer: (server) => {
       server.middlewares.use(createMiddleware(server));
+
+      console.log(server.ws.clients.size);
+
     },
   };
 

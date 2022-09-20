@@ -19,7 +19,8 @@
     "@fastify/mongodb": "^6.0.1",
     "@fastify/websocket": "^7.0.1",
     "fastify": "^4.6.0",
-    "fastify-plugin": "^4.2.1"
+    "fastify-plugin": "^4.2.1",
+    "ws": "^8.8.1"
   },
   "devDependencies": {
     "process-envify": "^1.0.4",
