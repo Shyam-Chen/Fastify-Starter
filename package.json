@@ -21,6 +21,7 @@
     "fastify-plugin": "^3.0.1"
   },
   "devDependencies": {
+    "process-envify": "^1.0.4",
     "vite": "^2.9.12",
     "vite-plugin-node": "^1.0.0",
     "vite-plugin-static-copy": "^0.5.1",

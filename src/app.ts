@@ -9,6 +9,9 @@ const app = async (options = {}) => {
   // app.register(mongodb, { url: 'mongodb://mongo/mydb' });
 
   app.get('/', (req, reply) => {
+    console.log('process.env.NODE_ENV =', process.env.NODE_ENV);
+    console.log('process.env.SECRET =', process.env.SECRET);
+
     reply.send('change me to see updates, fastify!');
   });
 
