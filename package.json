@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "dev:vite": "vite",
+    "dev": "nodemon -e \"ts,mts,json\" -x \"vite-node src/server.ts\" -w \"src/**/*\" -i \"**/__tests__/**\"",
     "build": "vite build",
     "preview": "node dist/server.js",
     "test": "vitest",
@@ -20,13 +19,13 @@
     "@fastify/mongodb": "^6.0.1",
     "@fastify/websocket": "^7.0.1",
     "fastify": "^4.6.0",
-    "fastify-plugin": "^4.2.1",
-    "ws": "^8.8.1"
+    "fastify-plugin": "^4.2.1"
   },
   "devDependencies": {
+    "nodemon": "^2.0.20",
     "process-envify": "^1.0.4",
-    "tsx": "^3.9.0",
     "vite": "^3.1.3",
+    "vite-node": "^0.23.4",
     "vitest": "^0.23.4"
   }
 }
