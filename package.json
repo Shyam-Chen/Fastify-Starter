@@ -6,7 +6,7 @@
     "dev": "nodemon -e \"ts,mts,json\" -x \"vite-node src/server.ts\" -w \"src/**/*\" -i \"**/__tests__/**\"",
     "build": "vite build",
     "preview": "node dist/server.js",
-    "test": "vitest",
+    "test": "vitest --coverage",
     "coverage": "vitest run --coverage"
   },
   "repository": {
@@ -23,6 +23,7 @@
     "fastify-sse-v2": "^2.2.1"
   },
   "devDependencies": {
+    "@vitest/coverage-c8": "^0.23.4",
     "nodemon": "^2.0.20",
     "process-envify": "^1.0.4",
     "vite": "^3.1.3",
