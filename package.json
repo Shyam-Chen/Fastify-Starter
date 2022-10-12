@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@fastify/mongodb": "^6.0.1",
+    "@fastify/multipart": "^7.2.0",
     "@fastify/websocket": "^7.0.1",
     "@sinclair/typebox": "^0.24.44",
     "fastify": "^4.6.0",
