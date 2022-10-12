@@ -12,9 +12,6 @@ export default defineConfig({
     },
   },
   build: {
-    rollupOptions: {
-      output: [{ format: 'cjs' }, { format: 'es' }],
-    },
     ssr: './src/server.ts',
   },
 });
