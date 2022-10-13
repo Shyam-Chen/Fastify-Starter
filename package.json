@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon -e \"ts,mts,json\" -x \"vite-node src/server.ts\" -w \"src/**/*\" -i \"**/__tests__/**\"",
+    "dev": "nodemon -e \"ts,mts,json\" -x \"vite-node src/main.ts\" -w \"src/**/*\" -i \"**/__tests__/**\"",
     "build": "vite build",
-    "preview": "node dist/server.mjs",
+    "preview": "node dist/main.mjs",
     "test": "vitest --coverage",
     "coverage": "vitest run --coverage"
   },
@@ -16,8 +16,11 @@
   "author": "Shyam Chen",
   "license": "MIT",
   "dependencies": {
+    "@fastify/jwt": "^6.3.2",
     "@fastify/mongodb": "^6.0.1",
     "@fastify/multipart": "^7.2.0",
+    "@fastify/redis": "^6.0.1",
+    "@fastify/sensible": "^5.1.1",
     "@fastify/websocket": "^7.0.1",
     "@sinclair/typebox": "^0.24.44",
     "fastify": "^4.6.0",

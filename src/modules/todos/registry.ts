@@ -4,6 +4,8 @@ import type { TodoItemType, TodoIdType } from './schema';
 import { TodoItem, TodoId } from './schema';
 
 export default async (app: FastifyInstance) => {
+  // app.addHook('onRequest', (req) => req.jwtVerify());
+
   const todos = app.mongo.db.collection('todos');
 
   /*

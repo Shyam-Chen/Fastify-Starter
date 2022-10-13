@@ -100,7 +100,7 @@ $ pnpm meas
 
 ### Mock requests
 
-[`mock/requests`](./mock/requests) is a fork of [self](https://github.com/Shyam-Chen/Fastify-Starter) that was made easy and quick way to run mock APIs locally.
+[`mock/requests`](./mock/requests) is a fork [self](https://github.com/Shyam-Chen/Fastify-Starter) that was made easy and quick way to run mock APIs locally.
 
 ```sh
 # If it's not active, run it.
@@ -151,7 +151,8 @@ The structure follows the LIFT Guidelines.
 │   ├── plugins -> root module
 │   ├── utilities -> shared module
 │   ├── app.ts
-│   ├── server.ts
+│   ├── error.ts
+│   ├── main.ts
 │   └── shims.d.ts
 ├── .editorconfig
 ├── .eslintrc

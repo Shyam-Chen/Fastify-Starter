@@ -12,6 +12,6 @@ export default defineConfig({
     },
   },
   build: {
-    ssr: './src/server.ts',
+    ssr: './src/main.ts',
   },
 });
