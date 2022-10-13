@@ -6,6 +6,7 @@ import jwt from '@fastify/jwt';
 import router from '~/plugins/router';
 import websocket from '~/plugins/websocket';
 import eventsource from '~/plugins/eventsource';
+import i18n from '~/plugins/i18n';
 
 const app = async (options: FastifyServerOptions = {}) => {
   const app = fastify(options);
@@ -17,6 +18,7 @@ const app = async (options: FastifyServerOptions = {}) => {
   app.register(router, { prefix: '/api' });
   app.register(websocket, { prefix: '/api' });
   app.register(eventsource, { prefix: '/api' });
+  app.register(i18n);
 
   return app;
 };

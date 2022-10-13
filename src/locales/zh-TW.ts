@@ -1,3 +1,3 @@
 export default {
-  text: 'Text',
+  text: '文字',
 };
