@@ -2,6 +2,8 @@
 
 :zap: A boilerplate for Node.js, Fastify, MongoDB, Redis, Vite, Vitest, and TypeScript.
 
+:rainbow: [Live Demo](https://fastify-starter-12ih.onrender.com/api)
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)

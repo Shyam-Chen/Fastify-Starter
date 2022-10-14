@@ -1,8 +1,8 @@
 services:
   - type: web
-    name: Fastify Starter
+    name: fastify-starter
     env: node
-    buildCommand: pnpm build
-    startCommand: node index.mjs
+    buildCommand: pnpm install; pnpm build
+    startCommand: pnpm preview
     plan: free
     branch: main
