@@ -4,7 +4,7 @@ pm2.connect(() => {
   pm2.start(
     {
       name: 'Fastify-Starter',
-      script: `${__dirname}/dist/server.mjs`,
+      script: `${__dirname}/dist/main.mjs`,
       max_memory_restart: `${process.env.WEB_MEMORY || 512}M`,
       exec_mode: 'cluster',
       instances: process.env.WEB_CONCURRENCY || -1,

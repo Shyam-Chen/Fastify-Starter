@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- [Getting Started](#getting-started)
 - [Project Setup](#project-setup)
 - [Key Features](#key-features)
 - [Dockerization](#dockerization)
@@ -13,21 +14,16 @@
 
 ## Getting Started
 
+Get started with Fastify Starter.
+
 ```sh
-# start dev server
+# dev server
+$ pnpm install
 $ pnpm dev
 
-# build for production
-$ pnpm build
-
-# locally preview production build
-$ pnpm preview
-
-# run tests
-$ pnpm test
-
-# run tests once
-$ pnpm coverage
+# mock server
+$ cd mock/requests && pnpm install && cd ../..
+$ pnpm mock
 ```
 
 ## Project Setup
@@ -77,8 +73,8 @@ Files: `e2e/**/*.spec.ts`
 $ pnpm build
 $ pnpm preview
 
-# If it's not setup, run it.
-$ pnpm setup
+# If it's not installed, run it.
+$ cd e2e && pnpm install && cd ..
 
 $ pnpm e2e
 ```
@@ -92,8 +88,8 @@ Files: `e2e/**/*.meas.ts`
 $ pnpm build
 $ pnpm preview
 
-# If it's not setup, run it.
-$ pnpm setup
+# If it's not installed, run it.
+$ cd e2e && pnpm install && cd ..
 
 $ pnpm meas
 ```
@@ -103,8 +99,8 @@ $ pnpm meas
 [`mock/requests`](./mock/requests) is a fork [self](https://github.com/Shyam-Chen/Fastify-Starter) that was made easy and quick way to run mock APIs locally.
 
 ```sh
-# If it's not active, run it.
-$ pnpm active
+# If it's not installed, run it.
+$ cd mock/requests && pnpm install && cd ../..
 
 $ pnpm mock
 ```
@@ -117,6 +113,7 @@ This seed repository provides the following features:
 - [x] [Fastify](https://github.com/fastify/fastify)
 - [x] [MongoDB](https://github.com/fastify/fastify-mongodb)
 - [x] [WebSocket](https://github.com/fastify/fastify-websocket)
+- [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2)
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite)
 - [x] [TypeScript](https://github.com/microsoft/TypeScript)
@@ -129,8 +126,137 @@ This seed repository provides the following features:
 - [x] [Node.js](https://nodejs.org/en/)
 - [x] [Pnpm](https://pnpm.io/)
 - [ ] [Caddy](https://caddyserver.com/)
+- [ ] [Docker](https://www.docker.com/)
 - [ ] [CircleCI](https://circleci.com/)
 - [ ] [Render](https://render.com/)
+
+## Dockerization
+
+Dockerize an application.
+
+1. Build and run the container in the background
+
+```bash
+$ docker-compose up -d default
+```
+
+2. Run a command in a running container
+
+```bash
+$ docker-compose exec default <COMMAND>
+```
+
+3. Remove the old container before creating the new one
+
+```bash
+$ docker-compose rm -fs
+```
+
+4. Restart up the container in the background
+
+```bash
+$ docker-compose up -d --build default
+```
+
+## Configuration
+
+Control the environment.
+
+### Default environments
+
+Set your local environment variables. (use `<ENV_NAME> = process.env.<ENV_NAME> || <LOCAL_ENV>;`)
+
+```ts
+// env.ts
+
+export default new (class Environment {
+  NODE_ENV = process.env.NODE_ENV || 'development';
+
+  SITE_URL = process.env.SITE_URL || 'http://127.0.0.1:5173';
+
+  MONGODB_URL = process.env.MONGODB_URL || 'xxx';
+
+  SECRET_KEY = process.env.SECRET_KEY || 'xxx';
+})();
+```
+
+### Continuous integration environments
+
+Add environment variables to the CircleCI build.
+
+```sh
+CODECOV_TOKEN=xxx
+```
+
+### Continuous deployment environments
+
+Add environment variables to the Netlify build.
+
+```sh
+API_URL=http://api.example.com
+```
+
+### File-based environments
+
+If you want to set environment variables from a file.
+
+```coffee
+.
+├── e2e
+├── envs
+│   ├── dev.js
+│   ├── stage.js
+│   └── prod.js
+├── mock
+├── public
+└── src
+```
+
+```js
+// envs/<ENV_NAME>.js
+
+function Environment() {
+  this.API_URL = 'http://api.example.com';
+}
+
+module.exports = new Environment();
+```
+
+```sh
+$ pnpm add env-cmd -D
+```
+
+```js
+// package.json
+
+  "scripts": {
+    // "env-cmd -f ./envs/<ENV_NAME>.js" + "pnpm build"
+    "build:dev": "env-cmd -f ./envs/dev.js pnpm build",
+    "build:stage": "env-cmd -f ./envs/stage.js pnpm build",
+    "build:prod": "env-cmd -f ./envs/prod.js pnpm build",
+  },
+```
+
+### VS Code settings
+
+The most basic configuration.
+
+```js
+{
+  // ...
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue"
+  ],
+  "javascript.validate.enable": false,
+  "css.validate": false,
+  "vetur.validation.template": false,
+  "vetur.validation.script": false,
+  "vetur.validation.style": false,
+  // ...
+}
+```
 
 ## Directory Structure
 
@@ -172,3 +298,9 @@ The structure follows the LIFT Guidelines.
 ├── tsconfig.json
 └── vite.config.ts
 ```
+
+## Microservices
+
+> Microservice architecture – a variant of the service-oriented architecture structural style – arranges an application as a collection of loosely coupled services. In a microservices architecture, services are fine-grained and the protocols are lightweight.
+
+See [Server-side Micro-Fullstack](https://github.com/Shyam-Chen/Micro-Fullstack/tree/main/mbe) for instructions on how to create microservices from source code.

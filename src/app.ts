@@ -1,5 +1,6 @@
 import type { FastifyServerOptions } from 'fastify';
 import fastify from 'fastify';
+import cors from '@fastify/cors';
 import mongodb from '@fastify/mongodb';
 import jwt from '@fastify/jwt';
 
@@ -12,6 +13,7 @@ const app = async (options: FastifyServerOptions = {}) => {
   const app = fastify(options);
   app.register(import('./error'));
 
+  app.register(cors, { origin: process.env.SITE_URL });
   app.register(mongodb, { url: process.env.MONGODB_URL, forceClose: true });
   app.register(jwt, { secret: process.env.SECRET_KEY });
 
