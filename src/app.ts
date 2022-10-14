@@ -13,6 +13,13 @@ const app = async (options: FastifyServerOptions = {}) => {
   const app = fastify(options);
   app.register(import('./error'));
 
+  app.get('/api', async (req, reply) => {
+    return {
+      name: process.env.APP_NAME,
+      env: process.env.NODE_ENV,
+    };
+  });
+
   app.register(cors, { origin: process.env.SITE_URL });
   app.register(mongodb, { url: process.env.MONGODB_URL, forceClose: true });
   app.register(jwt, { secret: process.env.SECRET_KEY });
