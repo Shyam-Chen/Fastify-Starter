@@ -4,7 +4,10 @@ const start = async () => {
   const server = await app({ logger: true });
 
   try {
-    server.listen({ port: process.env.PORT });
+    server.listen({
+      host: process.env.HOST,
+      port: process.env.PORT
+    });
   } catch (err) {
     server.log.error(err);
     process.exit(1);

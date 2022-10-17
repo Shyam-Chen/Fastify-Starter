@@ -3,7 +3,7 @@ import pm2 from 'pm2';
 pm2.connect(() => {
   pm2.start(
     {
-      name: 'Fastify-Starter',
+      name: 'fastify-starter',
       script: `${__dirname}/dist/main.mjs`,
       max_memory_restart: `${process.env.WEB_MEMORY || 512}M`,
       exec_mode: 'cluster',

@@ -166,20 +166,24 @@ Control the environment.
 
 ### Default environments
 
-Set your local environment variables. (use `<ENV_NAME> = process.env.<ENV_NAME> || <LOCAL_ENV>;`)
+Set your local environment variables.
 
 ```ts
 // env.ts
 
-export default new (class Environment {
-  NODE_ENV = process.env.NODE_ENV || 'development';
+export default {
+  NODE_ENV: process.env.NODE_ENV || 'development',
 
-  SITE_URL = process.env.SITE_URL || 'http://127.0.0.1:5173';
+  HOST: process.env.HOST || '127.0.0.1',
+  PORT: process.env.PORT || 3000,
 
-  MONGODB_URL = process.env.MONGODB_URL || 'xxx';
+  SITE_URL: process.env.SITE_URL || 'http://127.0.0.1:5173',
 
-  SECRET_KEY = process.env.SECRET_KEY || 'xxx';
-})();
+  MONGODB_URL: process.env.MONGODB_URL || 'xxx',
+  REDIS_URL: process.env.REDIS_URL || 'xxx',
+
+  SECRET_KEY: process.env.SECRET_KEY || 'xxx',
+};
 ```
 
 ### Continuous integration environments
