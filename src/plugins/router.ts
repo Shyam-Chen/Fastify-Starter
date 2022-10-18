@@ -8,8 +8,6 @@ export default plugin(
     app.register(import('~/modules/sign-in'), { prefix });
     app.register(import('~/modules/todos/registry'), { prefix });
     app.register(import('~/modules/file-uploads/registry'), { prefix });
-
-    return;
   },
   { name: 'router' },
 );

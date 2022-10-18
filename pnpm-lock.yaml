@@ -11,7 +11,7 @@ specifiers:
   '@sinclair/typebox': ^0.24.44
   '@vitest/coverage-c8': ^0.23.4
   fastify: ^4.6.0
-  fastify-cloudinary: ^1.0.2
+  fastify-cloudinary: ^1.0.4
   fastify-plugin: ^4.2.1
   fastify-sse-v2: ^2.2.1
   node-polyglot: ^2.4.2
@@ -31,7 +31,7 @@ dependencies:
   '@fastify/websocket': 7.1.0
   '@sinclair/typebox': 0.24.46
   fastify: 4.8.1
-  fastify-cloudinary: 1.0.2
+  fastify-cloudinary: 1.0.4
   fastify-plugin: 4.3.0
   fastify-sse-v2: 2.2.1_fastify@4.8.1
   node-polyglot: 2.4.2
@@ -1017,8 +1017,8 @@ packages:
       reusify: 1.0.4
     dev: false
 
-  /fastify-cloudinary/1.0.2:
-    resolution: {integrity: sha512-ctlLP7sVj/MsKPUZVBseyVgZ1Jua1RXT/xhxdV67Xo5Ko/sQvlBnnLG6Q9NS18fb3SmosvqYWLFrKcc39KKjAQ==}
+  /fastify-cloudinary/1.0.4:
+    resolution: {integrity: sha512-0j3BnVMI8fUVBaLB1d5XL5WPicTOLNize8RUfvfH5KOKznhyZSBbAGPoEgvwGnjZoA6uj/tkIiv5waRcXM4Q8w==}
     dependencies:
       cloudinary: 1.32.0
       fastify-plugin: 4.3.0

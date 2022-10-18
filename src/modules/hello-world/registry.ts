@@ -27,8 +27,6 @@ export default async (app: FastifyInstance) => {
 
     // useI18n({ useScope: 'local' })
     req.i18n = polyglot;
-
-    return;
   });
 
   /*
@@ -39,6 +37,4 @@ export default async (app: FastifyInstance) => {
   app.get('/hello-world', async (req, reply) => {
     return { text: req.i18n.t('hello') };
   });
-
-  return;
 };

@@ -8,8 +8,6 @@ export default plugin(
     app.register(FastifySSEPlugin);
 
     app.register(import('~/modules/sse'), { prefix });
-
-    return;
   },
   { name: 'eventsource' },
 );

@@ -14,6 +14,4 @@ export default async (app: FastifyInstance) => {
       console.log('Client disconnected');
     });
   });
-
-  return;
 };

@@ -8,8 +8,6 @@ export default plugin(
         reply.notFound();
       });
     });
-
-    return;
   },
   { name: 'error' },
 );

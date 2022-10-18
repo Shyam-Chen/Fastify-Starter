@@ -8,8 +8,6 @@ export default plugin(
     app.register(websocket);
 
     app.register(import('~/modules/echo'), { prefix });
-
-    return;
   },
   { name: 'websocket' },
 );

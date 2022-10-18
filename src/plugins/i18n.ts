@@ -28,11 +28,7 @@ export default plugin(
 
       // useI18n({ useScope: 'global' })
       req.polyglot = polyglot;
-
-      return;
     });
-
-    return;
   },
   { name: 'i18n' },
 );

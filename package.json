@@ -22,7 +22,7 @@
     "@fastify/websocket": "^7.0.1",
     "@sinclair/typebox": "^0.24.44",
     "fastify": "^4.6.0",
-    "fastify-cloudinary": "^1.0.2",
+    "fastify-cloudinary": "^1.0.4",
     "fastify-plugin": "^4.2.1",
     "fastify-sse-v2": "^2.2.1",
     "node-polyglot": "^2.4.2"
