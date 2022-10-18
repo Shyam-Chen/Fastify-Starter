@@ -1,5 +1,5 @@
 import plugin from 'fastify-plugin';
-import Polyglot from 'node-polyglot';
+import i18n from 'fastify-i18n';
 
 import enUS from '~/locales/en-US';
 import jaJP from '~/locales/ja-JP';
@@ -8,26 +8,14 @@ import zhTW from '~/locales/zh-TW';
 
 export default plugin(
   async (app, opts) => {
-    app.addHook('preParsing', async (req, reply) => {
-      const polyglot = new Polyglot();
-      const acceptLanguage = req.headers['accept-language'];
-
-      if (acceptLanguage === 'ja-JP') {
-        polyglot.locale(acceptLanguage);
-        polyglot.extend(jaJP);
-      } else if (acceptLanguage === 'ko-KR') {
-        polyglot.locale(acceptLanguage);
-        polyglot.extend(koKR);
-      } else if (acceptLanguage === 'zh-TW') {
-        polyglot.locale(acceptLanguage);
-        polyglot.extend(zhTW);
-      } else {
-        polyglot.locale('en-US');
-        polyglot.extend(enUS);
-      }
-
-      // useI18n({ useScope: 'global' })
-      req.polyglot = polyglot;
+    app.register(i18n, {
+      fallbackLocale: 'en-US',
+      messages: {
+        'en-US': enUS,
+        'ja-JP': jaJP,
+        'ko-KR': koKR,
+        'zh-TW': zhTW,
+      },
     });
   },
   { name: 'i18n' },

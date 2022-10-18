@@ -14,7 +14,3 @@ declare namespace NodeJS {
     SECRET_KEY: string;
   }
 }
-
-declare module 'fastify-sse-v2' {
-  export const FastifySSEPlugin: any;
-}
