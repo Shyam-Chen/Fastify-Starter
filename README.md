@@ -113,9 +113,15 @@ This seed repository provides the following features:
 
 - ---------- **Essentials** ----------
 - [x] [Fastify](https://github.com/fastify/fastify)
+- [x] [Fastify I18n](https://github.com/Vanilla-IceCream/fastify-i18n)
 - [x] [MongoDB](https://github.com/fastify/fastify-mongodb)
+- [ ] [JWT](https://github.com/fastify/fastify-jwt)
+- [ ] [Redis](https://github.com/fastify/fastify-redis)
+- [x] [Cloudinary](https://github.com/Vanilla-IceCream/fastify-cloudinary)
 - [x] [WebSocket](https://github.com/fastify/fastify-websocket)
 - [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2)
+- [ ] [Nodemailer](https://github.com/nodemailer/nodemailer)
+- [ ] [Bull](https://github.com/OptimalBits/bull)
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite)
 - [x] [TypeScript](https://github.com/microsoft/TypeScript)

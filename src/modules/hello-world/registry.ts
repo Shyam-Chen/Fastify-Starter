@@ -23,7 +23,6 @@ export default async (app: FastifyInstance) => {
     const i18n = useI18n(req);
 
     return {
-      foo: i18n.t('foo'),
       hello: i18n.t('hello'),
       text: req.i18n.t('text'),
     };

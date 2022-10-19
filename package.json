@@ -25,8 +25,7 @@
     "fastify-cloudinary": "^1.0.4",
     "fastify-i18n": "^1.0.0",
     "fastify-plugin": "^4.2.1",
-    "fastify-sse-v2": "^2.2.1",
-    "node-polyglot": "^2.4.2"
+    "fastify-sse-v2": "^2.2.1"
   },
   "devDependencies": {
     "@vitest/coverage-c8": "^0.23.4",

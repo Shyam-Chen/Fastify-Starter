@@ -15,7 +15,6 @@ specifiers:
   fastify-i18n: ^1.0.0
   fastify-plugin: ^4.2.1
   fastify-sse-v2: ^2.2.1
-  node-polyglot: ^2.4.2
   nodemon: ^2.0.20
   process-envify: ^1.0.4
   vite: ^3.1.3
@@ -36,7 +35,6 @@ dependencies:
   fastify-i18n: 1.0.0
   fastify-plugin: 4.3.0
   fastify-sse-v2: 2.2.1_fastify@4.8.1
-  node-polyglot: 2.4.2
 
 devDependencies:
   '@vitest/coverage-c8': 0.23.4
