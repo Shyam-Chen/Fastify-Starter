@@ -7,7 +7,7 @@ export default plugin(
 
     app.register(FastifySSEPlugin);
 
-    app.register(import('~/modules/sse'), { prefix });
+    app.register(import('~/modules/sse/registry'), { prefix });
   },
   { name: 'eventsource' },
 );

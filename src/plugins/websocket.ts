@@ -7,7 +7,7 @@ export default plugin(
 
     app.register(websocket);
 
-    app.register(import('~/modules/echo'), { prefix });
+    app.register(import('~/modules/echo/registry'), { prefix });
   },
   { name: 'websocket' },
 );
