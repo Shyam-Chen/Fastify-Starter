@@ -24,9 +24,31 @@ export default async (app: FastifyInstance) => {
   /*
   curl --request GET \
     --url http://127.0.0.1:3000/api/todos | json_pp
+
+  curl --request GET \
+    --url http://127.0.0.1:3000/api/todos?page=2&rows=5 | json_pp
   */
-  app.get('/todos', async (req, reply) => {
-    const result = await todos?.find().sort({ length: -1 }).limit(5).skip(0).toArray();
+  app.get<{ Querystring: { page?: number; rows?: number } }>('/todos', async (req, reply) => {
+    const page = Number(req.query.page) || 1;
+    const rows = Number(req.query.rows) || 10;
+
+    const result = await todos
+      ?.find()
+      .limit(rows)
+      .skip(rows * (page - 1))
+      .toArray();
+
+    const total = await todos?.countDocuments();
+
+    return { message: 'hi', result, total };
+  });
+
+  /*
+  curl --request GET \
+    --url http://127.0.0.1:3000/api/todos/634787af6d44cfba9c0df8ea
+  */
+  app.get<{ Params: TodoIdType }>('/todos/:id', async (req, reply) => {
+    const result = await todos?.findOne({ _id: { $eq: new app.mongo.ObjectId(req.params.id) } });
     return { message: 'hi', result };
   });
 

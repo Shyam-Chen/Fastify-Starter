@@ -276,11 +276,22 @@ The structure follows the LIFT Guidelines.
 │   └── responses -> mock data for mock api, unit testing, and e2e testing
 ├── public -> not handled by vite, copy it to dist
 ├── src
+│   ├── assets -> handled by vite
+│   ├── components
+│   ├── composables
 │   ├── locales -> core module
-│   ├── middleware -> core module
+│   ├── middleware
 │   ├── modules -> feature modules
 │   │   └── <FEATURE> -> feature module
+│   │       ├── __tests__ -> unit testing
+│   │       ├── _locales
+│   │       ├── controller.ts
+│   │       ├── registry.ts -> route component
+│   │       ├── schema.ts
+│   │       ├── service.ts
+│   │       └── types.ts
 │   ├── plugins -> root module
+│   ├── templates -> email templates with nunjucks
 │   ├── utilities -> shared module
 │   ├── app.ts
 │   ├── error.ts
