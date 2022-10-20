@@ -3,31 +3,32 @@ version: 2.1
 executors:
   flow-executor:
     docker:
-      - image: cimg/base
+      - image: cimg/base:stable
     working_directory: /fastify-starter
 
 jobs:
   build:
     executor: flow-executor
     steps:
-      - run: docker-compose up -d default
-      - run: docker-compose exec default pnpm build
+      - run: docker-compose up -d app
+      - run: docker-compose exec app pnpm build
 
   test:
     executor: flow-executor
     steps:
-      - run: docker-compose exec -d default pnpm preview
-      - run: docker-compose exec default pnpm lint
-      - run: docker-compose exec default pnpm unit
-      - run: docker-compose exec default pnpm e2e
-      - run: docker-compose exec default pnpm meas
+      - run: docker-compose exec -d app pnpm preview
+      - run: docker-compose exec app pnpm lint
+      - run: docker-compose exec app pnpm unit
+      - run: docker-compose exec app pnpm e2e
+      - run: docker-compose exec app pnpm meas
 
   deploy:
     executor: flow-executor
-      steps:
-        - run: >
-            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-
+    steps:
+      - when:
+          condition:
+            equal: [ main, << pipeline.git.branch >> ]
+          steps: >
             echo "${ACCESS_TOKEN}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 
             APP_NAME=fastify-starter
@@ -45,17 +46,17 @@ jobs:
             docker push ${DOCKER_HUB}/$APP_NAME
 
             curl --request GET --url ${DEPLOY_HOOK}
-
-            fi
-
-
-            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
-
+      - when:
+          condition:
+            and:
+              - equal: [ dev, << pipeline.git.branch >> ]
+              - equal: [ stage, << pipeline.git.branch >> ]
+          steps: >
             echo "${ACCESS_TOKEN}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 
             APP_NAME=fastify-starter-dev
 
-            docker build -f .circleci/dev.Dockerfile
+            docker build -f .circleci/Dockerfile
             --build-arg site_url=${DEV_SITE_URL}
             --build-arg mongodb_url=${DEV_MONGODB_URL}
             --build-arg redis_url=${DEV_REDIS_URL}
@@ -68,8 +69,6 @@ jobs:
             docker push ${DOCKER_HUB}/$APP_NAME
 
             curl --request GET --url ${DEV_DEPLOY_HOOK}
-
-            fi
 
 workflows:
   build-test-deploy:
