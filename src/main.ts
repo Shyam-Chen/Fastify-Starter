@@ -1,6 +1,12 @@
 import app from './app';
 
-const server = await app({ logger: true });
+const server = await app({
+  logger: {
+    transport: {
+      target: '@fastify/one-line-logger',
+    },
+  },
+});
 
 try {
   server.listen({

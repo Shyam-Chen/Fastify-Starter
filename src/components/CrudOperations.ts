@@ -1,4 +1,4 @@
-// POST /:id
+// POST / {}
 // GET /:id
-// PUT /:id
+// PUT /:id {}
 // DELETE /:id
