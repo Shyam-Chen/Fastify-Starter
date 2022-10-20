@@ -1,25 +1,77 @@
-version: 2
+version: 2.1
 
-base: &base
-  working_directory: ~/Fastify-Starter
-  docker:
-    - image: circleci/node:12
+executors:
+  flow-executor:
+    docker:
+      - image: cimg/base
+    working_directory: /fastify-starter
 
 jobs:
-  test:
-    <<: *base
+  build:
+    executor: flow-executor
     steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Combat preparation
-          command: docker-compose up -d default
-      - run:
-          name: Build the application
-          command: docker-compose exec default yarn build
+      - run: docker-compose up -d default
+      - run: docker-compose exec default pnpm build
+
+  test:
+    executor: flow-executor
+    steps:
+      - run: docker-compose exec -d default pnpm preview
+      - run: docker-compose exec default pnpm lint
+      - run: docker-compose exec default pnpm unit
+      - run: docker-compose exec default pnpm e2e
+      - run: docker-compose exec default pnpm meas
+
+  deploy:
+    executor: flow-executor
+      steps:
+        - run: >
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
+
+            echo "${ACCESS_TOKEN}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+
+            APP_NAME=fastify-starter
+
+            docker build -f .circleci/Dockerfile
+            --build-arg site_url=${SITE_URL}
+            --build-arg mongodb_url=${MONGODB_URL}
+            --build-arg redis_url=${REDIS_URL}
+            --build-arg cloudinary_url=${CLOUDINARY_URL}
+            --build-arg secret_key=${SECRET_KEY}
+            -t $APP_NAME .
+
+            docker tag $APP_NAME ${DOCKER_HUB}/$APP_NAME
+
+            docker push ${DOCKER_HUB}/$APP_NAME
+
+            curl --request GET --url ${DEPLOY_HOOK}
+
+            fi
+
+
+            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+
+            echo "${ACCESS_TOKEN}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+
+            APP_NAME=fastify-starter-dev
+
+            docker build -f .circleci/dev.Dockerfile
+            --build-arg site_url=${DEV_SITE_URL}
+            --build-arg mongodb_url=${DEV_MONGODB_URL}
+            --build-arg redis_url=${DEV_REDIS_URL}
+            --build-arg cloudinary_url=${DEV_CLOUDINARY_URL}
+            --build-arg secret_key=${DEV_SECRET_KEY}
+            -t $APP_NAME .
+
+            docker tag $APP_NAME ${DOCKER_HUB}/$APP_NAME
+
+            docker push ${DOCKER_HUB}/$APP_NAME
+
+            curl --request GET --url ${DEV_DEPLOY_HOOK}
+
+            fi
 
 workflows:
-  version: 2
   build-test-deploy:
     jobs:
       - build

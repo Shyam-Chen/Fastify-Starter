@@ -1,10 +1,9 @@
-FROM node:12
+FROM node:lts-bullseye-slim
 
-ENV HOME /Fastify-Starter
+ENV HOME /fastify-starter
 
 WORKDIR ${HOME}
 ADD . $HOME
 
-RUN yarn install
-
-EXPOSE 3000
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+RUN pnpm install --frozen-lockfile
