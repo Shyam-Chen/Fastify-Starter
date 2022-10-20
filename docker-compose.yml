@@ -8,24 +8,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
-    environment:
-      - MONGODB_URL=mongodb://mongo:27017/test
     volumes:
-      - ./:/code
+      - ./:/fastify-starter
     tty: true
-
-  mongo:
-    image: mongo:6
-    ports:
-      - 27017:27017
-    networks:
-      - app-network
-    volumes:
-      - ./mongodb_data_container:/data/db
-
-networks:
-  app-network:
-    driver: bridge
-
-volumes:
-  mongodb_data_container:

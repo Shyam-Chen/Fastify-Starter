@@ -15,7 +15,7 @@ const app = async (options: FastifyServerOptions = {}) => {
   const app = fastify(options);
   app.register(import('./error'));
 
-  app.register(cors, { origin: process.env.SITE_URL });
+  app.register(cors, { origin: new RegExp(process.env.SITE_URL, 'gi') });
   app.register(mongodb, { url: process.env.MONGODB_URL });
   app.register(jwt, { secret: process.env.SECRET_KEY });
   app.register(multipart);

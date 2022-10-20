@@ -145,13 +145,13 @@ Dockerize an application.
 1. Build and run the container in the background
 
 ```bash
-$ docker-compose up -d default
+$ docker-compose up -d app
 ```
 
 2. Run a command in a running container
 
 ```bash
-$ docker-compose exec default <COMMAND>
+$ docker-compose exec app <COMMAND>
 ```
 
 3. Remove the old container before creating the new one
@@ -163,7 +163,7 @@ $ docker-compose rm -fs
 4. Restart up the container in the background
 
 ```bash
-$ docker-compose up -d --build default
+$ docker-compose up -d --build app
 ```
 
 ## Configuration
@@ -187,6 +187,7 @@ export default {
 
   MONGODB_URL: process.env.MONGODB_URL || 'xxx',
   REDIS_URL: process.env.REDIS_URL || 'xxx',
+  CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'xxx',
 
   SECRET_KEY: process.env.SECRET_KEY || 'xxx',
 };
@@ -197,56 +198,19 @@ export default {
 Add environment variables to the CircleCI build.
 
 ```sh
-CODECOV_TOKEN=xxx
-```
+SITE_URL=xxx
+MONGODB_URL=xxx
+REDIS_URL=xxx
+CLOUDINARY_URL=xxx
+SECRET_KEY=xxx
+DEPLOY_HOOK=xxx
 
-### Continuous deployment environments
-
-Add environment variables to the Netlify build.
-
-```sh
-API_URL=http://api.example.com
-```
-
-### File-based environments
-
-If you want to set environment variables from a file.
-
-```coffee
-.
-├── e2e
-├── envs
-│   ├── dev.js
-│   ├── stage.js
-│   └── prod.js
-├── mock
-├── public
-└── src
-```
-
-```js
-// envs/<ENV_NAME>.js
-
-function Environment() {
-  this.API_URL = 'http://api.example.com';
-}
-
-module.exports = new Environment();
-```
-
-```sh
-$ pnpm add env-cmd -D
-```
-
-```js
-// package.json
-
-  "scripts": {
-    // "env-cmd -f ./envs/<ENV_NAME>.js" + "pnpm build"
-    "build:dev": "env-cmd -f ./envs/dev.js pnpm build",
-    "build:stage": "env-cmd -f ./envs/stage.js pnpm build",
-    "build:prod": "env-cmd -f ./envs/prod.js pnpm build",
-  },
+DEV_SITE_URL=xxx
+DEV_MONGODB_URL=xxx
+DEV_REDIS_URL=xxx
+DEV_CLOUDINARY_URL=xxx
+DEV_SECRET_KEY=xxx
+DEV_DEPLOY_HOOK=xxx
 ```
 
 ### VS Code settings
@@ -276,6 +240,7 @@ The structure follows the LIFT Guidelines.
 
 ```coffee
 .
+├── .circleci
 ├── e2e -> e2e testing (Caddy Server proxy api and proxy mock api)
 ├── mock
 │   ├── requests -> mock api
@@ -308,8 +273,7 @@ The structure follows the LIFT Guidelines.
 ├── .gitignore
 ├── .prettierrc
 ├── Caddyfile
-├── circle.yml
-├── docker-compose.yml
+├── docker-compose.yml -> local dev or circleci build
 ├── Dockerfile
 ├── env.ts
 ├── index.mjs -> entrypoint
