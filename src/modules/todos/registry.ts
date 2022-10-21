@@ -1,5 +1,4 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import type {} from '@fastify/mongodb';
 import { Type } from '@sinclair/typebox';
 
 const body = Type.Object({

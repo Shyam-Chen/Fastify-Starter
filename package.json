@@ -23,6 +23,7 @@
     "@fastify/type-provider-typebox": "^2.3.0",
     "@fastify/websocket": "^7.0.1",
     "@sinclair/typebox": "^0.24.44",
+    "bcrypt": "^5.1.0",
     "fastify": "^4.6.0",
     "fastify-cloudinary": "^1.0.4",
     "fastify-i18n": "^1.0.0",
