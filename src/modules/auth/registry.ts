@@ -1,10 +1,14 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import { Static, Type } from '@sinclair/typebox';
 import bcrypt from 'bcrypt';
 
-const auth = async (req, reply) => {
-  await req.jwtVerify();
-};
+import auth from '~/middleware/auth';
+
+const body = Type.Object({
+  account: Type.String(),
+  password: Type.String(),
+});
 
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
@@ -19,7 +23,7 @@ export default async (app: FastifyInstance) => {
       "password": "12345678"
     }'
   */
-  router.post('/sign-up', async (req, reply) => {
+  router.post('/sign-up', { schema: { body } }, async (req, reply) => {
     const account = req.body.account;
     const user = await users?.findOne({ account: { $eq: account } });
     if (user) return reply.status(400).send({ message: 'That username is taken. Try another.' });
@@ -41,15 +45,18 @@ export default async (app: FastifyInstance) => {
       "password": "12345678"
     }'
   */
-  router.post('/sign-in', async (req, reply) => {
+  router.post('/sign-in', { schema: { body } }, async (req, reply) => {
     const { account, password } = req.body;
 
-    const user = await users?.findOne({ account: { $eq: account } });
-    const isMatch = await bcrypt.compare(password, user.password);
+    const user = await users?.findOne<Static<typeof body>>({ account: { $eq: account } });
 
-    if (isMatch) {
-      const token = app.jwt.sign({ account, password: user.password }, { expiresIn: '16h' });
-      return reply.send({ message: 'Hi!', token });
+    if (user?.password) {
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (isMatch) {
+        const token = app.jwt.sign({ account, password: user?.password }, { expiresIn: '16h' });
+        return reply.send({ message: 'Hi!', token });
+      }
     }
 
     return reply.send({ message: 'Hello?' });

@@ -4,7 +4,7 @@ export default async (app: FastifyInstance) => {
   app.get('/echo', { websocket: true }, (con, req) => {
     console.log('Client connected');
 
-    con.socket.send(`Hello Fastify!`);
+    con.socket.send(`Hello from Fastify!`);
 
     con.socket.on('message', (message: any) => {
       console.log(`Client message: ${message}`);

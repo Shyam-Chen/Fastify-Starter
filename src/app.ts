@@ -22,7 +22,7 @@ const app = async (options: FastifyServerOptions = {}) => {
   app.register(cloudinary, { url: process.env.CLOUDINARY_URL });
 
   app.register(router, { prefix: '/api' });
-  app.register(websocket, { prefix: '/api' });
+  app.register(websocket, { prefix: '/io' });
   app.register(eventsource, { prefix: '/api' });
   app.register(i18n);
 
