@@ -1,12 +1,12 @@
 import type { FastifyInstance } from 'fastify';
 
 export default async (app: FastifyInstance) => {
-  app.get('/echo', { websocket: true }, (con, req) => {
+  app.get('/echo', { websocket: true }, (con) => {
     console.log('Client connected');
 
     con.socket.send(`Hello from Fastify!`);
 
-    con.socket.on('message', (message: any) => {
+    con.socket.on('message', (message: MessageEvent) => {
       console.log(`Client message: ${message}`);
     });
 

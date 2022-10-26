@@ -2,9 +2,10 @@ import type { FastifyServerOptions } from 'fastify';
 import fastify from 'fastify';
 import cors from '@fastify/cors';
 import mongodb from '@fastify/mongodb';
-import jwt from '@fastify/jwt';
+import redis from '@fastify/redis';
 import multipart from '@fastify/multipart';
 import cloudinary from 'fastify-cloudinary';
+import jwt from '@fastify/jwt';
 
 import router from '~/plugins/router';
 import websocket from '~/plugins/websocket';
@@ -17,9 +18,10 @@ const app = async (options: FastifyServerOptions = {}) => {
 
   app.register(cors, { origin: new RegExp(process.env.SITE_URL, 'gi') });
   app.register(mongodb, { url: process.env.MONGODB_URL });
-  app.register(jwt, { secret: process.env.SECRET_KEY });
+  app.register(redis, { url: process.env.REDIS_URL });
   app.register(multipart);
   app.register(cloudinary, { url: process.env.CLOUDINARY_URL });
+  app.register(jwt, { secret: process.env.SECRET_KEY });
 
   app.register(router, { prefix: '/api' });
   app.register(websocket, { prefix: '/io' });

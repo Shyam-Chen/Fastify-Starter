@@ -5,9 +5,9 @@ pm2.connect(() => {
     {
       name: 'fastify-starter',
       script: `${__dirname}/dist/main.mjs`,
-      max_memory_restart: `${process.env.WEB_MEMORY || 512}M`,
+      max_memory_restart: process.env.SERVICE_MEMORY || '1G',
       exec_mode: 'cluster',
-      instances: process.env.WEB_CONCURRENCY || -1,
+      instances: process.env.SERVICE_CONCURRENCY || -1,
     },
     (err) => {
       if (err) {

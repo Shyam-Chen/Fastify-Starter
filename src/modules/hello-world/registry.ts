@@ -22,9 +22,9 @@ export default async (app: FastifyInstance) => {
   app.get('/hello-world', async (req, reply) => {
     const i18n = useI18n(req);
 
-    return {
+    return reply.send({
       hello: i18n.t('hello'),
       text: req.i18n.t('text'),
-    };
+    });
   });
 };

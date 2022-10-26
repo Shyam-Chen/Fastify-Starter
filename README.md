@@ -2,7 +2,7 @@
 
 :zap: A boilerplate for Node.js, Fastify, MongoDB, Redis, Vite, Vitest, and TypeScript.
 
-:rainbow: [Live Demo](https://fastify-starter-12ih.onrender.com/api)
+:rainbow: [Live Demo](https://fastify-starter-12ih.onrender.com)
 
 ## Table of Contents
 
@@ -98,8 +98,6 @@ $ pnpm meas
 
 ### Mock requests
 
-[`mock/requests`](./mock/requests) is a fork [self](https://github.com/Shyam-Chen/Fastify-Starter) that was made easy and quick way to run mock APIs locally.
-
 ```sh
 # If it's not installed, run it.
 $ cd mock/requests && pnpm install && cd ../..
@@ -116,7 +114,7 @@ This seed repository provides the following features:
 - [x] [Fastify I18n](https://github.com/Vanilla-IceCream/fastify-i18n)
 - [x] [MongoDB](https://github.com/fastify/fastify-mongodb)
 - [x] [JWT](https://github.com/fastify/fastify-jwt)
-- [ ] [Redis](https://github.com/fastify/fastify-redis)
+- [x] [Redis](https://github.com/fastify/fastify-redis)
 - [x] [Cloudinary](https://github.com/Vanilla-IceCream/fastify-cloudinary)
 - [x] [WebSocket](https://github.com/fastify/fastify-websocket)
 - [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2)
@@ -133,10 +131,10 @@ This seed repository provides the following features:
 - ---------- **Environments** ----------
 - [x] [Node.js](https://nodejs.org/en/)
 - [x] [Pnpm](https://pnpm.io/)
-- [ ] [Caddy](https://caddyserver.com/)
-- [ ] [Docker](https://www.docker.com/)
-- [ ] [CircleCI](https://circleci.com/)
-- [ ] [Render](https://render.com/)
+- [x] [Caddy](https://caddyserver.com/)
+- [x] [Docker](https://www.docker.com/)
+- [x] [CircleCI](https://circleci.com/)
+- [x] [Render](https://render.com/)
 
 ## Dockerization
 
@@ -176,7 +174,6 @@ Set your local environment variables.
 
 ```ts
 // env.ts
-
 export default {
   NODE_ENV: process.env.NODE_ENV || 'development',
 
@@ -213,27 +210,6 @@ DEV_SECRET_KEY=xxx
 DEV_DEPLOY_HOOK=xxx
 ```
 
-### VS Code settings
-
-The most basic configuration.
-
-```js
-{
-  // ...
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "vue"
-  ],
-  "javascript.validate.enable": false,
-  "css.validate": false,
-  "vetur.validation.template": false,
-  "vetur.validation.script": false,
-  "vetur.validation.style": false,
-  // ...
-}
-```
-
 ## Directory Structure
 
 The structure follows the LIFT Guidelines.
@@ -247,11 +223,11 @@ The structure follows the LIFT Guidelines.
 │   └── responses -> mock data for mock api, unit testing, and e2e testing
 ├── public -> not handled by vite, copy it to dist
 ├── src
-│   ├── assets -> handled by vite
-│   ├── components
-│   ├── composables
+│   ├── assets -> wasm
+│   ├── components -> shared module
+│   ├── composables -> shared module
 │   ├── locales -> core module
-│   ├── middleware
+│   ├── middleware -> core module
 │   ├── modules -> feature modules
 │   │   └── <FEATURE> -> feature module
 │   │       ├── __tests__ -> unit testing

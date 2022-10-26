@@ -7,7 +7,7 @@ import koKR from '~/locales/ko-KR';
 import zhTW from '~/locales/zh-TW';
 
 export default plugin(
-  async (app, opts) => {
+  async (app) => {
     app.register(i18n, {
       fallbackLocale: 'en-US',
       messages: {

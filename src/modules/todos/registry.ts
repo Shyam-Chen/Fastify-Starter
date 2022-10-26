@@ -38,7 +38,7 @@ export default (async (app) => {
       createdAt: new Date().toISOString(),
     });
 
-    return { message: 'hi' };
+    return reply.send({ message: 'hi' });
   });
 
   /*
@@ -71,7 +71,7 @@ export default (async (app) => {
 
     const total = await todos?.countDocuments();
 
-    return { message: 'hi', result, total };
+    return reply.send({ message: 'hi', result, total });
   });
 
   /*
@@ -80,7 +80,7 @@ export default (async (app) => {
   */
   app.get('/todos/:id', { schema: { params } }, async (req, reply) => {
     const result = await todos?.findOne({ _id: { $eq: new app.mongo.ObjectId(req.params.id) } });
-    return { message: 'hi', result };
+    return reply.send({ message: 'hi', result });
   });
 
   /*
@@ -104,7 +104,7 @@ export default (async (app) => {
       },
     );
 
-    return { message: 'hi' };
+    return reply.send({ message: 'hi' });
   });
 
   /*
@@ -113,6 +113,6 @@ export default (async (app) => {
   */
   app.delete('/todos/:id', { schema: { params } }, async (req, reply) => {
     await todos?.deleteOne({ _id: { $eq: new app.mongo.ObjectId(req.params.id) } });
-    return { message: 'hi' };
+    return reply.send({ message: 'hi' });
   });
 }) as FastifyPluginAsyncTypebox;
