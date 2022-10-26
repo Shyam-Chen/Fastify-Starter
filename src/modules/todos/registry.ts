@@ -9,7 +9,7 @@ const body = Type.Object({
 const querystring = Type.Intersect([
   Type.Partial(body),
   Type.Object({
-    filed: Type.Optional(Type.String()),
+    field: Type.Optional(Type.String()),
     order: Type.Optional(Type.Union([Type.Literal('asc'), Type.Literal('desc')])),
     page: Type.Optional(Type.String()),
     rows: Type.Optional(Type.String()),
@@ -46,13 +46,13 @@ export default (async (app) => {
     --url http://127.0.0.1:3000/api/todos | json_pp
 
   curl --request GET \
-    --url http://127.0.0.1:3000/api/todos?filed=createdAt&order=desc&page=1&rows=10 | json_pp
+    --url http://127.0.0.1:3000/api/todos?field=createdAt&order=desc&page=1&rows=10 | json_pp
 
   curl --request GET \
     --url http://127.0.0.1:3000/api/todos?title=vue | json_pp
   */
   app.get('/todos', { schema: { querystring } }, async (req, reply) => {
-    const filed = req.query.filed || 'createdAt';
+    const field = req.query.field || 'createdAt';
     const order = req.query.order || 'desc';
     const page = Number(req.query.page) || 1;
     const rows = Number(req.query.rows) || 10;
@@ -64,7 +64,7 @@ export default (async (app) => {
         ...(title && { title: { $regex: title, $options: 'i' } }),
         ...(completed && { completed: { $regex: completed, $options: 'i' } }),
       })
-      .sort(filed, order)
+      .sort(field, order)
       .limit(rows)
       .skip(rows * (page - 1))
       .toArray();
