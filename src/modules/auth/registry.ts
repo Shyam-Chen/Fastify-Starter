@@ -6,7 +6,13 @@ import bcrypt from 'bcrypt';
 import auth from '~/middleware/auth';
 
 const body = Type.Object({
-  account: Type.String(),
+  username: Type.String(),
+  fullName: Type.String(),
+  password: Type.String(),
+});
+
+const body2 = Type.Object({
+  username: Type.String(),
   password: Type.String(),
 });
 
@@ -22,7 +28,8 @@ const response = {
 
 declare module '@fastify/jwt' {
   interface FastifyJWT {
-    payload: Static<typeof body>;
+    payload: Omit<Static<typeof body>, 'fullName'>;
+    user: Omit<Static<typeof body>, 'password'>;
   }
 }
 
@@ -35,19 +42,20 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/auth/sign-up \
     --header 'content-type: application/json' \
     --data '{
-      "account": "matteo.collina",
+      "username": "shyam.chen",
+      "fullName": "Shyam Chen",
       "password": "12345678"
     }'
   */
   router.post('/sign-up', { schema: { body, response } }, async (req, reply) => {
-    const account = req.body.account;
-    const user = await users?.findOne({ account: { $eq: account } });
+    const { username, fullName } = req.body;
+    const user = await users?.findOne({ username: { $eq: username } });
     if (user) return reply.status(400).send({ message: 'That username is taken. Try another.' });
 
     const password = await bcrypt.hash(req.body.password, 10);
 
-    const token = app.jwt.sign({ account, password }, { expiresIn: '16h' });
-    await users?.insertOne({ account, password });
+    const token = app.jwt.sign({ username, password }, { expiresIn: '16h' });
+    await users?.insertOne({ username, fullName, password });
 
     return reply.send({ message: 'Hi!', token });
   });
@@ -57,20 +65,20 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/auth/sign-in \
     --header 'content-type: application/json' \
     --data '{
-      "account": "matteo.collina",
+      "username": "shyam.chen",
       "password": "12345678"
     }'
   */
-  router.post('/sign-in', { schema: { body, response } }, async (req, reply) => {
-    const { account, password } = req.body;
+  router.post('/sign-in', { schema: { body: body2, response } }, async (req, reply) => {
+    const { username, password } = req.body;
 
-    const user = await users?.findOne<Static<typeof body>>({ account: { $eq: account } });
+    const user = await users?.findOne<Static<typeof body>>({ username: { $eq: username } });
 
     if (user?.password) {
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (isMatch) {
-        const token = app.jwt.sign({ account, password: user?.password }, { expiresIn: '16h' });
+        const token = app.jwt.sign({ username, password: user?.password }, { expiresIn: '16h' });
         return reply.send({ message: 'Hi!', token });
       }
     }
@@ -87,6 +95,14 @@ export default async (app: FastifyInstance) => {
     --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
   router.get('/user', { onRequest: [auth] }, async (req, reply) => {
-    return reply.send({ message: 'Hi!', account: req.user.account });
+    const user = await users?.findOne<Static<typeof body>>({
+      username: { $eq: req.user.username },
+    });
+
+    return reply.send({
+      message: 'Hi!',
+      username: user?.username,
+      fullName: user?.fullName,
+    });
   });
 };
