@@ -2,7 +2,7 @@
 
 :zap: A boilerplate for Node.js, Fastify, TypeScript, Vite, Vitest, and Render.
 
-:rainbow: [Live Demo](https://fastify-starter-12ih.onrender.com)
+:rainbow: [Live Demo](https://fastify-starter-12ih.onrender.com) - The client application is [here](https://github.com/Shyam-Chen/Vue-Starter).
 
 ## Table of Contents
 

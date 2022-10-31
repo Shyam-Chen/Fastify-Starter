@@ -8,8 +8,7 @@ export default plugin(
     app.register(import('~/modules/auth/registry'), { prefix: prefix + '/auth' });
     app.register(import('~/modules/todos/registry'), { prefix });
     app.register(import('~/modules/file-uploads/registry'), { prefix });
-
-    app.register(import('~/modules/sign-in'), { prefix });
+    app.register(import('~/modules/suggestions/registry'), { prefix: prefix + '/suggestions' });
   },
   { name: 'router' },
 );
