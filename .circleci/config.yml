@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  docker: circleci/docker@2.1
-
 executors:
   flow-executor:
     docker:
@@ -16,40 +13,40 @@ jobs:
       - run: docker-compose up -d app
       - run: docker-compose exec app pnpm build
 
-  test:
-    executor: flow-executor
-    steps:
-      - run: docker-compose exec -d app pnpm preview
-      - run: docker-compose exec app pnpm lint
-      - run: docker-compose exec app pnpm unit
-      - run: docker-compose exec app pnpm e2e
-      - run: docker-compose exec app pnpm meas
+  # test:
+  #   executor: flow-executor
+  #   steps:
+  #     - run: docker-compose exec -d app pnpm preview
+  #     - run: docker-compose exec app pnpm lint
+  #     - run: docker-compose exec app pnpm unit
+  #     - run: docker-compose exec app pnpm e2e
+  #     - run: docker-compose exec app pnpm meas
 
-  deploy:
-    executor: flow-executor
-    steps:
-      - when:
-          condition:
-            equal: [ main, << pipeline.git.branch >> ]
-          steps: >
-            echo "${ACCESS_TOKEN}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+  # deploy:
+  #   executor: flow-executor
+  #   steps:
+  #     - when:
+  #         condition:
+  #           equal: [ main, << pipeline.git.branch >> ]
+  #         steps: >
+  #           echo "${ACCESS_TOKEN}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 
-            APP_NAME=fastify-starter
+  #           APP_NAME=fastify-starter
 
-            docker build -f .circleci/Dockerfile
-            --build-arg site_url=${SITE_URL}
-            --build-arg mongodb_url=${MONGODB_URL}
-            --build-arg redis_url=${REDIS_URL}
-            --build-arg cloudinary_url=${CLOUDINARY_URL}
-            --build-arg secret_key=${SECRET_KEY}
-            -t $APP_NAME .
+  #           docker build -f .circleci/Dockerfile
+  #           --build-arg site_url=${SITE_URL}
+  #           --build-arg mongodb_url=${MONGODB_URL}
+  #           --build-arg redis_url=${REDIS_URL}
+  #           --build-arg cloudinary_url=${CLOUDINARY_URL}
+  #           --build-arg secret_key=${SECRET_KEY}
+  #           -t $APP_NAME .
 
-            docker tag $APP_NAME ${DOCKER_HUB}/$APP_NAME
+  #           docker tag $APP_NAME ${DOCKER_HUB}/$APP_NAME
 
-            docker push ${DOCKER_HUB}/$APP_NAME
+  #           docker push ${DOCKER_HUB}/$APP_NAME
 
-            curl --request GET --url ${DEPLOY_HOOK}
-      - when:
+  #           curl --request GET --url ${DEPLOY_HOOK}
+  #     - when:
           condition:
             and:
               - equal: [ dev, << pipeline.git.branch >> ]
@@ -77,9 +74,9 @@ workflows:
   build-test-deploy:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - test
+      # - test:
+      #     requires:
+      #       - build
+      # - deploy:
+      #     requires:
+      #       - test
