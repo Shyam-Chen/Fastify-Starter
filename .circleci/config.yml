@@ -11,7 +11,8 @@ jobs:
     executor: flow-executor
     steps:
       - run: docker-compose up -d app
-      - run: docker-compose exec app pnpm build
+      - run:
+          command: docker-compose exec app pnpm build
 
   # test:
   #   executor: flow-executor
