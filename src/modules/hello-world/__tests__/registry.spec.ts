@@ -18,3 +18,18 @@ test('GET /hello-world', async () => {
 
   expect(res.json()).toEqual({ hello: 'Hello, World!', text: 'Text' });
 });
+
+test('GET /hello-world ja-JP', async () => {
+  const app = fastify();
+
+  app.register(i18n);
+  app.register(helloWorld);
+
+  const res = await app.inject({
+    method: 'GET',
+    url: '/hello-world',
+    headers: { 'Accept-Language': 'ja-JP' },
+  });
+
+  expect(res.json()).toEqual({ hello: 'こんにちは世界！', text: 'テキスト' });
+});
