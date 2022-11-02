@@ -1,5 +1,5 @@
-import type { FastifyRequest, FastifyReply } from 'fastify';
+import type { FastifyRequest } from 'fastify';
 
-export default async <T extends FastifyRequest, U extends FastifyReply>(request: T, reply: U) => {
+export default async <T extends FastifyRequest>(request: T) => {
   await request.jwtVerify();
 };

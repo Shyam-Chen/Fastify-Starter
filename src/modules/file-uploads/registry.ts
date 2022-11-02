@@ -14,13 +14,13 @@ export default async (app: FastifyInstance) => {
         app.cloudinary.uploader.upload_stream({ public_id: data.fieldname }),
       );
 
-      return { message: 'hi', url: app.cloudinary.url(data.fieldname) };
+      return reply.send({ message: 'hi', url: app.cloudinary.url(data.fieldname) });
     }
 
-    return { message: 'hello?' };
+    return reply.badRequest();
   });
 
   app.get('/file-uploads', async (req, reply) => {
-    return { url: app.cloudinary.url('userfile') };
+    return reply.send({ url: app.cloudinary.url('userfile') });
   });
 };

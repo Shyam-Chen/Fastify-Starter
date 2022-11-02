@@ -13,6 +13,8 @@
     "resolveJsonModule": true,
     "types": ["vite/client", "vitest"],
 
+    "noEmit": true,
+
     "allowJs": true,
 
     "esModuleInterop": true,

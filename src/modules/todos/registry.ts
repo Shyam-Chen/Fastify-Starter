@@ -1,4 +1,5 @@
-import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
+import type { FastifyInstance } from 'fastify';
+import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
 const body = Type.Object({
@@ -20,7 +21,8 @@ const params = Type.Object({
   id: Type.String(),
 });
 
-export default (async (app) => {
+export default async (app: FastifyInstance) => {
+  const router = app.withTypeProvider<TypeBoxTypeProvider>();
   const todos = app.mongo.db?.collection('todos');
 
   /*
@@ -31,7 +33,7 @@ export default (async (app) => {
       "title": "foo"
     }'
   */
-  app.post('/todos', { schema: { body } }, async (req, reply) => {
+  router.post('/todos', { schema: { body } }, async (req, reply) => {
     await todos?.insertOne({
       title: req.body.title,
       completed: req.body.completed,
@@ -51,7 +53,7 @@ export default (async (app) => {
   curl --request GET \
     --url http://127.0.0.1:3000/api/todos?title=vue | json_pp
   */
-  app.get('/todos', { schema: { querystring } }, async (req, reply) => {
+  router.get('/todos', { schema: { querystring } }, async (req, reply) => {
     const field = req.query.field || 'createdAt';
     const order = req.query.order || 'desc';
     const page = Number(req.query.page) || 1;
@@ -78,7 +80,7 @@ export default (async (app) => {
   curl --request GET \
     --url http://127.0.0.1:3000/api/todos/634787af6d44cfba9c0df8ea
   */
-  app.get('/todos/:id', { schema: { params } }, async (req, reply) => {
+  router.get('/todos/:id', { schema: { params } }, async (req, reply) => {
     const result = await todos?.findOne({ _id: { $eq: new app.mongo.ObjectId(req.params.id) } });
     return reply.send({ message: 'hi', result });
   });
@@ -92,7 +94,7 @@ export default (async (app) => {
       "completed": true
     }'
   */
-  app.put('/todos/:id', { schema: { body, params } }, async (req, reply) => {
+  router.put('/todos/:id', { schema: { body, params } }, async (req, reply) => {
     await todos?.updateOne(
       { _id: { $eq: new app.mongo.ObjectId(req.params.id) } },
       {
@@ -111,8 +113,8 @@ export default (async (app) => {
   curl --request DELETE \
     --url http://127.0.0.1:3000/api/todos/634516681a8fd0d3cd9791f1
   */
-  app.delete('/todos/:id', { schema: { params } }, async (req, reply) => {
+  router.delete('/todos/:id', { schema: { params } }, async (req, reply) => {
     await todos?.deleteOne({ _id: { $eq: new app.mongo.ObjectId(req.params.id) } });
     return reply.send({ message: 'hi' });
   });
-}) as FastifyPluginAsyncTypebox;
+};
