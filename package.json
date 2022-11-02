@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon -e \"ts,mts,json\" -x \"vite-node src/main.ts\" -w \"src/**/*\" -i \"**/__tests__/**\"",
     "build": "vite build",
-    "preview": "node dist/main.mjs",
+    "preview": "concurrently \"node index.mjs\" \"caddy run\"",
     "lint": "eslint 'src/**/*.ts' && tsc",
     "unit": "vitest --dir src --coverage run",
     "e2e": "cd e2e && pnpm test",
@@ -37,6 +37,7 @@
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "mongodb-memory-server": "^8.9.5",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "process-envify": "^1.0.4",

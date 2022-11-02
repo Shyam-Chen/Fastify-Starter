@@ -61,17 +61,19 @@ export default async (app: FastifyInstance) => {
 
     const { title, completed } = req.query;
 
+    const queryConditions = {
+      ...(title && { title: { $regex: title, $options: 'i' } }),
+      ...(completed && { completed: { $eq: completed } }),
+    };
+
     const result = await todos
-      ?.find({
-        ...(title && { title: { $regex: title, $options: 'i' } }),
-        ...(completed && { completed: { $regex: completed, $options: 'i' } }),
-      })
+      ?.find(queryConditions)
       .sort(field, order)
       .limit(rows)
       .skip(rows * (page - 1))
       .toArray();
 
-    const total = await todos?.countDocuments();
+    const total = await todos?.countDocuments(queryConditions);
 
     return reply.send({ message: 'hi', result, total });
   });
