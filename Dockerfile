@@ -11,6 +11,6 @@ RUN pnpm install --frozen-lockfile
 
 FROM caddy:2-alpine
 
-COPY --from=builder /Caddyfile /etc/Caddyfile
+COPY --from=builder $HOME/Caddyfile /etc/caddy/Caddyfile
 
 RUN caddy version
