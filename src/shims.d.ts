@@ -10,6 +10,7 @@ declare namespace NodeJS {
     MONGODB_URL: string;
     REDIS_URL: string;
     CLOUDINARY_URL: string;
+    SMTP_URL: string;
 
     SECRET_KEY: string;
   }
