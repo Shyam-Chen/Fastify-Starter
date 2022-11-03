@@ -118,8 +118,8 @@ This seed repository provides the following features:
 - [x] [Redis](https://github.com/fastify/fastify-redis)
 - [x] [WebSocket](https://github.com/fastify/fastify-websocket)
 - [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2)
-- [ ] [Nodemailer](https://github.com/nodemailer/nodemailer)
-- [ ] [BullMQ](https://github.com/taskforcesh/bullmq)
+- [x] [Nodemailer](https://github.com/nodemailer/nodemailer)
+- [x] [BullMQ](https://github.com/taskforcesh/bullmq)
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite)
 - [x] [TypeScript](https://github.com/microsoft/TypeScript)

@@ -11,6 +11,7 @@ import router from '~/plugins/router';
 import websocket from '~/plugins/websocket';
 import eventsource from '~/plugins/eventsource';
 import i18n from '~/plugins/i18n';
+import redisInstance from '~/utilities/redisInstance';
 
 const app = async (options: FastifyServerOptions = {}) => {
   const app = fastify(options);
@@ -18,7 +19,7 @@ const app = async (options: FastifyServerOptions = {}) => {
 
   app.register(cors, { origin: new RegExp(process.env.SITE_URL, 'gi') });
   app.register(mongodb, { url: process.env.MONGODB_URL });
-  app.register(redis, { url: process.env.REDIS_URL });
+  app.register(redis, { client: redisInstance });
   app.register(multipart);
   app.register(cloudinary, { url: process.env.CLOUDINARY_URL });
   app.register(jwt, { secret: process.env.SECRET_KEY });

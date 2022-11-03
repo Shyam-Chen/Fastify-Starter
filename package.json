@@ -24,13 +24,18 @@
     "@fastify/websocket": "^7.0.1",
     "@sinclair/typebox": "^0.24.44",
     "bcrypt": "^5.1.0",
+    "bullmq": "^3.0.0",
     "fastify": "^4.6.0",
     "fastify-cloudinary": "^1.0.4",
     "fastify-i18n": "^1.0.0",
     "fastify-plugin": "^4.2.1",
-    "fastify-sse-v2": "^2.2.1"
+    "fastify-sse-v2": "^2.2.1",
+    "ioredis": "^5.2.3",
+    "nodemailer": "^6.8.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/nodemailer": "^6.4.6",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "@vitest/coverage-c8": "^0.23.4",
