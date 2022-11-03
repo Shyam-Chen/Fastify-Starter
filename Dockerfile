@@ -1,4 +1,4 @@
-FROM node:lts-bullseye-slim
+FROM node:lts-bullseye-slim as builder
 
 ENV HOME /fastify-starter
 
@@ -9,5 +9,8 @@ RUN npm install -g pnpm
 RUN pnpm -v
 RUN pnpm install --frozen-lockfile
 
-RUN curl -sS https://webi.sh/caddy | sh
+FROM caddy:2-alpine
+
+COPY --from=builder /Caddyfile /etc/Caddyfile
+
 RUN caddy version
