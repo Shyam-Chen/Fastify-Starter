@@ -1,4 +1,4 @@
-FROM node:lts-bullseye-slim as builder
+FROM node:lts-bullseye-slim
 
 ENV HOME /fastify-starter
 
@@ -11,6 +11,6 @@ RUN pnpm install --frozen-lockfile
 
 FROM caddy:2-alpine
 
-COPY --from=builder ${HOME}/Caddyfile /etc/caddy/Caddyfile
+COPY ./Caddyfile /etc/caddy/Caddyfile
 
 RUN caddy version
