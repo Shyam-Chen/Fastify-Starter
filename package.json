@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon -e \"ts,mts,json\" -x \"vite-node src/main.ts\" -w \"src/**/*\" -i \"**/__tests__/**\"",
-    "build": "vite build",
+    "build": "vite build --ssr=src/main.ts && vite build --emptyOutDir=false",
     "preview": "concurrently \"node index.mjs\" \"caddy run\"",
     "lint": "eslint 'src/**/*.ts' && tsc",
     "unit": "vitest --dir src --coverage run",

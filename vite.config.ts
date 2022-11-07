@@ -12,6 +12,8 @@ export default defineConfig({
     },
   },
   build: {
-    ssr: './src/main.ts',
+    rollupOptions: {
+      input: './src/utilities/assets.ts',
+    },
   },
 });

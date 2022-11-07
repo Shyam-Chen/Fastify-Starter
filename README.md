@@ -136,6 +136,9 @@ This seed repository provides the following features:
 - [x] [Docker](https://www.docker.com/)
 - [x] [CircleCI](https://circleci.com/)
 - [x] [Render](https://render.com/)
+- ---------- **Extracts** ----------
+- [x] [Email](https://github.com/Shyam-Chen/Email-Builder)
+- [x] [WebAssembly](https://github.com/Shyam-Chen/Assembly-Starter)
 
 ## Dockerization
 
@@ -186,6 +189,7 @@ export default {
   MONGODB_URL: process.env.MONGODB_URL || 'xxx',
   REDIS_URL: process.env.REDIS_URL || 'xxx',
   CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'xxx',
+  SMTP_URL: process.env.SMTP_URL || 'xxx',
 
   SECRET_KEY: process.env.SECRET_KEY || 'xxx',
 };
@@ -196,19 +200,41 @@ export default {
 Add environment variables to the CircleCI build.
 
 ```sh
+# Production
 SITE_URL=xxx
+
 MONGODB_URL=xxx
 REDIS_URL=xxx
 CLOUDINARY_URL=xxx
+SMTP_URL=xxx
+
 SECRET_KEY=xxx
+
 DEPLOY_HOOK=xxx
 
+# Development
 DEV_SITE_URL=xxx
+
 DEV_MONGODB_URL=xxx
 DEV_REDIS_URL=xxx
 DEV_CLOUDINARY_URL=xxx
+DEV_SMTP_URL=xxx
+
 DEV_SECRET_KEY=xxx
+
 DEV_DEPLOY_HOOK=xxx
+
+# Staging
+STAGE_SITE_URL=xxx
+
+STAGE_MONGODB_URL=xxx
+STAGE_REDIS_URL=xxx
+STAGE_CLOUDINARY_URL=xxx
+STAGE_SMTP_URL=xxx
+
+STAGE_SECRET_KEY=xxx
+
+STAGE_DEPLOY_HOOK=xxx
 ```
 
 ## Directory Structure

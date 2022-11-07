@@ -9,6 +9,7 @@ export default plugin(
     app.register(import('~/modules/todos/registry'), { prefix });
     app.register(import('~/modules/file-uploads/registry'), { prefix });
     app.register(import('~/modules/suggestions/registry'), { prefix: prefix + '/suggestions' });
+    app.register(import('~/modules/assets-public/registry'), { prefix: prefix + '/assets-public' });
   },
   { name: 'router' },
 );
