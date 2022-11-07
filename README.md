@@ -81,7 +81,7 @@ $ cd e2e && pnpm install && cd ..
 $ pnpm e2e
 ```
 
-### Measures APIs
+### Runs performance measures
 
 Files: `e2e/**/*.meas.ts`
 
@@ -93,7 +93,7 @@ $ pnpm preview
 # If it's not installed, run it.
 $ cd e2e && pnpm install && cd ..
 
-$ pnpm meas
+$ pnpm perf
 ```
 
 ### Mock requests
