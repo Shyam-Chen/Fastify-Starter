@@ -9,7 +9,6 @@
 - [Getting Started](#getting-started)
 - [Project Setup](#project-setup)
 - [Key Features](#key-features)
-- [Dockerization](#dockerization)
 - [Configuration](#configuration)
 - [Directory Structure](#directory-structure)
 - [Microservices](#microservices)
@@ -127,8 +126,8 @@ This seed repository provides the following features:
 - [x] [ESLint](https://github.com/eslint/eslint)
 - [x] [Prettier](https://github.com/prettier/prettier)
 - [x] [Vitest](https://github.com/vitest-dev/vitest)
-- [ ] [SuperTest](https://github.com/visionmedia/supertest)
-- [ ] [AutoCannon](https://github.com/mcollina/autocannon)
+- [x] [Got](https://github.com/sindresorhus/got)
+- [x] [AutoCannon](https://github.com/mcollina/autocannon)
 - ---------- **Environments** ----------
 - [x] [Node.js](https://nodejs.org/en/)
 - [x] [Pnpm](https://pnpm.io/)
@@ -139,34 +138,6 @@ This seed repository provides the following features:
 - ---------- **Extracts** ----------
 - [x] [Email](https://github.com/Shyam-Chen/Email-Builder)
 - [x] [WebAssembly](https://github.com/Shyam-Chen/Assembly-Starter)
-
-## Dockerization
-
-Dockerize an application.
-
-1. Build and run the container in the background
-
-```bash
-$ docker-compose up -d app
-```
-
-2. Run a command in a running container
-
-```bash
-$ docker-compose exec app <COMMAND>
-```
-
-3. Remove the old container before creating the new one
-
-```bash
-$ docker-compose rm -fs
-```
-
-4. Restart up the container in the background
-
-```bash
-$ docker-compose up -d --build app
-```
 
 ## Configuration
 
@@ -200,7 +171,7 @@ export default {
 Add environment variables to the CircleCI build.
 
 ```sh
-# Production
+# production
 SITE_URL=xxx
 
 MONGODB_URL=xxx
@@ -212,7 +183,7 @@ SECRET_KEY=xxx
 
 DEPLOY_HOOK=xxx
 
-# Development
+# development
 DEV_SITE_URL=xxx
 
 DEV_MONGODB_URL=xxx
@@ -224,7 +195,7 @@ DEV_SECRET_KEY=xxx
 
 DEV_DEPLOY_HOOK=xxx
 
-# Staging
+# staging
 STAGE_SITE_URL=xxx
 
 STAGE_MONGODB_URL=xxx

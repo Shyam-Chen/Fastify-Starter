@@ -1,17 +1,6 @@
 version: '3.9'
 
 services:
-  app:
-    image: app
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    volumes:
-      - ./:/fastify-starter
-    tty: true
-
   ci:
     image: ci
     build:
