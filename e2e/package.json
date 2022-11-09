@@ -1,17 +1,13 @@
 {
   "name": "e2e",
-  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "spec": "vitest --run -c vite.spec-config.ts",
-    "meas": "vitest --run -c vite.meas-config.ts"
+    "e2e": "playwright test"
   },
   "dependencies": {
-    "autocannon": "^7.10.0",
-    "got": "^12.5.2"
+    "@playwright/test": "^1.27.1"
   },
   "devDependencies": {
-    "@types/autocannon": "^7.9.0",
-    "vitest": "^0.24.5"
+    "playwright": "^1.27.1"
   }
 }

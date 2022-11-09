@@ -80,21 +80,6 @@ $ cd e2e && pnpm install && cd ..
 $ pnpm e2e
 ```
 
-### Runs performance measures
-
-Files: `e2e/**/*.meas.ts`
-
-```sh
-# Before running the `meas` command, make sure to run the following commands.
-$ pnpm build
-$ pnpm preview
-
-# If it's not installed, run it.
-$ cd e2e && pnpm install && cd ..
-
-$ pnpm perf
-```
-
 ### Mock requests
 
 ```sh
@@ -126,8 +111,7 @@ This seed repository provides the following features:
 - [x] [ESLint](https://github.com/eslint/eslint)
 - [x] [Prettier](https://github.com/prettier/prettier)
 - [x] [Vitest](https://github.com/vitest-dev/vitest)
-- [x] [Got](https://github.com/sindresorhus/got)
-- [x] [AutoCannon](https://github.com/mcollina/autocannon)
+- [x] [Playwright](https://github.com/microsoft/playwright)
 - ---------- **Environments** ----------
 - [x] [Node.js](https://nodejs.org/en/)
 - [x] [Pnpm](https://pnpm.io/)

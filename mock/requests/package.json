@@ -1,0 +1,15 @@
+{
+  "name": "mock",
+  "private": true,
+  "scripts": {
+    "mock": "vite"
+  },
+  "dependencies": {
+    "fastify": "^4.9.2",
+    "fastify-plugin": "^4.3.0"
+  },
+  "devDependencies": {
+    "vite": "^3.2.3",
+    "vite-plugin-fastify": "^1.0.2"
+  }
+}

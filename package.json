@@ -7,9 +7,8 @@
     "build": "vite build --ssr=src/main.ts && vite build --emptyOutDir=false",
     "preview": "concurrently \"node index.mjs\" \"caddy run\"",
     "lint": "eslint 'src/**/*.ts' && tsc",
-    "unit": "vitest --dir src --coverage run",
-    "e2e": "cd e2e && pnpm spec",
-    "perf": "cd e2e && pnpm meas",
+    "unit": "vitest --dir src --coverage --run",
+    "e2e": "cd e2e && pnpm e2e",
     "mock": "cd mock/requests && pnpm dev"
   },
   "dependencies": {
