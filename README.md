@@ -115,6 +115,7 @@ This seed repository provides the following features:
 - ---------- **Environments** ----------
 - [x] [Node.js](https://nodejs.org/en/)
 - [x] [Pnpm](https://pnpm.io/)
+- [x] [PM2](https://pm2.keymetrics.io/)
 - [x] [Caddy](https://caddyserver.com/)
 - [x] [Docker](https://www.docker.com/)
 - [x] [CircleCI](https://circleci.com/)

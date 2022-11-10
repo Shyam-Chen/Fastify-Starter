@@ -1,4 +1,8 @@
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import pm2 from 'pm2';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 pm2.connect(() => {
   pm2.start(
@@ -18,8 +22,12 @@ pm2.connect(() => {
 
       pm2.launchBus((errLb, bus) => {
         console.log('PM2: Log streaming started.');
-        bus.on('log:out', packet => console.log(`App (out): ${packet.process.name} - ${packet.data}`));
-        bus.on('log:err', packet => console.error(`App (err): ${packet.process.name} - ${packet.data}`));
+        bus.on('log:out', (packet) =>
+          console.log(`App (out): ${packet.process.name} - ${packet.data}`),
+        );
+        bus.on('log:err', (packet) =>
+          console.error(`App (err): ${packet.process.name} - ${packet.data}`),
+        );
       });
     },
   );

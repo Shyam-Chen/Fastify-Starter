@@ -9,7 +9,7 @@
     "lint": "eslint 'src/**/*.ts' && tsc",
     "unit": "vitest --dir src --coverage --run",
     "e2e": "cd e2e && pnpm e2e",
-    "mock": "cd mock/requests && pnpm dev"
+    "mock": "cd mock/requests && pnpm mock"
   },
   "dependencies": {
     "@fastify/cors": "^8.1.0",
@@ -31,6 +31,7 @@
     "fastify-sse-v2": "^2.2.1",
     "ioredis": "^5.2.3",
     "nodemailer": "^6.8.0",
+    "pm2": "^5.2.2",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
@@ -39,6 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "@vitest/coverage-c8": "^0.23.4",
+    "concurrently": "^7.5.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
