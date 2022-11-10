@@ -1,4 +1,4 @@
-FROM node:lts-bullseye-slim
+FROM node:lts
 
 ENV HOME /fastify-starter
 
