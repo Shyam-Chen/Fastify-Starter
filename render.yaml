@@ -1,8 +1,14 @@
 services:
   - type: web
     name: fastify-starter
-    env: node
-    buildCommand: pnpm install; pnpm build
-    startCommand: pnpm preview
+    region: oregon
     plan: free
     branch: main
+    env: node
+    envVars:
+      - key: NODE_VERSION
+        value: 18.12.1
+      - key: SITE_URL
+        value: onrender.com
+    buildCommand: pnpm install --frozen-lockfile && pnpm build
+    startCommand: node dist/main.mjs
