@@ -8,5 +8,5 @@ ADD . $HOME
 RUN apt-get update && \
     apt-get install -y libcurl4
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm caddy-npm
 RUN pnpm install --frozen-lockfile
