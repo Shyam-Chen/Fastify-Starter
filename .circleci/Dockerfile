@@ -5,7 +5,7 @@ ENV HOME /fastify-starter
 WORKDIR ${HOME}
 ADD . $HOME
 
-RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+RUN npm install -g pnpm
 RUN pnpm install --frozen-lockfile
 
 ENV HOST 0.0.0.0
@@ -21,6 +21,9 @@ ENV REDIS_URL=$redis_url
 
 ARG cloudinary_url
 ENV CLOUDINARY_URL=$cloudinary_url
+
+ARG smtp_url
+ENV SMTP_URL=$smtp_url
 
 ARG secret_key
 ENV SECRET_KEY=$secret_key

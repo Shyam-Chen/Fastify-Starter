@@ -141,4 +141,26 @@ export default async (app: FastifyInstance) => {
       });
     },
   );
+
+  router.get('/feat-aaa', { onRequest: [auth] }, async (req, reply) => {
+    const user = await users?.findOne({ username: { $eq: req.user.username } });
+    const userRole = await roles?.findOne({ userId: { $eq: { $ref: 'users', $id: user?._id } } });
+
+    const notAllowed = ['manager', 'employee'];
+    if (notAllowed.includes(userRole?.role)) return reply.forbidden();
+
+    return reply.send({ message: 'Hi!' });
+  });
+
+  router.get('/feat-bbb', { onRequest: [auth] }, async (req, reply) => {
+    const user = await users?.findOne({ username: { $eq: req.user.username } });
+    const userRole = await roles?.findOne({ userId: { $eq: { $ref: 'users', $id: user?._id } } });
+
+    const notAllowed = ['manager', 'employee'];
+    if (notAllowed.includes(userRole?.role)) return reply.forbidden();
+
+    // userRole?.permissions.find((permission) => permissions)
+
+    return reply.send({ message: 'Hi!' });
+  });
 };
