@@ -10,5 +10,16 @@ services:
         value: 18.12.1
       - key: SITE_URL
         value: onrender.com
+      - key: MONGODB_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: CLOUDINARY_URL
+        sync: false
+      - key: SMTP_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
     buildCommand: pnpm install --frozen-lockfile && pnpm build
     startCommand: node dist/main.mjs
+    healthCheckPath: /healthz

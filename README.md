@@ -94,8 +94,8 @@ $ pnpm mock
 This seed repository provides the following features:
 
 - ---------- **Essentials** ----------
-- [x] [Fastify](https://github.com/fastify/fastify)
-- [x] [MongoDB](https://github.com/fastify/fastify-mongodb)
+- [x] [Fastify](https://github.com/fastify/fastify) - Web Application Framework
+- [x] [MongoDB](https://github.com/fastify/fastify-mongodb) - Document Database
 - [x] [JWT](https://github.com/fastify/fastify-jwt)
 - [x] [Cloudinary](https://github.com/Vanilla-IceCream/fastify-cloudinary)
 - [x] [I18n](https://github.com/Vanilla-IceCream/fastify-i18n)
@@ -118,8 +118,8 @@ This seed repository provides the following features:
 - [x] [PM2](https://pm2.keymetrics.io/)
 - [x] [Caddy](https://caddyserver.com/)
 - [x] [Docker](https://www.docker.com/)
-- [x] [CircleCI](https://circleci.com/)
-- [x] [Render](https://render.com/)
+- [x] [CircleCI](https://circleci.com/) - Continuous Integration and Delivery
+- [x] [Render](https://render.com/) - Cloud Application Hosting
 - ---------- **Extracts** ----------
 - [x] [Email](https://github.com/Shyam-Chen/Email-Builder)
 - [x] [WebAssembly](https://github.com/Shyam-Chen/Assembly-Starter)

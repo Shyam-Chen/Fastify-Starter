@@ -25,9 +25,11 @@ const app = async (options: FastifyServerOptions = {}) => {
   app.register(jwt, { secret: process.env.SECRET_KEY });
 
   app.register(router, { prefix: '/api' });
-  app.register(websocket, { prefix: '/io' });
+  app.register(websocket, { prefix: '/api' });
   app.register(eventsource, { prefix: '/api' });
   app.register(i18n);
+
+  app.get('/healthz', async () => 'healthz');
 
   return app;
 };
