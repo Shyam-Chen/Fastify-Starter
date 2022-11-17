@@ -96,33 +96,33 @@ This seed repository provides the following features:
 - ---------- **Essentials** ----------
 - [x] [Fastify](https://github.com/fastify/fastify) - Web Application Framework
 - [x] [MongoDB](https://github.com/fastify/fastify-mongodb) - Document Database
-- [x] [JWT](https://github.com/fastify/fastify-jwt)
-- [x] [Cloudinary](https://github.com/Vanilla-IceCream/fastify-cloudinary)
-- [x] [I18n](https://github.com/Vanilla-IceCream/fastify-i18n)
-- [x] [Redis](https://github.com/fastify/fastify-redis)
-- [x] [WebSocket](https://github.com/fastify/fastify-websocket)
-- [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2)
-- [x] [Mailer](https://github.com/nodemailer/nodemailer)
-- [x] [Sheets](https://github.com/SheetJS/sheetjs)
-- [x] [BullMQ](https://github.com/taskforcesh/bullmq)
+- [x] [JWT](https://github.com/fastify/fastify-jwt) - Authentication
+- [x] [Cloudinary](https://github.com/Vanilla-IceCream/fastify-cloudinary) - Asset Management
+- [x] [I18n](https://github.com/Vanilla-IceCream/fastify-i18n) - Internationalization and Localization
+- [x] [Redis](https://github.com/fastify/fastify-redis) - In-memory Data Structure Store
+- [x] [WebSocket](https://github.com/fastify/fastify-websocket) - Two-way Interactive Communication Session
+- [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2) - Server-sent Events
+- [x] [Mailer](https://github.com/nodemailer/nodemailer) - Email Sending
+- [x] [Sheets](https://github.com/SheetJS/sheetjs) - Spreadsheet Data Toolkit
+- [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
 - ---------- **Tools** ----------
-- [x] [Vite](https://github.com/vitejs/vite)
-- [x] [TypeScript](https://github.com/microsoft/TypeScript)
-- [x] [ESLint](https://github.com/eslint/eslint)
-- [x] [Prettier](https://github.com/prettier/prettier)
-- [x] [Vitest](https://github.com/vitest-dev/vitest)
-- [x] [Playwright](https://github.com/microsoft/playwright)
+- [x] [Vite](https://github.com/vitejs/vite) - Bundler
+- [x] [TypeScript](https://github.com/microsoft/TypeScript) - JavaScript with Syntax for Types
+- [x] [ESLint](https://github.com/eslint/eslint) - Linter
+- [x] [Prettier](https://github.com/prettier/prettier) - Formatter
+- [x] [Vitest](https://github.com/vitest-dev/vitest) - Test Runner
+- [x] [Playwright](https://github.com/microsoft/playwright) - Automation
 - ---------- **Environments** ----------
-- [x] [Node.js](https://nodejs.org/en/)
-- [x] [Pnpm](https://pnpm.io/)
-- [x] [PM2](https://pm2.keymetrics.io/)
-- [x] [Caddy](https://caddyserver.com/)
-- [x] [Docker](https://www.docker.com/)
+- [x] [Node.js](https://nodejs.org/en/) - JavaScript Runtime Environment
+- [x] [Pnpm](https://pnpm.io/) - Package Manager
+- [x] [PM2](https://pm2.keymetrics.io/) - Process Manager
+- [x] [Caddy](https://caddyserver.com/) - Web Server
+- [x] [Docker](https://www.docker.com/) - Containerized Application Development
 - [x] [CircleCI](https://circleci.com/) - Continuous Integration and Delivery
 - [x] [Render](https://render.com/) - Cloud Application Hosting
 - ---------- **Extracts** ----------
-- [x] [Email](https://github.com/Shyam-Chen/Email-Builder)
-- [x] [WebAssembly](https://github.com/Shyam-Chen/Assembly-Starter)
+- [x] [Email](https://github.com/Shyam-Chen/Email-Builder) - MJML
+- [x] [WebAssembly](https://github.com/Shyam-Chen/Assembly-Starter) - AssemblyScript
 
 ## Configuration
 
@@ -157,6 +157,20 @@ Add environment variables to the CircleCI build.
 
 ```sh
 # production
+DEPLOY_HOOK=xxx
+
+# development
+DEV_DEPLOY_HOOK=xxx
+
+# staging
+STAGE_DEPLOY_HOOK=xxx
+```
+
+### Continuous delivery environments
+
+Add environment variables to the Render build.
+
+```sh
 SITE_URL=xxx
 
 MONGODB_URL=xxx
@@ -165,32 +179,6 @@ CLOUDINARY_URL=xxx
 SMTP_URL=xxx
 
 SECRET_KEY=xxx
-
-DEPLOY_HOOK=xxx
-
-# development
-DEV_SITE_URL=xxx
-
-DEV_MONGODB_URL=xxx
-DEV_REDIS_URL=xxx
-DEV_CLOUDINARY_URL=xxx
-DEV_SMTP_URL=xxx
-
-DEV_SECRET_KEY=xxx
-
-DEV_DEPLOY_HOOK=xxx
-
-# staging
-STAGE_SITE_URL=xxx
-
-STAGE_MONGODB_URL=xxx
-STAGE_REDIS_URL=xxx
-STAGE_CLOUDINARY_URL=xxx
-STAGE_SMTP_URL=xxx
-
-STAGE_SECRET_KEY=xxx
-
-STAGE_DEPLOY_HOOK=xxx
 ```
 
 ## Directory Structure
@@ -232,7 +220,7 @@ The structure follows the LIFT Guidelines.
 ├── .gitignore
 ├── .prettierrc
 ├── Caddyfile
-├── docker-compose.yml -> local dev or circleci build
+├── docker-compose.yml
 ├── Dockerfile
 ├── env.ts
 ├── index.mjs -> entrypoint

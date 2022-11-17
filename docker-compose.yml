@@ -10,10 +10,24 @@ services:
       - 3000:3000
     tty: true
 
-  caddy:
+  app:
+    image: app
+    build:
+      context: .
+      dockerfile: .circleci/Dockerfile
+    ports:
+      - 3000:3000
+
+  server:
     image: caddy:2-alpine
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - .circleci/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
