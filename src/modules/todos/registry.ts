@@ -29,37 +29,15 @@ export default async (app: FastifyInstance) => {
   curl --request POST \
     --url http://127.0.0.1:3000/api/todos \
     --header 'content-type: application/json' \
-    --data '{
-      "title": "foo"
-    }'
+    --data '{}' | json_pp
   */
-  router.post('/todos', { schema: { body } }, async (req, reply) => {
-    await todos?.insertOne({
-      title: req.body.title,
-      completed: req.body.completed,
-      createdAt: new Date().toISOString(),
-    });
+  router.post('/todos', { schema: { body: querystring } }, async (req, reply) => {
+    const field = req.body.field || 'createdAt';
+    const order = req.body.order || 'desc';
+    const page = Number(req.body.page) || 1;
+    const rows = Number(req.body.rows) || 10;
 
-    return reply.send({ message: 'hi' });
-  });
-
-  /*
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/todos | json_pp
-
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/todos?field=createdAt&order=desc&page=1&rows=10 | json_pp
-
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/todos?title=vue | json_pp
-  */
-  router.get('/todos', { schema: { querystring } }, async (req, reply) => {
-    const field = req.query.field || 'createdAt';
-    const order = req.query.order || 'desc';
-    const page = Number(req.query.page) || 1;
-    const rows = Number(req.query.rows) || 10;
-
-    const { title, completed } = req.query;
+    const { title, completed } = req.body;
 
     const queryConditions = {
       ...(title && { title: { $regex: title, $options: 'i' } }),
@@ -76,6 +54,24 @@ export default async (app: FastifyInstance) => {
     const total = await todos?.countDocuments(queryConditions);
 
     return reply.send({ message: 'hi', result, total });
+  });
+
+  /*
+  curl --request POST \
+    --url http://127.0.0.1:3000/api/todos \
+    --header 'content-type: application/json' \
+    --data '{
+      "title": "foo"
+    }'
+  */
+  router.post('/todos/new', { schema: { body } }, async (req, reply) => {
+    await todos?.insertOne({
+      title: req.body.title,
+      completed: req.body.completed,
+      createdAt: new Date().toISOString(),
+    });
+
+    return reply.send({ message: 'hi' });
   });
 
   /*
