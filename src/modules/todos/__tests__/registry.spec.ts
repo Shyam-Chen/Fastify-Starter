@@ -62,6 +62,7 @@ test.concurrent('test_todos_2', async (ctx) => {
     title: `fastify-${index + 1}`,
     completed: !(index % 2),
     createdAt: new Date(`2020-12-${index + 1}`).toISOString(),
+    updatedAt: new Date(`2020-12-${index + 1}`).toISOString(),
   }));
 
   await app.ready();
