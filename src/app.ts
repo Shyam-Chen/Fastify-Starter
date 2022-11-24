@@ -29,7 +29,7 @@ const app = async (options: FastifyServerOptions = {}) => {
   app.register(eventsource, { prefix: '/api' });
   app.register(i18n);
 
-  app.get('/healthz', async () => 'healthz');
+  app.get('/api/healthz', async () => 'healthz');
 
   return app;
 };
