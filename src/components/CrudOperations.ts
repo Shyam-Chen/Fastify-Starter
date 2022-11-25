@@ -1,23 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { Static, Type } from '@sinclair/typebox';
-
-const body = Type.Object({});
-
-const params = Type.Object({
-  id: Type.String(),
-});
-
-const message = Type.String();
-
-const entity = Type.Intersect([
-  Type.Required(body),
-  Type.Object({
-    _id: Type.String(),
-    createdAt: Type.String({ format: 'date-time' }),
-    updatedAt: Type.String({ format: 'date-time' }),
-  }),
-]);
+import { Static, Type, TObject } from '@sinclair/typebox';
 
 // POST /new {}
 // GET /:id
@@ -32,9 +15,29 @@ const entity = Type.Intersect([
 //   }),
 // });
 
-export default async (app: FastifyInstance) => {
+interface CrudOperationsOptions {
+  collection: string;
+  body: TObject;
+}
+
+const params = Type.Object({ id: Type.String() });
+const message = Type.String();
+
+export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
-  const collection = app.mongo.db?.collection('__COLLECTION_NAME__');
+  const collection = app.mongo.db?.collection(opts.collection);
+
+  let body = Type.Object({});
+  if (opts.body) body = opts.body;
+
+  const entity = Type.Intersect([
+    Type.Required(body),
+    Type.Object({
+      _id: Type.String(),
+      createdAt: Type.String({ format: 'date-time' }),
+      updatedAt: Type.String({ format: 'date-time' }),
+    }),
+  ]);
 
   router.post(
     '/new',
