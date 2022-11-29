@@ -13,6 +13,7 @@ specifiers:
   '@sinclair/typebox': ^0.24.44
   '@types/bcrypt': ^5.0.0
   '@types/nodemailer': ^6.4.6
+  '@types/nunjucks': ^3.2.1
   '@typescript-eslint/eslint-plugin': ^5.41.0
   '@typescript-eslint/parser': ^5.41.0
   '@vitest/coverage-c8': ^0.23.4
@@ -31,6 +32,7 @@ specifiers:
   mongodb-memory-server: ^8.9.5
   nodemailer: ^6.8.0
   nodemon: ^2.0.20
+  nunjucks: ^3.2.3
   pm2: ^5.2.2
   prettier: ^2.7.1
   process-envify: ^1.0.4
@@ -60,12 +62,14 @@ dependencies:
   fastify-sse-v2: 2.2.1_fastify@4.10.2
   ioredis: 5.2.4
   nodemailer: 6.8.0
+  nunjucks: 3.2.3
   pm2: 5.2.2
   xlsx: 0.18.5
 
 devDependencies:
   '@types/bcrypt': 5.0.0
   '@types/nodemailer': 6.4.6
+  '@types/nunjucks': 3.2.1
   '@typescript-eslint/eslint-plugin': 5.44.0_fnsv2sbzcckq65bwfk7a5xwslu
   '@typescript-eslint/parser': 5.44.0_hsf322ms6xhhd4b5ne6lb74y4a
   '@vitest/coverage-c8': 0.23.4
@@ -1247,6 +1251,10 @@ packages:
       '@types/node': 18.11.9
     dev: true
 
+  /@types/nunjucks/3.2.1:
+    resolution: {integrity: sha512-hUh5HIC7peH+0MvlYU5KM2RydWxG1mBceivHsQGwlelU9zlczLICyJmjMwgjkI3m0+N50n46GVHkw35lIim6LQ==}
+    dev: true
+
   /@types/semver/7.3.13:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
     dev: true
@@ -1412,6 +1420,10 @@ packages:
       - terser
     dev: true
 
+  /a-sync-waterfall/1.0.1:
+    resolution: {integrity: sha512-RYTOHHdWipFUliRFMCS4X2Yn2X8M87V/OpSqWzKKOGhzqyUxzyVmhHDH9sAvG+ZuQf/TAOFsLCpMw09I1ufUnA==}
+    dev: false
+
   /abbrev/1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
 
@@ -1557,6 +1569,10 @@ packages:
       es-array-method-boxes-properly: 1.0.0
       get-intrinsic: 1.1.3
       is-string: 1.0.7
+    dev: false
+
+  /asap/2.0.6:
+    resolution: {integrity: sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==}
     dev: false
 
   /asn1.js/5.4.1:
@@ -1915,6 +1931,11 @@ packages:
 
   /commander/2.15.1:
     resolution: {integrity: sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag==}
+    dev: false
+
+  /commander/5.1.0:
+    resolution: {integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==}
+    engines: {node: '>= 6'}
     dev: false
 
   /commondir/1.0.1:
@@ -3889,6 +3910,21 @@ packages:
     dependencies:
       eventemitter2: 0.4.14
       lazy: 1.0.11
+    dev: false
+
+  /nunjucks/3.2.3:
+    resolution: {integrity: sha512-psb6xjLj47+fE76JdZwskvwG4MYsQKXUtMsPh6U0YMvmyjRtKRFcxnlXGWglNybtNTNVmGdp94K62/+NjF5FDQ==}
+    engines: {node: '>= 6.9.0'}
+    hasBin: true
+    peerDependencies:
+      chokidar: ^3.3.0
+    peerDependenciesMeta:
+      chokidar:
+        optional: true
+    dependencies:
+      a-sync-waterfall: 1.0.1
+      asap: 2.0.6
+      commander: 5.1.0
     dev: false
 
   /object-assign/4.1.1:

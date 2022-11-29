@@ -31,12 +31,14 @@
     "fastify-sse-v2": "^2.2.1",
     "ioredis": "^5.2.3",
     "nodemailer": "^6.8.0",
+    "nunjucks": "^3.2.3",
     "pm2": "^5.2.2",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/nodemailer": "^6.4.6",
+    "@types/nunjucks": "^3.2.1",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "@vitest/coverage-c8": "^0.23.4",
