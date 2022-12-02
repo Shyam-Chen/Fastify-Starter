@@ -6,6 +6,10 @@ export default plugin(
 
     app.register(import('~/modules/hello-world/registry'), { prefix });
     app.register(import('~/modules/auth/registry'), { prefix: prefix + '/auth' });
+
+    app.register(import('~/modules/products/registry'), { prefix: prefix + '/products' });
+    app.register(import('~/modules/nested/routes'), { prefix: prefix + '/nested' });
+
     app.register(import('~/modules/todos/registry'), { prefix });
     app.register(import('~/modules/file-uploads/registry'), { prefix });
     app.register(import('~/modules/suggestions/registry'), { prefix: prefix + '/suggestions' });

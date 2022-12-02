@@ -3,7 +3,7 @@ import { Queue } from 'bullmq';
 
 import redisInstance from '~/utilities/redisInstance';
 
-export default (name = 'defaultQueue', options?: QueueOptions) => {
+export default (name = 'default', options?: QueueOptions) => {
   const queue = new Queue(name, {
     connection: redisInstance,
     ...options,

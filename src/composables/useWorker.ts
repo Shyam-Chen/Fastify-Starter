@@ -3,7 +3,7 @@ import { Worker } from 'bullmq';
 
 import redisInstance from '~/utilities/redisInstance';
 
-export default (name = 'defaultWorker', processor: Processor, options?: WorkerOptions) => {
+export default (name = 'default', processor: Processor, options?: WorkerOptions) => {
   const worker = new Worker(name, processor, {
     connection: redisInstance,
     ...options,
