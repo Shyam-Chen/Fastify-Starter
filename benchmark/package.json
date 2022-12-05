@@ -2,12 +2,13 @@
   "name": "benchmark",
   "private": true,
   "scripts": {
-    "bench": "autocannon"
+    "bench": "vitest --run"
   },
   "dependencies": {
     "autocannon": "^7.10.0"
   },
   "devDependencies": {
+    "@types/autocannon": "^7.9.0",
     "vitest": "^0.25.3"
   }
 }
