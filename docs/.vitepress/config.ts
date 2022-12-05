@@ -1,4 +1,6 @@
-export default {
+import { defineConfig } from 'vitepress';
+
+export default defineConfig({
   title: 'Fastify Starter',
   description: 'A boilerplate for Node.js, Fastify, TypeScript, Vite, Playwright, and Render.',
   themeConfig: {
@@ -34,4 +36,4 @@ export default {
       copyright: `Copyright © ${new Date().getFullYear()} Fastify Starter`,
     },
   },
-};
+});
