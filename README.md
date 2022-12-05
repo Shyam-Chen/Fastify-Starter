@@ -1,6 +1,6 @@
 # Fastify Starter
 
-:zap: A boilerplate for Node.js, Fastify, TypeScript, Vite, Vitest, and Render.
+:zap: A boilerplate for Node.js, Fastify, TypeScript, Vite, Playwright, and Render.
 
 :rainbow: [Live Demo](https://fastify-starter-12ih.onrender.com) - The client application is [here](https://github.com/Shyam-Chen/Vue-Starter).
 
@@ -111,7 +111,9 @@ This seed repository provides the following features:
 - [x] [ESLint](https://github.com/eslint/eslint) - Linter
 - [x] [Prettier](https://github.com/prettier/prettier) - Formatter
 - [x] [Vitest](https://github.com/vitest-dev/vitest) - Test Runner
-- [x] [Playwright](https://github.com/microsoft/playwright) - Automation
+- [x] [Playwright](https://github.com/microsoft/playwright) - Test Automation
+- [x] [Autocannon](https://github.com/mcollina/autocannon) - Measure Performance
+- [x] [VitePress](https://vitepress.vuejs.org/) - Documentation
 - ---------- **Environments** ----------
 - [x] [Node.js](https://nodejs.org/en/) - JavaScript Runtime Environment
 - [x] [Pnpm](https://pnpm.io/) - Package Manager

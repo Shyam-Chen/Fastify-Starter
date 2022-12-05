@@ -1,0 +1,13 @@
+{
+  "name": "benchmark",
+  "private": true,
+  "scripts": {
+    "bench": "autocannon"
+  },
+  "dependencies": {
+    "autocannon": "^7.10.0"
+  },
+  "devDependencies": {
+    "vitest": "^0.25.3"
+  }
+}
