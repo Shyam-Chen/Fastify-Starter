@@ -5,5 +5,4 @@ export default async (app: FastifyInstance) => {
 
   app.register(import('~/modules/nested/products/registry'), { prefix: '/products' });
   app.register(import('~/modules/nested/products/[id]/registry'), { prefix: '/products/:id' });
-  app.register(import('~/modules/nested/products/new/registry'), { prefix: '/products/new' });
 };

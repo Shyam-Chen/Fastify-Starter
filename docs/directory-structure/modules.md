@@ -9,7 +9,6 @@ src/modules/auth/signup/registry.ts -> /auth/signup
 src/modules/auth/login/registry.ts -> /auth/login
 
 src/modules/products/registry.ts -> /products
-src/modules/products/new/registry.ts -> /products/new
 src/modules/products/[id]/registry.ts -> /products/:id
 ```
 
@@ -21,7 +20,6 @@ app.register(import('~/modules/auth/signup/registry'), { prefix: prefix + '/auth
 app.register(import('~/modules/auth/login/registry'), { prefix: prefix + '/auth/login' });
 
 app.register(import('~/modules/products/registry'), { prefix: prefix + '/products' });
-app.register(import('~/modules/products/new/registry'), { prefix: prefix + '/products/new' });
 app.register(import('~/modules/products/[id]/registry'), { prefix: prefix + '/products/:id' });
 ```
 

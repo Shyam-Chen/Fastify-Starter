@@ -13,5 +13,4 @@ export default async (app: FastifyInstance) => {
   });
 
   app.register(import('./[id]/registry'), { prefix: '/:id' });
-  app.register(import('./new/registry'), { prefix: '/new' });
 };
