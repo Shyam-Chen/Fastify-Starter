@@ -85,7 +85,10 @@ $ pnpm e2e
 Files: `benchmark/**/*.spec.ts`
 
 ```sh
-$
+# If it's not installed, run it.
+$ cd benchmark && pnpm install && cd ..
+
+$ pnpm bench
 ```
 
 ### Mock requests
@@ -102,7 +105,10 @@ $ pnpm mock
 Files: `docs/**/*.md`
 
 ```sh
-$
+# If it's not installed, run it.
+$ cd docs && pnpm install && cd ..
+
+$ pnpm doc
 ```
 
 ## Key Features
