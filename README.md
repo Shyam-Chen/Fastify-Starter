@@ -80,6 +80,14 @@ $ cd e2e && pnpm install && cd ..
 $ pnpm e2e
 ```
 
+### Performance metrics
+
+Files: `benchmark/**/*.spec.ts`
+
+```sh
+$
+```
+
 ### Mock requests
 
 ```sh
@@ -87,6 +95,14 @@ $ pnpm e2e
 $ cd mock/requests && pnpm install && cd ../..
 
 $ pnpm mock
+```
+
+### Documentation
+
+Files: `docs/**/*.md`
+
+```sh
+$
 ```
 
 ## Key Features
