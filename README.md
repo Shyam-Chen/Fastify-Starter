@@ -212,6 +212,8 @@ The structure follows the LIFT Guidelines.
 ```coffee
 .
 ├── .circleci
+├── benchmark
+├── docs
 ├── e2e -> e2e testing (Caddy Server proxy api and proxy mock api)
 ├── mock
 │   ├── requests -> mock api

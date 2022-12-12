@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'Fastify Starter',
   description: 'A boilerplate for Node.js, Fastify, TypeScript, Vite, Playwright, and Render.',
+  lang: 'en-US',
   themeConfig: {
     logo: 'https://api.iconify.design/simple-icons/fastify.svg?color=%2342b883',
     nav: [
@@ -29,6 +30,11 @@ export default defineConfig({
             ],
           },
         ],
+      },
+      {
+        text: 'Feature Modules',
+        collapsible: true,
+        items: [{ text: 'Todos', link: '/feature-modules/todos' }],
       },
     ],
     footer: {
