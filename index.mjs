@@ -2,7 +2,8 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import pm2 from 'pm2';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 pm2.connect(() => {
   pm2.start(
@@ -15,7 +16,8 @@ pm2.connect(() => {
     },
     (err) => {
       if (err) {
-        throw new Error(`Error while launching applications ${err.stack || err}.`);
+        console.error(err);
+        return pm2.disconnect();
       }
 
       console.log('PM2 and application has been succesfully started.');
