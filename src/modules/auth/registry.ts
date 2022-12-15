@@ -114,7 +114,7 @@ export default async (app: FastifyInstance) => {
       );
     }
 
-    const token = app.jwt.sign({ username, password: user.password }, { expiresIn: '16h' });
+    const token = app.jwt.sign({ username, password: user.password }, { expiresIn: '12h' });
     return reply.send({ message: 'Hi!', token });
   });
 

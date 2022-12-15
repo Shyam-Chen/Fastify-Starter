@@ -15,48 +15,11 @@ afterAll(async () => {
   await mongod?.stop();
 });
 
-test.concurrent('test_todos_1', async (ctx) => {
+test('POST /todos', async () => {
   const app = fastify();
 
-  app.register(mongodb, { url: mongod?.getUri(ctx.meta.name) });
-  app.register(registry);
-
-  const payload = { title: 'foo' };
-  await app.inject({ method: 'POST', url: '/todos/new', payload });
-
-  const res = await app.inject({ method: 'POST', url: '/todos', payload: {} });
-  expect(res.json().result.length).toBe(1);
-  expect(res.json().total).toBe(1);
-
-  const id = res.json().result[0]._id;
-  const res1 = await app.inject({ method: 'GET', url: '/todos' + `/${id}` });
-  expect(res1.json().result.title).toBe(payload.title);
-
-  await app.inject({
-    method: 'PUT',
-    url: '/todos' + `/${id}`,
-    payload: {
-      ...payload,
-      completed: true,
-    },
-  });
-
-  const res2 = await app.inject({ method: 'GET', url: '/todos' + `/${id}` });
-  expect(res2.json().result.title).toBe(payload.title);
-  expect(res2.json().result.completed).toBe(true);
-
-  await app.inject({ method: 'DELETE', url: '/todos' + `/${id}` });
-
-  const res3 = await app.inject({ method: 'POST', url: '/todos', payload: {} });
-  expect(res3.json().result.length).toBe(0);
-  expect(res3.json().total).toBe(0);
-});
-
-test.concurrent('test_todos_2', async (ctx) => {
-  const app = fastify();
-
-  app.register(mongodb, { url: mongod?.getUri(ctx.meta.name) });
-  app.register(registry);
+  app.register(mongodb, { url: mongod?.getUri('test') });
+  app.register(registry, { prefix: '/todos' });
 
   const data = Array.from({ length: 31 }).map((item, index) => ({
     title: `fastify-${index + 1}`,
@@ -72,11 +35,15 @@ test.concurrent('test_todos_2', async (ctx) => {
   expect(res.json().result.length).toBe(10);
   expect(res.json().total).toBe(31);
 
-  const res2 = await app.inject({ method: 'POST', url: '/todos', payload: { completed: true } });
-  expect(res2.json().result.length).toBe(10);
-  expect(res2.json().total).toBe(16);
+  const res2 = await app.inject({ method: 'POST', url: '/todos', payload: { title: '7' } });
+  expect(res2.json().result.length).toBe(3);
+  expect(res2.json().total).toBe(3);
 
-  const res3 = await app.inject({ method: 'POST', url: '/todos', payload: { title: '6' } });
-  expect(res3.json().result.length).toBe(3);
-  expect(res3.json().total).toBe(3);
+  const res3 = await app.inject({ method: 'POST', url: '/todos', payload: { completed: true } });
+  expect(res3.json().result.length).toBe(10);
+  expect(res3.json().total).toBe(16);
+
+  const res4 = await app.inject({ method: 'POST', url: '/todos', payload: { title: 'Vue' } });
+  expect(res4.json().result.length).toBe(0);
+  expect(res4.json().total).toBe(0);
 });
