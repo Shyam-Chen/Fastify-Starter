@@ -60,7 +60,7 @@ export default async (app: FastifyInstance) => {
     if (user) return reply.badRequest('That username is taken. Try another.');
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const token = app.jwt.sign({ username, password: hashedPassword }, { expiresIn: '16h' });
+    const token = app.jwt.sign({ username, password: hashedPassword }, { expiresIn: '12h' });
 
     const userId = new app.mongo.ObjectId();
     await users?.insertOne({ _id: userId, username, fullName, password: hashedPassword });
