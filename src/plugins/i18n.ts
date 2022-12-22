@@ -11,9 +11,13 @@ export default plugin(
     app.register(i18n, {
       fallbackLocale: 'en-US',
       messages: {
+        en: enUS,
         'en-US': enUS,
+        ja: jaJP,
         'ja-JP': jaJP,
+        ko: koKR,
         'ko-KR': koKR,
+        zh: zhTW,
         'zh-TW': zhTW,
       },
     });
