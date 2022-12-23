@@ -22,6 +22,7 @@
     "@fastify/redis": "^6.1.0",
     "@fastify/sensible": "^5.2.0",
     "@fastify/type-provider-typebox": "^2.4.0",
+    "@fastify/under-pressure": "^8.2.0",
     "@fastify/websocket": "^7.1.1",
     "@sinclair/typebox": "^0.25.11",
     "bcrypt": "^5.1.0",

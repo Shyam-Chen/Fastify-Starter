@@ -9,6 +9,7 @@ specifiers:
   '@fastify/redis': ^6.1.0
   '@fastify/sensible': ^5.2.0
   '@fastify/type-provider-typebox': ^2.4.0
+  '@fastify/under-pressure': ^8.2.0
   '@fastify/websocket': ^7.1.1
   '@sinclair/typebox': ^0.25.11
   '@types/bcrypt': ^5.0.0
@@ -51,6 +52,7 @@ dependencies:
   '@fastify/redis': 6.1.0
   '@fastify/sensible': 5.2.0
   '@fastify/type-provider-typebox': 2.4.0_hryz6py27o6phyheetjzgktts4
+  '@fastify/under-pressure': 8.2.0
   '@fastify/websocket': 7.1.1
   '@sinclair/typebox': 0.25.11
   bcrypt: 5.1.0
@@ -1146,6 +1148,13 @@ packages:
     dependencies:
       '@sinclair/typebox': 0.25.11
       fastify: 4.10.2
+    dev: false
+
+  /@fastify/under-pressure/8.2.0:
+    resolution: {integrity: sha512-tqhWBhE6blM3jDn9dmxl5yhyoRWGFGwdihLmyek5pRN3KIOEcRQVtAoX5WKSbeEZ51clnDfCNqm96YC4cEUI7g==}
+    dependencies:
+      '@fastify/error': 3.0.0
+      fastify-plugin: 4.4.0
     dev: false
 
   /@fastify/websocket/7.1.1:
