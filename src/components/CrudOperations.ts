@@ -2,7 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Static, Type, TObject } from '@sinclair/typebox';
 
-// POST /new {}
+// POST /:id=new {}
 // GET /:id
 // PUT /:id {}
 // DELETE /:id
@@ -40,9 +40,10 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
   ]);
 
   router.post(
-    '/new',
+    '/:id',
     {
       schema: {
+        params: Type.Object({ id: Type.Literal('new') }),
         body,
         response: { 200: Type.Object({ message }) },
       },
