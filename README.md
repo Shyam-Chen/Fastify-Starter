@@ -249,7 +249,7 @@ The structure follows the LIFT Guidelines.
 ├── docker-compose.yml
 ├── Dockerfile
 ├── env.ts
-├── index.mjs -> entrypoint
+├── index.ts -> entrypoint
 ├── LICENSE
 ├── package.json
 ├── pnpm-lock.yaml
