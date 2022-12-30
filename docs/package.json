@@ -7,8 +7,8 @@
     "preview": "vitepress preview --port 3715"
   },
   "devDependencies": {
-    "unocss": "^0.47.5",
-    "vitepress": "1.0.0-alpha.30",
+    "unocss": "^0.48.0",
+    "vitepress": "1.0.0-alpha.33",
     "vue": "^3.2.45"
   }
 }

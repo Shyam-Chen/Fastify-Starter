@@ -1,31 +1,6 @@
-<script lang="ts" setup>
-import { reactive } from 'vue';
-
-const flux = reactive({
-  payload: {},
-  tryItOut() {
-    console.log(flux.payload);
-  },
-});
-</script>
-
 # Todos
 
-Title:
-
-<input v-model="flux.payload.title" class="border border-#42b883 px-2 py-1 rounded">
-
-{{ flux.payload.title }}
-
-<button class="border border-#42b883 px-2 py-1 rounded" @click="flux.tryItOut">Try it out</button>
-
-## Design
-
-Prototype
-
-## Specification
-
-### POST /api/todos
+## POST /api/todos
 
 ```ts
 export interface PayloadModel {
@@ -50,7 +25,7 @@ export interface ResponseModel {
 }
 ```
 
-### POST /api/todos/new
+## POST /api/todos/:id=new
 
 ```ts
 export interface PayloadModel {
@@ -63,7 +38,7 @@ export interface ResponseModel {
 }
 ```
 
-### GET /api/todos/:id
+## GET /api/todos/:id
 
 ```ts
 export interface ResponseModel {
@@ -78,7 +53,7 @@ export interface ResponseModel {
 }
 ```
 
-### PUT /api/todos/:id
+## PUT /api/todos/:id
 
 ```ts
 export interface PayloadModel {
@@ -94,7 +69,7 @@ export interface ResponseModel {
 }
 ```
 
-### DELETE /api/todos/:id
+## DELETE /api/todos/:id
 
 ```ts
 export interface ResponseModel {

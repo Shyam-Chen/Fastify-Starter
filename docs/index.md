@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /directory-structure/introduction
+      link: /guide/project-setup/introduction
     - theme: alt
       text: View on GitHub
       link: https://github.com/Shyam-Chen/Fastify-Starter
