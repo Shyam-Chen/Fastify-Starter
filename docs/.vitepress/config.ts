@@ -10,9 +10,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/project-setup/introduction' },
       { text: 'Modules', link: '/modules/todos' },
     ],
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/Shyam-Chen/Fastify-Starter' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/Shyam-Chen/Fastify-Starter' }],
     sidebar: {
       '/guide': [
         {
@@ -30,9 +28,11 @@ export default defineConfig({
               text: 'src',
               items: [
                 { text: 'modules', link: '/guide/directory-structure/modules' },
+                { text: 'templates', link: '/guide/directory-structure/templates' },
                 // { text: 'plugins', link: '/directory-structure/plugins' },
               ],
             },
+            { text: 'gitignore', link: '/guide/directory-structure/gitignore' },
           ],
         },
       ],

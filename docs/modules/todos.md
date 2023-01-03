@@ -2,6 +2,27 @@
 
 ## POST /api/todos
 
+```sh
+curl --request POST \
+     --url http://127.0.0.1:3000/api/todos \
+     --header 'Content-Type: application/json' \
+     --data '{}'
+```
+
+```sh
+curl --request POST \
+     --url http://127.0.0.1:3000/api/todos \
+     --header 'Content-Type: application/json' \
+     --data '{ "title": "Vue" }'
+```
+
+```sh
+curl --request POST \
+     --url http://127.0.0.1:3000/api/todos \
+     --header 'Content-Type: application/json' \
+     --data '{ "page": 2 }'
+```
+
 ```ts
 export interface PayloadModel {
   title?: string;
@@ -27,6 +48,13 @@ export interface ResponseModel {
 
 ## POST /api/todos/:id=new
 
+```sh
+curl --request POST \
+     --url http://127.0.0.1:3000/api/todos/new \
+     --header 'Content-Type: application/json' \
+     --data '{ "title": "foo" }'
+```
+
 ```ts
 export interface PayloadModel {
   title: string;
@@ -39,6 +67,11 @@ export interface ResponseModel {
 ```
 
 ## GET /api/todos/:id
+
+```sh
+curl --request GET \
+     --url http://127.0.0.1:3000/api/todos/634787af6d44cfba9c0df8ea
+```
 
 ```ts
 export interface ResponseModel {
@@ -55,6 +88,16 @@ export interface ResponseModel {
 
 ## PUT /api/todos/:id
 
+```sh
+curl --request PUT \
+     --url http://127.0.0.1:3000/api/todos/634516681a8fd0d3cd9791f1 \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "foo",
+       "completed": true
+     }'
+```
+
 ```ts
 export interface PayloadModel {
   _id: string;
@@ -70,6 +113,11 @@ export interface ResponseModel {
 ```
 
 ## DELETE /api/todos/:id
+
+```sh
+curl --request DELETE \
+     --url http://127.0.0.1:3000/api/todos/634516681a8fd0d3cd9791f1
+```
 
 ```ts
 export interface ResponseModel {

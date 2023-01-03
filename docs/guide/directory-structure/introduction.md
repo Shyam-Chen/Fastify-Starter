@@ -16,16 +16,16 @@ The structure follows the LIFT Guidelines.
   - :open_file_folder: middleware
   - [:open_file_folder: modules](./modules.md)
   - :open_file_folder: plugins
-  - :open_file_folder: templates
+  - [:open_file_folder: templates](./templates.md)
   - :open_file_folder: utilities
   - :page_facing_up: app.ts
   - :page_facing_up: error.ts
   - :page_facing_up: main.ts
   - :page_facing_up: shims.d.ts
-- :page_facing_up: .editorconfig
-- :page_facing_up: .eslintrc - Linter
-- :page_facing_up: .gitignore
-- :page_facing_up: .prettierrc - Formatter
+- :page_facing_up: .editorconfig - File Formatter
+- :page_facing_up: .eslintrc - Code Linter
+- [:page_facing_up: .gitignore](./gitignore.md)
+- :page_facing_up: .prettierrc - Code Formatter
 - :page_facing_up: Caddyfile - Web Server
 - :page_facing_up: docker-compose.yml
 - :page_facing_up: Dockerfile
