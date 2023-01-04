@@ -119,12 +119,15 @@ This seed repository provides the following features:
 - [x] [Fastify](https://github.com/fastify/fastify) - Web Application Framework
 - [x] [MongoDB](https://github.com/fastify/fastify-mongodb) - Document Database
 - [x] [JWT](https://github.com/fastify/fastify-jwt) - Authentication
+- [x] [Bcrypt](https://github.com/kelektiv/node.bcrypt.js) - Hash Passwords
+- [x] [OTP](https://github.com/yeojz/otplib) - Authenticator
 - [x] [Cloudinary](https://github.com/Vanilla-IceCream/fastify-cloudinary) - Asset Management
 - [x] [I18n](https://github.com/Vanilla-IceCream/fastify-i18n) - Internationalization and Localization
 - [x] [Redis](https://github.com/fastify/fastify-redis) - In-memory Data Structure Store
 - [x] [WebSocket](https://github.com/fastify/fastify-websocket) - Two-way Interactive Communication Session
 - [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2) - Server-sent Events
 - [x] [Mailer](https://github.com/nodemailer/nodemailer) - Email Sending
+- [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Render email templates
 - [x] [Sheets](https://github.com/SheetJS/sheetjs) - Spreadsheet Data Toolkit
 - [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
 - ---------- **Tools** ----------
