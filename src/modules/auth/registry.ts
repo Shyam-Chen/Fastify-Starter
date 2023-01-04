@@ -2,6 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Static, Type } from '@sinclair/typebox';
 import bcrypt from 'bcrypt';
+import { authenticator } from 'otplib';
 
 import auth from '~/middleware/auth';
 
@@ -141,6 +142,28 @@ export default async (app: FastifyInstance) => {
       });
     },
   );
+
+  /*
+  curl --request GET \
+    --url http://127.0.0.1:3000/api/auth/otp
+  */
+  router.get('/otp', async (req, reply) => {
+    const secret = authenticator.generateSecret();
+    const url = authenticator.keyuri('shyam.chen', 'Fastify Starter', secret);
+    return reply.send({ message: 'Hi!', url });
+  });
+
+  /*
+  curl --request POST \
+    --url http://127.0.0.1:3000/api/auth/otp \
+    --header 'Content-Type: application/json' \
+    --data '{ "code": "469457", "secret": "HRUA4HDMIZPFIA35" }'
+  */
+  router.post('/otp', async (req, reply) => {
+    const { code, secret } = req.body as any;
+    const isValid = authenticator.check(code, secret);
+    return reply.send({ message: 'Hi!', isValid });
+  });
 
   router.get('/feat-aaa', { onRequest: [auth] }, async (req, reply) => {
     const user = await users?.findOne({ username: { $eq: req.user.username } });

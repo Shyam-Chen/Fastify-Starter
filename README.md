@@ -264,3 +264,19 @@ The structure follows the LIFT Guidelines.
 > A microservice architecture – a variant of the service-oriented architecture structural style – is an architectural pattern that arranges an application as a collection of loosely-coupled, fine-grained services, communicating through lightweight protocols.
 
 See [Micro-Fullstack's Micro Backends](https://github.com/Shyam-Chen/Micro-Fullstack/tree/main/mbe) for instructions on how to create microservices from source code.
+
+```coffee
+api.example.com
+├── /auth
+│   └── auth.api.example.com
+├── /stats
+│   └── stats.api.example.com
+├── /todoist
+│   └── todoist.api.example.com
+├── /feature
+│   └── feature.api.example.com
+├── /files
+│   └── files.api.example.com
+└── /settings
+    └── settings.api.example.com
+```

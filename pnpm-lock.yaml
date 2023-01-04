@@ -34,6 +34,7 @@ specifiers:
   nodemailer: ^6.8.0
   nodemon: ^2.0.20
   nunjucks: ^3.2.3
+  otplib: ^12.0.1
   pm2: ^5.2.2
   prettier: ^2.7.1
   process-envify: ^2.0.0
@@ -65,6 +66,7 @@ dependencies:
   ioredis: 5.2.4
   nodemailer: 6.8.0
   nunjucks: 3.2.3
+  otplib: 12.0.1
   pm2: 5.2.2
   xlsx: 0.18.5
 
@@ -1332,6 +1334,39 @@ packages:
     dependencies:
       '@opencensus/core': 0.0.8
       uuid: 3.4.0
+    dev: false
+
+  /@otplib/core/12.0.1:
+    resolution: {integrity: sha512-4sGntwbA/AC+SbPhbsziRiD+jNDdIzsZ3JUyfZwjtKyc/wufl1pnSIaG4Uqx8ymPagujub0o92kgBnB89cuAMA==}
+    dev: false
+
+  /@otplib/plugin-crypto/12.0.1:
+    resolution: {integrity: sha512-qPuhN3QrT7ZZLcLCyKOSNhuijUi9G5guMRVrxq63r9YNOxxQjPm59gVxLM+7xGnHnM6cimY57tuKsjK7y9LM1g==}
+    dependencies:
+      '@otplib/core': 12.0.1
+    dev: false
+
+  /@otplib/plugin-thirty-two/12.0.1:
+    resolution: {integrity: sha512-MtT+uqRso909UkbrrYpJ6XFjj9D+x2Py7KjTO9JDPhL0bJUYVu5kFP4TFZW4NFAywrAtFRxOVY261u0qwb93gA==}
+    dependencies:
+      '@otplib/core': 12.0.1
+      thirty-two: 1.0.2
+    dev: false
+
+  /@otplib/preset-default/12.0.1:
+    resolution: {integrity: sha512-xf1v9oOJRyXfluBhMdpOkr+bsE+Irt+0D5uHtvg6x1eosfmHCsCC6ej/m7FXiWqdo0+ZUI6xSKDhJwc8yfiOPQ==}
+    dependencies:
+      '@otplib/core': 12.0.1
+      '@otplib/plugin-crypto': 12.0.1
+      '@otplib/plugin-thirty-two': 12.0.1
+    dev: false
+
+  /@otplib/preset-v11/12.0.1:
+    resolution: {integrity: sha512-9hSetMI7ECqbFiKICrNa4w70deTUfArtwXykPUvSHWOdzOlfa9ajglu7mNCntlvxycTiOAXkQGwjQCzzDEMRMg==}
+    dependencies:
+      '@otplib/core': 12.0.1
+      '@otplib/plugin-crypto': 12.0.1
+      '@otplib/plugin-thirty-two': 12.0.1
     dev: false
 
   /@pm2/agent/2.0.1:
@@ -3990,6 +4025,14 @@ packages:
       word-wrap: 1.2.3
     dev: true
 
+  /otplib/12.0.1:
+    resolution: {integrity: sha512-xDGvUOQjop7RDgxTQ+o4pOol0/3xSZzawTiPKRrHnQWAy0WjhNs/5HdIDJCrqC4MBynmjXgULc6YfioaxZeFgg==}
+    dependencies:
+      '@otplib/core': 12.0.1
+      '@otplib/preset-default': 12.0.1
+      '@otplib/preset-v11': 12.0.1
+    dev: false
+
   /p-defer/3.0.0:
     resolution: {integrity: sha512-ugZxsxmtTln604yeYd29EGrNhazN2lywetzpKhfmQjW/VJmhpDmWbiX+h0zL8V91R0UXkhb3KtPmyq9PZw3aYw==}
     engines: {node: '>=8'}
@@ -4905,6 +4948,11 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
+
+  /thirty-two/1.0.2:
+    resolution: {integrity: sha512-OEI0IWCe+Dw46019YLl6V10Us5bi574EvlJEOcAkB29IzQ/mYD1A6RyNHLjZPiHCmuodxvgF6U+vZO1L15lxVA==}
+    engines: {node: '>=0.2.6'}
+    dev: false
 
   /thread-stream/2.2.0:
     resolution: {integrity: sha512-rUkv4/fnb4rqy/gGy7VuqK6wE1+1DOCOWy4RMeaV69ZHMP11tQKZvZSip1yTgrKCMZzEMcCL/bKfHvSfDHx+iQ==}

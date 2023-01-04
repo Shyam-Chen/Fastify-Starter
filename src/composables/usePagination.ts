@@ -20,8 +20,10 @@ export const PaginationBox = Type.Object({
   rows: Type.Optional(Type.String()),
 });
 
+export type Pagination = Static<typeof PaginationBox>;
+
 export default <T extends FastifyRequest>(req: T) => {
-  const body = req.body as Static<typeof PaginationBox>;
+  const body = req.body as Pagination;
 
   return {
     field: body.field || 'createdAt',
