@@ -1,13 +1,17 @@
 import { test } from 'vitest';
 import autocannon from 'autocannon';
 
-test('/hello-world', async () => {
+test('/todos', async () => {
   const result = await autocannon({
     url: 'http://localhost:3000',
     requests: [
       {
-        method: 'GET',
-        path: '/api/hello-world',
+        method: 'POST',
+        path: '/api/todos',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
       },
     ],
   });
