@@ -26,7 +26,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   fastify: ^4.10.2
   fastify-cloudinary: ^1.0.5
-  fastify-i18n: ^1.0.2
+  fastify-i18n: ^1.1.1
   fastify-plugin: ^4.4.0
   fastify-sse-v2: ^3.0.0
   ioredis: ^5.2.4
@@ -60,7 +60,7 @@ dependencies:
   bullmq: 3.3.4
   fastify: 4.10.2
   fastify-cloudinary: 1.0.5
-  fastify-i18n: 1.0.2
+  fastify-i18n: 1.1.1
   fastify-plugin: 4.4.0
   fastify-sse-v2: 3.0.0_fastify@4.10.2
   ioredis: 5.2.4
@@ -2761,8 +2761,8 @@ packages:
       - supports-color
     dev: false
 
-  /fastify-i18n/1.0.2:
-    resolution: {integrity: sha512-ZLGhVnNYatpM04FRR5ITh2AR6mJ8gGNXbI/hkcBYp3RDUiGdzzM/EQ+wxR+GGwPGyS3UBMlBBEk/ZW/4/VovFw==}
+  /fastify-i18n/1.1.1:
+    resolution: {integrity: sha512-avkTM3SMv7CPGwVmR+OCe5QoJ16jiR8fPPLDvDFkYQiOFosYIgkyuenQ/fnfEiMVWfL2SbUc7Hdpt3ubtFQCxg==}
     dependencies:
       fastify-plugin: 4.4.0
       node-polyglot: 2.4.2
