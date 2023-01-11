@@ -19,13 +19,9 @@ export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
 
   defineI18n(app, {
-    en: enUS,
     'en-US': enUS,
-    ja: jaJP,
     'ja-JP': jaJP,
-    ko: koKR,
     'ko-KR': koKR,
-    zh: zhTW,
     'zh-TW': zhTW,
   });
 
