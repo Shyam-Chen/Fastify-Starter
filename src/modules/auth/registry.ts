@@ -2,7 +2,6 @@ import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Static, Type } from '@sinclair/typebox';
 import bcrypt from 'bcrypt';
-import { authenticator } from 'otplib';
 
 import auth from '~/middleware/auth';
 
@@ -10,27 +9,30 @@ const body = Type.Object({
   username: Type.String(),
   fullName: Type.String(),
   password: Type.String(),
+  email: Type.String({ format: 'email' }),
 });
 
-const body2 = Type.Object({
-  username: Type.String(),
-  password: Type.String(),
-});
+// const body2 = Type.Object({
+//   username: Type.String(),
+//   password: Type.String(),
+// });
 
-const response = {
-  '2xx': Type.Object({
-    message: Type.String(),
-    token: Type.String(),
-  }),
-};
+// const response = {
+//   '2xx': Type.Object({
+//     message: Type.String(),
+//     token: Type.String(),
+//     otpEnabled: Type.Boolean(),
+//     otpVerified: Type.Boolean(),
+//   }),
+// };
 
-const userResponse = {
-  200: Type.Object({
-    message: Type.String(),
-    username: Type.Optional(Type.String()),
-    fullName: Type.Optional(Type.String()),
-  }),
-};
+// const userResponse = {
+//   200: Type.Object({
+//     message: Type.String(),
+//     username: Type.Optional(Type.String()),
+//     fullName: Type.Optional(Type.String()),
+//   }),
+// };
 
 declare module '@fastify/jwt' {
   interface FastifyJWT {
@@ -45,50 +47,35 @@ export default async (app: FastifyInstance) => {
   const roles = app.mongo.db?.collection('roles');
 
   /*
+  User List -> Create a User
+
   curl --request POST \
     --url http://127.0.0.1:3000/api/auth/sign-up \
     --header 'content-type: application/json' \
     --data '{
       "username": "shyam.chen",
       "fullName": "Shyam Chen",
-      "password": "12345678"
+      "password": "12345678",
+      "email": "shyam.chen@example.com"
     }'
   */
-  router.post('/sign-up', { schema: { body, response } }, async (req, reply) => {
-    const { username, fullName, password } = req.body;
+  router.post('/sign-up', async (req, reply) => {
+    const { username, fullName, password, email } = req.body as any;
 
     const user = await users?.findOne({ username: { $eq: username } });
-    if (user) return reply.badRequest('That username is taken. Try another.');
+    if (user) return reply.badRequest('#username That username is taken. Try another.');
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const token = app.jwt.sign({ username, password: hashedPassword }, { expiresIn: '12h' });
+    const token = app.jwt.sign({ username, password, email }, { expiresIn: '12h' });
 
     const userId = new app.mongo.ObjectId();
-    await users?.insertOne({ _id: userId, username, fullName, password: hashedPassword });
+    await users?.insertOne({ _id: userId, username, fullName, password: hashedPassword, email });
 
     await roles?.insertOne({
       userId: { $ref: 'users', $id: userId },
       role: 'admin',
       permissions: [{ resource: '*', action: '*' }],
     });
-
-    // await roles?.insertOne({
-    //   userId: { $ref: 'users', $id: userId },
-    //   role: 'manager',
-    //   permissions: [
-    //     { resource: 'users', action: 'read' },
-    //     { resource: '*', action: '*' },
-    //   ],
-    // });
-
-    // await roles?.insertOne({
-    //   userId: { $ref: 'users', $id: userId },
-    //   role: 'employee',
-    //   permissions: [
-    //     { resource: 'users,settings', action: 'deny' },
-    //     { resource: '*', action: '*' },
-    //   ],
-    // });
 
     return reply.send({ message: 'Hi!', token });
   });
@@ -102,10 +89,10 @@ export default async (app: FastifyInstance) => {
       "password": "12345678"
     }'
   */
-  router.post('/sign-in', { schema: { body: body2, response } }, async (req, reply) => {
-    const { username, password } = req.body;
+  router.post('/sign-in', async (req, reply) => {
+    const { username, password } = req.body as any;
 
-    const user = await users?.findOne<Static<typeof body>>({ username: { $eq: username } });
+    const user = await users?.findOne({ username: { $eq: username } });
     if (!user) return reply.badRequest(`#username Couldn't find your account.`);
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -115,8 +102,26 @@ export default async (app: FastifyInstance) => {
       );
     }
 
-    const token = app.jwt.sign({ username, password: user.password }, { expiresIn: '12h' });
-    return reply.send({ message: 'Hi!', token });
+    if (user.otpEnabled && user.otpVerified) {
+      return reply.send({
+        message: 'Hi!',
+        token: null,
+        otpEnabled: true,
+        otpVerified: true,
+      });
+    }
+
+    const token = app.jwt.sign(
+      { username, password: user.password, email: user.email },
+      { expiresIn: '12h' },
+    );
+
+    return reply.send({
+      message: 'Hi!',
+      token,
+      otpEnabled: user.otpEnabled,
+      otpVerified: user.otpVerified,
+    });
   });
 
   /*
@@ -127,63 +132,40 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/auth/user \
     --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
-  router.get(
-    '/user',
-    { onRequest: [auth], schema: { response: userResponse } },
-    async (req, reply) => {
-      const user = await users?.findOne<Static<typeof body>>({
-        username: { $eq: req.user.username },
-      });
+  router.get('/user', { onRequest: [auth] }, async (req, reply) => {
+    const user = await users?.findOne<Static<typeof body>>({
+      username: { $eq: req.user.username },
+    });
 
-      return reply.send({
-        message: 'Hi!',
-        username: user?.username,
-        fullName: user?.fullName,
-      });
-    },
-  );
-
-  /*
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/auth/otp
-  */
-  router.get('/otp', async (req, reply) => {
-    const secret = authenticator.generateSecret();
-    const url = authenticator.keyuri('shyam.chen', 'Fastify Starter', secret);
-    return reply.send({ message: 'Hi!', url });
+    return reply.send({
+      message: 'Hi!',
+      username: user?.username,
+      fullName: user?.fullName,
+      email: user?.email,
+    });
   });
 
   /*
   curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/otp \
-    --header 'Content-Type: application/json' \
-    --data '{ "code": "469457", "secret": "HRUA4HDMIZPFIA35" }'
+    --url http://127.0.0.1:3000/api/auth/users \
+    --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
+    --header 'content-type: application/json' \
+    --data '{}' | json_pp
   */
-  router.post('/otp', async (req, reply) => {
-    const { code, secret } = req.body as any;
-    const isValid = authenticator.check(code, secret);
-    return reply.send({ message: 'Hi!', isValid });
+  router.post('/users', { onRequest: [auth] }, async (req, reply) => {
+    const cond = {};
+
+    const result = await users
+      ?.find(cond)
+      // .sort(field, order)
+      // .limit(rows)
+      // .skip(rows * (page - 1))
+      .toArray();
+
+    const total = await users?.countDocuments(cond);
+
+    return reply.send({ message: 'Hi!', result: result || [], total: total || 0 });
   });
 
-  router.get('/feat-aaa', { onRequest: [auth] }, async (req, reply) => {
-    const user = await users?.findOne({ username: { $eq: req.user.username } });
-    const userRole = await roles?.findOne({ userId: { $eq: { $ref: 'users', $id: user?._id } } });
-
-    const notAllowed = ['manager', 'employee'];
-    if (notAllowed.includes(userRole?.role)) return reply.forbidden();
-
-    return reply.send({ message: 'Hi!' });
-  });
-
-  router.get('/feat-bbb', { onRequest: [auth] }, async (req, reply) => {
-    const user = await users?.findOne({ username: { $eq: req.user.username } });
-    const userRole = await roles?.findOne({ userId: { $eq: { $ref: 'users', $id: user?._id } } });
-
-    const notAllowed = ['manager', 'employee'];
-    if (notAllowed.includes(userRole?.role)) return reply.forbidden();
-
-    // userRole?.permissions.find((permission) => permissions)
-
-    return reply.send({ message: 'Hi!' });
-  });
+  app.register(import('./otp/registry'), { prefix: '/otp' });
 };
