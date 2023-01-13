@@ -145,27 +145,5 @@ export default async (app: FastifyInstance) => {
     });
   });
 
-  /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/users \
-    --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
-    --header 'content-type: application/json' \
-    --data '{}' | json_pp
-  */
-  router.post('/users', { onRequest: [auth] }, async (req, reply) => {
-    const cond = {};
-
-    const result = await users
-      ?.find(cond)
-      // .sort(field, order)
-      // .limit(rows)
-      // .skip(rows * (page - 1))
-      .toArray();
-
-    const total = await users?.countDocuments(cond);
-
-    return reply.send({ message: 'Hi!', result: result || [], total: total || 0 });
-  });
-
   app.register(import('./otp/registry'), { prefix: '/otp' });
 };
