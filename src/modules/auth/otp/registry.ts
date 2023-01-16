@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { authenticator } from 'otplib';
+import bcrypt from 'bcrypt';
 
 import auth from '~/middleware/auth';
 
@@ -54,12 +55,15 @@ export default async (app: FastifyInstance) => {
   curl --request POST \
     --url http://127.0.0.1:3000/api/auth/otp/validate \
     --header 'Content-Type: application/json' \
-    --data '{ "code": "469457", "username": "shyam.chen" }'
+    --data '{ "code": "469457", "username": "shyam.chen", "password": "12345678" }'
   */
   router.post('/validate', async (req, reply) => {
-    const { code, username } = req.body as any;
+    const { code, username, password } = req.body as any;
 
     const user = await users?.findOne({ username: { $eq: username } });
+
+    const isMatch = await bcrypt.compare(password, user?.password);
+    if (!isMatch) return reply.badRequest();
 
     const isValid = authenticator.check(code, user?.secret);
     if (!isValid) return reply.badRequest();

@@ -2,7 +2,9 @@ import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Static, Type } from '@sinclair/typebox';
 import bcrypt from 'bcrypt';
+import { authenticator, totp } from 'otplib';
 
+import useMailer from '~/composables/useMailer';
 import auth from '~/middleware/auth';
 
 const body = Type.Object({
@@ -45,6 +47,7 @@ export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
   const users = app.mongo.db?.collection('users');
   const roles = app.mongo.db?.collection('roles');
+  const sessions = app.mongo.db?.collection('sessions');
 
   /*
   User List -> Create a User
@@ -54,9 +57,9 @@ export default async (app: FastifyInstance) => {
     --header 'content-type: application/json' \
     --data '{
       "username": "shyam.chen",
-      "fullName": "Shyam Chen",
       "password": "12345678",
-      "email": "shyam.chen@example.com"
+      "email": "shyam.chen@example.com",
+      "fullName": "Shyam Chen"
     }'
   */
   router.post('/sign-up', async (req, reply) => {
@@ -111,6 +114,7 @@ export default async (app: FastifyInstance) => {
       });
     }
 
+    // accessToken { expiresIn: '20m' }, refreshToken { expiresIn: '12h' }
     const token = app.jwt.sign(
       { username, password: user.password, email: user.email },
       { expiresIn: '12h' },
@@ -143,6 +147,53 @@ export default async (app: FastifyInstance) => {
       fullName: user?.fullName,
       email: user?.email,
     });
+  });
+
+  /*
+  curl --request POST \
+    --url http://127.0.0.1:3000/api/auth/reset-password \
+    --header 'content-type: application/json' \
+    --data '{ "email": "shyam.chen@example.com" }'
+  */
+  router.post('/reset-password', async (req, reply) => {
+    const { email } = req.body as any;
+
+    const mailer = useMailer();
+
+    const secret = authenticator.generateSecret();
+    const token = totp.generate(secret);
+
+    const info = await mailer.sendMail({
+      to: email,
+      subject: 'Hello ✔',
+      text: token,
+    });
+
+    sessions?.insertOne({
+      messageId: info.messageId,
+      secret,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
+
+    return reply.send({ message: 'Hi!', messageId: info.messageId });
+  });
+
+  /*
+  curl --request POST \
+    --url http://127.0.0.1:3000/api/auth/reset-password/validate \
+    --header 'content-type: application/json' \
+    --data '{ "code": "325198", "messageId": "xxx" }'
+  */
+  router.post('/reset-password/validate', async (req, reply) => {
+    const { code: token, messageId } = req.body as any;
+
+    const session = await sessions?.findOne({ messageId: { $eq: messageId } });
+
+    const isValid = totp.check(token, session?.secret);
+    if (!isValid) return reply.badRequest();
+
+    return reply.send({ message: 'Hi!' });
   });
 
   app.register(import('./otp/registry'), { prefix: '/otp' });
