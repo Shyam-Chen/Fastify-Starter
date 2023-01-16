@@ -72,12 +72,29 @@ export default async (app: FastifyInstance) => {
     const token = app.jwt.sign({ username, password, email }, { expiresIn: '12h' });
 
     const userId = new app.mongo.ObjectId();
-    await users?.insertOne({ _id: userId, username, fullName, password: hashedPassword, email });
+
+    await users?.insertOne({
+      _id: userId,
+      username,
+      password: hashedPassword,
+      email,
+      fullName,
+      status: true,
+
+      secret: null,
+      otpEnabled: false,
+      otpVerified: false,
+
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
 
     await roles?.insertOne({
       userId: { $ref: 'users', $id: userId },
       role: 'admin',
       permissions: [{ resource: '*', action: '*' }],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     });
 
     return reply.send({ message: 'Hi!', token });
