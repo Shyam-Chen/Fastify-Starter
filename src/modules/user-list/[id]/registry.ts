@@ -1,8 +1,9 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
-import bcrypt from 'bcrypt';
+import generatePassword from 'generate-password';
 
+import useMailer from '~/composables/useMailer';
 import auth from '~/middleware/auth';
 
 export default async (app: FastifyInstance) => {
@@ -16,7 +17,6 @@ export default async (app: FastifyInstance) => {
         params: Type.Object({ id: Type.Literal('new') }),
         body: Type.Object({
           username: Type.String(),
-          password: Type.String(),
           email: Type.String({ format: 'email' }),
           fullName: Type.String(),
         }),
@@ -24,7 +24,7 @@ export default async (app: FastifyInstance) => {
       },
     },
     async (req, reply) => {
-      const { username, password, email, fullName } = req.body;
+      const { username, email, fullName } = req.body;
 
       const users = app.mongo.db?.collection('users');
       const roles = app.mongo.db?.collection('roles');
@@ -33,12 +33,12 @@ export default async (app: FastifyInstance) => {
       if (user) return reply.badRequest('#username That username is taken. Try another.');
 
       const userId = new app.mongo.ObjectId();
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const password = generatePassword.generate({ numbers: true });
 
       await users?.insertOne({
         _id: userId,
         username,
-        password: hashedPassword,
+        password,
         email,
         fullName,
         status: true,
@@ -53,10 +53,19 @@ export default async (app: FastifyInstance) => {
 
       await roles?.insertOne({
         userId: { $ref: 'users', $id: userId },
-        role: 'admin',
-        permissions: [{ resource: '*', action: '*' }],
+        role: 'user',
+        permissions: [{ resource: '', action: '' }],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
+      });
+
+      const mailer = useMailer();
+
+      await mailer.sendMail({
+        to: email,
+        subject: `[Platform] Account Opening - ${fullName}`,
+        // html: nunjucks.renderString(accountOpening, { username, password }),
+        text: password,
       });
 
       return reply.send({ message: 'Hi!' });

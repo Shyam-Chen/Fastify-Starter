@@ -29,6 +29,7 @@ specifiers:
   fastify-i18n: ^1.1.1
   fastify-plugin: ^4.4.0
   fastify-sse-v2: ^3.0.0
+  generate-password: ^1.7.0
   ioredis: ^5.2.4
   mongodb-memory-server: ^8.10.2
   nodemailer: ^6.8.0
@@ -63,6 +64,7 @@ dependencies:
   fastify-i18n: 1.1.1
   fastify-plugin: 4.4.0
   fastify-sse-v2: 3.0.0_fastify@4.10.2
+  generate-password: 1.7.0
   ioredis: 5.2.4
   nodemailer: 6.8.0
   nunjucks: 3.2.3
@@ -2996,6 +2998,10 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wide-align: 1.1.5
+    dev: false
+
+  /generate-password/1.7.0:
+    resolution: {integrity: sha512-WPCtlfy0jexf7W5IbwxGUgpIDvsZIohbI2DAq2Q6TSlKKis+G4GT9sxvPxrZUGL8kP6WUXMWNqYnxY6DDKAdFA==}
     dev: false
 
   /get-caller-file/2.0.5:
