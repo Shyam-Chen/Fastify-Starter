@@ -115,8 +115,10 @@ export default async (app: FastifyInstance) => {
     const user = await users?.findOne({ username: { $eq: username } });
     if (!user) return reply.badRequest(`#username Couldn't find your account.`);
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
+    try {
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) throw Error('Unexpected property.');
+    } catch {
       return reply.badRequest(
         '#password Wrong password. Try again or click Forgot password to reset it.',
       );
