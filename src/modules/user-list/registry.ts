@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 
-import usePagination, { PaginationBox } from '~/composables/usePagination';
+import usePagination from '~/composables/usePagination';
 import auth from '~/middleware/auth';
 
 export default async (app: FastifyInstance) => {

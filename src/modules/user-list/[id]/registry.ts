@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { Type } from '@sinclair/typebox';
+import { Type, Static } from '@sinclair/typebox';
 import generatePassword from 'generate-password';
 
 import useMailer from '~/composables/useMailer';
@@ -72,23 +72,50 @@ export default async (app: FastifyInstance) => {
     },
   );
 
+  const UserBox = Type.Object({
+    _id: Type.String(),
+    username: Type.String(),
+    email: Type.String({ format: 'email' }),
+    fullName: Type.String(),
+    status: Type.Boolean(),
+    otpEnabled: Type.Boolean(),
+    otpVerified: Type.Boolean(),
+  });
+
+  const RoleBox = Type.Object({
+    role: Type.String(),
+    permissions: Type.Array(Type.Any()),
+  });
+
   router.get(
     '/',
     {
       onRequest: [auth],
       schema: {
         params: Type.Object({ id: Type.String() }),
+        response: {
+          200: Type.Object({
+            message: Type.String(),
+            result: Type.Intersect([Type.Partial(UserBox), Type.Partial(RoleBox)]),
+          }),
+        },
       },
     },
     async (req, reply) => {
       const users = app.mongo.db?.collection('users');
+      const roles = app.mongo.db?.collection('roles');
 
-      const result = await users?.findOne(
+      const user = await users?.findOne<Static<typeof UserBox>>(
         { _id: { $eq: new app.mongo.ObjectId(req.params.id) } },
         { projection: { password: 0, secret: 0 } },
       );
 
-      return reply.send({ message: 'Hi!', result: result || {} });
+      const role = await roles?.findOne<Static<typeof RoleBox>>(
+        { userId: { $ref: 'users', $id: user?._id } },
+        { projection: { role: 1, permissions: 1 } },
+      );
+
+      return reply.send({ message: 'Hi!', result: { ...user, ...role } });
     },
   );
 
