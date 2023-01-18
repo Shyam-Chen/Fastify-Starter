@@ -127,7 +127,8 @@ This seed repository provides the following features:
 - [x] [WebSocket](https://github.com/fastify/fastify-websocket) - Two-way Interactive Communication Session
 - [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2) - Server-sent Events
 - [x] [Mailer](https://github.com/nodemailer/nodemailer) - Email Sending
-- [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Render email templates
+- [x] [Email](https://github.com/Shyam-Chen/Email-Builder) - Email Builder
+- [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Email Rendering
 - [x] [Sheets](https://github.com/SheetJS/sheetjs) - Spreadsheet Data Toolkit
 - [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
 - ---------- **Tools** ----------
@@ -147,9 +148,6 @@ This seed repository provides the following features:
 - [x] [Docker](https://www.docker.com/) - Containerized Application Development
 - [x] [CircleCI](https://circleci.com/) - Continuous Integration and Delivery
 - [x] [Render](https://render.com/) - Cloud Application Hosting
-- ---------- **Extracts** ----------
-- [x] [Email](https://github.com/Shyam-Chen/Email-Builder) - MJML
-- [x] [WebAssembly](https://github.com/Shyam-Chen/Assembly-Starter) - AssemblyScript
 
 ## Configuration
 
