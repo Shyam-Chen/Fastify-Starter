@@ -1,5 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import { randomUUID } from 'crypto';
 import { authenticator } from 'otplib';
 import bcrypt from 'bcrypt';
 
@@ -68,11 +69,11 @@ export default async (app: FastifyInstance) => {
     const isValid = authenticator.check(code, user?.secret);
     if (!isValid) return reply.badRequest();
 
-    const token = app.jwt.sign(
-      { username, password: user?.password, email: user?.email },
-      { expiresIn: '12h' },
-    );
+    const uuid = randomUUID();
+    const accessToken = app.jwt.sign({ username }, { expiresIn: '20m' });
+    const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
+    await users?.findOneAndUpdate({ username: { $eq: username } }, { $set: { uuid } });
 
-    return reply.send({ message: 'Hi!', token });
+    return reply.send({ message: 'Hi!', accessToken, refreshToken });
   });
 };

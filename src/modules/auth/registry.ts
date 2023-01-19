@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Static, Type } from '@sinclair/typebox';
+import { randomUUID } from 'crypto';
 import bcrypt from 'bcrypt';
 import { authenticator, totp } from 'otplib';
 
@@ -14,31 +15,9 @@ const body = Type.Object({
   email: Type.String({ format: 'email' }),
 });
 
-// const body2 = Type.Object({
-//   username: Type.String(),
-//   password: Type.String(),
-// });
-
-// const response = {
-//   '2xx': Type.Object({
-//     message: Type.String(),
-//     token: Type.String(),
-//     otpEnabled: Type.Boolean(),
-//     otpVerified: Type.Boolean(),
-//   }),
-// };
-
-// const userResponse = {
-//   200: Type.Object({
-//     message: Type.String(),
-//     username: Type.Optional(Type.String()),
-//     fullName: Type.Optional(Type.String()),
-//   }),
-// };
-
 declare module '@fastify/jwt' {
   interface FastifyJWT {
-    payload: Omit<Static<typeof body>, 'fullName'>;
+    payload: { username?: string; uuid?: string };
     user: Omit<Static<typeof body>, 'password'>;
   }
 }
@@ -69,12 +48,12 @@ export default async (app: FastifyInstance) => {
     if (user) return reply.badRequest('#username That username is taken. Try another.');
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const token = app.jwt.sign({ username, password, email }, { expiresIn: '12h' });
 
     const userId = new app.mongo.ObjectId();
 
     await users?.insertOne({
       _id: userId,
+      uuid: null,
       username,
       password: hashedPassword,
       email,
@@ -97,7 +76,7 @@ export default async (app: FastifyInstance) => {
       updatedAt: new Date().toISOString(),
     });
 
-    return reply.send({ message: 'Hi!', token });
+    return reply.send({ message: 'Hi!' });
   });
 
   /*
@@ -127,24 +106,50 @@ export default async (app: FastifyInstance) => {
     if (user.otpEnabled && user.otpVerified) {
       return reply.send({
         message: 'Hi!',
-        token: null,
+        accessToken: null,
+        refreshToken: null,
         otpEnabled: true,
         otpVerified: true,
       });
     }
 
-    // accessToken { expiresIn: '20m' }, refreshToken { expiresIn: '12h' }
-    const token = app.jwt.sign(
-      { username, password: user.password, email: user.email },
-      { expiresIn: '12h' },
-    );
+    const uuid = randomUUID();
+    const accessToken = app.jwt.sign({ username }, { expiresIn: '20m' });
+    const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
+    await users?.findOneAndUpdate({ username: { $eq: username } }, { $set: { uuid } });
 
     return reply.send({
       message: 'Hi!',
-      token,
+      accessToken,
+      refreshToken,
       otpEnabled: user.otpEnabled,
       otpVerified: user.otpVerified,
     });
+  });
+
+  /*
+  curl --request POST \
+    --url http://127.0.0.1:3000/api/auth/token \
+    --header 'content-type: application/json' \
+    --data '{ "accessToken": "xxx", "refreshToken": "xxx" }'
+  */
+  router.post('/token', async (req, reply) => {
+    const { accessToken, refreshToken } = req.body as any;
+
+    const decodedAccessToken = app.jwt.decode(accessToken) as any;
+    const user = await users?.findOne({ username: { $eq: decodedAccessToken.username } });
+    const decodedRefreshToken = app.jwt.decode(refreshToken) as any;
+
+    if (user?.uuid === decodedRefreshToken.uuid) {
+      const accessToken = app.jwt.sign(
+        { username: decodedAccessToken.username },
+        { expiresIn: '20m' },
+      );
+
+      return reply.send({ message: 'Hi!', accessToken });
+    }
+
+    return reply.badRequest();
   });
 
   /*
@@ -205,11 +210,11 @@ export default async (app: FastifyInstance) => {
     --data '{ "code": "325198", "messageId": "xxx" }'
   */
   router.post('/reset-password/validate', async (req, reply) => {
-    const { code: token, messageId } = req.body as any;
+    const { code, messageId } = req.body as any;
 
     const session = await sessions?.findOne({ messageId: { $eq: messageId } });
 
-    const isValid = totp.check(token, session?.secret);
+    const isValid = totp.check(code, session?.secret);
     if (!isValid) return reply.badRequest();
 
     return reply.send({ message: 'Hi!' });
