@@ -17,7 +17,7 @@ const body = Type.Object({
 
 declare module '@fastify/jwt' {
   interface FastifyJWT {
-    payload: { username?: string; uuid?: string };
+    payload: { username?: string; uuid: string };
     user: Omit<Static<typeof body>, 'password'>;
   }
 }
@@ -53,7 +53,6 @@ export default async (app: FastifyInstance) => {
 
     await users?.insertOne({
       _id: userId,
-      uuid: null,
       username,
       password: hashedPassword,
       email,
@@ -114,9 +113,8 @@ export default async (app: FastifyInstance) => {
     }
 
     const uuid = randomUUID();
-    const accessToken = app.jwt.sign({ username }, { expiresIn: '20m' });
+    const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
     const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
-    await users?.findOneAndUpdate({ username: { $eq: username } }, { $set: { uuid } });
 
     return reply.send({
       message: 'Hi!',
@@ -137,12 +135,11 @@ export default async (app: FastifyInstance) => {
     const { accessToken, refreshToken } = req.body as any;
 
     const decodedAccessToken = app.jwt.decode(accessToken) as any;
-    const user = await users?.findOne({ username: { $eq: decodedAccessToken.username } });
     const decodedRefreshToken = app.jwt.decode(refreshToken) as any;
 
-    if (user?.uuid === decodedRefreshToken.uuid) {
+    if (decodedAccessToken.uuid === decodedRefreshToken.uuid) {
       const accessToken = app.jwt.sign(
-        { username: decodedAccessToken.username },
+        { username: decodedAccessToken.username, uuid: decodedAccessToken.uuid },
         { expiresIn: '20m' },
       );
 

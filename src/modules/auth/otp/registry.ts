@@ -70,9 +70,8 @@ export default async (app: FastifyInstance) => {
     if (!isValid) return reply.badRequest();
 
     const uuid = randomUUID();
-    const accessToken = app.jwt.sign({ username }, { expiresIn: '20m' });
+    const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
     const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
-    await users?.findOneAndUpdate({ username: { $eq: username } }, { $set: { uuid } });
 
     return reply.send({ message: 'Hi!', accessToken, refreshToken });
   });
