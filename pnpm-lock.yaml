@@ -35,6 +35,7 @@ specifiers:
   nodemailer: ^6.8.0
   nodemon: ^2.0.20
   nunjucks: ^3.2.3
+  onnxruntime-node: ^1.13.1
   otplib: ^12.0.1
   pm2: ^5.2.2
   prettier: ^2.8.1
@@ -68,6 +69,7 @@ dependencies:
   ioredis: 5.2.4
   nodemailer: 6.8.0
   nunjucks: 3.2.3
+  onnxruntime-node: 1.13.1
   otplib: 12.0.1
   pm2: 5.2.2
   xlsx: 0.18.5
@@ -4234,6 +4236,17 @@ packages:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
     dependencies:
       wrappy: 1.0.2
+
+  /onnxruntime-common/1.13.1:
+    resolution: {integrity: sha512-HtfNeuZ8p47avtZR2mGldXA728keJj46w/6yy5DQTLA9zmpjXF/iJdS8f9yAtyWbSGw3s95DfBPWw2myhA1r0A==}
+    dev: false
+
+  /onnxruntime-node/1.13.1:
+    resolution: {integrity: sha512-HHwxs13dSCJX+iqr90p8WGlG54XTxNG6lKXhUC4xu4r95GFjLaA6JxNUjeuGQ6T6E06hCy61lZMdH5MTcBNLTA==}
+    os: [win32, darwin, linux]
+    dependencies:
+      onnxruntime-common: 1.13.1
+    dev: false
 
   /optionator/0.8.3:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}

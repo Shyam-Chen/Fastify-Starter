@@ -131,6 +131,7 @@ This seed repository provides the following features:
 - [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Email Rendering
 - [x] [Sheets](https://github.com/SheetJS/sheetjs) - Spreadsheet Data Toolkit
 - [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
+- [x] [ONNX Runtime](https://github.com/microsoft/onnxruntime) - Machine Learning Inferencing
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite) - Bundler
 - [x] [TypeScript](https://github.com/microsoft/TypeScript) - JavaScript with Syntax for Types
