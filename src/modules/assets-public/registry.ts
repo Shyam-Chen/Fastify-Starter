@@ -1,10 +1,10 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { InferenceSession, Tensor } from 'onnxruntime-node';
+import ort from 'onnxruntime-node';
 
 import libm_wasm from '~/assets/libm.wasm?url';
 import logo_png from '~/assets/logo.png';
-import model_onnx from '~/assets/model.onnx?url';
+// import model_onnx from '~/assets/model.onnx?url';
 import useAssets from '~/composables/useAssets';
 import usePublic from '~/composables/usePublic';
 
@@ -42,20 +42,21 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/assets-public/onnx
   */
   router.get('/onnx', async (req, reply) => {
-    const model_onnx_buffer = useAssets(model_onnx);
+    // const model_onnx_buffer = useAssets(model_onnx);
+    const model_onnx_buffer = usePublic('model.onnx');
 
     // create a new session and load the specific model.
     //
     // the model in this example contains a single MatMul node
     // it has 2 inputs: 'a'(float32, 3x4) and 'b'(float32, 4x3)
     // it has 1 output: 'c'(float32, 3x3)
-    const session = await InferenceSession.create(model_onnx_buffer);
+    const session = await ort.InferenceSession.create(model_onnx_buffer);
 
     // prepare inputs. a tensor need its corresponding TypedArray as data
     const dataA = Float32Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
     const dataB = Float32Array.from([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]);
-    const tensorA = new Tensor('float32', dataA, [3, 4]);
-    const tensorB = new Tensor('float32', dataB, [4, 3]);
+    const tensorA = new ort.Tensor('float32', dataA, [3, 4]);
+    const tensorB = new ort.Tensor('float32', dataB, [4, 3]);
 
     // prepare feeds. use model input names as keys.
     const feeds = { a: tensorA, b: tensorB };
