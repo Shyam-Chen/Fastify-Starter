@@ -2,6 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Type, Static } from '@sinclair/typebox';
 import generatePassword from 'generate-password';
+import bcrypt from 'bcrypt';
 
 import useMailer from '~/composables/useMailer';
 import auth from '~/middleware/auth';
@@ -34,11 +35,12 @@ export default async (app: FastifyInstance) => {
 
       const userId = new app.mongo.ObjectId();
       const password = generatePassword.generate({ numbers: true });
+      const hashedPassword = await bcrypt.hash(password, 10);
 
       await users?.insertOne({
         _id: userId,
         username,
-        password,
+        password: hashedPassword,
         email,
         fullName,
         status: true,
