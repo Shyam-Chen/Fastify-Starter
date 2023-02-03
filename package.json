@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon -e \"ts,mts,json\" -x \"vite-node src/main.ts\" -w \"src/**/*\" -i \"**/__tests__/**\"",
+    "dev": "vite-node -w src/main.ts",
     "build": "vite build",
     "preview": "concurrently \"node dist/index.mjs\" \"caddy run\"",
     "lint": "eslint 'src/**/*.ts' && tsc",
@@ -47,18 +47,17 @@
     "@types/nunjucks": "^3.2.1",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
-    "@vitest/coverage-c8": "^0.26.3",
+    "@vitest/coverage-c8": "^0.28.3",
     "concurrently": "^7.6.0",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "mongodb-memory-server": "^8.10.2",
-    "nodemon": "^2.0.20",
     "prettier": "^2.8.1",
     "process-envify": "^2.0.0",
     "typescript": "^4.9.4",
     "vite": "^4.1.1",
-    "vite-node": "^0.26.3",
-    "vitest": "^0.26.3"
+    "vite-node": "^0.28.3",
+    "vitest": "^0.28.3"
   }
 }
