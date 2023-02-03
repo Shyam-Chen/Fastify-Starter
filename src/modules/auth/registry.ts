@@ -158,16 +158,17 @@ export default async (app: FastifyInstance) => {
     --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
   router.get('/user', { onRequest: [auth] }, async (req, reply) => {
-    const user = await users?.findOne<Static<typeof body>>({
-      username: { $eq: req.user.username },
-    });
+    const user = await users?.findOne(
+      { username: { $eq: req.user.username } },
+      { projection: { password: 0, secret: 0 } },
+    );
 
-    return reply.send({
-      message: 'Hi!',
-      username: user?.username,
-      fullName: user?.fullName,
-      email: user?.email,
-    });
+    const role = await roles?.findOne(
+      { userId: { $ref: 'users', $id: user?._id } },
+      { projection: { role: 1, permissions: 1 } },
+    );
+
+    return reply.send({ message: 'Hi!', ...user, ...role });
   });
 
   /*
