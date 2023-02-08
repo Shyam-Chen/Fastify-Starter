@@ -8,13 +8,6 @@ import jaJP from './_locales/ja-JP';
 import koKR from './_locales/ko-KR';
 import zhTW from './_locales/zh-TW';
 
-const response = {
-  200: Type.Object({
-    hello: Type.String(),
-    text: Type.String(),
-  }),
-};
-
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
 
@@ -30,12 +23,25 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/hello-world \
     --header 'Accept-Language: ja-JP'
   */
-  router.get('/hello-world', { schema: { response } }, async (req, reply) => {
-    const i18n = useI18n(req);
+  router.get(
+    '/',
+    {
+      schema: {
+        response: {
+          200: Type.Object({
+            hello: Type.String(),
+            text: Type.String(),
+          }),
+        },
+      },
+    },
+    async (req, reply) => {
+      const i18n = useI18n(req);
 
-    return reply.send({
-      hello: i18n.t('hello'),
-      text: req.i18n.t('text'),
-    });
-  });
+      return reply.send({
+        hello: i18n.t('hello'),
+        text: req.i18n.t('text'),
+      });
+    },
+  );
 };

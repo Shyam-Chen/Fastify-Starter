@@ -6,7 +6,7 @@ export default plugin(
   async (app, opts) => {
     const { prefix } = opts;
 
-    app.register(import('~/modules/hello-world/registry'), { prefix });
+    app.register(import('~/modules/hello-world/registry'), { prefix: prefix + '/hello-world' });
     app.register(import('~/modules/auth/registry'), { prefix: prefix + '/auth' });
 
     app.register(import('~/modules/todos/registry'), { prefix: prefix + '/todos' });
