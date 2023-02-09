@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 
-import usePagination from '~/composables/usePagination';
+import useTableControl from '~/composables/useTableControl';
 import auth from '~/middleware/auth';
 
 export default async (app: FastifyInstance) => {
@@ -15,14 +15,14 @@ export default async (app: FastifyInstance) => {
     async (req, reply) => {
       const users = app.mongo.db?.collection('users');
 
-      const { field, order, page, rows } = usePagination(req);
+      const { page, rows, field, direction } = useTableControl(req);
 
       const conditions = {};
 
       const result = await users
         ?.find(conditions)
         .project({ password: 0, secret: 0 })
-        .sort(field, order)
+        .sort(field, direction)
         .limit(rows)
         .skip(rows * (page - 1))
         .toArray();
