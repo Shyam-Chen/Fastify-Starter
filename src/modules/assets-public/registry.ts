@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import ort from 'onnxruntime-node';
+import { ofetch } from 'ofetch';
 
 import libm_wasm from '~/assets/libm.wasm?url';
 import logo_png from '~/assets/logo.png';
@@ -42,8 +43,13 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/assets-public/onnx
   */
   router.get('/onnx', async (req, reply) => {
+    const url = app.cloudinary.url('model_dbz1oh.onnx', { resource_type: 'raw' });
+    const response = await ofetch(url, { method: 'GET' });
+    const model_onnx_buffer = await response.arrayBuffer();
+
     // const model_onnx_buffer = useAssets(model_onnx);
-    const model_onnx_buffer = usePublic('model.onnx');
+
+    // const model_onnx_buffer = usePublic('model.onnx');
 
     // create a new session and load the specific model.
     //
@@ -68,5 +74,36 @@ export default async (app: FastifyInstance) => {
     const dataC = results.c.data;
 
     return reply.send(`data of result tensor 'c': ${dataC}`);
+  });
+
+  /*
+  curl --request POST \
+    --url http://127.0.0.1:3000/api/assets-public/onnx/mnist \
+    --header 'content-type: application/json' \
+    --data '{}'
+  */
+  router.post('/onnx/mnist', async (req, reply) => {
+    // req.file
+
+    const url = app.cloudinary.url('mnist-12-int8_ieepvf.onnx', { resource_type: 'raw' });
+    const response = await ofetch(url, { method: 'GET' });
+    const model_onnx_buffer = await response.arrayBuffer();
+
+    const session = await ort.InferenceSession.create(model_onnx_buffer);
+
+    // https://netron.app
+    const dims = [1, 1, 28, 28];
+    const size = dims.reduce((acc, cur) => acc * cur);
+    const input = Float32Array.from({ length: size }, () => Math.random());
+
+    const tensor = new ort.Tensor('float32', input, dims);
+
+    const feeds = { Input3: tensor };
+
+    const results = await session.run(feeds);
+
+    console.log(results);
+
+    return reply.send({});
   });
 };
