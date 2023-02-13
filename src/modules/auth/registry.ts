@@ -4,6 +4,7 @@ import { Static, Type } from '@sinclair/typebox';
 import { randomUUID } from 'crypto';
 import bcrypt from 'bcrypt';
 import { authenticator, totp } from 'otplib';
+import generatePassword from 'generate-password';
 
 import useMailer from '~/composables/useMailer';
 import auth from '~/middleware/auth';
@@ -173,11 +174,11 @@ export default async (app: FastifyInstance) => {
 
   /*
   curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/reset-password \
+    --url http://127.0.0.1:3000/api/auth/reset-password/send \
     --header 'content-type: application/json' \
     --data '{ "email": "shyam.chen@example.com" }'
   */
-  router.post('/reset-password', async (req, reply) => {
+  router.post('/reset-password/send', async (req, reply) => {
     const { email } = req.body as any;
 
     const mailer = useMailer();
@@ -193,6 +194,7 @@ export default async (app: FastifyInstance) => {
 
     sessions?.insertOne({
       messageId: info.messageId,
+      email,
       secret,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -205,15 +207,36 @@ export default async (app: FastifyInstance) => {
   curl --request POST \
     --url http://127.0.0.1:3000/api/auth/reset-password/validate \
     --header 'content-type: application/json' \
-    --data '{ "code": "325198", "messageId": "xxx" }'
+    --data '{ "code": "325198", "messageId": "xxx", "email": "shyam.chen@example.com" }'
   */
   router.post('/reset-password/validate', async (req, reply) => {
-    const { code, messageId } = req.body as any;
+    const { code, messageId, email } = req.body as any;
 
     const session = await sessions?.findOne({ messageId: { $eq: messageId } });
 
     const isValid = totp.check(code, session?.secret);
     if (!isValid) return reply.badRequest();
+
+    if (email !== session?.email) return reply.badRequest();
+
+    const password = generatePassword.generate({ numbers: true });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await users?.findOneAndUpdate({ email: { $eq: session?.email } }, { password: hashedPassword });
+
+    return reply.send({ message: 'Hi!', password });
+  });
+
+  /*
+  curl --request POST \
+    --url http://127.0.0.1:3000/api/auth/reset-password/change \
+    --header 'content-type: application/json' \
+    --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
+    --data '{ "password": "qwerty123", "confirmPassword": "qwerty123" }'
+  */
+  router.post('/reset-password/change', { onRequest: [auth] }, async (req, reply) => {
+    const { password, confirmPassword } = req.body as any;
+
+    if (password.trim() !== confirmPassword.trim()) return reply.badRequest();
 
     return reply.send({ message: 'Hi!' });
   });
