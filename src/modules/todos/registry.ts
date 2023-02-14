@@ -2,12 +2,14 @@ import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
+import useTableControl, { TableControlBox } from '~/composables/useTableControl';
+
 import type { TodoItem } from './types';
-import { body, behavior, message, entity } from './schema';
+import { body, message, entity } from './schema';
 
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
-  const todos = app.mongo.db?.collection('todos');
+
 
   /*
   curl --request POST \
@@ -19,18 +21,16 @@ export default async (app: FastifyInstance) => {
     '/',
     {
       schema: {
-        body: Type.Intersect([Type.Partial(body), behavior]),
+        body: Type.Intersect([Type.Partial(body), TableControlBox]),
         response: {
           200: Type.Object({ message, result: Type.Array(entity), total: Type.Integer() }),
         },
       },
     },
     async (req, reply) => {
-      const field = req.body.field || 'createdAt';
-      const order = req.body.order || 'desc';
-      const page = Number(req.body.page) || 1;
-      const rows = Number(req.body.rows) || 10;
+      const todos = app.mongo.db?.collection('todos');
 
+      const { page, rows, field, direction } = useTableControl(req);
       const { title, completed } = req.body;
 
       const queryConditions = {
@@ -40,7 +40,7 @@ export default async (app: FastifyInstance) => {
 
       const result = await todos
         ?.find<TodoItem>(queryConditions)
-        .sort(field, order)
+        .sort(field, direction)
         .limit(rows)
         .skip(rows * (page - 1))
         .toArray();
