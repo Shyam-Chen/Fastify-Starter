@@ -3,7 +3,7 @@ import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
 import type { TodoItem } from '../types';
-import { body, params, message, entity } from '../schema';
+import { params, message, entity } from '../schema';
 
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
@@ -22,14 +22,17 @@ export default async (app: FastifyInstance) => {
     {
       schema: {
         params: Type.Object({ id: Type.Literal('new') }),
-        body,
+        body: Type.Object({
+          title: Type.String(),
+          completed: Type.Optional(Type.Boolean()),
+        }),
         response: { 200: Type.Object({ message }) },
       },
     },
     async (req, reply) => {
       await todos?.insertOne({
         title: req.body.title,
-        completed: req.body.completed,
+        completed: req.body.completed || false,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });
@@ -73,7 +76,11 @@ export default async (app: FastifyInstance) => {
     {
       schema: {
         params,
-        body,
+        body: Type.Object({
+          _id: Type.String(),
+          title: Type.String(),
+          completed: Type.Boolean(),
+        }),
         response: { 200: Type.Object({ message }) },
       },
     },

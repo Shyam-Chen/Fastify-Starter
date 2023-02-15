@@ -10,7 +10,6 @@ import { body, message, entity } from './schema';
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
 
-
   /*
   curl --request POST \
     --url http://127.0.0.1:3000/api/todos \
@@ -31,12 +30,31 @@ export default async (app: FastifyInstance) => {
       const todos = app.mongo.db?.collection('todos');
 
       const { page, rows, field, direction } = useTableControl(req);
-      const { title, completed } = req.body;
+      const { title, filter } = req.body;
 
-      const queryConditions = {
-        ...(title && { title: { $regex: title, $options: 'i' } }),
-        ...(completed && { completed: { $eq: completed } }),
-      };
+      let queryTitle = {};
+
+      if (title) {
+        queryTitle = { title: { $regex: title, $options: 'i' } };
+      }
+
+      let queryCompleted = {};
+
+      enum Filter {
+        All,
+        Active,
+        Completed,
+      }
+
+      if (filter === Filter.Active) {
+        queryCompleted = { completed: { $eq: false } };
+      }
+
+      if (filter === Filter.Completed) {
+        queryCompleted = { completed: { $eq: true } };
+      }
+
+      const queryConditions = { ...queryTitle, ...queryCompleted };
 
       const result = await todos
         ?.find<TodoItem>(queryConditions)
