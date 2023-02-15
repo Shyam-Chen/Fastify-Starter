@@ -39,7 +39,7 @@ test('POST /todos', async () => {
   expect(res2.json().result.length).toBe(3);
   expect(res2.json().total).toBe(3);
 
-  const res3 = await app.inject({ method: 'POST', url: '/todos', payload: { completed: true } });
+  const res3 = await app.inject({ method: 'POST', url: '/todos', payload: { filter: 2 } });
   expect(res3.json().result.length).toBe(10);
   expect(res3.json().total).toBe(16);
 

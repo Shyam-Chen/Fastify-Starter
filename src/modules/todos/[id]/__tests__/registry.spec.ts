@@ -39,6 +39,7 @@ test('POST /todos/new', async () => {
     method: 'PUT',
     url: '/todos' + `/${id}`,
     payload: {
+      _id: id,
       ...payload,
       completed: true,
     },
