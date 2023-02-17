@@ -4,14 +4,14 @@ specifiers:
   '@fastify/cors': ^8.2.0
   '@fastify/jwt': ^6.5.0
   '@fastify/mongodb': ^6.2.0
-  '@fastify/multipart': ^7.3.0
+  '@fastify/multipart': ^7.4.1
   '@fastify/one-line-logger': ^1.1.1
   '@fastify/redis': ^6.1.0
   '@fastify/sensible': ^5.2.0
   '@fastify/type-provider-typebox': ^2.4.0
   '@fastify/under-pressure': ^8.2.0
-  '@fastify/websocket': ^7.1.1
-  '@sinclair/typebox': ^0.25.11
+  '@fastify/websocket': ^7.1.2
+  '@sinclair/typebox': ^0.25.23
   '@types/bcrypt': ^5.0.0
   '@types/nodemailer': ^6.4.7
   '@types/nunjucks': ^3.2.1
@@ -19,23 +19,23 @@ specifiers:
   '@typescript-eslint/parser': ^5.48.0
   '@vitest/coverage-c8': ^0.28.3
   bcrypt: ^5.1.0
-  bullmq: ^3.3.4
+  bullmq: ^3.7.0
   concurrently: ^7.6.0
   eslint: ^8.31.0
   eslint-config-prettier: ^8.6.0
   eslint-plugin-prettier: ^4.2.1
-  fastify: ^4.10.2
+  fastify: ^4.13.0
   fastify-cloudinary: ^1.0.5
   fastify-i18n: ^1.1.1
-  fastify-plugin: ^4.4.0
+  fastify-plugin: ^4.5.0
   fastify-sse-v2: ^3.0.0
   generate-password: ^1.7.0
-  ioredis: ^5.2.4
+  ioredis: ^5.3.1
   mongodb-memory-server: ^8.10.2
-  nodemailer: ^6.8.0
+  nodemailer: ^6.9.1
   nunjucks: ^3.2.3
-  ofetch: ^1.0.0
-  onnxruntime-node: ^1.13.1
+  ofetch: ^1.0.1
+  onnxruntime-node: ^1.14.0
   otplib: ^12.0.1
   pm2: ^5.2.2
   prettier: ^2.8.1
@@ -50,27 +50,27 @@ dependencies:
   '@fastify/cors': 8.2.0
   '@fastify/jwt': 6.5.0
   '@fastify/mongodb': 6.2.0
-  '@fastify/multipart': 7.3.0
+  '@fastify/multipart': 7.4.1
   '@fastify/one-line-logger': 1.1.1
   '@fastify/redis': 6.1.0
   '@fastify/sensible': 5.2.0
-  '@fastify/type-provider-typebox': 2.4.0_hryz6py27o6phyheetjzgktts4
+  '@fastify/type-provider-typebox': 2.4.0_idgkln4646eoduv6icrz4hxk6a
   '@fastify/under-pressure': 8.2.0
-  '@fastify/websocket': 7.1.1
-  '@sinclair/typebox': 0.25.11
+  '@fastify/websocket': 7.1.2
+  '@sinclair/typebox': 0.25.23
   bcrypt: 5.1.0
-  bullmq: 3.3.4
-  fastify: 4.10.2
+  bullmq: 3.7.0
+  fastify: 4.13.0
   fastify-cloudinary: 1.0.5
   fastify-i18n: 1.1.1
-  fastify-plugin: 4.4.0
-  fastify-sse-v2: 3.0.0_fastify@4.10.2
+  fastify-plugin: 4.5.0
+  fastify-sse-v2: 3.0.0_fastify@4.13.0
   generate-password: 1.7.0
-  ioredis: 5.2.4
-  nodemailer: 6.8.0
+  ioredis: 5.3.1
+  nodemailer: 6.9.1
   nunjucks: 3.2.3
-  ofetch: 1.0.0
-  onnxruntime-node: 1.13.1
+  ofetch: 1.0.1
+  onnxruntime-node: 1.14.0
   otplib: 12.0.1
   pm2: 5.2.2
   xlsx: 0.18.5
@@ -1069,7 +1069,7 @@ packages:
   /@fastify/cors/8.2.0:
     resolution: {integrity: sha512-qDgwpmg6C4D0D3nh8MTMuRXWyEwPnDZDBODaJv90FP2o9ukbahJByW4FtrM5Bpod5KbTf1oIExBmpItbUTQmHg==}
     dependencies:
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
       mnemonist: 0.39.5
     dev: false
 
@@ -1093,27 +1093,27 @@ packages:
       '@fastify/error': 3.0.0
       '@lukeed/ms': 2.0.1
       fast-jwt: 2.0.2
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
       steed: 1.1.3
     dev: false
 
   /@fastify/mongodb/6.2.0:
     resolution: {integrity: sha512-ed/kbWTd9TtDvg5IYHQ54g01twAlFlJRBcF31imVX4eQEhUNe9mvIQopVUHErqOjAtQRuF6uQeqTdpiJBx+4+A==}
     dependencies:
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
       mongodb: 4.12.0
     transitivePeerDependencies:
       - aws-crt
     dev: false
 
-  /@fastify/multipart/7.3.0:
-    resolution: {integrity: sha512-tbzQiRFxoADCn0G10CqiQ/nDWWcfegtwg826Pfz2h7+XvuqJhGnko0TbafrWIY7hnGD+sNCGMdiTVsxxs6zigA==}
+  /@fastify/multipart/7.4.1:
+    resolution: {integrity: sha512-PgBJIg/1krx1nWIXGZSUFQMPHXeFv559TmpaswzmNkK6V/yn1xi4nkATqBetv7s5XbXhxzc75uaJgXWdUefxvQ==}
     dependencies:
       '@fastify/busboy': 1.1.0
       '@fastify/deepmerge': 1.1.0
       '@fastify/error': 3.0.0
       end-of-stream: 1.4.4
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
       hexoid: 1.0.0
       secure-json-parse: 2.5.0
       stream-wormhole: 1.1.0
@@ -1128,8 +1128,8 @@ packages:
   /@fastify/redis/6.1.0:
     resolution: {integrity: sha512-i2TwxzfqbdgeAeNP/cHk4+e6S8jeTFmzHZlPwkVCosiUnIi5wFONJ21L5APO4ljU4N+DeyvqE7AbeNTvHnMVGQ==}
     dependencies:
-      fastify-plugin: 4.4.0
-      ioredis: 5.2.4
+      fastify-plugin: 4.5.0
+      ioredis: 5.3.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -1138,7 +1138,7 @@ packages:
     resolution: {integrity: sha512-fy5vqJJAMVQctUT+kYfGdaGYeW9d8JaWEqtdWN6UmzQQ3VX0qMXE7Qc/MmfE+Cj3v0g5kbeR+obd3HZr3IMf+w==}
     dependencies:
       fast-deep-equal: 3.1.3
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
       forwarded: 0.2.0
       http-errors: 2.0.0
       ms: 2.1.3
@@ -1146,27 +1146,27 @@ packages:
       vary: 1.1.2
     dev: false
 
-  /@fastify/type-provider-typebox/2.4.0_hryz6py27o6phyheetjzgktts4:
+  /@fastify/type-provider-typebox/2.4.0_idgkln4646eoduv6icrz4hxk6a:
     resolution: {integrity: sha512-dP8KnpfyBD1FT1UxNWCRqSpKG69xYAK53q6MqUjuwYL7xvogXBbH/tpAMc1kZkKmgAHPT0migy9DaYtnkTbIIQ==}
     peerDependencies:
       '@sinclair/typebox': ^0.25.9
       fastify: ^4.0.0
     dependencies:
-      '@sinclair/typebox': 0.25.11
-      fastify: 4.10.2
+      '@sinclair/typebox': 0.25.23
+      fastify: 4.13.0
     dev: false
 
   /@fastify/under-pressure/8.2.0:
     resolution: {integrity: sha512-tqhWBhE6blM3jDn9dmxl5yhyoRWGFGwdihLmyek5pRN3KIOEcRQVtAoX5WKSbeEZ51clnDfCNqm96YC4cEUI7g==}
     dependencies:
       '@fastify/error': 3.0.0
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
     dev: false
 
-  /@fastify/websocket/7.1.1:
-    resolution: {integrity: sha512-8lvB/E6p/o3MlmHzM2NJ19ixteI6Ckw0xOebLfoHoORPmpvCWqSp8+HLz4Gc6HrChH4vM9VcSWAK8jYuTT08hQ==}
+  /@fastify/websocket/7.1.2:
+    resolution: {integrity: sha512-OBaPR3KVkDmhJpCy+RtM8CwwV67ieRRbvWtpHqRNoMt+AnHLBiNmrTwHs3/DKjmnI1cqdGTaQ+NhKtDtkk1l/Q==}
     dependencies:
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
       ws: 8.11.0
     transitivePeerDependencies:
       - bufferutil
@@ -1436,8 +1436,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sinclair/typebox/0.25.11:
-    resolution: {integrity: sha512-GgUJN0Drvh74i8gOl2S8SkHuAgkZJtzzd6EmfBVxpNDB6QmzXdZ3tyUt02Kr42X58as5I187CKiWpLCMJmdLbw==}
+  /@sinclair/typebox/0.25.23:
+    resolution: {integrity: sha512-VEB8ygeP42CFLWyAJhN5OklpxUliqdNEUcXb4xZ/CINqtYGTjL5ukluKdKzQ0iWdUxyQ7B0539PAUhHKrCNWSQ==}
     dev: false
 
   /@tootallnate/once/1.1.2:
@@ -2012,12 +2012,12 @@ packages:
       ieee754: 1.2.1
     dev: false
 
-  /bullmq/3.3.4:
-    resolution: {integrity: sha512-osBztGi03RbQcxld4OALAkUWx1Y76TcxpbV7SgaGoZRT2irJoBHNbq8WcIxsr9OKZYMAkPPUBjUGw1JzT1A6xA==}
+  /bullmq/3.7.0:
+    resolution: {integrity: sha512-cKFwOQsqnCmYWFflUiI6WyUFXlGVwy6lIwwwKmMpEGvLRKo700AhFvJSw0d+LzQGhYq3PCjW1wUMKl/az8IDoQ==}
     dependencies:
       cron-parser: 4.7.0
       glob: 8.0.3
-      ioredis: 5.2.4
+      ioredis: 5.3.1
       lodash: 4.17.21
       msgpackr: 1.8.0
       semver: 7.3.8
@@ -2254,11 +2254,6 @@ packages:
 
   /console-control-strings/1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
-    dev: false
-
-  /content-type/1.0.4:
-    resolution: {integrity: sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==}
-    engines: {node: '>= 0.6'}
     dev: false
 
   /continuation-local-storage/3.2.1:
@@ -2733,6 +2728,10 @@ packages:
     engines: {node: '>=0.8.x'}
     dev: false
 
+  /fast-content-type-parse/1.0.0:
+    resolution: {integrity: sha512-Xbc4XcysUXcsP5aHUU7Nq3OwvHq97C+WnbkeIefpeYLX+ryzFJlU6OStFJhs6Ol0LkUGpcK+wL0JwfM+FCU5IA==}
+    dev: false
+
   /fast-copy/3.0.0:
     resolution: {integrity: sha512-4HzS+9pQ5Yxtv13Lhs1Z1unMXamBdn5nA4bEi1abYpDNSpSp7ODYQ1KPMF6nTatfEzgH6/zPvXKU1zvHiUjWlA==}
     dev: false
@@ -2831,7 +2830,7 @@ packages:
     resolution: {integrity: sha512-smTj+t5BysB8NPsq1qlos39DBOaRY1n0q458vB4GZ+DSf3Fh/yRmX0Jr1O7jp5mzWYtjGn4Nr3wws+fybKrJCw==}
     dependencies:
       cloudinary: 1.32.0
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -2839,34 +2838,34 @@ packages:
   /fastify-i18n/1.1.1:
     resolution: {integrity: sha512-avkTM3SMv7CPGwVmR+OCe5QoJ16jiR8fPPLDvDFkYQiOFosYIgkyuenQ/fnfEiMVWfL2SbUc7Hdpt3ubtFQCxg==}
     dependencies:
-      fastify-plugin: 4.4.0
+      fastify-plugin: 4.5.0
       node-polyglot: 2.4.2
     dev: false
 
-  /fastify-plugin/4.4.0:
-    resolution: {integrity: sha512-ovwFQG2qNy3jcCROiWpr94Hs0le+c7N/3t7m9aVwbFhkxcR/esp2xu25dP8e617HpQdmeDv+gFX4zagdUhDByw==}
+  /fastify-plugin/4.5.0:
+    resolution: {integrity: sha512-79ak0JxddO0utAXAQ5ccKhvs6vX2MGyHHMMsmZkBANrq3hXc1CHzvNPHOcvTsVMEPl5I+NT+RO4YKMGehOfSIg==}
     dev: false
 
-  /fastify-sse-v2/3.0.0_fastify@4.10.2:
+  /fastify-sse-v2/3.0.0_fastify@4.13.0:
     resolution: {integrity: sha512-UJF1BtyNOlLhOvlqMS/mBupmM8JOpJ3UmoFeNuKYdBClH+euJrO1mV2L0vfIpFKut9iy6tT23/JmN46QWCtBAg==}
     peerDependencies:
       fastify: '>=4'
     dependencies:
-      fastify: 4.10.2
-      fastify-plugin: 4.4.0
+      fastify: 4.13.0
+      fastify-plugin: 4.5.0
       it-pushable: 1.4.2
       it-to-stream: 1.0.0
     dev: false
 
-  /fastify/4.10.2:
-    resolution: {integrity: sha512-0T+4zI6N3S8ex0LCZi3H4FasJR4AzWw834fUkPWvV8r6GBJkLmAOfFxH8f5V29Plef24IK0QSQD/tz1Nx+1UOA==}
+  /fastify/4.13.0:
+    resolution: {integrity: sha512-p9ibdFWH3pZ7KPgmfHPKGUy2W4EWU2TEpwlcu58w4CwGyU3ARFfh2kwq6zpZ5W2ZGVbufi4tZbqHIHAlX/9Z/A==}
     dependencies:
       '@fastify/ajv-compiler': 3.4.0
       '@fastify/error': 3.0.0
       '@fastify/fast-json-stringify-compiler': 4.1.0
       abstract-logging: 2.0.1
       avvio: 8.2.0
-      content-type: 1.0.4
+      fast-content-type-parse: 1.0.0
       find-my-way: 7.3.1
       light-my-request: 5.6.1
       pino: 8.7.0
@@ -3334,8 +3333,8 @@ packages:
       side-channel: 1.0.4
     dev: false
 
-  /ioredis/5.2.4:
-    resolution: {integrity: sha512-qIpuAEt32lZJQ0XyrloCRdlEdUUNGG9i0UOk6zgzK6igyudNWqEBxfH6OlbnOOoBBvr1WB02mm8fR55CnikRng==}
+  /ioredis/5.3.1:
+    resolution: {integrity: sha512-C+IBcMysM6v52pTLItYMeV4Hz7uriGtoJdz7SSBDX6u+zwSYGirLdQh3L7t/OItWITcw3gTFMjJReYUwS4zihg==}
     engines: {node: '>=12.22.0'}
     dependencies:
       '@ioredis/commands': 1.2.0
@@ -3931,8 +3930,8 @@ packages:
     resolution: {integrity: sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==}
     dev: false
 
-  /node-fetch-native/1.0.1:
-    resolution: {integrity: sha512-VzW+TAk2wE4X9maiKMlT+GsPU4OMmR1U9CrHSmd3DFLn2IcZ9VJ6M6BBugGfYUnPCLSYxXdZy17M0BEJyhUTwg==}
+  /node-fetch-native/1.0.2:
+    resolution: {integrity: sha512-KIkvH1jl6b3O7es/0ShyCgWLcfXxlBrLBbP3rOr23WArC66IMcU4DeZEeYEOwnopYhawLTn7/y+YtmASe8DFVQ==}
     dev: false
 
   /node-fetch/2.6.7:
@@ -3963,8 +3962,8 @@ packages:
       warning: 4.0.3
     dev: false
 
-  /nodemailer/6.8.0:
-    resolution: {integrity: sha512-EjYvSmHzekz6VNkNd12aUqAco+bOkRe3Of5jVhltqKhEsjw/y0PYPJfp83+s9Wzh1dspYAkUW/YNQ350NATbSQ==}
+  /nodemailer/6.9.1:
+    resolution: {integrity: sha512-qHw7dOiU5UKNnQpXktdgQ1d3OFgRAekuvbJLcdG5dnEo/GtcTHRYM7+UfJARdOFU9WUQO8OiIamgWPmiSFHYAA==}
     engines: {node: '>=6.0.0'}
     dev: false
 
@@ -4050,12 +4049,12 @@ packages:
     resolution: {integrity: sha512-lgHwxlxV1qIg1Eap7LgIeoBWIMFibOjbrYPIPJZcI1mmGAI2m3lNYpK12Y+GBdPQ0U1hRwSord7GIaawz962qQ==}
     dev: false
 
-  /ofetch/1.0.0:
-    resolution: {integrity: sha512-d40aof8czZFSQKJa4+F7Ch3UC5D631cK1TTUoK+iNEut9NoiCL+u0vykl/puYVUS2df4tIQl5upQcolIcEzQjQ==}
+  /ofetch/1.0.1:
+    resolution: {integrity: sha512-icBz2JYfEpt+wZz1FRoGcrMigjNKjzvufE26m9+yUiacRQRHwnNlGRPiDnW4op7WX/MR6aniwS8xw8jyVelF2g==}
     dependencies:
       destr: 1.2.2
-      node-fetch-native: 1.0.1
-      ufo: 1.0.1
+      node-fetch-native: 1.0.2
+      ufo: 1.1.0
     dev: false
 
   /on-exit-leak-free/2.1.0:
@@ -4067,15 +4066,15 @@ packages:
     dependencies:
       wrappy: 1.0.2
 
-  /onnxruntime-common/1.13.1:
-    resolution: {integrity: sha512-HtfNeuZ8p47avtZR2mGldXA728keJj46w/6yy5DQTLA9zmpjXF/iJdS8f9yAtyWbSGw3s95DfBPWw2myhA1r0A==}
+  /onnxruntime-common/1.14.0:
+    resolution: {integrity: sha512-3LJpegM2iMNRX2wUmtYfeX/ytfOzNwAWKSq1HbRrKc9+uqG/FsEA0bbKZl1btQeZaXhC26l44NWpNUeXPII7Ew==}
     dev: false
 
-  /onnxruntime-node/1.13.1:
-    resolution: {integrity: sha512-HHwxs13dSCJX+iqr90p8WGlG54XTxNG6lKXhUC4xu4r95GFjLaA6JxNUjeuGQ6T6E06hCy61lZMdH5MTcBNLTA==}
+  /onnxruntime-node/1.14.0:
+    resolution: {integrity: sha512-5ba7TWomIV/9b6NH/1x/8QEeowsb+jBEvFzU6z0T4mNsFwdPqXeFUM7uxC6QeSRkEbWu3qEB0VMjrvzN/0S9+w==}
     os: [win32, darwin, linux]
     dependencies:
-      onnxruntime-common: 1.13.1
+      onnxruntime-common: 1.14.0
     dev: false
 
   /optionator/0.8.3:
@@ -5192,6 +5191,11 @@ packages:
 
   /ufo/1.0.1:
     resolution: {integrity: sha512-boAm74ubXHY7KJQZLlXrtMz52qFvpsbOxDcZOnw/Wf+LS4Mmyu7JxmzD4tDLtUQtmZECypJ0FrCz4QIe6dvKRA==}
+    dev: true
+
+  /ufo/1.1.0:
+    resolution: {integrity: sha512-LQc2s/ZDMaCN3QLpa+uzHUOQ7SdV0qgv3VBXOolQGXTaaZpIur6PwUclF5nN2hNkiTRcUugXd1zFOW3FLJ135Q==}
+    dev: false
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
