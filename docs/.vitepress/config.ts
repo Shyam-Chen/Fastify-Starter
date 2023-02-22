@@ -15,12 +15,12 @@ export default defineConfig({
       '/guide': [
         {
           text: 'Project Setup',
-          collapsible: true,
+          collapsed: false,
           items: [{ text: 'Introduction', link: '/guide/project-setup/introduction' }],
         },
         {
           text: 'Directory Structure',
-          collapsible: true,
+          collapsed: false,
           items: [
             { text: 'Introduction', link: '/guide/directory-structure/introduction' },
             { text: 'public', link: '/guide/directory-structure/public' },
@@ -39,7 +39,7 @@ export default defineConfig({
       '/modules': [
         {
           text: 'Authentication',
-          collapsible: true,
+          collapsed: false,
           items: [
             { text: 'Sign up', link: '/modules/auth/sign-up' },
             { text: 'Sign in', link: '/modules/auth/sign-in' },
@@ -48,7 +48,7 @@ export default defineConfig({
         },
         {
           text: 'XXX',
-          collapsible: true,
+          collapsed: false,
           items: [
             { text: 'Todos', link: '/modules/todos' },
             { text: 'Foo', link: '/modules/xxx/foo' },
@@ -57,7 +57,7 @@ export default defineConfig({
         },
         {
           text: 'Loan Charges',
-          collapsible: true,
+          collapsed: false,
           items: [
             { text: 'One-time', link: '/modules/loan-charges/one-time' },
             { text: 'Amortize', link: '/modules/loan-charges/amortize' },
