@@ -127,24 +127,32 @@ export default async (app: FastifyInstance) => {
       onRequest: [auth],
       schema: {
         params: Type.Object({ id: Type.String() }),
+        body: UserBox,
+        response: {
+          200: Type.Object({
+            message: Type.String(),
+          }),
+        },
       },
     },
     async (req, reply) => {
-      return reply.send({
-        message: 'Hi!',
-      });
-    },
-  );
+      const users = app.mongo.db?.collection('users');
 
-  router.delete(
-    '/',
-    {
-      onRequest: [auth],
-      schema: {
-        params: Type.Object({ id: Type.String() }),
-      },
-    },
-    async (req, reply) => {
+      await users?.updateOne(
+        { _id: { $eq: new app.mongo.ObjectId(req.params.id) } },
+        {
+          $set: {
+            username: req.body.username,
+            email: req.body.email,
+            fullName: req.body.fullName,
+            status: req.body.status,
+            otpEnabled: req.body.otpEnabled,
+            otpVerified: req.body.otpVerified,
+            updatedAt: new Date().toISOString(),
+          },
+        },
+      );
+
       return reply.send({
         message: 'Hi!',
       });
