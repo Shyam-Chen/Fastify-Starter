@@ -3,9 +3,11 @@ import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Type, Static } from '@sinclair/typebox';
 import generatePassword from 'generate-password';
 import bcrypt from 'bcrypt';
+// import nunjucks from 'nunjucks';
 
 import useMailer from '~/composables/useMailer';
 import auth from '~/middleware/auth';
+// import accountOpening from '~/templates/accountOpening.html?raw';
 
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
