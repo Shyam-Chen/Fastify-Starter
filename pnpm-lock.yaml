@@ -37,7 +37,6 @@ specifiers:
   nodemailer: ^6.9.1
   nunjucks: ^3.2.3
   ofetch: ^1.0.1
-  onnxruntime-node: ^1.14.0
   otplib: ^12.0.1
   pm2: ^5.2.2
   prettier: ^2.8.1
@@ -72,7 +71,6 @@ dependencies:
   nodemailer: 6.9.1
   nunjucks: 3.2.3
   ofetch: 1.0.1
-  onnxruntime-node: 1.14.0
   otplib: 12.0.1
   pm2: 5.2.2
   xlsx: 0.18.5
@@ -4107,17 +4105,6 @@ packages:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
     dependencies:
       wrappy: 1.0.2
-
-  /onnxruntime-common/1.14.0:
-    resolution: {integrity: sha512-3LJpegM2iMNRX2wUmtYfeX/ytfOzNwAWKSq1HbRrKc9+uqG/FsEA0bbKZl1btQeZaXhC26l44NWpNUeXPII7Ew==}
-    dev: false
-
-  /onnxruntime-node/1.14.0:
-    resolution: {integrity: sha512-5ba7TWomIV/9b6NH/1x/8QEeowsb+jBEvFzU6z0T4mNsFwdPqXeFUM7uxC6QeSRkEbWu3qEB0VMjrvzN/0S9+w==}
-    os: [win32, darwin, linux]
-    dependencies:
-      onnxruntime-common: 1.14.0
-    dev: false
 
   /optionator/0.8.3:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}
