@@ -6,7 +6,7 @@ WORKDIR ${HOME}
 ADD . $HOME
 
 RUN npm install -g pnpm
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 ENV HOST 0.0.0.0
 
