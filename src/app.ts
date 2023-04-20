@@ -5,12 +5,12 @@ import jwt from '@fastify/jwt';
 import mongodb from '@fastify/mongodb';
 import multipart from '@fastify/multipart';
 import redis from '@fastify/redis';
+import websocket from '@fastify/websocket';
 import underPressure from '@fastify/under-pressure';
 import cloudinary from 'fastify-cloudinary';
+import { FastifySSEPlugin as eventsource } from 'fastify-sse-v2';
 
 import router from '~/plugins/router';
-import websocket from '~/plugins/websocket';
-import eventsource from '~/plugins/eventsource';
 import i18n from '~/plugins/i18n';
 import redisInstance from '~/utilities/redisInstance';
 
@@ -23,12 +23,12 @@ const app = async (options: FastifyServerOptions = {}) => {
   app.register(mongodb, { url: process.env.MONGODB_URL });
   app.register(multipart);
   app.register(redis, { client: redisInstance });
+  app.register(websocket);
   app.register(underPressure, { exposeStatusRoute: '/api/healthz' });
   app.register(cloudinary, { url: process.env.CLOUDINARY_URL });
+  app.register(eventsource);
 
   app.register(router, { prefix: '/api' });
-  app.register(websocket, { prefix: '/api' });
-  app.register(eventsource, { prefix: '/api' });
   app.register(i18n);
 
   return app;

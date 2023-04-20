@@ -12,6 +12,9 @@ export default plugin(
     app.register(import('~/modules/todos/registry'), { prefix: prefix + '/todos' });
     app.register(import('~/modules/todos/[id]/registry'), { prefix: prefix + '/todos/:id' });
 
+    app.register(import('~/modules/echo/registry'), { prefix });
+    app.register(import('~/modules/sse/registry'), { prefix });
+
     app.register(import('~/modules/file-uploads/registry'), { prefix });
     app.register(import('~/modules/suggestions/registry'), { prefix: prefix + '/suggestions' });
     app.register(import('~/modules/assets-public/registry'), { prefix: prefix + '/assets-public' });
