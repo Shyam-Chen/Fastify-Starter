@@ -6,7 +6,7 @@ hero:
   # text: Fastify Starter
   tagline: A boilerplate for Node.js, Fastify, TypeScript, Vite, Playwright, and Render.
   image:
-    src: https://api.iconify.design/simple-icons/fastify.svg?color=%2342b883&width=300
+    src: https://api.iconify.design/simple-icons/fastify.svg?color=%23ef3434&width=300
     alt: Fastify
   actions:
     - theme: brand

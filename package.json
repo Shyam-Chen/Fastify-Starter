@@ -26,7 +26,7 @@
     "@fastify/websocket": "^7.1.2",
     "@sinclair/typebox": "^0.25.23",
     "bcrypt": "^5.1.0",
-    "bullmq": "^3.7.0",
+    "bullmq": "^3.12.0",
     "fastify": "^4.13.0",
     "fastify-cloudinary": "^1.0.5",
     "fastify-i18n": "^1.1.1",

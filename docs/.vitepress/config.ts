@@ -5,7 +5,7 @@ export default defineConfig({
   description: 'A boilerplate for Node.js, Fastify, TypeScript, Vite, Playwright, and Render.',
   lang: 'en-US',
   themeConfig: {
-    logo: 'https://api.iconify.design/simple-icons/fastify.svg?color=%2342b883',
+    logo: 'https://api.iconify.design/simple-icons/fastify.svg?color=%23ef3434',
     nav: [
       { text: 'Guide', link: '/guide/project-setup/introduction' },
       { text: 'Modules', link: '/modules/todos' },
