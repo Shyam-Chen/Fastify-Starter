@@ -5,7 +5,7 @@ import redisInstance from '~/utilities/redisInstance';
 
 export default (name = 'default', options?: QueueOptions) => {
   const queue = new Queue(name, {
-    connection: redisInstance,
+    connection: redisInstance as QueueOptions['connection'],
     ...options,
   });
 

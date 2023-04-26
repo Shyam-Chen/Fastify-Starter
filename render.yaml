@@ -20,6 +20,6 @@ services:
         sync: false
       - key: SECRET_KEY
         sync: false
-    buildCommand: pnpm install --frozen-lockfile && pnpm build
+    buildCommand: pnpm build
     startCommand: node dist/main.mjs
     healthCheckPath: /api/healthz
