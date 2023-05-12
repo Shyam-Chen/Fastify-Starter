@@ -60,6 +60,8 @@
     "typescript": "^4.9.4",
     "vite": "^4.1.1",
     "vite-node": "^0.28.3",
+    "vite-plugin-fastify": "^1.2.3",
+    "vite-plugin-fastify-routes": "^0.3.3",
     "vitest": "^0.28.3"
   }
 }
