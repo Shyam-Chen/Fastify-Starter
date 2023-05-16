@@ -37,7 +37,7 @@
     "nunjucks": "^3.2.3",
     "ofetch": "^1.0.1",
     "otplib": "^12.0.1",
-    "pbkdf2-passworder": "^1.0.0",
+    "pbkdf2-passworder": "^1.0.1",
     "pm2": "^5.2.2",
     "xlsx": "^0.18.5"
   },

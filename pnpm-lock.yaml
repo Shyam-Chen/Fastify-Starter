@@ -36,7 +36,7 @@ specifiers:
   nunjucks: ^3.2.3
   ofetch: ^1.0.1
   otplib: ^12.0.1
-  pbkdf2-passworder: ^1.0.0
+  pbkdf2-passworder: ^1.0.1
   pm2: ^5.2.2
   prettier: ^2.8.1
   process-envify: ^2.0.0
@@ -72,7 +72,7 @@ dependencies:
   nunjucks: 3.2.3
   ofetch: 1.0.1
   otplib: 12.0.1
-  pbkdf2-passworder: 1.0.0
+  pbkdf2-passworder: 1.0.1
   pm2: 5.2.2
   xlsx: 0.18.5
 
@@ -4207,8 +4207,8 @@ packages:
     resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
     dev: true
 
-  /pbkdf2-passworder/1.0.0:
-    resolution: {integrity: sha512-KjES5/fgHZu9TRcBFQfQz3xYVXYOFNkzVTCP6gWjwb1q8mEd8q51+G5+eyz/4ul/gCaIjtqxWfZSM0J7kcYA5g==}
+  /pbkdf2-passworder/1.0.1:
+    resolution: {integrity: sha512-v4byG9Dy7nmlxS4xQpDYtrtDdppjBvzcjVLLeg4ypTLu7+eGtriwXF+11rTPEaIIc3M9jpLp3h2R7CbrHDEygA==}
     dev: false
 
   /pend/1.2.0:
