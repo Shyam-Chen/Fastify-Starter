@@ -119,7 +119,7 @@ This seed repository provides the following features:
 - [x] [Fastify](https://github.com/fastify/fastify) - Web Application Framework
 - [x] [MongoDB](https://github.com/fastify/fastify-mongodb) - Document Database
 - [x] [JWT](https://github.com/fastify/fastify-jwt) - Authentication
-- [x] [Bcrypt](https://github.com/kelektiv/node.bcrypt.js) - Hash Passwords
+- [x] [PBKDF2](https://github.com/Vanilla-IceCream/pbkdf2-passworder) - Hash Passwords
 - [x] [OTP](https://github.com/yeojz/otplib) - Authenticator
 - [x] [Cloudinary](https://github.com/Vanilla-IceCream/fastify-cloudinary) - Asset Management
 - [x] [I18n](https://github.com/Vanilla-IceCream/fastify-i18n) - Internationalization and Localization

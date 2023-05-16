@@ -2,7 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Static, Type } from '@sinclair/typebox';
 import { randomUUID } from 'crypto';
-import bcrypt from 'bcrypt';
+import pbkdf2 from 'pbkdf2-passworder';
 import { authenticator, totp } from 'otplib';
 import generatePassword from 'generate-password';
 
@@ -48,7 +48,7 @@ export default async (app: FastifyInstance) => {
     const user = await users?.findOne({ username: { $eq: username } });
     if (user) return reply.badRequest('#username That username is taken. Try another.');
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await pbkdf2.hash(password);
 
     const userId = new app.mongo.ObjectId();
 
@@ -95,7 +95,7 @@ export default async (app: FastifyInstance) => {
     if (!user) return reply.badRequest(`#username Couldn't find your account.`);
 
     try {
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await pbkdf2.compare(password, user.password);
       if (!isMatch) throw Error('Unexpected property.');
     } catch {
       return reply.badRequest(
@@ -220,7 +220,7 @@ export default async (app: FastifyInstance) => {
     if (email !== session?.email) return reply.badRequest();
 
     const password = generatePassword.generate({ numbers: true });
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await pbkdf2.hash(password);
     await users?.findOneAndUpdate({ email: { $eq: session?.email } }, { password: hashedPassword });
 
     return reply.send({ message: 'Hi!', password });

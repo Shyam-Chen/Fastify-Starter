@@ -2,7 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { randomUUID } from 'crypto';
 import { authenticator } from 'otplib';
-import bcrypt from 'bcrypt';
+import pbkdf2 from 'pbkdf2-passworder';
 
 import auth from '~/middleware/auth';
 
@@ -63,7 +63,7 @@ export default async (app: FastifyInstance) => {
 
     const user = await users?.findOne({ username: { $eq: username } });
 
-    const isMatch = await bcrypt.compare(password, user?.password);
+    const isMatch = await pbkdf2.compare(password, user?.password);
     if (!isMatch) return reply.badRequest();
 
     const isValid = authenticator.check(code, user?.secret);
