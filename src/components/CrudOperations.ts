@@ -40,7 +40,7 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
   ]);
 
   router.post(
-    '/:id',
+    '',
     {
       schema: {
         params: Type.Object({ id: Type.Literal('new') }),
@@ -60,7 +60,7 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
   );
 
   router.get(
-    '/:id',
+    '',
     {
       schema: {
         params,
@@ -77,7 +77,7 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
   );
 
   router.put(
-    '/:id',
+    '',
     {
       schema: {
         params,
@@ -101,7 +101,7 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
   );
 
   router.delete(
-    '/:id',
+    '',
     {
       schema: {
         params,

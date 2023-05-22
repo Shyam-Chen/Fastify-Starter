@@ -69,7 +69,7 @@ export default async (app: FastifyInstance, opts: CollectionDataOptions) => {
     route.options = { ...opts.options, ...route.options };
   }
 
-  router.post('/', route.options, async (req, reply) => {
+  router.post('', route.options, async (req, reply) => {
     const field = req.body.field || 'createdAt';
     const order = req.body.order || 'desc';
     const page = Number(req.body.page) || 1;
