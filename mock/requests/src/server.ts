@@ -1,10 +1,10 @@
 import app from './app';
 
-const start = async () => {
-  const server = await app();
+const server = app();
 
+const start = async () => {
   try {
-    server.listen({ port: 5000 });
+    await server.listen({ port: 6000 });
   } catch (err) {
     server.log.error(err);
     process.exit(1);
