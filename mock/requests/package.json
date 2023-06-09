@@ -5,11 +5,12 @@
     "mock": "vite"
   },
   "dependencies": {
+    "@fastify/one-line-logger": "^1.2.0",
     "fastify": "^4.17.0",
     "fastify-plugin": "^4.5.0"
   },
   "devDependencies": {
-    "vite": "^4.3.8",
+    "vite": "^4.3.9",
     "vite-plugin-fastify": "^1.2.4",
     "vite-plugin-fastify-routes": "^0.4.0"
   }
