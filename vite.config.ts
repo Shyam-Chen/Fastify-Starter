@@ -1,8 +1,7 @@
-import path from 'path';
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import fastify from 'vite-plugin-fastify';
 import fastifyRoutes from 'vite-plugin-fastify-routes';
-
 import envify from 'process-envify';
 
 import env from './env';
@@ -18,7 +17,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, 'src'),
+      '~': resolve(__dirname, 'src'),
     },
   },
   build: {
