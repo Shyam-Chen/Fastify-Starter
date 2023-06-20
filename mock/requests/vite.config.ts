@@ -6,7 +6,7 @@ import fastifyRoutes from 'vite-plugin-fastify-routes';
 export default defineConfig({
   server: {
     host: '127.0.0.1',
-    port: 6000,
+    port: 3030,
   },
   plugins: [
     fastify(),
