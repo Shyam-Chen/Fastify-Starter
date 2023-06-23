@@ -1,5 +1,4 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 import { defineI18n, useI18n } from 'fastify-i18n';
 
@@ -8,9 +7,7 @@ import jaJP from './_locales/ja-JP';
 import koKR from './_locales/ko-KR';
 import zhTW from './_locales/zh-TW';
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
+export default (async (app) => {
   defineI18n(app, {
     'en-US': enUS,
     'ja-JP': jaJP,
@@ -23,7 +20,7 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/hello-world \
     --header 'Accept-Language: ja-JP'
   */
-  router.get(
+  app.get(
     '',
     {
       schema: {
@@ -44,4 +41,4 @@ export default async (app: FastifyInstance) => {
       });
     },
   );
-};
+}) as FastifyPluginAsyncTypebox;
