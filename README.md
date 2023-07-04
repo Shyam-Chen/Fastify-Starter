@@ -130,6 +130,7 @@ This seed repository provides the following features:
 
 - ---------- **Essentials** ----------
 - [x] [Fastify](https://github.com/fastify/fastify) - Web Application Framework
+- [x] [Routes](https://github.com/Vanilla-IceCream/vite-plugin-fastify-routes) - File-based routing
 - [x] [MongoDB](https://github.com/fastify/fastify-mongodb) - Document Database
 - [x] [JWT](https://github.com/fastify/fastify-jwt) - Authentication
 - [x] [PBKDF2](https://github.com/Vanilla-IceCream/pbkdf2-passworder) - Hash Passwords
@@ -226,11 +227,11 @@ The structure follows the LIFT Guidelines.
 ```coffee
 .
 ├── .circleci
-├── benchmark
-├── docs
+├── benchmark -> load testing
+├── docs -> api documentation
 ├── e2e -> e2e testing (Caddy Server proxy api and proxy mock api)
 ├── mock
-│   ├── requests -> mock api
+│   ├── requests -> mock third-party api
 │   └── responses -> mock data for mock api, unit testing, and e2e testing
 ├── public -> not handled by vite, copy it to dist
 ├── src
@@ -239,16 +240,8 @@ The structure follows the LIFT Guidelines.
 │   ├── composables -> shared module
 │   ├── locales -> core module
 │   ├── middleware -> core module
-│   ├── modules -> feature modules
-│   │   └── <FEATURE> -> feature module
-│   │       ├── __tests__ -> unit testing
-│   │       ├── _locales
-│   │       ├── controller.ts
-│   │       ├── registry.ts -> route component
-│   │       ├── schema.ts
-│   │       ├── service.ts
-│   │       └── types.ts
 │   ├── plugins -> root module
+│   ├── routes -> feature modules
 │   ├── templates -> email templates with nunjucks
 │   ├── utilities -> shared module
 │   ├── app.ts
