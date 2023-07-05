@@ -130,7 +130,7 @@ This seed repository provides the following features:
 
 - ---------- **Essentials** ----------
 - [x] [Fastify](https://github.com/fastify/fastify) - Web Application Framework
-- [x] [Routes](https://github.com/Vanilla-IceCream/vite-plugin-fastify-routes) - File-based routing
+- [x] [Routes](https://github.com/Vanilla-IceCream/vite-plugin-fastify-routes) - File-based Routing
 - [x] [MongoDB](https://github.com/fastify/fastify-mongodb) - Document Database
 - [x] [JWT](https://github.com/fastify/fastify-jwt) - Authentication
 - [x] [PBKDF2](https://github.com/Vanilla-IceCream/pbkdf2-passworder) - Hash Passwords
@@ -162,6 +162,21 @@ This seed repository provides the following features:
 - [x] [Docker](https://www.docker.com/) - Containerized Application Development
 - [x] [CircleCI](https://circleci.com/) - Continuous Integration and Delivery
 - [x] [Render](https://render.com/) - Cloud Application Hosting
+
+### Tiny examples
+
+- [x] [Hello World](./src/routes/hello-world)
+- [x] [CRUD Operations](./src/routes/todos)
+- [x] [Authentication](./src/routes/auth)
+- [x] [One-time Password](./src/routes/auth/otp)
+- [x] [File Uploads](./src/routes/file-uploads)
+- [x] [Real-time Data](./src/routes/echo)
+- [x] [Real-time Updates](./src/routes/sse)
+- [x] [Sending Emails](./src/routes/email)
+- [x] [Internationalization](./src/routes/hello-i18n)
+- [x] [Background Workers](./src/routes/queues)
+- [x] [Cron Jobs](./src/routes/queues)
+- [ ] Caching
 
 ## Configuration
 

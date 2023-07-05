@@ -10,6 +10,10 @@ const paintQueue = useQueue('Paint');
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
 
+  /*
+  curl --request GET \
+    --url http://127.0.0.1:3000/api/queues?color=blue
+  */
   router.get(
     '',
     {
@@ -19,7 +23,11 @@ export default async (app: FastifyInstance) => {
       },
     },
     async (req, reply) => {
-      await paintQueue.add('wall', { color: req.query.color });
+      await paintQueue.add(
+        'wall',
+        { color: req.query.color },
+        // { repeat: { pattern: '45 * * * * *' } },
+      );
 
       return reply.send({ message: 'Hi!' });
     },

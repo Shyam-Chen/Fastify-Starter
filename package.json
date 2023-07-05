@@ -26,6 +26,8 @@
     "@fastify/websocket": "^7.1.2",
     "@sinclair/typebox": "^0.25.23",
     "bullmq": "^3.12.0",
+    "cache-manager": "^5.2.3",
+    "cache-manager-ioredis-yet": "^1.2.2",
     "fastify": "^4.13.0",
     "fastify-cloudinary": "^1.0.5",
     "fastify-i18n": "^1.1.1",
