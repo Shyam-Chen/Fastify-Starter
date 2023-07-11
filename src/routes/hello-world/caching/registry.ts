@@ -2,8 +2,11 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 import { caching } from 'cache-manager';
 
+// import redisCache from '~/utilities/redisCache';
+
 export default (async (app) => {
   const cache = await caching('memory', { ttl: 10 * 1000, max: 500 });
+  // const cache = await redisCache(10 * 1000);
 
   /*
   curl --request GET \
