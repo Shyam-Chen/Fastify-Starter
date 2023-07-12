@@ -35,5 +35,8 @@ export default async (app: FastifyInstance) => {
 };
 
 useWorker('Paint', async (job) => {
-  console.log(job.id, job.name);
+  console.log('[Paint] Starting job:', job.name);
+  console.log(job.id, job.name, job.data);
+  console.log('[Paint] Finished job:', job.name);
+  return;
 });
