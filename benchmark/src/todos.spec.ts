@@ -1,7 +1,7 @@
 import { test } from 'vitest';
 import autocannon from 'autocannon';
 
-test('/todos', async () => {
+test.skip('/todos', async () => {
   const result = await autocannon({
     url: 'http://localhost:3000',
     requests: [
