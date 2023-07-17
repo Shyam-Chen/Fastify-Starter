@@ -4,10 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-devDependencies:
+dependencies:
   '@playwright/test':
     specifier: ^1.36.1
     version: 1.36.1
+
+devDependencies:
   playwright:
     specifier: ^1.36.1
     version: 1.36.1
@@ -23,25 +25,24 @@ packages:
       playwright-core: 1.36.1
     optionalDependencies:
       fsevents: 2.3.2
-    dev: true
+    dev: false
 
   /@types/node@18.11.9:
     resolution: {integrity: sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==}
-    dev: true
+    dev: false
 
   /fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /playwright-core@1.36.1:
     resolution: {integrity: sha512-7+tmPuMcEW4xeCL9cp9KxmYpQYHKkyjwoXRnoeTowaeNat8PoBMk/HwCYhqkH2fRkshfKEOiVus/IhID2Pg8kg==}
     engines: {node: '>=16'}
     hasBin: true
-    dev: true
 
   /playwright@1.36.1:
     resolution: {integrity: sha512-2ZqHpD0U0COKR8bqR3W5IkyIAAM0mT9FgGJB9xWCI1qAUkqLxJskA1ueeQOTH2Qfz3+oxdwwf2EzdOX+RkZmmQ==}
