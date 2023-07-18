@@ -7,9 +7,11 @@ services:
     env: node
     envVars:
       - key: NODE_VERSION
-        value: 18.12.1
+        value: 18.16.1
+      - key: HOST
+        value: 0.0.0.0
       - key: SITE_URL
-        value: onrender.com
+        value: false
       - key: MONGODB_URL
         sync: false
       - key: REDIS_URL
