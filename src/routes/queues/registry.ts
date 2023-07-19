@@ -32,6 +32,23 @@ export default async (app: FastifyInstance) => {
       return reply.send({ message: 'Hi!' });
     },
   );
+
+  /*
+  curl --request GET \
+    --url http://127.0.0.1:3000/api/queues/drain
+  */
+  router.get(
+    '/drain',
+    {
+      schema: {
+        response: { 200: Type.Object({ message: Type.String() }) },
+      },
+    },
+    async (req, reply) => {
+      await paintQueue.drain();
+      return reply.send({ message: 'Hi!' });
+    },
+  );
 };
 
 useWorker('Paint', async (job) => {
