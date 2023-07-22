@@ -23,5 +23,5 @@ services:
       - key: SECRET_KEY
         sync: false
     buildCommand: pnpm build
-    startCommand: node dist/main.mjs
+    startCommand: node dist/main.js
     healthCheckPath: /api/healthz

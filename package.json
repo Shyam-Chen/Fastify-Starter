@@ -2,10 +2,11 @@
   "name": "fastify-starter",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite-node -w src/main.ts",
     "build": "vite build",
-    "preview": "concurrently \"node dist/index.mjs\" \"caddy run\"",
+    "preview": "concurrently \"node dist/index.js\" \"caddy run\"",
     "lint": "eslint 'src/**/*.ts' && tsc",
     "unit": "vitest --dir src --coverage --run",
     "e2e": "cd e2e && pnpm e2e",

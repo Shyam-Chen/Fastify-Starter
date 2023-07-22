@@ -14,7 +14,7 @@ pm2.connect((err) => {
   pm2.start(
     {
       name: 'fastify-starter',
-      script: `${__dirname}/main.mjs`,
+      script: `${__dirname}/main.js`,
       max_memory_restart: process.env.SERVICE_MEMORY || '1G',
       exec_mode: 'cluster',
       instances: Number(process.env.SERVICE_CONCURRENCY) || -1,
