@@ -7,7 +7,7 @@ services:
     env: node
     envVars:
       - key: NODE_VERSION
-        value: 18.16.1
+        value: 18.17.0
       - key: HOST
         value: 0.0.0.0
       - key: SITE_URL
