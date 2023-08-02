@@ -7,11 +7,11 @@
     "preview": "vitepress preview --port 3714"
   },
   "dependencies": {
-    "@unocss/reset": "^0.53.1"
+    "@unocss/reset": "^0.54.1"
   },
   "devDependencies": {
-    "unocss": "^0.53.1",
-    "vitepress": "1.0.0-beta.2",
+    "unocss": "^0.54.1",
+    "vitepress": "1.0.0-beta.7",
     "vue": "^3.3.4"
   }
 }

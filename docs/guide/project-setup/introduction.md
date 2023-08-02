@@ -1,21 +1,5 @@
 # Introduction
 
-:::code-group
-
-```sh [macOS]
-brew install fnm
-```
-
-```sh [Windows]
-scoop install fnm
-```
-
-```sh [Linux]
-curl -fsSL https://fnm.vercel.app/install | bash
-```
-
-:::
-
 ## Requirements
 
 - `git --version`

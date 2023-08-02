@@ -12,7 +12,7 @@ export default defineConfig({
     ],
     socialLinks: [{ icon: 'github', link: 'https://github.com/Shyam-Chen/Fastify-Starter' }],
     sidebar: {
-      '/guide': [
+      '/guide/': [
         {
           text: 'Project Setup',
           collapsed: false,
@@ -36,7 +36,7 @@ export default defineConfig({
           ],
         },
       ],
-      '/modules': [
+      '/modules/': [
         {
           text: 'Authentication',
           collapsed: false,
