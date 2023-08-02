@@ -1,7 +1,7 @@
 import { test, expect } from 'vitest';
 import fastify from 'fastify';
 
-import helloWorld from '../registry';
+import helloWorld from '../+handler';
 
 test('GET /hello-i18n', async () => {
   const app = fastify();

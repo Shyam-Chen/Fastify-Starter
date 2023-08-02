@@ -27,7 +27,7 @@ export default defineConfig({
             {
               text: 'src',
               items: [
-                { text: 'modules', link: '/guide/directory-structure/modules' },
+                { text: 'routes', link: '/guide/directory-structure/routes' },
                 { text: 'templates', link: '/guide/directory-structure/templates' },
                 // { text: 'plugins', link: '/directory-structure/plugins' },
               ],

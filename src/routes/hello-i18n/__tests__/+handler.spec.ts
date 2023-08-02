@@ -3,7 +3,7 @@ import fastify from 'fastify';
 
 import i18n from '~/plugins/i18n';
 
-import helloI18n from '../registry';
+import helloI18n from '../+handler';
 
 test('GET /hello-i18n', async () => {
   const app = fastify();

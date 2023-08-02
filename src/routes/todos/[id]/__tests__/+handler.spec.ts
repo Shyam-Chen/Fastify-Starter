@@ -3,9 +3,9 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import fastify from 'fastify';
 import mongodb from '@fastify/mongodb';
 
-import todosRegistry from '~/routes/todos/registry';
+import todos from '~/routes/todos/+handler';
 
-import registry from '../registry';
+import todos_id from '../+handler';
 
 let mongod = null as MongoMemoryServer | null;
 
@@ -21,8 +21,8 @@ test('POST /todos/new', async () => {
   const app = fastify();
 
   app.register(mongodb, { url: mongod?.getUri('test') });
-  app.register(todosRegistry, { prefix: '/todos' });
-  app.register(registry, { prefix: '/todos/:id' });
+  app.register(todos, { prefix: '/todos' });
+  app.register(todos_id, { prefix: '/todos/:id' });
 
   const payload = { title: 'foo' };
   await app.inject({ method: 'POST', url: '/todos/new', payload });

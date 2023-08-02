@@ -63,7 +63,7 @@
     "vite": "^4.4.4",
     "vite-node": "^0.28.5",
     "vite-plugin-fastify": "^1.2.4",
-    "vite-plugin-fastify-routes": "^0.4.0",
+    "vite-plugin-fastify-routes": "^1.0.1",
     "vitest": "^0.28.5"
   }
 }

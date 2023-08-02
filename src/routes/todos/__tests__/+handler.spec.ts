@@ -3,7 +3,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import fastify from 'fastify';
 import mongodb from '@fastify/mongodb';
 
-import registry from '../registry';
+import todos from '../+handler';
 
 let mongod = null as MongoMemoryServer | null;
 
@@ -19,7 +19,7 @@ test('POST /todos', async () => {
   const app = fastify();
 
   app.register(mongodb, { url: mongod?.getUri('test') });
-  app.register(registry, { prefix: '/todos' });
+  app.register(todos, { prefix: '/todos' });
 
   const data = Array.from({ length: 31 }).map((item, index) => ({
     title: `fastify-${index + 1}`,
