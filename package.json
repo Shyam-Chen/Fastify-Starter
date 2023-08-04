@@ -20,6 +20,7 @@
     "@fastify/mongodb": "^7.0.0",
     "@fastify/multipart": "^7.7.3",
     "@fastify/one-line-logger": "^1.2.0",
+    "@fastify/rate-limit": "^8.0.3",
     "@fastify/redis": "^6.1.1",
     "@fastify/sensible": "^5.2.0",
     "@fastify/type-provider-typebox": "^3.3.0",
