@@ -1,17 +1,19 @@
 services:
   - type: web
     name: fastify-starter
+    runtime: node
     region: oregon
     plan: free
     branch: main
-    env: node
     envVars:
       - key: NODE_VERSION
         value: 18.17.0
       - key: HOST
         value: 0.0.0.0
+      - key: PORT
+        value: 10000
       - key: SITE_URL
-        value: false
+        value: onrender.com
       - key: MONGODB_URL
         sync: false
       - key: REDIS_URL
@@ -21,7 +23,7 @@ services:
       - key: SMTP_URL
         sync: false
       - key: SECRET_KEY
-        sync: false
+        generateValue: true
     buildCommand: pnpm install; pnpm build
-    startCommand: node dist/index.js
+    startCommand: node dist/main.js
     healthCheckPath: /api/healthz

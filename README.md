@@ -12,6 +12,7 @@
 - [Configuration](#configuration)
 - [Directory Structure](#directory-structure)
 - [Microservices](#microservices)
+- [Containerization](#containerization)
 
 ## Getting Started
 
@@ -301,4 +302,17 @@ api.example.com
 │   └── files.api.example.com
 └── /settings
     └── settings.api.example.com
+```
+
+## Containerization
+
+```yml
+services:
+  - type: web
+    name: node-app
+    runtime: docker
+
+  - type: web
+    name: caddy-server
+    runtime: docker
 ```
