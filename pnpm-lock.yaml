@@ -54,8 +54,8 @@ dependencies:
     specifier: ^4.21.0
     version: 4.21.0
   fastify-cloudinary:
-    specifier: ^1.0.5
-    version: 1.0.5
+    specifier: ^1.1.0
+    version: 1.1.0
   fastify-i18n:
     specifier: ^1.1.1
     version: 1.1.1
@@ -2595,8 +2595,8 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /cloudinary@1.37.3:
-    resolution: {integrity: sha512-XrGb60ZeQhYp9QQjj5DP3cYsAc27OV1B7pezvVxyqgHB5WMeMsofzeIy6+k0o/fCCv744Nf7xsYiTlUi3V0V/Q==}
+  /cloudinary@1.40.0:
+    resolution: {integrity: sha512-Fifkl8NRw/M+Enw4cKCXc6e0Or28c5y6RVGYS3OCLzT1W8EfBt416FURhLuuL/S4BCVv8bSilmnM746kCtth3g==}
     engines: {node: '>=0.6'}
     dependencies:
       cloudinary-core: 2.13.0(lodash@4.17.21)
@@ -3293,10 +3293,10 @@ packages:
       reusify: 1.0.4
     dev: false
 
-  /fastify-cloudinary@1.0.5:
-    resolution: {integrity: sha512-smTj+t5BysB8NPsq1qlos39DBOaRY1n0q458vB4GZ+DSf3Fh/yRmX0Jr1O7jp5mzWYtjGn4Nr3wws+fybKrJCw==}
+  /fastify-cloudinary@1.1.0:
+    resolution: {integrity: sha512-+BusWIRpDMwWNWQcJ2/2tsXyJkhYDkTcfUK61SP4zp9kwnVrz3Xq+hrzNtkFA86unehYwnmcc1Gge6GGE8j+vA==}
     dependencies:
-      cloudinary: 1.37.3
+      cloudinary: 1.40.0
       fastify-plugin: 4.5.1
     dev: false
 

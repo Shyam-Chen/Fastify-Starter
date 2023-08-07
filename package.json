@@ -31,7 +31,7 @@
     "cache-manager": "^5.2.3",
     "cache-manager-ioredis-yet": "^1.2.2",
     "fastify": "^4.21.0",
-    "fastify-cloudinary": "^1.0.5",
+    "fastify-cloudinary": "^1.1.0",
     "fastify-i18n": "^1.1.1",
     "fastify-plugin": "^4.5.1",
     "fastify-sse-v2": "^3.1.2",
