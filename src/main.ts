@@ -1,16 +1,10 @@
 import app from './app';
 
-const start = async () => {
-  const server = await app({
-    logger: {
-      transport: {
-        target: '@fastify/one-line-logger',
-      },
-    },
-  });
+const server = app();
 
+const start = async () => {
   try {
-    server.listen({
+    await server.listen({
       host: process.env.HOST,
       port: process.env.PORT,
     });

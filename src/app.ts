@@ -1,4 +1,3 @@
-import type { FastifyServerOptions } from 'fastify';
 import fastify from 'fastify';
 import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
@@ -16,8 +15,15 @@ import router from '~/plugins/router';
 import i18n from '~/plugins/i18n';
 import redisInstance from '~/utilities/redisInstance';
 
-const app = async (options: FastifyServerOptions = {}) => {
-  const app = fastify(options);
+export default () => {
+  const app = fastify({
+    logger: {
+      transport: {
+        target: '@fastify/one-line-logger',
+      },
+    },
+  });
+
   app.register(import('./error'));
 
   app.register(cors, { origin: new RegExp(process.env.SITE_URL, 'gi') });
@@ -37,5 +43,3 @@ const app = async (options: FastifyServerOptions = {}) => {
 
   return app;
 };
-
-export default app;
