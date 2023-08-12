@@ -1,6 +1,7 @@
 import type { FastifyServerOptions } from 'fastify';
 import fastify from 'fastify';
 import cors from '@fastify/cors';
+import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
 import jwt from '@fastify/jwt';
 import mongodb from '@fastify/mongodb';
@@ -20,6 +21,7 @@ const app = async (options: FastifyServerOptions = {}) => {
   app.register(import('./error'));
 
   app.register(cors, { origin: new RegExp(process.env.SITE_URL, 'gi') });
+  app.register(helmet);
   app.register(rateLimit, { max: 100 });
   app.register(jwt, { secret: process.env.SECRET_KEY });
   app.register(mongodb, { url: process.env.MONGODB_URL });

@@ -8,6 +8,9 @@ dependencies:
   '@fastify/cors':
     specifier: ^8.3.0
     version: 8.3.0
+  '@fastify/helmet':
+    specifier: ^11.0.0
+    version: 11.0.0
   '@fastify/jwt':
     specifier: ^7.2.0
     version: 7.2.0
@@ -990,6 +993,13 @@ packages:
     resolution: {integrity: sha512-aZAXGYo6m22Fk1zZzEUKBvut/CIIQe/BapEORnxiD5Qr0kPHqqI69NtEMCme74h+at72sPhbkb4ZrLd1W3KRLA==}
     dependencies:
       fast-json-stringify: 5.7.0
+    dev: false
+
+  /@fastify/helmet@11.0.0:
+    resolution: {integrity: sha512-YSFhJFR4Pk2azmTkX54f0Z/O7h5j4ruCQUlagf/Rw1P45u5/2u+F+I83DRyIKryM6prXl++X2yY0Ib0RXAlZ7Q==}
+    dependencies:
+      fastify-plugin: 4.5.1
+      helmet: 7.0.0
     dev: false
 
   /@fastify/jwt@7.2.0:
@@ -3734,6 +3744,11 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+    dev: false
+
+  /helmet@7.0.0:
+    resolution: {integrity: sha512-MsIgYmdBh460ZZ8cJC81q4XJknjG567wzEmv46WOBblDb6TUd3z8/GhgmsM9pn8g2B80tAJ4m5/d3Bi1KrSUBQ==}
+    engines: {node: '>=16.0.0'}
     dev: false
 
   /help-me@4.2.0:
