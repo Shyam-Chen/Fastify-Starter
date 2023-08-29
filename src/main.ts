@@ -10,7 +10,10 @@ const start = async () => {
     });
   } catch (err) {
     server.log.error(err);
-    process.exit(1);
+
+    if (process.env.NODE_ENV === 'production') {
+      process.exit(1);
+    }
   }
 
   if (import.meta.hot) {
