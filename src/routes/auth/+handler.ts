@@ -42,42 +42,55 @@ export default async (app: FastifyInstance) => {
       "fullName": "Shyam Chen"
     }'
   */
-  router.post('/sign-up', async (req, reply) => {
-    const { username, fullName, password, email } = req.body as any;
+  router.post(
+    '/sign-up',
+    {
+      schema: {
+        body: Type.Object({
+          username: Type.String(),
+          password: Type.String(),
+          email: Type.String(),
+          fullName: Type.String(),
+        }),
+      },
+    },
+    async (req, reply) => {
+      const { username, password, email, fullName } = req.body;
 
-    const user = await users?.findOne({ username: { $eq: username } });
-    if (user) return reply.badRequest('#username That username is taken. Try another.');
+      const user = await users?.findOne({ username: { $eq: username } });
+      if (user) return reply.badRequest('#username That username is taken. Try another.');
 
-    const hashedPassword = await pbkdf2.hash(password);
+      const hashedPassword = await pbkdf2.hash(password);
 
-    const userId = new app.mongo.ObjectId();
+      const userId = new app.mongo.ObjectId();
 
-    await users?.insertOne({
-      _id: userId,
-      username,
-      password: hashedPassword,
-      email,
-      fullName,
-      status: true,
+      await users?.insertOne({
+        _id: userId,
+        username,
+        password: hashedPassword,
+        email,
+        fullName,
+        status: true,
 
-      secret: null,
-      otpEnabled: false,
-      otpVerified: false,
+        secret: null,
+        otpEnabled: false,
+        otpVerified: false,
 
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    });
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
 
-    await roles?.insertOne({
-      userId: { $ref: 'users', $id: userId },
-      role: 'admin',
-      permissions: [{ resource: '*', action: '*' }],
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    });
+      await roles?.insertOne({
+        userId: { $ref: 'users', $id: userId },
+        role: 'admin',
+        permissions: [{ resource: '*', action: '*' }],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
 
-    return reply.send({ message: 'Hi!' });
-  });
+      return reply.send({ message: 'Hi!' });
+    },
+  );
 
   /*
   curl --request POST \
@@ -88,43 +101,54 @@ export default async (app: FastifyInstance) => {
       "password": "12345678"
     }'
   */
-  router.post('/sign-in', async (req, reply) => {
-    const { username, password } = req.body as any;
+  router.post(
+    '/sign-in',
+    {
+      schema: {
+        body: Type.Object({
+          username: Type.String(),
+          password: Type.String(),
+        }),
+      },
+    },
+    async (req, reply) => {
+      const { username, password } = req.body;
 
-    const user = await users?.findOne({ username: { $eq: username } });
-    if (!user) return reply.badRequest(`#username Couldn't find your account.`);
+      const user = await users?.findOne({ username: { $eq: username } });
+      if (!user) return reply.badRequest(`#username Couldn't find your account.`);
 
-    try {
-      const isMatch = await pbkdf2.compare(password, user.password);
-      if (!isMatch) throw Error('Unexpected property.');
-    } catch {
-      return reply.badRequest(
-        '#password Wrong password. Try again or click Forgot password to reset it.',
-      );
-    }
+      try {
+        const isMatch = await pbkdf2.compare(password, user.password);
+        if (!isMatch) throw Error('Unexpected property.');
+      } catch {
+        return reply.badRequest(
+          '#password Wrong password. Try again or click Forgot password to reset it.',
+        );
+      }
 
-    if (user.otpEnabled && user.otpVerified) {
+      if (user.otpEnabled && user.otpVerified) {
+        return reply.send({
+          message: 'Hi!',
+          accessToken: null,
+          refreshToken: null,
+          otpEnabled: true,
+          otpVerified: true,
+        });
+      }
+
+      const uuid = randomUUID();
+      const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
+      const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
+
       return reply.send({
         message: 'Hi!',
-        accessToken: null,
-        refreshToken: null,
-        otpEnabled: true,
-        otpVerified: true,
+        accessToken,
+        refreshToken,
+        otpEnabled: user.otpEnabled,
+        otpVerified: user.otpVerified,
       });
-    }
-
-    const uuid = randomUUID();
-    const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
-    const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
-
-    return reply.send({
-      message: 'Hi!',
-      accessToken,
-      refreshToken,
-      otpEnabled: user.otpEnabled,
-      otpVerified: user.otpVerified,
-    });
-  });
+    },
+  );
 
   /*
   curl --request POST \
@@ -132,23 +156,36 @@ export default async (app: FastifyInstance) => {
     --header 'content-type: application/json' \
     --data '{ "accessToken": "xxx", "refreshToken": "xxx" }'
   */
-  router.post('/token', async (req, reply) => {
-    const { accessToken, refreshToken } = req.body as any;
+  router.post(
+    '/token',
+    {
+      schema: {
+        body: Type.Object({
+          accessToken: Type.String(),
+          refreshToken: Type.String(),
+        }),
+      },
+    },
+    async (req, reply) => {
+      const { accessToken, refreshToken } = req.body;
 
-    const decodedAccessToken = app.jwt.decode(accessToken) as any;
-    const decodedRefreshToken = app.jwt.decode(refreshToken) as any;
+      const decodedAccessToken = app.jwt.decode<{ uuid: string; username: string }>(accessToken);
+      const decodedRefreshToken = app.jwt.decode<{ uuid: string }>(refreshToken);
 
-    if (decodedAccessToken.uuid === decodedRefreshToken.uuid) {
-      const accessToken = app.jwt.sign(
-        { username: decodedAccessToken.username, uuid: decodedAccessToken.uuid },
-        { expiresIn: '20m' },
-      );
+      if (decodedAccessToken?.uuid === decodedRefreshToken?.uuid) {
+        if (decodedAccessToken?.uuid) {
+          const accessToken = app.jwt.sign(
+            { username: decodedAccessToken?.username, uuid: decodedAccessToken.uuid },
+            { expiresIn: '20m' },
+          );
 
-      return reply.send({ message: 'Hi!', accessToken });
-    }
+          return reply.send({ message: 'Hi!', accessToken });
+        }
+      }
 
-    return reply.badRequest();
-  });
+      return reply.badRequest();
+    },
+  );
 
   /*
   curl --request GET \
@@ -178,30 +215,40 @@ export default async (app: FastifyInstance) => {
     --header 'content-type: application/json' \
     --data '{ "email": "shyam.chen@example.com" }'
   */
-  router.post('/reset-password/send', async (req, reply) => {
-    const { email } = req.body as any;
+  router.post(
+    '/reset-password/send',
+    {
+      schema: {
+        body: Type.Object({
+          email: Type.String(),
+        }),
+      },
+    },
+    async (req, reply) => {
+      const { email } = req.body;
 
-    const mailer = useMailer();
+      const mailer = useMailer();
 
-    const secret = authenticator.generateSecret();
-    const token = totp.generate(secret);
+      const secret = authenticator.generateSecret();
+      const token = totp.generate(secret);
 
-    const info = await mailer.sendMail({
-      to: email,
-      subject: 'Hello ✔',
-      text: token,
-    });
+      const info = await mailer.sendMail({
+        to: email,
+        subject: 'Hello ✔',
+        text: token,
+      });
 
-    sessions?.insertOne({
-      messageId: info.messageId,
-      email,
-      secret,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    });
+      sessions?.insertOne({
+        messageId: info.messageId,
+        email,
+        secret,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
 
-    return reply.send({ message: 'Hi!', messageId: info.messageId });
-  });
+      return reply.send({ message: 'Hi!', messageId: info.messageId });
+    },
+  );
 
   /*
   curl --request POST \
@@ -209,22 +256,37 @@ export default async (app: FastifyInstance) => {
     --header 'content-type: application/json' \
     --data '{ "code": "325198", "messageId": "xxx", "email": "shyam.chen@example.com" }'
   */
-  router.post('/reset-password/validate', async (req, reply) => {
-    const { code, messageId, email } = req.body as any;
+  router.post(
+    '/reset-password/validate',
+    {
+      schema: {
+        body: Type.Object({
+          code: Type.String(),
+          messageId: Type.String(),
+          email: Type.String(),
+        }),
+      },
+    },
+    async (req, reply) => {
+      const { code, messageId, email } = req.body;
 
-    const session = await sessions?.findOne({ messageId: { $eq: messageId } });
+      const session = await sessions?.findOne({ messageId: { $eq: messageId } });
 
-    const isValid = totp.check(code, session?.secret);
-    if (!isValid) return reply.badRequest();
+      const isValid = totp.check(code, session?.secret);
+      if (!isValid) return reply.badRequest();
 
-    if (email !== session?.email) return reply.badRequest();
+      if (email !== session?.email) return reply.badRequest();
 
-    const password = generatePassword.generate({ numbers: true });
-    const hashedPassword = await pbkdf2.hash(password);
-    await users?.findOneAndUpdate({ email: { $eq: session?.email } }, { password: hashedPassword });
+      const password = generatePassword.generate({ numbers: true });
+      const hashedPassword = await pbkdf2.hash(password);
+      await users?.findOneAndUpdate(
+        { email: { $eq: session?.email } },
+        { password: hashedPassword },
+      );
 
-    return reply.send({ message: 'Hi!', password });
-  });
+      return reply.send({ message: 'Hi!', password });
+    },
+  );
 
   /*
   curl --request POST \
@@ -233,11 +295,23 @@ export default async (app: FastifyInstance) => {
     --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
     --data '{ "password": "qwerty123", "confirmPassword": "qwerty123" }'
   */
-  router.post('/reset-password/change', { onRequest: [auth] }, async (req, reply) => {
-    const { password, confirmPassword } = req.body as any;
+  router.post(
+    '/reset-password/change',
+    {
+      onRequest: [auth],
+      schema: {
+        body: Type.Object({
+          password: Type.String(),
+          confirmPassword: Type.String(),
+        }),
+      },
+    },
+    async (req, reply) => {
+      const { password, confirmPassword } = req.body;
 
-    if (password.trim() !== confirmPassword.trim()) return reply.badRequest();
+      if (password.trim() !== confirmPassword.trim()) return reply.badRequest();
 
-    return reply.send({ message: 'Hi!' });
-  });
+      return reply.send({ message: 'Hi!' });
+    },
+  );
 };

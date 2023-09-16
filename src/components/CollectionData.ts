@@ -21,7 +21,7 @@ const message = Type.String();
 // CollectionData(app, {
 //   collection: 'todos',
 //   body,
-//   queryConditions(_body: Static<typeof body>) {
+//   queryConditions<Static<typeof body>>(_body) {
 //     const { title, completed } = _body;
 
 //     return {
@@ -34,7 +34,7 @@ const message = Type.String();
 interface CollectionDataOptions {
   collection: string;
   body: TObject;
-  queryConditions: (reqBody: any) => any;
+  queryConditions: <T>(reqBody: T) => T;
   options?: RouteShorthandOptions;
 }
 
