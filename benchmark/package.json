@@ -5,10 +5,11 @@
     "bench": "vitest --run"
   },
   "dependencies": {
-    "autocannon": "^7.11.0"
+    "autocannon": "^7.12.0"
   },
   "devDependencies": {
-    "@types/autocannon": "^7.9.1",
-    "vitest": "^0.34.1"
+    "@types/autocannon": "^7.12.0",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.5"
   }
 }
