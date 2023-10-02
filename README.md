@@ -31,6 +31,16 @@ $ cd mock/requests && pnpm install && cd ../..
 $ pnpm mock
 ```
 
+Or use a blank template.
+
+```sh
+$ npx degit Shyam-Chen/Starter-Templates/fastify my-fastify-project
+$ cd my-fastify-project
+
+$ pnpm install
+$ pnpm dev
+```
+
 ## Project Setup
 
 Follow steps to execute this boilerplate.
