@@ -29,8 +29,6 @@ The structure follows the LIFT Guidelines.
 - :page_facing_up: Caddyfile - Web Server
 - :page_facing_up: docker-compose.yml
 - :page_facing_up: Dockerfile
-- :page_facing_up: env.ts - Environment Variables
-- :page_facing_up: index.ts - Process Manager
 - :page_facing_up: LICENSE
 - :page_facing_up: package.json
 - :page_facing_up: pnpm-lock.yaml

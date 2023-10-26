@@ -30,4 +30,4 @@ ENV SECRET_KEY=$secret_key
 
 RUN pnpm build
 
-CMD node index.js
+CMD node main.js

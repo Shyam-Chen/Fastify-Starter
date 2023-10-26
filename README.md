@@ -284,8 +284,6 @@ The structure follows the LIFT Guidelines.
 ├── Caddyfile
 ├── docker-compose.yml
 ├── Dockerfile
-├── env.ts
-├── index.ts -> entrypoint
 ├── LICENSE
 ├── package.json
 ├── pnpm-lock.yaml
