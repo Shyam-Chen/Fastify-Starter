@@ -11,6 +11,6 @@ export default async (app: FastifyInstance) => {
     const buffer = await data?.toBuffer();
     const workbook = read(buffer);
 
-    return reply.send({ message: 'Hi!', sheets: workbook.Sheets });
+    return reply.send({ message: 'OK', sheets: workbook.Sheets });
   });
 };

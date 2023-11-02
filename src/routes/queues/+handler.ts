@@ -29,7 +29,7 @@ export default async (app: FastifyInstance) => {
         // { repeat: { pattern: '45 * * * * *' } },
       );
 
-      return reply.send({ message: 'Hi!' });
+      return reply.send({ message: 'OK' });
     },
   );
 
@@ -46,7 +46,7 @@ export default async (app: FastifyInstance) => {
     },
     async (req, reply) => {
       await paintQueue.drain();
-      return reply.send({ message: 'Hi!' });
+      return reply.send({ message: 'OK' });
     },
   );
 };

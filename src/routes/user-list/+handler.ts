@@ -30,7 +30,7 @@ export default async (app: FastifyInstance) => {
       const total = await users?.countDocuments(conditions);
 
       return reply.send({
-        message: 'Hi!',
+        message: 'OK',
         result: result || [],
         total: total || 0,
       });

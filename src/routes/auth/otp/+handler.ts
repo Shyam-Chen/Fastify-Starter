@@ -27,7 +27,7 @@ export default async (app: FastifyInstance) => {
     );
 
     const url = authenticator.keyuri(user?.username, 'Fastify Starter', secret);
-    return reply.send({ message: 'Hi!', url });
+    return reply.send({ message: 'OK', url });
   });
 
   /*
@@ -60,7 +60,7 @@ export default async (app: FastifyInstance) => {
         { $set: { otpVerified: true } },
       );
 
-      return reply.send({ message: 'Hi!', isValid });
+      return reply.send({ message: 'OK', isValid });
     },
   );
 
@@ -96,7 +96,7 @@ export default async (app: FastifyInstance) => {
       const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
       const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
 
-      return reply.send({ message: 'Hi!', accessToken, refreshToken });
+      return reply.send({ message: 'OK', accessToken, refreshToken });
     },
   );
 };

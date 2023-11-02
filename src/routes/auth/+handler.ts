@@ -88,7 +88,7 @@ export default async (app: FastifyInstance) => {
         updatedAt: new Date().toISOString(),
       });
 
-      return reply.send({ message: 'Hi!' });
+      return reply.send({ message: 'OK' });
     },
   );
 
@@ -128,7 +128,7 @@ export default async (app: FastifyInstance) => {
 
       if (user.otpEnabled && user.otpVerified) {
         return reply.send({
-          message: 'Hi!',
+          message: 'OK',
           accessToken: null,
           refreshToken: null,
           otpEnabled: true,
@@ -141,7 +141,7 @@ export default async (app: FastifyInstance) => {
       const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
 
       return reply.send({
-        message: 'Hi!',
+        message: 'OK',
         accessToken,
         refreshToken,
         otpEnabled: user.otpEnabled,
@@ -179,7 +179,7 @@ export default async (app: FastifyInstance) => {
             { expiresIn: '20m' },
           );
 
-          return reply.send({ message: 'Hi!', accessToken });
+          return reply.send({ message: 'OK', accessToken });
         }
       }
 
@@ -206,7 +206,7 @@ export default async (app: FastifyInstance) => {
       { projection: { role: 1, permissions: 1 } },
     );
 
-    return reply.send({ message: 'Hi!', ...user, ...role });
+    return reply.send({ message: 'OK', ...user, ...role });
   });
 
   /*
@@ -246,7 +246,7 @@ export default async (app: FastifyInstance) => {
         updatedAt: new Date().toISOString(),
       });
 
-      return reply.send({ message: 'Hi!', messageId: info.messageId });
+      return reply.send({ message: 'OK', messageId: info.messageId });
     },
   );
 
@@ -284,7 +284,7 @@ export default async (app: FastifyInstance) => {
         { password: hashedPassword },
       );
 
-      return reply.send({ message: 'Hi!', password });
+      return reply.send({ message: 'OK', password });
     },
   );
 
@@ -311,7 +311,7 @@ export default async (app: FastifyInstance) => {
 
       if (password.trim() !== confirmPassword.trim()) return reply.badRequest();
 
-      return reply.send({ message: 'Hi!' });
+      return reply.send({ message: 'OK' });
     },
   );
 };

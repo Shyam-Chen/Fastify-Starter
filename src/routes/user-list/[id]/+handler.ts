@@ -72,7 +72,7 @@ export default async (app: FastifyInstance) => {
         text: password,
       });
 
-      return reply.send({ message: 'Hi!' });
+      return reply.send({ message: 'OK' });
     },
   );
 
@@ -119,7 +119,7 @@ export default async (app: FastifyInstance) => {
         { projection: { role: 1, permissions: 1 } },
       );
 
-      return reply.send({ message: 'Hi!', result: { ...user, ...role } });
+      return reply.send({ message: 'OK', result: { ...user, ...role } });
     },
   );
 
@@ -156,7 +156,7 @@ export default async (app: FastifyInstance) => {
       );
 
       return reply.send({
-        message: 'Hi!',
+        message: 'OK',
       });
     },
   );
