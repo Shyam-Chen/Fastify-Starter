@@ -14,7 +14,7 @@
     "doc": "cd docs && pnpm dev"
   },
   "dependencies": {
-    "@fastify/cors": "^8.4.0",
+    "@fastify/cors": "^8.4.1",
     "@fastify/helmet": "^11.1.1",
     "@fastify/jwt": "^7.2.2",
     "@fastify/mongodb": "^8.0.0",
@@ -26,8 +26,8 @@
     "@fastify/type-provider-typebox": "^3.5.0",
     "@fastify/under-pressure": "^8.3.0",
     "@fastify/websocket": "^8.2.0",
-    "@sinclair/typebox": "^0.31.20",
-    "bullmq": "^4.12.6",
+    "@sinclair/typebox": "^0.31.23",
+    "bullmq": "^4.13.1",
     "cache-manager": "^5.2.4",
     "cache-manager-ioredis-yet": "^1.2.2",
     "fastify": "^4.24.3",
@@ -45,14 +45,14 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/ioredis-mock": "^8.2.4",
-    "@types/nodemailer": "^6.4.13",
-    "@types/nunjucks": "^3.2.5",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
+    "@types/ioredis-mock": "^8.2.5",
+    "@types/nodemailer": "^6.4.14",
+    "@types/nunjucks": "^3.2.6",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "@vitest/coverage-v8": "^0.34.6",
     "concurrently": "^8.2.2",
-    "eslint": "^8.52.0",
+    "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "ioredis-mock": "^8.9.0",
@@ -63,7 +63,7 @@
     "vite": "^4.5.0",
     "vite-node": "^0.34.6",
     "vite-plugin-fastify": "^1.2.4",
-    "vite-plugin-fastify-routes": "^1.0.1",
+    "vite-plugin-fastify-routes": "^1.0.2",
     "vitest": "^0.34.6"
   }
 }
