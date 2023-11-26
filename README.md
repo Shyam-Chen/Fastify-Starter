@@ -25,20 +25,6 @@ Get started with Fastify Starter.
 # dev server
 $ pnpm install
 $ pnpm dev
-
-# mock server
-$ cd mock/requests && pnpm install && cd ../..
-$ pnpm mock
-```
-
-Or use a blank template.
-
-```sh
-$ npx degit Shyam-Chen/Starter-Templates/fastify my-fastify-project
-$ cd my-fastify-project
-
-$ pnpm install
-$ pnpm dev
 ```
 
 ## Project Setup
@@ -103,21 +89,6 @@ $ cd e2e && pnpm install && cd ..
 $ pnpm e2e
 ```
 
-### Performance metrics
-
-Files: `benchmark/**/*.spec.ts`
-
-```sh
-# Before running the `bench` command, make sure to run the following commands.
-$ pnpm build
-$ pnpm preview
-
-# If it's not installed, run it.
-$ cd benchmark && pnpm install && cd ..
-
-$ pnpm bench
-```
-
 ### Mock requests
 
 ```sh
@@ -125,17 +96,6 @@ $ pnpm bench
 $ cd mock/requests && pnpm install && cd ../..
 
 $ pnpm mock
-```
-
-### Documentation
-
-Files: `docs/**/*.md`
-
-```sh
-# If it's not installed, run it.
-$ cd docs && pnpm install && cd ..
-
-$ pnpm doc
 ```
 
 ## Key Features

@@ -5,13 +5,12 @@
   "scripts": {
     "dev": "vite-node -w src/main.ts",
     "build": "vite build",
-    "preview": "concurrently \"node dist/main.js\" \"caddy run\"",
-    "lint": "eslint 'src/**/*.ts' && tsc",
+    "preview": "node dist/main.js",
+    "lint": "eslint 'src/**/*.ts'",
+    "check": "tsc",
     "unit": "vitest --dir src --run --coverage",
     "e2e": "cd e2e && pnpm e2e",
-    "bench": "cd benchmark && pnpm bench",
-    "mock": "cd mock/requests && pnpm mock",
-    "doc": "cd docs && pnpm dev"
+    "mock": "cd mock/requests && pnpm mock"
   },
   "dependencies": {
     "@fastify/cors": "^8.4.1",
