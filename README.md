@@ -89,15 +89,6 @@ $ cd e2e && pnpm install && cd ..
 $ pnpm e2e
 ```
 
-### Mock requests
-
-```sh
-# If it's not installed, run it.
-$ cd mock/requests && pnpm install && cd ../..
-
-$ pnpm mock
-```
-
 ## Key Features
 
 This seed repository provides the following features:
