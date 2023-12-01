@@ -108,7 +108,6 @@ This seed repository provides the following features:
 - [x] [Mailer](https://github.com/nodemailer/nodemailer) - Email Sending
 - [x] [Email](https://github.com/Shyam-Chen/Email-Builder) - Email Builder
 - [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Email Rendering
-- [x] [Sheets](https://github.com/SheetJS/sheetjs) - Spreadsheet Data Toolkit
 - [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite) - Bundler

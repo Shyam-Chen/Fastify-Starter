@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import type { Row } from 'exceljs';
-import { Workbook } from 'exceljs';
+import exceljs from 'exceljs';
 
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
@@ -11,7 +11,7 @@ export default async (app: FastifyInstance) => {
 
     if (!data) return reply.badRequest();
 
-    const workbook = new Workbook();
+    const workbook = new exceljs.Workbook();
     const xlsx = await workbook.xlsx.read(data.file);
 
     const worksheet = xlsx.worksheets[0];
