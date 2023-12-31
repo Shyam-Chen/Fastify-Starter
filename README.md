@@ -116,15 +116,12 @@ This seed repository provides the following features:
 - [x] [Prettier](https://github.com/prettier/prettier) - Formatter
 - [x] [Vitest](https://github.com/vitest-dev/vitest) - Test Runner
 - [x] [Playwright](https://github.com/microsoft/playwright) - Test Automation
-- [x] [Autocannon](https://github.com/mcollina/autocannon) - Measure Performance
-- [x] [VitePress](https://vitepress.vuejs.org/) - Documentation
 - ---------- **Environments** ----------
 - [x] [Node.js](https://nodejs.org/en/) - JavaScript Runtime Environment
 - [x] [Pnpm](https://pnpm.io/) - Package Manager
-- [x] [PM2](https://pm2.keymetrics.io/) - Process Manager
 - [x] [Caddy](https://caddyserver.com/) - Web Server
 - [x] [Docker](https://www.docker.com/) - Containerized Application Development
-- [x] [CircleCI](https://circleci.com/) - Continuous Integration and Delivery
+- [x] [GitHub Actions](https://github.com/features/actions) - Continuous Integration and Delivery
 - [x] [Render](https://render.com/) - Cloud Application Hosting
 
 ### Tiny examples
@@ -151,37 +148,30 @@ Control the environment.
 Set your local environment variables.
 
 ```ts
-// env.ts
-export default {
-  NODE_ENV: process.env.NODE_ENV || 'development',
+// vite.config.ts
+  define: envify({
+    NODE_ENV: process.env.NODE_ENV || 'development',
 
-  HOST: process.env.HOST || '127.0.0.1',
-  PORT: process.env.PORT || 3000,
+    HOST: process.env.HOST || '127.0.0.1',
+    PORT: process.env.PORT || 3000,
 
-  SITE_URL: process.env.SITE_URL || 'http://127.0.0.1:5173',
+    SITE_URL: process.env.SITE_URL || 'http://127.0.0.1:5173',
 
-  MONGODB_URL: process.env.MONGODB_URL || 'xxx',
-  REDIS_URL: process.env.REDIS_URL || 'xxx',
-  CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'xxx',
-  SMTP_URL: process.env.SMTP_URL || 'xxx',
+    MONGODB_URL: process.env.MONGODB_URL || 'xxx',
+    REDIS_URL: process.env.REDIS_URL || 'xxx',
+    CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'xxx',
+    SMTP_URL: process.env.SMTP_URL || 'xxx',
 
-  SECRET_KEY: process.env.SECRET_KEY || 'xxx',
-};
+    SECRET_KEY: process.env.SECRET_KEY || 'xxx',
+  }),
 ```
 
 ### Continuous integration environments
 
-Add environment variables to the CircleCI build.
+Add environment secrets to the GitHub Actions workflow.
 
 ```sh
-# production
 DEPLOY_HOOK=xxx
-
-# development
-DEV_DEPLOY_HOOK=xxx
-
-# staging
-STAGE_DEPLOY_HOOK=xxx
 ```
 
 ### Continuous delivery environments
@@ -205,13 +195,8 @@ The structure follows the LIFT Guidelines.
 
 ```coffee
 .
-├── .circleci
-├── benchmark -> load testing
-├── docs -> api documentation
+├── .github/workflows/ci.yml
 ├── e2e -> e2e testing (Caddy Server proxy api and proxy mock api)
-├── mock
-│   ├── requests -> mock third-party api
-│   └── responses -> mock data for mock api, unit testing, and e2e testing
 ├── public -> not handled by vite, copy it to dist
 ├── src
 │   ├── assets -> wasm
@@ -234,7 +219,6 @@ The structure follows the LIFT Guidelines.
 ├── Caddyfile
 ├── docker-compose.yml
 ├── Dockerfile
-├── LICENSE
 ├── package.json
 ├── pnpm-lock.yaml
 ├── README.md
