@@ -26,7 +26,10 @@ export default async (app: FastifyInstance) => {
       await paintQueue.add(
         'wall',
         { color: req.query.color },
-        // { repeat: { pattern: '45 * * * * *' } },
+        {
+          removeOnComplete: true,
+          // repeat: { pattern: '45 * * * * *' },
+        },
       );
 
       return reply.send({ message: 'OK' });
@@ -51,9 +54,16 @@ export default async (app: FastifyInstance) => {
   );
 };
 
-useWorker('Paint', async (job) => {
-  console.log('[Paint] Starting job:', job.name);
-  console.log(job.id, job.name, job.data);
-  console.log('[Paint] Finished job:', job.name);
-  return;
-});
+useWorker(
+  'Paint',
+  async (job) => {
+    console.log('[Paint] Starting job:', job.name);
+    console.log(job.id, job.name, job.data);
+    console.log('[Paint] Finished job:', job.name);
+    return;
+  },
+  {
+    removeOnComplete: { count: 0 },
+    removeOnFail: { count: 0 },
+  },
+);
