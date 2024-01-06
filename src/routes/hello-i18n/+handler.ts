@@ -2,18 +2,8 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 import { defineI18n, useI18n } from 'fastify-i18n';
 
-import enUS from './locales/en-US';
-import jaJP from './locales/ja-JP';
-import koKR from './locales/ko-KR';
-import zhTW from './locales/zh-TW';
-
 export default (async (app) => {
-  defineI18n(app, {
-    'en-US': enUS,
-    'ja-JP': jaJP,
-    'ko-KR': koKR,
-    'zh-TW': zhTW,
-  });
+  defineI18n(app, import.meta.glob(['./locales/*.ts'], { eager: true }));
 
   /*
   curl --request GET \
