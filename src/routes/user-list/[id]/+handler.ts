@@ -6,8 +6,9 @@ import pbkdf2 from 'pbkdf2-passworder';
 // import nunjucks from 'nunjucks';
 
 import useMailer from '~/composables/useMailer';
-import auth from '~/middleware/auth';
 // import accountOpening from '~/templates/accountOpening.html?raw';
+
+import { UserBox, RoleBox } from '../schema';
 
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
@@ -15,7 +16,6 @@ export default async (app: FastifyInstance) => {
   router.post(
     '',
     {
-      onRequest: [auth],
       schema: {
         params: Type.Object({ id: Type.Literal('new') }),
         body: Type.Object({
@@ -76,25 +76,9 @@ export default async (app: FastifyInstance) => {
     },
   );
 
-  const UserBox = Type.Object({
-    _id: Type.String(),
-    username: Type.String(),
-    email: Type.String({ format: 'email' }),
-    fullName: Type.String(),
-    status: Type.Boolean(),
-    otpEnabled: Type.Boolean(),
-    otpVerified: Type.Boolean(),
-  });
-
-  const RoleBox = Type.Object({
-    role: Type.String(),
-    permissions: Type.Array(Type.Any()),
-  });
-
   router.get(
     '',
     {
-      onRequest: [auth],
       schema: {
         params: Type.Object({ id: Type.String() }),
         response: {
@@ -126,7 +110,6 @@ export default async (app: FastifyInstance) => {
   router.put(
     '',
     {
-      onRequest: [auth],
       schema: {
         params: Type.Object({ id: Type.String() }),
         body: UserBox,

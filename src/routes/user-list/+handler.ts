@@ -1,8 +1,10 @@
 import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import { Type } from '@sinclair/typebox';
 
 import useTableControl from '~/composables/useTableControl';
-import auth from '~/middleware/auth';
+
+import { UserBox, RoleBox } from './schema';
 
 export default async (app: FastifyInstance) => {
   const router = app.withTypeProvider<TypeBoxTypeProvider>();
@@ -10,7 +12,16 @@ export default async (app: FastifyInstance) => {
   router.post(
     '',
     {
-      onRequest: [auth],
+      schema: {
+        params: Type.Object({ id: Type.String() }),
+        response: {
+          200: Type.Object({
+            message: Type.String(),
+            result: Type.Array(Type.Intersect([Type.Partial(UserBox), Type.Partial(RoleBox)])),
+            total: Type.Number(),
+          }),
+        },
+      },
     },
     async (req, reply) => {
       const users = app.mongo.db?.collection('users');
