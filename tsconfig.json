@@ -8,11 +8,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "~/*": ["src/*"],
-      "responses/*": ["mock/responses/*"]
+      "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "vitest"],
+    "types": ["vite/client", "vitest/globals"],
 
     "noEmit": true,
 
@@ -28,5 +27,5 @@
 
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist", "coverage", "e2e", "benchmark", "mock", "docs"]
+  "exclude": ["node_modules", "dist", "coverage", "e2e"]
 }

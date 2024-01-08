@@ -196,6 +196,8 @@ The structure follows the LIFT Guidelines.
 ```coffee
 .
 ├── .github/workflows/ci.yml
+├── api -> mock a third-party api calls
+├── db -> set up local data for testing and initializing the database
 ├── e2e -> e2e testing (Caddy Server proxy api and proxy mock api)
 ├── public -> not handled by vite, copy it to dist
 ├── src
