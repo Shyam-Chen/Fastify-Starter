@@ -22,6 +22,11 @@ Prerequisites:
 Get started with Fastify Starter.
 
 ```sh
+# redis server
+$ docker compose up -d redis
+```
+
+```sh
 # dev server
 $ pnpm install
 $ pnpm dev
