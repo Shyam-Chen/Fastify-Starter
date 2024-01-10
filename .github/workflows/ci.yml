@@ -15,7 +15,7 @@ jobs:
       - name: Build the Docker image
         run: docker compose up --build --detach ci
       - name: redis
-        run: docker compose up --detach redis
+        run: docker compose up --build --detach redis
       - name: pnpm build
         run: docker compose exec --no-TTY ci pnpm build
       - name: pnpm preview
