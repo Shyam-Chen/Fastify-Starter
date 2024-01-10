@@ -13,9 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build the Docker image
-        run: docker compose up --build --detach ci
-      - name: redis
-        run: docker compose up --build --detach redis
+        run: docker compose up --build --detach ci redis
       - name: pnpm build
         run: docker compose exec --no-TTY ci pnpm build
       - name: pnpm preview
