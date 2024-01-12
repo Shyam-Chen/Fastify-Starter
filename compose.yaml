@@ -11,6 +11,8 @@ services:
       - redis
     depends_on:
       - redis
+    networks:
+      - back-tier
 
   app:
     image: app
@@ -33,11 +35,16 @@ services:
   redis:
     restart: always
     image: redis:alpine
-    command: redis-server --save 60 1 --loglevel warning
+    command: redis-server --bind redis --port 6379 --save 60 1 --loglevel warning
     ports:
       - 6379:6379
     volumes:
       - redis-data:/data
+    networks:
+      - back-tier
+
+networks:
+  back-tier:
 
 volumes:
   caddy_data:

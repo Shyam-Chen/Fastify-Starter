@@ -23,7 +23,7 @@ Get started with Fastify Starter.
 
 ```sh
 # redis server
-$ docker compose up -d redis
+$ brew services start redis
 ```
 
 ```sh
