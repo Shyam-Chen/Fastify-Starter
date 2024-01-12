@@ -13,6 +13,8 @@ services:
       - redis
     networks:
       - back-tier
+    environment:
+      - REDIS_URL=redis://redis:6379
 
   app:
     image: app
@@ -22,7 +24,7 @@ services:
     ports:
       - 3000:3000
 
-  server:
+  caddy:
     image: caddy:2-alpine
     ports:
       - 80:80

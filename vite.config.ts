@@ -16,7 +16,7 @@ export default defineConfig({
     MONGODB_URL:
       process.env.MONGODB_URL ||
       'mongodb+srv://fastify:starter@cluster0.tes26sm.mongodb.net/mydb?retryWrites=true&w=majority',
-    REDIS_URL: process.env.REDIS_URL || 'redis://redis:6379',
+    REDIS_URL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
     CLOUDINARY_URL:
       process.env.CLOUDINARY_URL ||
       'cloudinary://636761771455612:nBBydtdox8huZPXHHsxgKFDkiUU@dfi8gex0k',
