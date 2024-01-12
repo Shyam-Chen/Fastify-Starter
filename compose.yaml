@@ -9,6 +9,8 @@ services:
     tty: true
     links:
       - redis
+    depends_on:
+      - redis
 
   app:
     image: app
