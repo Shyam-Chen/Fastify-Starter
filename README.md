@@ -16,6 +16,7 @@
 
 Prerequisites:
 
+- Docker v24
 - Node.js v20
 - PNPM v8
 
@@ -23,7 +24,7 @@ Get started with Fastify Starter.
 
 ```sh
 # redis server
-$ brew services start redis
+$ docker compose up -d local-redis
 ```
 
 ```sh

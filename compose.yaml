@@ -16,21 +16,17 @@ services:
     environment:
       - REDIS_URL=redis://redis:6379
 
-  app:
-    image: app
-    build:
-      context: .
-      dockerfile: .circleci/Dockerfile
-    ports:
-      - 3000:3000
-
   caddy:
-    image: caddy:2-alpine
+    image: caddy:2.7-alpine
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
     ports:
-      - 80:80
-      - 443:443
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
     volumes:
-      - .circleci/Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
 
@@ -44,6 +40,15 @@ services:
       - redis-data:/data
     networks:
       - back-tier
+
+  local-redis:
+    restart: always
+    image: redis:alpine
+    command: redis-server --save 60 1 --loglevel warning
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
 
 networks:
   back-tier:
