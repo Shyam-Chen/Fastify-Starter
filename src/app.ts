@@ -11,6 +11,7 @@ import underPressure from '@fastify/under-pressure';
 import cloudinary from 'fastify-cloudinary';
 import { FastifySSEPlugin as eventsource } from 'fastify-sse-v2';
 
+import error from '~/plugins/error';
 import router from '~/plugins/router';
 import i18n from '~/plugins/i18n';
 import redisInstance from '~/utilities/redisInstance';
@@ -24,8 +25,6 @@ export default () => {
     },
   });
 
-  app.register(import('./error'));
-
   app.register(cors, { origin: new RegExp(process.env.SITE_URL, 'gi') });
   app.register(helmet);
   app.register(rateLimit, { max: 100 });
@@ -38,6 +37,7 @@ export default () => {
   app.register(cloudinary, { url: process.env.CLOUDINARY_URL });
   app.register(eventsource);
 
+  app.register(error);
   app.register(router);
   app.register(i18n);
 
