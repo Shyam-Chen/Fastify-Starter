@@ -13,7 +13,6 @@ export default async (app: FastifyInstance) => {
     '',
     {
       schema: {
-        params: Type.Object({ id: Type.String() }),
         response: {
           200: Type.Object({
             message: Type.String(),
