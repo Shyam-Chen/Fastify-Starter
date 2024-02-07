@@ -3,12 +3,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite-node -w src/main.ts",
-    "mock": "cd api && pnpm mock",
+    "mock": "cd mock && pnpm mock",
     "build": "vite build",
-    "preview": "node dist/main.js",
+    "preview": "vite preview",
     "lint": "eslint 'src/**/*.ts'",
-    "check": "tsc",
-    "test": "vitest --dir src --run --coverage",
+    "check": "tsc --noEmit",
+    "test": "vitest --dir src --coverage --run",
     "e2e": "cd e2e && pnpm e2e"
   },
   "dependencies": {

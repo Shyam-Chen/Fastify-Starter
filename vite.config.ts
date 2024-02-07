@@ -41,4 +41,7 @@ export default defineConfig({
   build: {
     ssrEmitAssets: true,
   },
+  test: {
+    globals: true,
+  },
 });

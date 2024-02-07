@@ -13,7 +13,7 @@ services:
       - key: PORT
         value: 10000
       - key: SITE_URL
-        value: onrender.com
+        sync: false
       - key: MONGODB_URL
         sync: false
       - key: REDIS_URL

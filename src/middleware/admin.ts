@@ -15,6 +15,6 @@ export default (app: FastifyInstance) => {
       { projection: { role: 1, permissions: 1 } },
     );
 
-    if (role?.role !== 'admin') return reply.notFound();
+    if (role?.role !== 'admin') return reply.forbidden();
   };
 };

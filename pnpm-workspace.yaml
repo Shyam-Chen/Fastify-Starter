@@ -1,5 +1,5 @@
 packages:
   - '.'
   # - 'db'
-  # - 'api'
+  # - 'mock'
   - 'e2e'
