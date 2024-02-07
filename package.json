@@ -1,5 +1,4 @@
 {
-  "name": "fastify-starter",
   "private": true,
   "type": "module",
   "scripts": {

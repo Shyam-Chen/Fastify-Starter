@@ -1,6 +1,6 @@
 # Fastify Starter
 
-:leopard: A boilerplate for Node.js, Fastify, TypeScript, Vite, Playwright, and Render.
+:leopard: A boilerplate for API Server with Node.js, Fastify, and MongoDB on Vite.
 
 :rainbow: [Live Demo](https://fastify-starter-12ih.onrender.com) - The client application is [here](https://github.com/Shyam-Chen/Vue-Starter).
 
@@ -72,12 +72,20 @@ Files: `src/**/*.ts`
 $ pnpm lint
 ```
 
+### Check types
+
+Files: `src/**/*.ts`
+
+```sh
+$ pnpm check
+```
+
 ### Runs unit tests
 
 Files: `src/**/*.spec.ts`
 
 ```sh
-$ pnpm unit
+$ pnpm test
 ```
 
 ### Runs end-to-end tests
@@ -202,9 +210,9 @@ The structure follows the LIFT Guidelines.
 ```coffee
 .
 ├── .github/workflows/ci.yml
-├── api -> mock a third-party api calls
 ├── db -> set up local data for testing and initializing the database
 ├── e2e -> e2e testing (Caddy Server proxy api and proxy mock api)
+├── mock -> mock a third-party api calls
 ├── public -> not handled by vite, copy it to dist
 ├── src
 │   ├── assets -> wasm
@@ -225,7 +233,7 @@ The structure follows the LIFT Guidelines.
 ├── .gitignore
 ├── .prettierrc
 ├── Caddyfile
-├── docker-compose.yml
+├── compose.yaml
 ├── Dockerfile
 ├── package.json
 ├── pnpm-lock.yaml
