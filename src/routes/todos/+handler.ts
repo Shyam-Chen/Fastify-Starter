@@ -56,14 +56,15 @@ export default async (app: FastifyInstance) => {
 
       const queryConditions = { ...queryTitle, ...queryCompleted };
 
-      const result = await todos
-        ?.find<TodoItem>(queryConditions)
-        .sort(field, direction)
-        .limit(rows)
-        .skip(rows * (page - 1))
-        .toArray();
-
-      const total = await todos?.countDocuments(queryConditions);
+      const [result, total] = await Promise.all([
+        todos
+          ?.find<TodoItem>(queryConditions)
+          .sort(field, direction)
+          .limit(rows)
+          .skip(rows * (page - 1))
+          .toArray(),
+        todos?.countDocuments(queryConditions),
+      ]);
 
       return reply.send({ message: 'OK', result: result || [], total: total || 0 });
     },
