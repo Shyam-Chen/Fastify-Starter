@@ -1,15 +1,12 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
 import useTableControl from '~/composables/useTableControl';
 
 import { UserBox, RoleBox } from './schema';
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
-  router.post(
+export default (async (app) => {
+  app.post(
     '',
     {
       schema: {
@@ -46,4 +43,4 @@ export default async (app: FastifyInstance) => {
       });
     },
   );
-};
+}) as FastifyPluginAsyncTypebox;

@@ -1,5 +1,4 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import type { ObjectId } from '@fastify/mongodb';
 import { Type } from '@sinclair/typebox';
 
@@ -17,10 +16,8 @@ const response = {
   ),
 };
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
-  router.get('', { schema: { querystring, response } }, async (req, reply) => {
+export default (async (app) => {
+  app.get('', { schema: { querystring, response } }, async (req, reply) => {
     const { value, category = 'suggestions' } = req.query;
 
     const col = app.mongo.db?.collection(category);
@@ -37,4 +34,4 @@ export default async (app: FastifyInstance) => {
 
     return reply.send(result);
   });
-};
+}) as FastifyPluginAsyncTypebox;

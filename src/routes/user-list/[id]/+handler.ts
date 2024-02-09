@@ -1,5 +1,4 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type, Static } from '@sinclair/typebox';
 import generatePassword from 'generate-password';
 import pbkdf2 from 'pbkdf2-passworder';
@@ -10,10 +9,8 @@ import useMailer from '~/composables/useMailer';
 
 import { UserBox, RoleBox } from '../schema';
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
-  router.post(
+export default (async (app) => {
+  app.post(
     '',
     {
       schema: {
@@ -76,7 +73,7 @@ export default async (app: FastifyInstance) => {
     },
   );
 
-  router.get(
+  app.get(
     '',
     {
       schema: {
@@ -107,7 +104,7 @@ export default async (app: FastifyInstance) => {
     },
   );
 
-  router.put(
+  app.put(
     '',
     {
       schema: {
@@ -143,4 +140,4 @@ export default async (app: FastifyInstance) => {
       });
     },
   );
-};
+}) as FastifyPluginAsyncTypebox;

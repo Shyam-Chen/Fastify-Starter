@@ -1,5 +1,4 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 import { randomUUID } from 'crypto';
 import { authenticator } from 'otplib';
@@ -7,8 +6,7 @@ import pbkdf2 from 'pbkdf2-passworder';
 
 import auth from '~/middleware/auth';
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
+export default (async (app) => {
   const users = app.mongo.db?.collection('users');
 
   /*
@@ -16,7 +14,7 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/auth/otp/setup \
     --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
-  router.get('/setup', { onRequest: [auth] }, async (req, reply) => {
+  app.get('/setup', { onRequest: [auth] }, async (req, reply) => {
     const user = await users?.findOne({ username: { $eq: req.user.username } });
 
     const secret = authenticator.generateSecret();
@@ -37,7 +35,7 @@ export default async (app: FastifyInstance) => {
     --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
     --data '{ "code": "469457" }'
   */
-  router.post(
+  app.post(
     '/verify',
     {
       onRequest: [auth],
@@ -70,7 +68,7 @@ export default async (app: FastifyInstance) => {
     --header 'Content-Type: application/json' \
     --data '{ "code": "469457", "username": "shyam.chen", "password": "12345678" }'
   */
-  router.post(
+  app.post(
     '/validate',
     {
       schema: {
@@ -99,4 +97,4 @@ export default async (app: FastifyInstance) => {
       return reply.send({ message: 'OK', accessToken, refreshToken });
     },
   );
-};
+}) as FastifyPluginAsyncTypebox;

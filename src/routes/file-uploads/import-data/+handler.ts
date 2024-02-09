@@ -1,12 +1,9 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import type { Row } from 'exceljs';
 import exceljs from 'exceljs';
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
-  router.post('', async (req, reply) => {
+export default (async (app) => {
+  app.post('', async (req, reply) => {
     const data = await req.file();
 
     if (!data) return reply.badRequest();
@@ -26,4 +23,4 @@ export default async (app: FastifyInstance) => {
 
     return reply.send({ message: 'OK', result });
   });
-};
+}) as FastifyPluginAsyncTypebox;

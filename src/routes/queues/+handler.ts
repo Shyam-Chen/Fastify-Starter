@@ -1,5 +1,4 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
 import useQueue from '~/composables/useQueue';
@@ -7,14 +6,12 @@ import useWorker from '~/composables/useWorker';
 
 const paintQueue = useQueue('Paint');
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
+export default (async (app) => {
   /*
   curl --request GET \
     --url http://127.0.0.1:3000/api/queues?color=blue
   */
-  router.get(
+  app.get(
     '',
     {
       schema: {
@@ -40,7 +37,7 @@ export default async (app: FastifyInstance) => {
   curl --request GET \
     --url http://127.0.0.1:3000/api/queues/drain
   */
-  router.get(
+  app.get(
     '/drain',
     {
       schema: {
@@ -52,7 +49,7 @@ export default async (app: FastifyInstance) => {
       return reply.send({ message: 'OK' });
     },
   );
-};
+}) as FastifyPluginAsyncTypebox;
 
 useWorker(
   'Paint',

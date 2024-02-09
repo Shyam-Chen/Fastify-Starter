@@ -1,5 +1,4 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Static, Type } from '@sinclair/typebox';
 import { randomUUID } from 'crypto';
 import pbkdf2 from 'pbkdf2-passworder';
@@ -23,8 +22,7 @@ declare module '@fastify/jwt' {
   }
 }
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
+export default (async (app) => {
   const users = app.mongo.db?.collection('users');
   const roles = app.mongo.db?.collection('roles');
   const sessions = app.mongo.db?.collection('sessions');
@@ -42,7 +40,7 @@ export default async (app: FastifyInstance) => {
       "fullName": "Shyam Chen"
     }'
   */
-  router.post(
+  app.post(
     '/sign-up',
     {
       schema: {
@@ -101,7 +99,7 @@ export default async (app: FastifyInstance) => {
       "password": "12345678"
     }'
   */
-  router.post(
+  app.post(
     '/sign-in',
     {
       schema: {
@@ -156,7 +154,7 @@ export default async (app: FastifyInstance) => {
     --header 'content-type: application/json' \
     --data '{ "accessToken": "xxx", "refreshToken": "xxx" }'
   */
-  router.post(
+  app.post(
     '/token',
     {
       schema: {
@@ -195,7 +193,7 @@ export default async (app: FastifyInstance) => {
     --url http://127.0.0.1:3000/api/auth/user \
     --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
-  router.get('/user', { onRequest: [auth] }, async (req, reply) => {
+  app.get('/user', { onRequest: [auth] }, async (req, reply) => {
     const user = await users?.findOne(
       { username: { $eq: req.user.username } },
       { projection: { password: 0, secret: 0 } },
@@ -215,7 +213,7 @@ export default async (app: FastifyInstance) => {
     --header 'content-type: application/json' \
     --data '{ "email": "shyam.chen@example.com" }'
   */
-  router.post(
+  app.post(
     '/reset-password/send',
     {
       schema: {
@@ -256,7 +254,7 @@ export default async (app: FastifyInstance) => {
     --header 'content-type: application/json' \
     --data '{ "code": "325198", "messageId": "xxx", "email": "shyam.chen@example.com" }'
   */
-  router.post(
+  app.post(
     '/reset-password/validate',
     {
       schema: {
@@ -295,7 +293,7 @@ export default async (app: FastifyInstance) => {
     --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
     --data '{ "password": "qwerty123", "confirmPassword": "qwerty123" }'
   */
-  router.post(
+  app.post(
     '/reset-password/change',
     {
       onRequest: [auth],
@@ -314,4 +312,4 @@ export default async (app: FastifyInstance) => {
       return reply.send({ message: 'OK' });
     },
   );
-};
+}) as FastifyPluginAsyncTypebox;

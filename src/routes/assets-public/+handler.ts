@@ -1,5 +1,4 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 // import ort from 'onnxruntime-node';
 // import { ofetch } from 'ofetch';
 
@@ -9,14 +8,12 @@ import logo_png from '~/assets/logo.png';
 import useAssets from '~/composables/useAssets';
 import usePublic from '~/composables/usePublic';
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
+export default (async (app) => {
   /*
   curl --request GET \
     --url http://127.0.0.1:3000/api/assets-public
   */
-  router.get('', async (req, reply) => {
+  app.get('', async (req, reply) => {
     const logo_png_buffer = useAssets(logo_png);
     const libm_wasm_buffer = useAssets(libm_wasm);
     const libmBuf = usePublic('libm.wasm');
@@ -42,7 +39,7 @@ export default async (app: FastifyInstance) => {
   curl --request GET \
     --url http://127.0.0.1:3000/api/assets-public/onnx
   */
-  // router.get('/onnx', async (req, reply) => {
+  // app.get('/onnx', async (req, reply) => {
   //   const url = app.cloudinary.url('model_dbz1oh.onnx', { resource_type: 'raw' });
   //   const response = await ofetch(url, { method: 'GET' });
   //   const model_onnx_buffer = await response.arrayBuffer();
@@ -82,7 +79,7 @@ export default async (app: FastifyInstance) => {
     --header 'content-type: application/json' \
     --data '{}'
   */
-  // router.post('/onnx/mnist', async (req, reply) => {
+  // app.post('/onnx/mnist', async (req, reply) => {
   //   // req.file
 
   //   const url = app.cloudinary.url('mnist-12-int8_ieepvf.onnx', { resource_type: 'raw' });
@@ -106,4 +103,4 @@ export default async (app: FastifyInstance) => {
 
   //   return reply.send({});
   // });
-};
+}) as FastifyPluginAsyncTypebox;

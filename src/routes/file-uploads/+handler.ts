@@ -1,14 +1,11 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import stream from 'stream';
 import util from 'util';
 
 const pipeline = util.promisify(stream.pipeline);
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
-  router.post('', async (req, reply) => {
+export default (async (app) => {
+  app.post('', async (req, reply) => {
     const data = await req.file();
 
     if (data) {
@@ -23,7 +20,7 @@ export default async (app: FastifyInstance) => {
     return reply.badRequest();
   });
 
-  router.get('', async (req, reply) => {
+  app.get('', async (req, reply) => {
     return reply.send({ url: app.cloudinary.url('userfile') });
   });
-};
+}) as FastifyPluginAsyncTypebox;

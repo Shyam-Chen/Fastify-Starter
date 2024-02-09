@@ -1,5 +1,4 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
 import useTableControl, { TableControlBox } from '~/composables/useTableControl';
@@ -7,16 +6,14 @@ import useTableControl, { TableControlBox } from '~/composables/useTableControl'
 import type { TodoItem } from './types';
 import { body, message, entity } from './schema';
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
-
+export default (async (app) => {
   /*
   curl --request POST \
     --url http://127.0.0.1:3000/api/todos \
     --header 'content-type: application/json' \
     --data '{}' | json_pp
   */
-  router.post(
+  app.post(
     '',
     {
       schema: {
@@ -69,4 +66,4 @@ export default async (app: FastifyInstance) => {
       return reply.send({ message: 'OK', result: result || [], total: total || 0 });
     },
   );
-};
+}) as FastifyPluginAsyncTypebox;

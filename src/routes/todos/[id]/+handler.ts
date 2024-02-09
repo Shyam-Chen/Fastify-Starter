@@ -1,12 +1,10 @@
-import type { FastifyInstance } from 'fastify';
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
 import type { TodoItem } from '../types';
 import { params, message, entity } from '../schema';
 
-export default async (app: FastifyInstance) => {
-  const router = app.withTypeProvider<TypeBoxTypeProvider>();
+export default (async (app) => {
   const todos = app.mongo.db?.collection('todos');
 
   /*
@@ -17,7 +15,7 @@ export default async (app: FastifyInstance) => {
       "title": "foo"
     }'
   */
-  router.post(
+  app.post(
     '',
     {
       schema: {
@@ -45,7 +43,7 @@ export default async (app: FastifyInstance) => {
   curl --request GET \
     --url http://127.0.0.1:3000/api/todos/634787af6d44cfba9c0df8ea
   */
-  router.get(
+  app.get(
     '',
     {
       schema: {
@@ -71,7 +69,7 @@ export default async (app: FastifyInstance) => {
       "completed": true
     }'
   */
-  router.put(
+  app.put(
     '',
     {
       schema: {
@@ -104,7 +102,7 @@ export default async (app: FastifyInstance) => {
   curl --request DELETE \
     --url http://127.0.0.1:3000/api/todos/634516681a8fd0d3cd9791f1
   */
-  router.delete(
+  app.delete(
     '',
     {
       schema: {
@@ -117,4 +115,4 @@ export default async (app: FastifyInstance) => {
       return reply.send({ message: 'OK' });
     },
   );
-};
+}) as FastifyPluginAsyncTypebox;
