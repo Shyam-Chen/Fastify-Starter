@@ -1,26 +1,51 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import stream from 'stream';
 import util from 'util';
+import { Type } from '@sinclair/typebox';
 
 const pipeline = util.promisify(stream.pipeline);
 
 export default (async (app) => {
-  app.post('', async (req, reply) => {
-    const data = await req.file();
+  app.post(
+    '',
+    {
+      schema: {
+        response: {
+          '2xx': {
+            message: Type.String(),
+            url: Type.String(),
+          },
+        },
+      },
+    },
+    async (req, reply) => {
+      const data = await req.file();
 
-    if (data) {
+      if (!data) return reply.badRequest();
+
       await pipeline(
         data.file,
         app.cloudinary.uploader.upload_stream({ public_id: data.fieldname }),
       );
 
-      return reply.send({ message: 'hi', url: app.cloudinary.url(data.fieldname) });
-    }
+      return reply.send({ message: 'OK', url: app.cloudinary.url(data.fieldname) });
+    },
+  );
 
-    return reply.badRequest();
-  });
-
-  app.get('', async (req, reply) => {
-    return reply.send({ url: app.cloudinary.url('userfile') });
-  });
+  app.get(
+    '',
+    {
+      schema: {
+        response: {
+          '2xx': {
+            message: Type.String(),
+            url: Type.String(),
+          },
+        },
+      },
+    },
+    async (req, reply) => {
+      return reply.send({ message: 'OK', url: app.cloudinary.url('userfile') });
+    },
+  );
 }) as FastifyPluginAsyncTypebox;
