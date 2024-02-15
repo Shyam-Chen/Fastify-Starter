@@ -157,6 +157,12 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
 
+  db:
+    dependencies:
+      date-fns:
+        specifier: ^3.3.1
+        version: 3.3.1
+
   e2e:
     devDependencies:
       '@playwright/test':
@@ -165,6 +171,31 @@ importers:
       '@types/node':
         specifier: ^20.11.17
         version: 20.11.17
+
+  mock:
+    dependencies:
+      '@fastify/one-line-logger':
+        specifier: ^1.2.0
+        version: 1.2.0
+      fastify:
+        specifier: ^4.26.0
+        version: 4.26.1
+      fastify-plugin:
+        specifier: ^4.5.1
+        version: 4.5.1
+    devDependencies:
+      process-envify:
+        specifier: ^2.0.0
+        version: 2.0.0
+      vite:
+        specifier: ^5.1.1
+        version: 5.1.2
+      vite-plugin-fastify:
+        specifier: ^1.2.5
+        version: 1.2.5
+      vite-plugin-fastify-routes:
+        specifier: ^1.1.0
+        version: 1.1.0
 
 packages:
 
@@ -1789,6 +1820,10 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.5
     dev: true
+
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
+    dev: false
 
   /dateformat@4.6.3:
     resolution: {integrity: sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==}

@@ -211,8 +211,8 @@ The structure follows the LIFT Guidelines.
 .
 ├── .github/workflows/ci.yml
 ├── db -> set up local data for testing and initializing the database
-├── e2e -> e2e testing (Caddy Server proxy api and proxy mock api)
-├── mock -> mock a third-party api calls
+├── e2e
+├── mock -> mock a third-party/private api calls
 ├── public -> not handled by vite, copy it to dist
 ├── src
 │   ├── assets -> wasm
