@@ -151,7 +151,7 @@ This seed repository provides the following features:
 - [x] [Internationalization](./src/routes/hello-i18n)
 - [x] [Background Workers](./src/routes/queues)
 - [x] [Cron Jobs](./src/routes/queues)
-- [x] [Caching](./src/routes/hello-world/caching)
+- [x] [Caching](./src/routes/hello-world/caching-memory)
 
 ## Configuration
 
