@@ -47,15 +47,15 @@ importers:
       '@sinclair/typebox':
         specifier: ^0.32.14
         version: 0.32.14
+      '@tirke/node-cache-manager-ioredis':
+        specifier: ^3.6.0
+        version: 3.6.0
       bullmq:
         specifier: ^5.1.11
         version: 5.1.11
       cache-manager:
         specifier: ^5.4.0
         version: 5.4.0
-      cache-manager-ioredis-yet:
-        specifier: ^1.2.2
-        version: 1.2.2
       exceljs:
         specifier: ^4.4.0
         version: 4.4.0
@@ -996,6 +996,15 @@ packages:
     resolution: {integrity: sha512-EC77Mw8huT2z9YlYbWfpIQgN6shZE1tH4NP4/Trig8UBel9FZNMZRJ42ubJI8PLor2uIU+waLml1dce5ReCOPg==}
     dev: false
 
+  /@tirke/node-cache-manager-ioredis@3.6.0:
+    resolution: {integrity: sha512-PmTZ3M8mEo9qSrKJBPF3Bj47A6GIJ9LumnT1gDnbov2D4ZHn40Z77On4/sbSo8lAeKnGiJNyif9juT/IyLvVFQ==}
+    engines: {node: '>=14.20'}
+    dependencies:
+      ioredis: 5.3.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
     dev: true
@@ -1612,16 +1621,6 @@ packages:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
     dev: true
-
-  /cache-manager-ioredis-yet@1.2.2:
-    resolution: {integrity: sha512-o03N/tQxfFONZ1XLGgIxOFHuQQpjpRdnSAL1THG1YWZIVp1JMUfjU3ElSAjFN1LjbJXa55IpC8waG+VEoLUCUw==}
-    engines: {node: '>= 16.17.0'}
-    dependencies:
-      cache-manager: 5.4.0
-      ioredis: 5.3.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /cache-manager@5.4.0:
     resolution: {integrity: sha512-FS7o8vqJosnLpu9rh2gQTo8EOzCRJLF1BJ4XDEUDMqcfvs7SJZs5iuoFTXLauzQ3S5v8sBAST1pCwMaurpyi1A==}
