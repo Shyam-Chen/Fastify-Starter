@@ -1,4 +1,6 @@
-db.test.insertMany([
+db.createCollection('todos');
+
+db.insertMany([
   {
     title: 'Node.js',
   },

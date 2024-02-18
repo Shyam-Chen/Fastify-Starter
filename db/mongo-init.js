@@ -4,8 +4,8 @@ db.auth(process.env.MONGO_INITDB_ROOT_USERNAME, process.env.MONGO_INITDB_ROOT_PA
 db = db.getSiblingDB(process.env.MONGO_INITDB_DATABASE);
 
 db.createUser({
-  user: process.env.MONGO_USER,
-  pwd: process.env.MONGO_PASSWORD,
+  user: process.env.MONGO_INITDB_ROOT_USERNAME,
+  pwd: process.env.MONGO_INITDB_ROOT_PASSWORD,
   roles: [
     {
       role: 'readWrite',
@@ -15,7 +15,5 @@ db.createUser({
 });
 
 db = new Mongo().getDB(process.env.MONGO_INITDB_DATABASE);
-
-db.createCollection(process.env.MAIN_DB_COLLECTION);
 
 load('./src/todos.js');

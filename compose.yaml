@@ -41,6 +41,19 @@ services:
     networks:
       - back-tier
 
+  local-mongo:
+    image: mongo:7
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpasswd
+      MONGO_INITDB_DATABASE: mydb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data
+      - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
   local-redis:
     restart: always
     image: redis:alpine
@@ -56,4 +69,5 @@ networks:
 volumes:
   caddy_data:
   caddy_config:
+  mongo-data:
   redis-data:
