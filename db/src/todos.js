@@ -1,5 +1,3 @@
-// db = connect('mongodb://root:rootpasswd@127.0.0.1:27017/mydb?retryWrites=true&w=majority');
-
 db.createCollection('todos');
 
 db.todos.insertMany([
