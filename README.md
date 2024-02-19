@@ -142,7 +142,7 @@ This seed repository provides the following features:
 
 - [x] [Hello World](./src/routes/hello-world)
 - [x] [CRUD Operations](./src/routes/todos)
-- [x] [Authentication](./src/routes/auth)
+- [x] [JWT Authentication](./src/routes/auth)
 - [x] [One-time Password](./src/routes/auth/otp)
 - [x] [File Uploads](./src/routes/file-uploads)
 - [x] [Real-time Data](./src/routes/echo)
@@ -152,6 +152,7 @@ This seed repository provides the following features:
 - [x] [Background Workers](./src/routes/queues)
 - [x] [Cron Jobs](./src/routes/queues)
 - [x] [Caching](./src/routes/hello-world/caching-memory)
+- [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-memory)
 
 ## Configuration
 
