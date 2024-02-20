@@ -8,12 +8,15 @@ services:
       - 3000:3000
     tty: true
     links:
+      - mongo
       - redis
     depends_on:
+      - mongo
       - redis
     networks:
       - back-tier
     environment:
+      - MONGODB_URL=mongodb://root:rootpasswd@mongo:27017/mydb
       - REDIS_URL=redis://redis:6379
 
   caddy:
@@ -29,6 +32,21 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+
+  mongo:
+    image: mongo:7
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpasswd
+      MONGO_INITDB_DATABASE: mydb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data
+      - ./db:/docker-entrypoint-initdb.d:ro
+    networks:
+      - back-tier
 
   redis:
     restart: always

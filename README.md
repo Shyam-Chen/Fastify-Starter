@@ -23,6 +23,11 @@ Prerequisites:
 Get started with Fastify Starter.
 
 ```sh
+# mongo server
+$ docker compose up -d local-mongo
+```
+
+```sh
 # redis server
 $ docker compose up -d local-redis
 ```

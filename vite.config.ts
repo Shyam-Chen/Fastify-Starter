@@ -13,9 +13,7 @@ export default defineConfig({
 
     SITE_URL: process.env.SITE_URL || 'http://127.0.0.1:5173',
 
-    MONGODB_URL:
-      process.env.MONGODB_URL ||
-      'mongodb+srv://fastify:starter@cluster0.tes26sm.mongodb.net/mydb?retryWrites=true&w=majority',
+    MONGODB_URL: process.env.MONGODB_URL || 'mongodb://root:rootpasswd@127.0.0.1:27017/mydb',
     REDIS_URL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
     CLOUDINARY_URL:
       process.env.CLOUDINARY_URL ||
