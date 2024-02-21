@@ -179,12 +179,12 @@ Set your local environment variables.
 
     SITE_URL: process.env.SITE_URL || 'http://127.0.0.1:5173',
 
-    MONGODB_URL: process.env.MONGODB_URL || 'xxx',
-    REDIS_URL: process.env.REDIS_URL || 'xxx',
-    CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'xxx',
-    SMTP_URL: process.env.SMTP_URL || 'xxx',
+    MONGODB_URL: process.env.MONGODB_URL || 'mongodb://root:rootpasswd@127.0.0.1:27017/mydb',
+    REDIS_URL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
+    CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'cloudinary://apikey:apisecret@cloudname',
+    SMTP_URL: process.env.SMTP_URL || `smtp://${user}:${pass}@smtp.ethereal.email:587`,
 
-    SECRET_KEY: process.env.SECRET_KEY || 'xxx',
+    SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
   }),
 ```
 

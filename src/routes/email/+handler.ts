@@ -1,11 +1,16 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 import nunjucks from 'nunjucks';
+import nodemailer from 'nodemailer';
 
 import useMailer from '~/composables/useMailer';
 import helloWorld from '~/templates/hello-world.html?raw';
 
 export default (async (app) => {
+  /*
+  $ curl --request GET \
+         --url http://127.0.0.1:3000/api/email
+  */
   app.get(
     '',
     {
@@ -21,6 +26,10 @@ export default (async (app) => {
         subject: 'Hello ✔',
         html: nunjucks.renderString(helloWorld, { hello: 'Hello, MJML!' }),
       });
+
+      if (process.env.NODE_ENV === 'development') {
+        console.log('TestMessageUrl =', nodemailer.getTestMessageUrl(info));
+      }
 
       return reply.send({ messageId: info.messageId });
     },

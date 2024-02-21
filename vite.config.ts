@@ -3,6 +3,9 @@ import { defineConfig } from 'vite';
 import fastify from 'vite-plugin-fastify';
 import fastifyRoutes from 'vite-plugin-fastify-routes';
 import envify from 'process-envify';
+import nodemailer from 'nodemailer';
+
+const { user, pass } = await nodemailer.createTestAccount();
 
 export default defineConfig({
   define: envify({
@@ -15,12 +18,8 @@ export default defineConfig({
 
     MONGODB_URL: process.env.MONGODB_URL || 'mongodb://root:rootpasswd@127.0.0.1:27017/mydb',
     REDIS_URL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
-    CLOUDINARY_URL:
-      process.env.CLOUDINARY_URL ||
-      'cloudinary://636761771455612:nBBydtdox8huZPXHHsxgKFDkiUU@dfi8gex0k',
-    SMTP_URL:
-      process.env.SMTP_URL ||
-      'smtp://ford.weimann@ethereal.email:HSqNjfZfrKh7KjcUSU@smtp.ethereal.email:587?name=example.com',
+    CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'cloudinary://apikey:apisecret@cloudname',
+    SMTP_URL: process.env.SMTP_URL || `smtp://${user}:${pass}@smtp.ethereal.email:587`,
 
     SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
   }),
