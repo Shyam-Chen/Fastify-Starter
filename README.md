@@ -145,19 +145,21 @@ This seed repository provides the following features:
 
 ### Tiny examples
 
-- [x] [Hello World](./src/routes/hello-world)
+- [x] [Hello World](./src/routes/hello-world/+handler.ts)
 - [x] [CRUD Operations](./src/routes/todos)
-- [x] [JWT Authentication](./src/routes/auth)
-- [x] [One-time Password](./src/routes/auth/otp)
-- [x] [File Uploads](./src/routes/file-uploads)
-- [x] [Real-time Data](./src/routes/echo)
-- [x] [Real-time Updates](./src/routes/sse)
-- [x] [Sending Emails](./src/routes/email)
+- [x] [JWT Authentication](./src/routes/auth/+handler.ts)
+- [x] [One-time Password](./src/routes/auth/otp/+handler.ts)
+- [x] [File Uploads](./src/routes/file-uploads/+handler.ts)
+- [x] [Real-time Data](./src/routes/echo/+handler.ts)
+- [x] [Real-time Updates](./src/routes/sse/+handler.ts)
+- [x] [Sending Emails](./src/routes/email/+handler.ts)
 - [x] [Internationalization](./src/routes/hello-i18n)
-- [x] [Background Workers](./src/routes/queues)
-- [x] [Cron Jobs](./src/routes/queues)
-- [x] [Caching](./src/routes/hello-world/caching-memory)
-- [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-memory)
+- [x] [Background Workers](./src/routes/queues/+handler.ts)
+- [x] [Cron Jobs](./src/routes/queues/cron/+handler.ts)
+- [x] [Caching](./src/routes/hello-world/caching-memory/+handler.ts)
+- [x] [Caching in Redis](./src/routes/hello-world/caching-redis/+handler.ts)
+- [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts)
+- [ ] [Cache Deduplication in Redis](./src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts)
 
 ## Configuration
 

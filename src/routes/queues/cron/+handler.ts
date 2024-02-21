@@ -7,7 +7,7 @@ import useWorker from '~/composables/useWorker';
 export default (async (app) => {
   /*
   $ curl --request GET \
-         --url http://127.0.0.1:3000/api/queues?color=blue
+         --url http://127.0.0.1:3000/api/queues/cron?color=blue
   */
   app.get(
     '',
@@ -18,22 +18,23 @@ export default (async (app) => {
       },
     },
     async (req, reply) => {
-      const paintQueue = useQueue('Paint');
+      const paintRenewQueue = useQueue('PaintRenew');
 
-      await paintQueue.add(
+      await paintRenewQueue.add(
         'wall',
         { color: req.query.color },
         {
           removeOnComplete: true,
+          repeat: { pattern: '45 * * * * *' },
         },
       );
 
       useWorker(
-        'Paint',
+        'PaintRenew',
         async (job) => {
-          console.log('[Paint] Starting job:', job.name);
+          console.log('[PaintRenew] Starting job:', job.name);
           console.log(job.id, job.name, job.data);
-          console.log('[Paint] Finished job:', job.name);
+          console.log('[PaintRenew] Finished job:', job.name);
           return;
         },
         {
