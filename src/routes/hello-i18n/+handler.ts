@@ -6,9 +6,17 @@ export default (async (app) => {
   defineI18n(app, import.meta.glob(['./locales/*.ts'], { eager: true }));
 
   /*
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/hello-i18n \
-    --header 'Accept-Language: ja-JP'
+  $ curl --request GET \
+         --header 'Accept-Language: ja-JP' \
+         --url http://127.0.0.1:3000/api/hello-i18n
+
+  $ curl --request GET \
+         --header 'Accept-Language: zh' \
+         --url http://127.0.0.1:3000/api/hello-i18n
+
+  $ curl --request GET \
+         --header 'Accept-Language: de-DE' \
+         --url http://127.0.0.1:3000/api/hello-i18n
   */
   app.get(
     '',

@@ -8,10 +8,10 @@ import { body, message, entity } from './schema';
 
 export default (async (app) => {
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/todos \
-    --header 'content-type: application/json' \
-    --data '{}' | json_pp
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/todos \
+         --header 'content-type: application/json' \
+         --data '{}' | json_pp
   */
   app.post(
     '',

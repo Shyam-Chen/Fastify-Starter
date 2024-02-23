@@ -8,12 +8,12 @@ export default (async (app) => {
   const todos = app.mongo.db?.collection('todos');
 
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/todos/new \
-    --header 'content-type: application/json' \
-    --data '{
-      "title": "foo"
-    }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/todos/new \
+         --header 'content-type: application/json' \
+         --data '{
+           "title": "foo"
+         }'
   */
   app.post(
     '',
@@ -40,8 +40,8 @@ export default (async (app) => {
   );
 
   /*
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/todos/634787af6d44cfba9c0df8ea
+  $ curl --request GET \
+         --url http://127.0.0.1:3000/api/todos/634787af6d44cfba9c0df8ea
   */
   app.get(
     '',
@@ -61,13 +61,13 @@ export default (async (app) => {
   );
 
   /*
-  curl --request PUT \
-    --url http://127.0.0.1:3000/api/todos/634516681a8fd0d3cd9791f1 \
-    --header 'content-type: application/json' \
-    --data '{
-      "title": "foo",
-      "completed": true
-    }'
+  $ curl --request PUT \
+         --url http://127.0.0.1:3000/api/todos/634516681a8fd0d3cd9791f1 \
+         --header 'content-type: application/json' \
+         --data '{
+           "title": "foo",
+           "completed": true
+         }'
   */
   app.put(
     '',
@@ -99,8 +99,8 @@ export default (async (app) => {
   );
 
   /*
-  curl --request DELETE \
-    --url http://127.0.0.1:3000/api/todos/634516681a8fd0d3cd9791f1
+  $ curl --request DELETE \
+         --url http://127.0.0.1:3000/api/todos/634516681a8fd0d3cd9791f1
   */
   app.delete(
     '',

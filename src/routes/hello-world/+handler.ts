@@ -3,8 +3,8 @@ import { Type } from '@sinclair/typebox';
 
 export default (async (app) => {
   /*
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/hello-world
+  $ curl --request GET \
+         --url http://127.0.0.1:3000/api/hello-world
   */
   app.get(
     '',
