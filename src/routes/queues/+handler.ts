@@ -28,6 +28,7 @@ export default (async (app) => {
         },
       );
 
+      // worker.js
       useWorker(
         'Paint',
         async (job) => {

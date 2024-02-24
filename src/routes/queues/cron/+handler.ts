@@ -29,6 +29,7 @@ export default (async (app) => {
         },
       );
 
+      // worker.js
       useWorker(
         'PaintRenew',
         async (job) => {
