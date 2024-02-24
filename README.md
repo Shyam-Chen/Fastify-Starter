@@ -159,7 +159,7 @@ This seed repository provides the following features:
 - [x] [Caching](./src/routes/hello-world/caching-memory/+handler.ts)
 - [x] [Caching in Redis](./src/routes/hello-world/caching-redis/+handler.ts)
 - [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts)
-- [ ] [Cache Deduplication in Redis](./src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts)
+- [x] [Cache Deduplication in Redis](./src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts)
 
 ## Configuration
 
