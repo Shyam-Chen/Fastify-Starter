@@ -28,7 +28,7 @@ export default (async (app) => {
         },
       );
 
-      // worker.js
+      // worker.js {%
       useWorker(
         'Paint',
         async (job) => {
@@ -42,6 +42,7 @@ export default (async (app) => {
           removeOnFail: { count: 0 },
         },
       );
+      // %}
 
       return reply.send({ message: 'OK' });
     },

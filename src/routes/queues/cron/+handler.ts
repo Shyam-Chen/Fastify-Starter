@@ -18,6 +18,7 @@ export default (async (app) => {
       },
     },
     async (req, reply) => {
+      // worker.js {%
       const paintRenewQueue = useQueue('PaintRenew');
 
       await paintRenewQueue.add(
@@ -29,7 +30,6 @@ export default (async (app) => {
         },
       );
 
-      // worker.js
       useWorker(
         'PaintRenew',
         async (job) => {
@@ -43,6 +43,7 @@ export default (async (app) => {
           removeOnFail: { count: 0 },
         },
       );
+      // %}
 
       return reply.send({ message: 'OK' });
     },
