@@ -1,4 +1,3 @@
-import { test, expect } from 'vitest';
 import fastify from 'fastify';
 
 import helloWorld from '../+handler';

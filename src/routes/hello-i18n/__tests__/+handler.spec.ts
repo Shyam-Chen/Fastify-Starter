@@ -1,4 +1,3 @@
-import { test, expect } from 'vitest';
 import fastify from 'fastify';
 
 import i18n from '~/plugins/i18n';

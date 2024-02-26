@@ -1,4 +1,3 @@
-import { beforeAll, afterAll, test, expect } from 'vitest';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import fastify from 'fastify';
 import mongodb from '@fastify/mongodb';
