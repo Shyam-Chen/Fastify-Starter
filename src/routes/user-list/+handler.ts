@@ -3,7 +3,7 @@ import { Type } from '@sinclair/typebox';
 
 import useTableControl from '~/composables/useTableControl';
 
-import { UserBox, RoleBox } from './schema';
+import { RoleBox, UserBox } from './schema';
 
 export default (async (app) => {
   app.post(

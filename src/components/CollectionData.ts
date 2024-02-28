@@ -1,6 +1,6 @@
-import type { FastifyInstance, RouteShorthandOptions } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { Static, Type, TObject } from '@sinclair/typebox';
+import { Static, TObject, Type } from '@sinclair/typebox';
+import type { FastifyInstance, RouteShorthandOptions } from 'fastify';
 
 const behavior = Type.Object({
   field: Type.Optional(Type.String()),

@@ -1,6 +1,6 @@
-import { MongoMemoryServer } from 'mongodb-memory-server';
-import fastify from 'fastify';
 import mongodb from '@fastify/mongodb';
+import fastify from 'fastify';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 import todos from '../+handler';
 

@@ -6,7 +6,7 @@ export default async (app: FastifyInstance) => {
 
     con.socket.on('message', (message: MessageEvent) => {
       console.log(`Client message: ${message}`);
-      con.socket.send(`Hello from Fastify!`);
+      con.socket.send('Hello from Fastify!');
     });
 
     con.socket.on('close', () => {

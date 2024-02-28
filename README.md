@@ -131,8 +131,7 @@ This seed repository provides the following features:
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite) - Bundler
 - [x] [TypeScript](https://github.com/microsoft/TypeScript) - JavaScript with Syntax for Types
-- [x] [ESLint](https://github.com/eslint/eslint) - Linter
-- [x] [Prettier](https://github.com/prettier/prettier) - Formatter
+- [x] [Biome](https://github.com/biomejs/biome) - Formatter and Linter
 - [x] [Vitest](https://github.com/vitest-dev/vitest) - Test Runner
 - [x] [Playwright](https://github.com/microsoft/playwright) - Test Automation
 - ---------- **Environments** ----------
@@ -237,9 +236,8 @@ The structure follows the LIFT Guidelines.
 │   ├── main.ts
 │   └── shims.d.ts
 ├── .editorconfig
-├── .eslintrc
 ├── .gitignore
-├── .prettierrc
+├── biome.json
 ├── Caddyfile
 ├── compose.yaml
 ├── Dockerfile

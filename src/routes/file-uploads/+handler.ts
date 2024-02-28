@@ -1,6 +1,6 @@
-import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import stream from 'stream';
 import util from 'util';
+import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
 const pipeline = util.promisify(stream.pipeline);

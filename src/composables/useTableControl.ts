@@ -1,5 +1,5 @@
+import { Static, Type } from '@sinclair/typebox';
 import type { FastifyRequest } from 'fastify';
-import { Type, Static } from '@sinclair/typebox';
 
 /**
  * @example

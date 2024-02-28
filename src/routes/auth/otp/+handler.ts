@@ -1,6 +1,6 @@
+import { randomUUID } from 'crypto';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
-import { randomUUID } from 'crypto';
 import { authenticator } from 'otplib';
 import pbkdf2 from 'pbkdf2-passworder';
 

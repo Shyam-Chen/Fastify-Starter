@@ -15,7 +15,7 @@ export default (async (app) => {
 
     const result = [] as Row['values'][];
 
-    worksheet.eachRow(function (row, rowNumber) {
+    worksheet.eachRow((row, rowNumber) => {
       if (rowNumber > 1) {
         result.push(row.values);
       }

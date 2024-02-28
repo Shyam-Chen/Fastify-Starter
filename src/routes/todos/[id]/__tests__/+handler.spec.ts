@@ -1,6 +1,6 @@
-import { MongoMemoryServer } from 'mongodb-memory-server';
-import fastify from 'fastify';
 import mongodb from '@fastify/mongodb';
+import fastify from 'fastify';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 import todos from '~/routes/todos/+handler';
 
@@ -31,12 +31,12 @@ test('POST /todos/new', async () => {
   expect(res.json().total).toBe(1);
 
   const id = res.json().result[0]._id;
-  const res1 = await app.inject({ method: 'GET', url: '/todos' + `/${id}` });
+  const res1 = await app.inject({ method: 'GET', url: `/todos/${id}` });
   expect(res1.json().result.title).toBe(payload.title);
 
   await app.inject({
     method: 'PUT',
-    url: '/todos' + `/${id}`,
+    url: `/todos/${id}`,
     payload: {
       _id: id,
       ...payload,
@@ -44,11 +44,11 @@ test('POST /todos/new', async () => {
     },
   });
 
-  const res2 = await app.inject({ method: 'GET', url: '/todos' + `/${id}` });
+  const res2 = await app.inject({ method: 'GET', url: `/todos/${id}` });
   expect(res2.json().result.title).toBe(payload.title);
   expect(res2.json().result.completed).toBe(true);
 
-  await app.inject({ method: 'DELETE', url: '/todos' + `/${id}` });
+  await app.inject({ method: 'DELETE', url: `/todos/${id}` });
 
   const res3 = await app.inject({ method: 'POST', url: '/todos', payload: {} });
   expect(res3.json().result.length).toBe(0);

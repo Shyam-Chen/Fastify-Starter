@@ -1,5 +1,5 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type, Static } from '@sinclair/typebox';
+import { Static, Type } from '@sinclair/typebox';
 import generatePassword from 'generate-password';
 import pbkdf2 from 'pbkdf2-passworder';
 // import nunjucks from 'nunjucks';
@@ -7,7 +7,7 @@ import pbkdf2 from 'pbkdf2-passworder';
 import useMailer from '~/composables/useMailer';
 // import accountOpening from '~/templates/accountOpening.html?raw';
 
-import { UserBox, RoleBox } from '../schema';
+import { RoleBox, UserBox } from '../schema';
 
 export default (async (app) => {
   app.post(

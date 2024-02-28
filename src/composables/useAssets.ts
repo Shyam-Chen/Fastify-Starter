@@ -9,7 +9,7 @@ export default (file: string) => {
   }
 
   if (process.env.NODE_ENV === 'production') {
-    filePath = path.resolve(process.cwd() + '/dist' + file);
+    filePath = path.resolve(`${process.cwd()}/dist${file}`);
   }
 
   return fs.readFileSync(filePath);

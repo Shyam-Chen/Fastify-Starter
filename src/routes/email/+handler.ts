@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
-import nunjucks from 'nunjucks';
 import nodemailer from 'nodemailer';
+import nunjucks from 'nunjucks';
 
 import useMailer from '~/composables/useMailer';
 import helloWorld from '~/templates/hello-world.html?raw';

@@ -1,6 +1,6 @@
-import type { FastifyInstance } from 'fastify';
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { Static, Type, TObject } from '@sinclair/typebox';
+import { Static, TObject, Type } from '@sinclair/typebox';
+import type { FastifyInstance } from 'fastify';
 
 // POST /:id=new {}
 // GET /:id

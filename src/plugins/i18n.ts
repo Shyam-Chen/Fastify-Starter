@@ -1,5 +1,5 @@
-import plugin from 'fastify-plugin';
 import i18n from 'fastify-i18n';
+import plugin from 'fastify-plugin';
 
 export default plugin(
   async (app) => {

@@ -3,8 +3,8 @@ import { Type } from '@sinclair/typebox';
 
 import useTableControl, { TableControlBox } from '~/composables/useTableControl';
 
+import { body, entity, message } from './schema';
 import type { TodoItem } from './types';
-import { body, message, entity } from './schema';
 
 export default (async (app) => {
   /*
@@ -38,9 +38,9 @@ export default (async (app) => {
       let queryCompleted = {};
 
       enum Filter {
-        All,
-        Active,
-        Completed,
+        All = 0,
+        Active = 1,
+        Completed = 2,
       }
 
       if (filter === Filter.Active) {

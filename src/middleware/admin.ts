@@ -1,4 +1,4 @@
-import type { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 
 export default (app: FastifyInstance) => {
   return async <T extends FastifyRequest, U extends FastifyReply>(request: T, reply: U) => {

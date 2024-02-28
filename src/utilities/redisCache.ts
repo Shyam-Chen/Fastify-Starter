@@ -1,5 +1,5 @@
-import { caching } from 'cache-manager';
 import { ioRedisStore } from '@tirke/node-cache-manager-ioredis';
+import { caching } from 'cache-manager';
 
 import redisInstance from './redisInstance';
 

@@ -1,9 +1,9 @@
+import { randomUUID } from 'crypto';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Static, Type } from '@sinclair/typebox';
-import { randomUUID } from 'crypto';
-import pbkdf2 from 'pbkdf2-passworder';
-import { authenticator, totp } from 'otplib';
 import generatePassword from 'generate-password';
+import { authenticator, totp } from 'otplib';
+import pbkdf2 from 'pbkdf2-passworder';
 
 import useMailer from '~/composables/useMailer';
 import auth from '~/middleware/auth';

@@ -1,5 +1,5 @@
-import fastify from 'fastify';
 import websocket from '@fastify/websocket';
+import fastify from 'fastify';
 
 import echo from '../+handler';
 
@@ -13,7 +13,10 @@ test('WS /echo', async () => {
   const ws = await app.injectWS('/echo');
 
   let resolve: (value: string) => void;
-  const promise = new Promise<string>((_resolve) => (resolve = _resolve));
+
+  const promise = new Promise<string>((_resolve) => {
+    resolve = _resolve;
+  });
 
   ws.on('message', (data: MessageEvent) => {
     resolve(data.toString());
