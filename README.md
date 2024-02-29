@@ -226,22 +226,36 @@ The structure follows the LIFT Guidelines.
 ├── .github/workflows/ci.yml
 ├── app
 │   ├── public -> not handled by vite, copy it to dist
-│   └── src
-│       ├── assets -> wasm, onnx
-│       ├── components -> shared module
-│       ├── composables -> shared module
-│       ├── locales -> core module
-│       ├── middleware -> core module
-│       ├── plugins -> root module
-│       ├── routes -> feature modules
-│       ├── templates -> email templates with nunjucks
-│       ├── utilities -> shared module
-│       ├── app.ts
-│       ├── main.ts
-│       └── shims.d.ts
+│   ├── src
+│   │   ├── assets -> wasm, onnx
+│   │   ├── components -> shared module
+│   │   ├── composables -> shared module
+│   │   ├── locales -> core module
+│   │   ├── middleware -> core module
+│   │   ├── plugins -> root module
+│   │   ├── routes -> feature modules
+│   │   ├── templates -> email templates with nunjucks
+│   │   ├── utilities -> shared module
+│   │   ├── app.ts
+│   │   ├── main.ts
+│   │   └── shims.d.ts
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── vite.config.ts
 ├── db -> set up local data for testing and initializing the database
+│   ├── src
+│   ├── mongo-init.js
+│   └── package.json
 ├── e2e -> api end-to-end testing
+│   ├── src
+│   ├── package.json
+│   ├── playwright.config.ts
+│   └── tsconfig.json
 ├── mock -> mock a third-party/private api calls
+│   ├── src
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── vite.config.ts
 ├── .editorconfig
 ├── .gitignore
 ├── biome.json
