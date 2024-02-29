@@ -1,6 +1,6 @@
-import mongodb from '@fastify/mongodb';
-import fastify from 'fastify';
 import { MongoMemoryServer } from 'mongodb-memory-server';
+import fastify from 'fastify';
+import mongodb from '@fastify/mongodb';
 
 import todos from '../+handler';
 
@@ -45,4 +45,8 @@ test('POST /todos', async () => {
   const res4 = await app.inject({ method: 'POST', url: '/todos', payload: { title: 'Vue' } });
   expect(res4.json().result.length).toBe(0);
   expect(res4.json().total).toBe(0);
+
+  const res5 = await app.inject({ method: 'POST', url: '/todos', payload: { filter: 1 } });
+  expect(res5.json().result.length).toBe(10);
+  expect(res5.json().total).toBe(15);
 });
