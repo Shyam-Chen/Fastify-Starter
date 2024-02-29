@@ -1,9 +1,9 @@
 import { resolve } from 'path';
+import nodemailer from 'nodemailer';
+import envify from 'process-envify';
 import { defineConfig } from 'vite';
 import fastify from 'vite-plugin-fastify';
 import fastifyRoutes from 'vite-plugin-fastify-routes';
-import envify from 'process-envify';
-import nodemailer from 'nodemailer';
 
 const { user, pass } = await nodemailer.createTestAccount();
 

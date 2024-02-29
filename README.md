@@ -71,10 +71,17 @@ $ pnpm preview
 
 ### Lints and fixes files
 
-Files: `src/**/*.ts`
+Biome CLI
 
 ```sh
-$ pnpm lint
+# format
+$ pnpm biome format ./app ./db ./mock ./e2e --write
+
+# lint
+$ pnpm biome lint ./app ./mock ./e2e
+
+# format, lint & sort
+$ pnpm biome check --apply ./app ./mock ./e2e
 ```
 
 ### Check types
@@ -217,24 +224,24 @@ The structure follows the LIFT Guidelines.
 ```coffee
 .
 ├── .github/workflows/ci.yml
+├── app
+│   ├── public -> not handled by vite, copy it to dist
+│   └── src
+│       ├── assets -> wasm, onnx
+│       ├── components -> shared module
+│       ├── composables -> shared module
+│       ├── locales -> core module
+│       ├── middleware -> core module
+│       ├── plugins -> root module
+│       ├── routes -> feature modules
+│       ├── templates -> email templates with nunjucks
+│       ├── utilities -> shared module
+│       ├── app.ts
+│       ├── main.ts
+│       └── shims.d.ts
 ├── db -> set up local data for testing and initializing the database
-├── e2e
+├── e2e -> api end-to-end testing
 ├── mock -> mock a third-party/private api calls
-├── public -> not handled by vite, copy it to dist
-├── src
-│   ├── assets -> wasm
-│   ├── components -> shared module
-│   ├── composables -> shared module
-│   ├── locales -> core module
-│   ├── middleware -> core module
-│   ├── plugins -> root module
-│   ├── routes -> feature modules
-│   ├── templates -> email templates with nunjucks
-│   ├── utilities -> shared module
-│   ├── app.ts
-│   ├── error.ts
-│   ├── main.ts
-│   └── shims.d.ts
 ├── .editorconfig
 ├── .gitignore
 ├── biome.json
@@ -243,8 +250,7 @@ The structure follows the LIFT Guidelines.
 ├── Dockerfile
 ├── package.json
 ├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
 ├── README.md
-├── render.yaml
-├── tsconfig.json
-└── vite.config.ts
+└── render.yaml
 ```

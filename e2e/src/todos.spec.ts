@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test('POST /api/todos', async ({ request }) => {
   const response = await request.post('/api/todos', { data: {} });

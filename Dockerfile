@@ -1,12 +1,12 @@
 FROM node:20.11-bullseye-slim
 
-ENV HOME /fastify-starter
+ENV HOME /app
 
 WORKDIR ${HOME}
-ADD . $HOME
+ADD ./app $HOME
 
 RUN npm install -g pnpm
 RUN pnpm install
 
 RUN apt-get update && \
-    apt-get install -y libcurl4
+  apt-get install -y libcurl4

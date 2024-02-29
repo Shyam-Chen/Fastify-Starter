@@ -1,5 +1,6 @@
 packages:
   - '.'
+  - 'app'
   - 'db'
   - 'mock'
   - 'e2e'

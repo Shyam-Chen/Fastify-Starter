@@ -7,7 +7,7 @@ services:
     branch: main
     envVars:
       - key: NODE_VERSION
-        value: 20.11.0
+        value: 20.11.1
       - key: HOST
         value: 0.0.0.0
       - key: PORT
@@ -25,5 +25,5 @@ services:
       - key: SECRET_KEY
         generateValue: true
     buildCommand: pnpm install; pnpm build
-    startCommand: node dist/main.js
+    startCommand: node app/dist/main.js
     healthCheckPath: /api/healthz
