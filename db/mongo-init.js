@@ -16,5 +16,5 @@ db.createUser({
 
 db = new Mongo().getDB(process.env.MONGO_INITDB_DATABASE);
 
-load(__dirname + '/src/todos.js');
-load(__dirname + '/src/users.js');
+load(`${__dirname}/src/todos.js`);
+load(`${__dirname}/src/users.js`);

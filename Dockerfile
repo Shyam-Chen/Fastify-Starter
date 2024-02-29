@@ -1,9 +1,9 @@
 FROM node:20.11-bullseye-slim
 
-ENV HOME /app
+ENV HOME /project
 
 WORKDIR ${HOME}
-ADD ./app $HOME
+ADD . $HOME
 
 RUN npm install -g pnpm
 RUN pnpm install
