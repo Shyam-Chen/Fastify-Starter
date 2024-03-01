@@ -1,10 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches: ['main']
-  pull_request:
-    branches: ['main']
+on: push
 
 jobs:
   ci:
@@ -18,11 +14,12 @@ jobs:
         run: docker compose exec --no-TTY ci pnpm build
       - name: pnpm preview
         run: docker compose exec --detach --no-TTY ci pnpm preview
-      # - name: pnpm check
-      #   run: docker compose exec --no-TTY ci pnpm check
+      - name: pnpm check
+        run: docker compose exec --no-TTY ci pnpm check
       - name: pnpm test
         run: docker compose exec --no-TTY ci pnpm test
       - name: pnpm e2e
         run: docker compose exec --no-TTY ci pnpm e2e
       - name: Trigger deployment
+        if: ${{ contains(fromJSON('["main", "release", "prod"]'), github.ref) }}
         run: curl -k ${{ secrets.DEPLOY_HOOK }}

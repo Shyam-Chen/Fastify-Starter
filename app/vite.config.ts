@@ -40,8 +40,5 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    coverage: {
-      exclude: ['db', 'mock', 'e2e'],
-    },
   },
 });
