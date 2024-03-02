@@ -16,25 +16,28 @@
 
 Prerequisites:
 
-- Docker v24
+- Docker v24 (Optional)
 - Node.js v20
 - PNPM v8
 
 Get started with Fastify Starter.
 
 ```sh
+# (optional)
+# If you already have the MONGODB_URL and REDIS_URL connections, you can directly replace them.
+
 # mongo server
 $ docker compose up -d local-mongo
-```
 
-```sh
 # redis server
 $ docker compose up -d local-redis
 ```
 
 ```sh
-# dev server
+# install dependencies
 $ pnpm install
+
+# dev server
 $ pnpm dev
 ```
 
@@ -86,7 +89,7 @@ $ pnpm biome check --apply ./app ./mock ./e2e
 
 ### Check types
 
-Files: `src/**/*.ts`
+Files: `app/src/**/*.ts`
 
 ```sh
 $ pnpm check
@@ -94,7 +97,7 @@ $ pnpm check
 
 ### Runs unit tests
 
-Files: `src/**/*.spec.ts`
+Files: `app/src/**/*.spec.ts`
 
 ```sh
 $ pnpm test
@@ -102,15 +105,12 @@ $ pnpm test
 
 ### Runs end-to-end tests
 
-Files: `e2e/**/*.spec.ts`
+Files: `e2e/src/**/*.spec.ts`
 
 ```sh
 # Before running the `e2e` command, make sure to run the following commands.
 $ pnpm build
 $ pnpm preview
-
-# If it's not installed, run it.
-$ cd e2e && pnpm install && cd ..
 
 $ pnpm e2e
 ```
@@ -176,7 +176,7 @@ Control the environment.
 Set your local environment variables.
 
 ```ts
-// vite.config.ts
+// app/vite.config.ts
   define: envify({
     NODE_ENV: process.env.NODE_ENV || 'development',
 
@@ -238,7 +238,8 @@ The structure follows the LIFT Guidelines.
 │   │   ├── utilities -> shared module
 │   │   ├── app.ts
 │   │   ├── main.ts
-│   │   └── shims.d.ts
+│   │   ├── shims.d.ts
+│   │   └── worker.ts
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── vite.config.ts

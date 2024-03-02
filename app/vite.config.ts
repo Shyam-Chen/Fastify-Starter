@@ -37,6 +37,11 @@ export default defineConfig({
   },
   build: {
     ssrEmitAssets: true,
+    rollupOptions: {
+      input: {
+        worker: './src/worker.ts',
+      },
+    },
   },
   test: {
     globals: true,

@@ -27,3 +27,17 @@ services:
     buildCommand: pnpm install; pnpm build
     startCommand: node app/dist/main.js
     healthCheckPath: /api/healthz
+
+  - type: worker
+    name: fastify-starter-queue
+    runtime: node
+    region: oregon
+    plan: starter
+    branch: main
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.1
+      - key: REDIS_URL
+        sync: false
+    buildCommand: pnpm install; pnpm build
+    startCommand: node app/dist/worker.js
