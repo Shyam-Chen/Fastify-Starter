@@ -2,7 +2,7 @@ import fastify from 'fastify';
 
 import helloWorld from '../+handler';
 
-test('GET /hello-i18n', async () => {
+test('GET /hello-world', async () => {
   const app = fastify();
 
   app.register(helloWorld, { prefix: '/hello-world' });

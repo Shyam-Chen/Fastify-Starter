@@ -14,15 +14,15 @@ test('GET /hello-i18n', async () => {
   expect(res.json()).toEqual({ hello: 'Hello, World!', text: 'Text' });
 });
 
-test('GET / ja-JP', async () => {
+test('GET /hello-i18n ja-JP', async () => {
   const app = fastify();
 
   app.register(i18n);
-  app.register(helloI18n, { prefix: '/hello-world' });
+  app.register(helloI18n, { prefix: '/hello-i18n' });
 
   const res = await app.inject({
     method: 'GET',
-    url: '/hello-world',
+    url: '/hello-i18n',
     headers: { 'Accept-Language': 'ja-JP' },
   });
 
