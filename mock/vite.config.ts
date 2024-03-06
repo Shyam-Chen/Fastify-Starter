@@ -7,7 +7,7 @@ import fastifyRoutes from 'vite-plugin-fastify-routes';
 export default defineConfig({
   define: envify({
     HOST: process.env.HOST || '127.0.0.1',
-    PORT: process.env.PORT || 3000,
+    PORT: process.env.PORT || 4173,
   }),
   plugins: [fastify(), fastifyRoutes()],
   resolve: {
