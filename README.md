@@ -41,6 +41,12 @@ $ pnpm install
 $ pnpm dev
 ```
 
+Or use barebones scaffolding for your new Fastify app
+
+```sh
+$ pnpm dlx degit Shyam-Chen/Starter-Templates/fastify my-fastify-app
+```
+
 ## Project Setup
 
 Follow steps to execute this boilerplate.
@@ -160,12 +166,15 @@ This seed repository provides the following features:
 - [x] [Real-time Updates](./src/routes/sse/+handler.ts)
 - [x] [Sending Emails](./src/routes/email/+handler.ts)
 - [x] [Internationalization](./src/routes/hello-i18n)
-- [x] [Background Workers](./src/routes/queues/+handler.ts)
-- [x] [Cron Jobs](./src/routes/queues/cron/+handler.ts)
 - [x] [Caching](./src/routes/hello-world/caching-memory/+handler.ts)
-- [x] [Caching in Redis](./src/routes/hello-world/caching-redis/+handler.ts)
 - [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts)
-- [x] [Cache Deduplication in Redis](./src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts)
+- [ ] Background Workers
+- [ ] Cron Jobs
+- Redis
+  - [x] [Caching](./src/routes/hello-world/caching-redis/+handler.ts)
+  - [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts)
+  - [x] [Background Workers](./src/routes/queues/+handler.ts)
+  - [x] [Cron Jobs](./src/routes/queues/cron/+handler.ts)
 
 ## Configuration
 
