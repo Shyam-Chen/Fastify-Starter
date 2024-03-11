@@ -1,6 +1,6 @@
-import fastify from 'fastify';
 import { ioRedisStore } from '@tirke/node-cache-manager-ioredis';
 import { caching } from 'cache-manager';
+import fastify from 'fastify';
 import Redis from 'ioredis-mock';
 
 import cachingRedis from '../+handler';
