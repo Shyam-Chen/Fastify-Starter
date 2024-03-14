@@ -4,3 +4,5 @@ packages:
   - 'db'
   - 'mock'
   - 'e2e'
+  - 'docs'
+  - 'cdk'

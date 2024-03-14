@@ -2,7 +2,9 @@
 
 :leopard: A boilerplate for API Server with Node.js, Fastify, and MongoDB on Vite.
 
-:rainbow: [Live Demo](https://fastify-starter-12ih.onrender.com) - The client application is [here](https://github.com/Shyam-Chen/Vue-Starter).
+:rainbow: View Demo: [Live](https://vue-starter-6fa6.onrender.com) | Windows | macOS | Android | iOS
+
+:octocat: Source Code: [Web-side](https://github.com/Shyam-Chen/Vue-Starter) | [Native-side](https://github.com/Shyam-Chen/Tauri-Starter) | [Server-side](https://github.com/Shyam-Chen/Fastify-Starter)
 
 ## Table of Contents
 
@@ -166,15 +168,10 @@ This seed repository provides the following features:
 - [x] [Real-time Updates](./src/routes/sse/+handler.ts)
 - [x] [Sending Emails](./src/routes/email/+handler.ts)
 - [x] [Internationalization](./src/routes/hello-i18n)
-- [x] [Caching](./src/routes/hello-world/caching-memory/+handler.ts)
-- [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts)
-- [ ] Background Workers
-- [ ] Cron Jobs
-- Redis
-  - [x] [Caching](./src/routes/hello-world/caching-redis/+handler.ts)
-  - [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts)
-  - [x] [Background Workers](./src/routes/queues/+handler.ts)
-  - [x] [Cron Jobs](./src/routes/queues/cron/+handler.ts)
+- [x] [Caching](./src/routes/hello-world/caching-memory/+handler.ts) (Or use [Redis Store](./src/routes/hello-world/caching-redis/+handler.ts))
+- [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts) (Or use [Redis Store](./src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts))
+- [ ] Background Workers (Or use [Redis Store](./src/routes/queues/+handler.ts))
+- [ ] Cron Jobs (Or use [Redis Store](./src/routes/queues/cron/+handler.ts))
 
 ## Configuration
 
@@ -234,17 +231,18 @@ The structure follows the LIFT Guidelines.
 .
 ├── .github/workflows/ci.yml
 ├── app
-│   ├── public -> not handled by vite, copy it to dist
+│   ├── public
 │   ├── src
-│   │   ├── assets -> wasm, onnx
-│   │   ├── components -> shared module
-│   │   ├── composables -> shared module
-│   │   ├── locales -> core module
-│   │   ├── middleware -> core module
-│   │   ├── plugins -> root module
-│   │   ├── routes -> feature modules
-│   │   ├── templates -> email templates with nunjucks
-│   │   ├── utilities -> shared module
+│   │   ├── assets
+│   │   ├── components
+│   │   ├── composables
+│   │   ├── jobs
+│   │   ├── locales
+│   │   ├── middleware
+│   │   ├── plugins
+│   │   ├── routes
+│   │   ├── templates
+│   │   ├── utilities
 │   │   ├── app.ts
 │   │   ├── main.ts
 │   │   ├── shims.d.ts
@@ -252,16 +250,25 @@ The structure follows the LIFT Guidelines.
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── vite.config.ts
-├── db -> set up local data for testing and initializing the database
+├── cdk -> Cloud Development Kit for Terraform with TypeScript
+│   ├── cdktf.json
+│   ├── package.json
+│   └── tsconfig.json
+├── db -> Set up local data for initializing and testing the database
 │   ├── src
 │   ├── mongo-init.js
 │   └── package.json
-├── e2e -> api end-to-end testing
+├── docs -> Write documentation with VitePress
+│   ├── .vitepress
+│   ├── index.md
+│   ├── package.json
+│   └── vite.config.ts
+├── e2e -> API End-to-end testing
 │   ├── src
 │   ├── package.json
 │   ├── playwright.config.ts
 │   └── tsconfig.json
-├── mock -> mock a third-party/private api calls
+├── mock -> Mocking third-party or private API calls
 │   ├── src
 │   ├── package.json
 │   ├── tsconfig.json
