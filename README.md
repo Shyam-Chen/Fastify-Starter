@@ -159,19 +159,19 @@ This seed repository provides the following features:
 
 ### Tiny examples
 
-- [x] [Hello World](./src/routes/hello-world/+handler.ts)
-- [x] [CRUD Operations](./src/routes/todos)
-- [x] [JWT Authentication](./src/routes/auth/+handler.ts)
-- [x] [One-time Password](./src/routes/auth/otp/+handler.ts)
-- [x] [File Uploads](./src/routes/file-uploads/+handler.ts)
-- [x] [Real-time Data](./src/routes/echo/+handler.ts)
-- [x] [Real-time Updates](./src/routes/sse/+handler.ts)
-- [x] [Sending Emails](./src/routes/email/+handler.ts)
-- [x] [Internationalization](./src/routes/hello-i18n)
-- [x] [Caching](./src/routes/hello-world/caching-memory/+handler.ts) (Or use [Redis Store](./src/routes/hello-world/caching-redis/+handler.ts))
-- [x] [Cache Deduplication](./src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts) (Or use [Redis Store](./src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts))
-- [ ] Background Workers (Or use [Redis Store](./src/routes/queues/+handler.ts))
-- [ ] Cron Jobs (Or use [Redis Store](./src/routes/queues/cron/+handler.ts))
+- [x] [Hello World](./app/src/routes/hello-world/+handler.ts)
+- [x] [CRUD Operations](./app/src/routes/todos)
+- [x] [JWT Authentication](./app/src/routes/auth/+handler.ts)
+- [x] [One-time Password](./app/src/routes/auth/otp/+handler.ts)
+- [x] [File Uploads](./app/src/routes/file-uploads/+handler.ts)
+- [x] [Real-time Data](./app/src/routes/echo/+handler.ts)
+- [x] [Real-time Updates](./app/src/routes/sse/+handler.ts)
+- [x] [Sending Emails](./app/src/routes/email/+handler.ts)
+- [x] [Internationalization](./app/src/routes/hello-i18n)
+- [x] [Caching](./app/src/routes/hello-world/caching-memory/+handler.ts) (Or use [Redis Store](./app/src/routes/hello-world/caching-redis/+handler.ts))
+- [x] [Cache Deduplication](./app/src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts) (Or use [Redis Store](./app/src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts))
+- [x] [Background Workers](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/+handler.ts))
+- [x] [Cron Jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/cron/+handler.ts))
 
 ## Configuration
 

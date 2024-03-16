@@ -4,6 +4,7 @@ import envify from 'process-envify';
 import { defineConfig } from 'vite';
 import fastify from 'vite-plugin-fastify';
 import fastifyRoutes from 'vite-plugin-fastify-routes';
+import { viteStaticCopy as staticCopy } from 'vite-plugin-static-copy';
 
 const { user, pass } = await nodemailer.createTestAccount();
 
@@ -29,6 +30,14 @@ export default defineConfig({
       devMode: false,
     }),
     fastifyRoutes(),
+    staticCopy({
+      targets: [
+        {
+          src: resolve(__dirname, './src/jobs'),
+          dest: './',
+        },
+      ],
+    }),
   ],
   resolve: {
     alias: {
