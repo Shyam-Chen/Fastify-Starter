@@ -85,14 +85,7 @@ $ pnpm preview
 Biome CLI
 
 ```sh
-# format
-$ pnpm biome format ./app ./db ./mock ./e2e --write
-
-# lint
-$ pnpm biome lint ./app ./mock ./e2e
-
-# format, lint & sort
-$ pnpm biome check --apply ./app ./mock ./e2e
+$ pnpm biome check --apply ./app ./db ./mock ./e2e
 ```
 
 ### Check types

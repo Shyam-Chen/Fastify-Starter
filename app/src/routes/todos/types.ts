@@ -1,5 +1,5 @@
-import { Static } from '@sinclair/typebox';
+import type { Static } from '@sinclair/typebox';
 
-import { entity } from './schema';
+import type { entity } from './schema';
 
 export type TodoItem = Static<typeof entity>;

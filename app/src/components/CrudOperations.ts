@@ -1,5 +1,5 @@
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { Static, TObject, Type } from '@sinclair/typebox';
+import { type Static, type TObject, Type } from '@sinclair/typebox';
 import type { FastifyInstance } from 'fastify';
 
 // POST /:id=new {}

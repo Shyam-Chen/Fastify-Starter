@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import nodemailer from 'nodemailer';
 import envify from 'process-envify';
 import { defineConfig } from 'vite';

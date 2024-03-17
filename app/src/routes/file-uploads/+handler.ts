@@ -1,5 +1,5 @@
-import stream from 'stream';
-import util from 'util';
+import stream from 'node:stream';
+import util from 'node:util';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
