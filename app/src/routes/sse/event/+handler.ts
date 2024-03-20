@@ -9,7 +9,7 @@ export default async (app: FastifyInstance) => {
 
     sseEmitter.on('send', (data) => {
       index += 1;
-      reply.sse({ id: String(index), data: JSON.stringify(data) });
+      reply.sse({ id: String(index), data });
     });
   });
 

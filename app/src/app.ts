@@ -6,11 +6,9 @@ import multipart from '@fastify/multipart';
 import rateLimit from '@fastify/rate-limit';
 import redis from '@fastify/redis';
 import underPressure from '@fastify/under-pressure';
-// import websocket from '@fastify/websocket';
 import fastify from 'fastify';
 import cloudinary from 'fastify-cloudinary';
-import { FastifySSEPlugin as eventsource } from 'fastify-sse-v2';
-import { serverFactory, websocket } from 'fastify-uws';
+import { eventsource, serverFactory, websocket } from 'fastify-uws';
 
 import error from '~/plugins/error';
 import i18n from '~/plugins/i18n';
