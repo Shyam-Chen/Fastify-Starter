@@ -243,10 +243,6 @@ The structure follows the LIFT Guidelines.
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── vite.config.ts
-├── cdk -> Cloud Development Kit for Terraform with TypeScript
-│   ├── cdktf.json
-│   ├── package.json
-│   └── tsconfig.json
 ├── db -> Set up local data for initializing and testing the database
 │   ├── src
 │   ├── mongo-init.js
@@ -260,6 +256,9 @@ The structure follows the LIFT Guidelines.
 │   ├── src
 │   ├── package.json
 │   ├── playwright.config.ts
+│   └── tsconfig.json
+├── iac -> Infrastructure as code
+│   ├── package.json
 │   └── tsconfig.json
 ├── mock -> Mocking third-party or private API calls
 │   ├── src
