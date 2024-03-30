@@ -1,0 +1,7 @@
+name: iac
+runtime: nodejs
+description: docker
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/7cdca647-0981-4407-9eef-623b9efa4154.zip
