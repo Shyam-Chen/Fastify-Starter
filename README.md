@@ -85,7 +85,7 @@ $ pnpm preview
 Biome CLI
 
 ```sh
-$ pnpm biome check --apply ./app ./db ./mock ./e2e
+$ pnpm biome check --apply ./app ./db ./mock ./e2e ./iac
 ```
 
 ### Check types
