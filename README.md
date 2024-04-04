@@ -258,7 +258,9 @@ The structure follows the LIFT Guidelines.
 │   ├── playwright.config.ts
 │   └── tsconfig.json
 ├── iac -> Infrastructure as code
+│   ├── src
 │   ├── package.json
+│   ├── Pulumi.yaml
 │   └── tsconfig.json
 ├── mock -> Mocking third-party or private API calls
 │   ├── src
