@@ -85,7 +85,7 @@ $ pnpm preview
 Biome CLI
 
 ```sh
-$ pnpm biome check --apply ./app ./db ./mock ./e2e ./iac
+$ pnpm biome check --apply ./app ./db ./mock ./e2e ./docs ./iac
 ```
 
 ### Check types
@@ -247,11 +247,11 @@ The structure follows the LIFT Guidelines.
 │   ├── src
 │   ├── mongo-init.js
 │   └── package.json
-├── docs -> Write documentation with VitePress
+├── docs -> Write API documentation with VitePress
 │   ├── .vitepress
+│   │   └── config.ts
 │   ├── index.md
-│   ├── package.json
-│   └── vite.config.ts
+│   └── package.json
 ├── e2e -> API End-to-end testing
 │   ├── src
 │   ├── package.json
