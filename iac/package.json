@@ -3,6 +3,6 @@
   "main": "./src/index.ts",
   "dependencies": {
     "@pulumi/pulumi": "^3.112.0",
-    "@pulumi/docker": "4.5.3"
+    "@pulumi/docker": "^4.5.3"
   }
 }

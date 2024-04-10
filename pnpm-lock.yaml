@@ -175,7 +175,7 @@ importers:
   iac:
     dependencies:
       '@pulumi/docker':
-        specifier: 4.5.3
+        specifier: ^4.5.3
         version: 4.5.3
       '@pulumi/pulumi':
         specifier: ^3.112.0

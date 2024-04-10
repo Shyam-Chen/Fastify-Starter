@@ -1,9 +1,7 @@
-FROM node:20.12-bullseye-slim
+FROM node:20-bookworm-slim
 
-ENV HOME /project
-
-WORKDIR ${HOME}
-ADD . $HOME
+WORKDIR /usr/src/app
+ADD . .
 
 RUN npm install -g pnpm
 RUN pnpm install
