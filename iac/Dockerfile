@@ -23,12 +23,28 @@ ENV SMTP_URL=$smtp_url
 ARG secret_key
 ENV SECRET_KEY=$secret_key
 
-RUN npm install -g pnpm
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
 RUN pnpm install
 RUN pnpm build
 
+FROM node:20
+
+WORKDIR /usr/src/app
+
+COPY --from=base /usr/src/app/app/package.json /usr/src/app/package.json
+COPY --from=base /usr/src/app/app/dist /usr/src/app/dist
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
 ENV NODE_ENV=production
+
+RUN pnpm install
 
 USER node
 EXPOSE 3000
-ENTRYPOINT [ "node", "/usr/src/app/app/dist/main.js" ]
+ENTRYPOINT [ "node", "/usr/src/app/dist/main.js" ]
