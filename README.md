@@ -18,9 +18,10 @@
 
 Prerequisites:
 
-- Docker v24 (Optional)
 - Node.js v20
 - PNPM v8
+- Docker (Optional)
+- Google Cloud CLI (Optional)
 
 Get started with Fastify Starter.
 
@@ -65,6 +66,12 @@ $ pnpm install
 $ pnpm dev
 ```
 
+### Mock third-party/private APIs during development
+
+```sh
+$ pnpm mock
+```
+
 ### Compiles and minifies for production
 
 ```sh
@@ -82,10 +89,10 @@ $ pnpm preview
 
 ### Lints and fixes files
 
-Biome CLI
+Files: `{app,db,mock,e2e,docs,iac}/**/*.ts`
 
 ```sh
-$ pnpm biome check --apply ./app ./db ./mock ./e2e ./docs ./iac
+$ pnpm lint
 ```
 
 ### Check types
