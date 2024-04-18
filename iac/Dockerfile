@@ -8,20 +8,20 @@ ENV HOST 0.0.0.0
 ARG site_url
 ENV SITE_URL=$site_url
 
-ARG mongodb_url
-ENV MONGODB_URL=$mongodb_url
+ARG MONGODB_URL
+ENV MONGODB_URL=$MONGODB_URL
 
-ARG redis_url
-ENV REDIS_URL=$redis_url
+ARG REDIS_URL
+ENV REDIS_URL=$REDIS_URL
 
-ARG cloudinary_url
-ENV CLOUDINARY_URL=$cloudinary_url
+ARG CLOUDINARY_URL
+ENV CLOUDINARY_URL=$CLOUDINARY_URL
 
-ARG smtp_url
-ENV SMTP_URL=$smtp_url
+ARG SMTP_URL
+ENV SMTP_URL=$SMTP_URL
 
-ARG secret_key
-ENV SECRET_KEY=$secret_key
+ARG SECRET_KEY
+ENV SECRET_KEY=$SECRET_KEY
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
@@ -47,4 +47,4 @@ RUN pnpm install
 
 USER node
 EXPOSE 3000
-ENTRYPOINT [ "node", "/usr/src/app/dist/main.js" ]
+CMD [ "node", "/usr/src/app/dist/main.js" ]
