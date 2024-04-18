@@ -7,7 +7,7 @@ import todos from '../+handler';
 let mongod = null as MongoMemoryServer | null;
 
 beforeAll(async () => {
-  mongod = await MongoMemoryServer.create();
+  mongod = await MongoMemoryServer.create({ binary: { version: '7.0.8' } });
 });
 
 afterAll(async () => {
