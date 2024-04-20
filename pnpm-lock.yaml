@@ -43,7 +43,7 @@ importers:
         version: 5.5.0
       '@fastify/type-provider-typebox':
         specifier: ^4.0.0
-        version: 4.0.0(@sinclair/typebox@0.32.20)
+        version: 4.0.0(@sinclair/typebox@0.32.21)
       '@fastify/under-pressure':
         specifier: ^8.3.0
         version: 8.3.0
@@ -51,8 +51,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1
       '@sinclair/typebox':
-        specifier: ^0.32.20
-        version: 0.32.20
+        specifier: ^0.32.21
+        version: 0.32.21
       '@tirke/node-cache-manager-ioredis':
         specifier: ^3.6.0
         version: 3.6.0
@@ -63,8 +63,8 @@ importers:
         specifier: ^9.2.2
         version: 9.2.2
       bullmq:
-        specifier: ^5.7.1
-        version: 5.7.2
+        specifier: ^5.7.3
+        version: 5.7.3
       cache-manager:
         specifier: ^5.5.1
         version: 5.5.1
@@ -145,8 +145,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       vite-plugin-static-copy:
-        specifier: ^1.0.2
-        version: 1.0.2(vite@5.2.9(@types/node@20.12.7))
+        specifier: ^1.0.3
+        version: 1.0.3(vite@5.2.9(@types/node@20.12.7))
       vitest:
         specifier: ^1.5.0
         version: 1.5.0(@types/node@20.12.7)
@@ -160,8 +160,8 @@ importers:
   docs:
     devDependencies:
       vitepress:
-        specifier: ^1.1.0
-        version: 1.1.0(@algolia/client-search@4.23.3)(@types/node@20.12.7)(postcss@8.4.38)(search-insights@2.13.0)(typescript@5.4.5)
+        specifier: ^1.1.3
+        version: 1.1.3(@algolia/client-search@4.23.3)(@types/node@20.12.7)(postcss@8.4.38)(search-insights@2.13.0)(typescript@5.4.5)
 
   e2e:
     devDependencies:
@@ -174,15 +174,15 @@ importers:
 
   iac:
     dependencies:
+      '@pulumi/azure-native':
+        specifier: ^2.37.0
+        version: 2.37.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
       '@pulumi/docker':
         specifier: ^4.5.3
         version: 4.5.3(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
-      '@pulumi/google-native':
-        specifier: ^0.32.0
-        version: 0.32.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
       '@pulumi/pulumi':
-        specifier: ^3.113.0
-        version: 3.113.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
+        specifier: ^3.113.3
+        version: 3.113.3(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
     devDependencies:
       ts-node:
         specifier: ^10.9.2
@@ -896,14 +896,14 @@ packages:
   '@protobufjs/utf8@1.1.0':
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
+  '@pulumi/azure-native@2.37.0':
+    resolution: {integrity: sha512-7Ixfb4hqQmSZr232nx1C7Uva0ogATeHPxc9FRKHv3tE2yF1Vtn9lfpyndP1egvAJKQmIZrwaqWGT/kyCCTp19g==}
+
   '@pulumi/docker@4.5.3':
     resolution: {integrity: sha512-chHRNGzmpdskxJt0MvD0Mt3x4v9zYTssRoGNGCpkVCnicYSV8CUi26J1b6svp+aWK4RNrqmD1ohFHHXIVtSxjA==}
 
-  '@pulumi/google-native@0.32.0':
-    resolution: {integrity: sha512-7PJrCGHhmN/WnscNoImQtJPd1y817F/678KcgT8JhtTo4Af5enFpKXbQP4owoA9ngoJ4s+0lopBJHDbQi528Zw==}
-
-  '@pulumi/pulumi@3.113.0':
-    resolution: {integrity: sha512-egkifOLTGIQmyN0BFbMBBYKTqKy2a5UE5a4DKOT51S6GrdGas6M4yvXVksjL2gcaKiKIYOQSsaonvwc8/hkvpQ==}
+  '@pulumi/pulumi@3.113.3':
+    resolution: {integrity: sha512-q7Agc4nkIKNuoOmzIvmvbH3axIkdhEbVA+GPlosRM0MUJkJdRlU82hO4EGBhkyGbBPbLWvirqCjXOAQ66LgCfg==}
     engines: {node: '>=18'}
     peerDependencies:
       ts-node: '>= 7.0.1 < 12'
@@ -1030,8 +1030,8 @@ packages:
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
-  '@sinclair/typebox@0.32.20':
-    resolution: {integrity: sha512-ziK497ILSIYMxD/thl496idIb03IZPlha04itLQu1xAFQbumWZ+Dj4PMMCkDRpAYhvVSdmRlTjGu2B2MA5RplQ==}
+  '@sinclair/typebox@0.32.21':
+    resolution: {integrity: sha512-mIJHip7dc98j2KAUvwqmkSn02R8dNk7698g5Vb7J58fLLMSEBNi1ps10WzNM5HcKH90SvyFb3Vny6BvBmt5GnQ==}
 
   '@sindresorhus/is@4.6.0':
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
@@ -1089,8 +1089,8 @@ packages:
   '@types/lodash@4.17.0':
     resolution: {integrity: sha512-t7dhREVv6dbNj0q17X12j7yDG4bD/DHYX7o5/DbDxobP0HnGPgpRz2Ej77aL7TZT3DSw13fqUTj8J4mMnqa7WA==}
 
-  '@types/markdown-it@13.0.7':
-    resolution: {integrity: sha512-U/CBi2YUUcTHBt5tjO2r5QV/x0Po6nsYwQU4Y04fBS6vfoImaiZ6f8bi3CjTCxBPQSO1LMyUqkByzi8AidyxfA==}
+  '@types/markdown-it@14.0.1':
+    resolution: {integrity: sha512-6WfOG3jXR78DW8L5cTYCVVGAsIFZskRHCDo5tbqa+qtKVt4oDRVH7hyIWu1SpDQJlmIoEivNQZ5h+AGAOrgOtQ==}
 
   '@types/mdurl@1.0.5':
     resolution: {integrity: sha512-6L6VymKTzYSrEf4Nev4Xa1LCHKrlTlYCBMTlQKFuddo1CvQcE52I0mwfOJayueUC7MJuXOeHTcIU683lzd0cUA==}
@@ -1475,8 +1475,8 @@ packages:
   builtins@5.1.0:
     resolution: {integrity: sha512-SW9lzGTLvWTP1AY8xeAMZimqDrIaSdLQUcVr9DMef51niJ022Ri87SwRRKYm4A6iHfkPaiVUu/Duw2Wc4J7kKg==}
 
-  bullmq@5.7.2:
-    resolution: {integrity: sha512-5Z8cyPqno+V7l7NmQ0t15Gdkc6RYCs+SR6zSxvAg3ADofyQA+0rll60w6uJpKuUcE2ausC8EFLwW/FJDxSIP5Q==}
+  bullmq@5.7.3:
+    resolution: {integrity: sha512-h5iPs5ERkzbbQIzXgc6BFSV48oaGyp02I0MLp8jzPpqsZ2FCvSRgZv9elqu7H7Rhnm8Mm/QSs6v9sOBlrfo0CQ==}
 
   cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
@@ -3694,8 +3694,8 @@ packages:
   vite-plugin-fastify@1.2.5:
     resolution: {integrity: sha512-+6QG4AkJVLF38SgjmN9heIg2tuZedzdqZts1fCHi8fZNYTKzagd+xYVGdaVD7SoDSrJ2Z2vfONUEt50RsYQGvQ==}
 
-  vite-plugin-static-copy@1.0.2:
-    resolution: {integrity: sha512-AfmEF+a/mfjsUsrgjbCkhzUCeIUF4EKQXXt3Ie1cour9MBpy6f6GphbdW2td28oYfOrwCyRzFCksgLkpk58q6Q==}
+  vite-plugin-static-copy@1.0.3:
+    resolution: {integrity: sha512-hBCCz6T0uNI3oF5oJ/Ju73rhoR+ADrJ2iLAea5+wA7kpQ8clYgY8BD+GL0w0BrqsYCbgBITOByBP/3y9Y+h93A==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       vite: ^5.0.0
@@ -3728,8 +3728,8 @@ packages:
       terser:
         optional: true
 
-  vitepress@1.1.0:
-    resolution: {integrity: sha512-G+NS5I2OETxC0SfGAMDO75JWNkrcir0UCptuhQMNoaZhhlqvYtTDQhph4qGc5dtiTtZkcFa/bCcSx+A2gSS3lA==}
+  vitepress@1.1.3:
+    resolution: {integrity: sha512-hGrIYN0w9IHWs0NQSnlMjKV/v/HLfD+Ywv5QdvCSkiT32mpNOOwUrZjnqZv/JL/WBPpUc94eghTUvmipxw0xrA==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
@@ -4266,9 +4266,9 @@ snapshots:
       type-is: 1.6.18
       vary: 1.1.2
 
-  '@fastify/type-provider-typebox@4.0.0(@sinclair/typebox@0.32.20)':
+  '@fastify/type-provider-typebox@4.0.0(@sinclair/typebox@0.32.21)':
     dependencies:
-      '@sinclair/typebox': 0.32.20
+      '@sinclair/typebox': 0.32.21
 
   '@fastify/under-pressure@8.3.0':
     dependencies:
@@ -4650,9 +4650,18 @@ snapshots:
 
   '@protobufjs/utf8@1.1.0': {}
 
+  '@pulumi/azure-native@2.37.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)':
+    dependencies:
+      '@pulumi/pulumi': 3.113.3(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
+
   '@pulumi/docker@4.5.3(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)':
     dependencies:
-      '@pulumi/pulumi': 3.113.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
+      '@pulumi/pulumi': 3.113.3(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
       semver: 5.7.2
     transitivePeerDependencies:
       - bluebird
@@ -4660,16 +4669,7 @@ snapshots:
       - ts-node
       - typescript
 
-  '@pulumi/google-native@0.32.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)':
-    dependencies:
-      '@pulumi/pulumi': 3.113.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)
-    transitivePeerDependencies:
-      - bluebird
-      - supports-color
-      - ts-node
-      - typescript
-
-  '@pulumi/pulumi@3.113.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)':
+  '@pulumi/pulumi@3.113.3(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))(typescript@5.4.5)':
     dependencies:
       '@grpc/grpc-js': 1.10.6
       '@logdna/tail-file': 2.2.0
@@ -4796,7 +4796,7 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@sinclair/typebox@0.32.20': {}
+  '@sinclair/typebox@0.32.21': {}
 
   '@sindresorhus/is@4.6.0': {}
 
@@ -4853,7 +4853,7 @@ snapshots:
 
   '@types/lodash@4.17.0': {}
 
-  '@types/markdown-it@13.0.7':
+  '@types/markdown-it@14.0.1':
     dependencies:
       '@types/linkify-it': 3.0.5
       '@types/mdurl': 1.0.5
@@ -5323,7 +5323,7 @@ snapshots:
     dependencies:
       semver: 7.6.0
 
-  bullmq@5.7.2:
+  bullmq@5.7.3:
     dependencies:
       cron-parser: 4.9.0
       ioredis: 5.4.1
@@ -7789,7 +7789,7 @@ snapshots:
 
   vite-plugin-fastify@1.2.5: {}
 
-  vite-plugin-static-copy@1.0.2(vite@5.2.9(@types/node@20.12.7)):
+  vite-plugin-static-copy@1.0.3(vite@5.2.9(@types/node@20.12.7)):
     dependencies:
       chokidar: 3.6.0
       fast-glob: 3.3.2
@@ -7806,13 +7806,13 @@ snapshots:
       '@types/node': 20.12.7
       fsevents: 2.3.3
 
-  vitepress@1.1.0(@algolia/client-search@4.23.3)(@types/node@20.12.7)(postcss@8.4.38)(search-insights@2.13.0)(typescript@5.4.5):
+  vitepress@1.1.3(@algolia/client-search@4.23.3)(@types/node@20.12.7)(postcss@8.4.38)(search-insights@2.13.0)(typescript@5.4.5):
     dependencies:
       '@docsearch/css': 3.6.0
       '@docsearch/js': 3.6.0(@algolia/client-search@4.23.3)(search-insights@2.13.0)
       '@shikijs/core': 1.3.0
       '@shikijs/transformers': 1.3.0
-      '@types/markdown-it': 13.0.7
+      '@types/markdown-it': 14.0.1
       '@vitejs/plugin-vue': 5.0.4(vite@5.2.9(@types/node@20.12.7))(vue@3.4.23(typescript@5.4.5))
       '@vue/devtools-api': 7.0.27(vue@3.4.23(typescript@5.4.5))
       '@vueuse/core': 10.9.0(vue@3.4.23(typescript@5.4.5))

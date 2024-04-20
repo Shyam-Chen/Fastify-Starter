@@ -21,7 +21,7 @@ Prerequisites:
 - Node.js v20
 - PNPM v8
 - Docker (Optional)
-- Google Cloud CLI (Optional)
+- Azure (Optional)
 
 Get started with Fastify Starter.
 
