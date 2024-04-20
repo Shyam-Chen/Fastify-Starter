@@ -46,5 +46,13 @@ export = async () => {
     };
   }
 
+  if (currentStack === 'ci') {
+    return {};
+  }
+
+  if (['dev', 'test', 'prod'].includes(currentStack)) {
+    return {};
+  }
+
   return {};
 };
