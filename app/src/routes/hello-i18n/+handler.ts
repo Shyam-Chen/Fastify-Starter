@@ -1,6 +1,6 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
-import { defineI18n, useI18n } from 'fastify-i18n';
+import { defineI18n } from 'fastify-i18n';
 
 export default (async (app) => {
   defineI18n(app, import.meta.glob(['./locales/*.ts'], { eager: true }));
@@ -31,10 +31,8 @@ export default (async (app) => {
       },
     },
     async (req, reply) => {
-      const i18n = useI18n(req);
-
       return reply.send({
-        hello: i18n.t('hello'),
+        hello: req.i18n.t('hello'),
         text: req.i18n.t('text'),
       });
     },
