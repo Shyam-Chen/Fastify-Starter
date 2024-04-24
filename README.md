@@ -19,15 +19,17 @@
 Prerequisites:
 
 - Node.js v20
-- PNPM v8
+- PNPM v9
 - Docker (Optional)
+- Pulumi (Optional)
 - Azure (Optional)
 
 Get started with Fastify Starter.
 
 ```sh
 # (optional)
-# If you already have the MONGODB_URL and REDIS_URL connections, you can directly replace them.
+# If you already have the MONGODB_URL and REDIS_URL connections,
+# you can directly replace them.
 
 # mongo server
 $ docker compose up -d local-mongo
@@ -40,8 +42,13 @@ $ docker compose up -d local-redis
 # install dependencies
 $ pnpm install
 
-# dev server
+# dev server (in one terminal)
 $ pnpm dev
+
+# (negligible)
+# The current demo doesn't make any calls to third-party or internal APIs.
+# mock server (in another terminal)
+$ pnpm mock
 ```
 
 Or use barebones scaffolding for your new Fastify app
@@ -274,6 +281,7 @@ The structure follows the LIFT Guidelines.
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── vite.config.ts
+├── .dockerignore
 ├── .editorconfig
 ├── .gitignore
 ├── biome.json
