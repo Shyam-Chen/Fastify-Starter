@@ -96,7 +96,7 @@ $ pnpm preview
 
 ### Lints and fixes files
 
-Files: `{app,db,mock,e2e,docs,iac}/**/*.ts`
+Files: `{app,db,mock,e2e,docs,infra}/**/*.ts`
 
 ```sh
 $ pnpm lint
@@ -271,7 +271,7 @@ The structure follows the LIFT Guidelines.
 │   ├── package.json
 │   ├── playwright.config.ts
 │   └── tsconfig.json
-├── iac -> Infrastructure as code
+├── infra -> Infrastructure as code
 │   ├── src
 │   ├── package.json
 │   ├── Pulumi.yaml

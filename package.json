@@ -6,7 +6,7 @@
     "mock": "pnpm -C mock mock",
     "build": "pnpm -C app build",
     "preview": "pnpm -C app preview",
-    "lint": "pnpm biome check --apply ./app ./db ./mock ./e2e ./docs ./iac",
+    "lint": "pnpm biome check --apply ./app ./db ./mock ./e2e ./docs ./infra",
     "check": "pnpm -C app check",
     "test": "pnpm -C app test",
     "e2e": "pnpm -C e2e e2e"

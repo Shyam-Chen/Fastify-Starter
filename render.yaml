@@ -7,7 +7,7 @@ services:
     branch: main
     healthCheckPath: /api/healthz
 
-    dockerfilePath: ./iac/Dockerfile
+    dockerfilePath: ./infra/Dockerfile
 
     envVars:
       - key: NODE_VERSION
