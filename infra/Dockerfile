@@ -5,8 +5,11 @@ ADD . .
 
 ENV HOST 0.0.0.0
 
-ARG site_url
-ENV SITE_URL=$site_url
+ARG PORT
+ENV PORT=$PORT
+
+ARG SITE_URL
+ENV SITE_URL=$SITE_URL
 
 ARG MONGODB_URL
 ENV MONGODB_URL=$MONGODB_URL
@@ -30,7 +33,7 @@ RUN corepack enable
 RUN pnpm install
 RUN pnpm build
 
-FROM node:20
+FROM node:20-slim
 
 WORKDIR /usr/src/app
 
@@ -46,5 +49,5 @@ ENV NODE_ENV=production
 RUN pnpm install
 
 USER node
-EXPOSE 3000
+EXPOSE ${PORT}
 CMD [ "node", "/usr/src/app/dist/main.js" ]
