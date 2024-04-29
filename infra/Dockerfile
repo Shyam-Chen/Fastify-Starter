@@ -33,7 +33,7 @@ RUN corepack enable
 RUN pnpm install
 RUN pnpm build
 
-FROM node:20-slim
+FROM node:20
 
 WORKDIR /usr/src/app
 
