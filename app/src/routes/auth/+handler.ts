@@ -30,15 +30,15 @@ export default (async (app) => {
   /*
   User List -> Create a User
 
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/sign-up \
-    --header 'content-type: application/json' \
-    --data '{
-      "username": "shyam.chen",
-      "password": "12345678",
-      "email": "shyam.chen@example.com",
-      "fullName": "Shyam Chen"
-    }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/auth/sign-up \
+         --header 'content-type: application/json' \
+         --data '{
+                   "username": "shyam.chen",
+                   "password": "12345678",
+                   "email": "shyam.chen@example.com",
+                   "fullName": "Shyam Chen"
+                 }'
   */
   app.post(
     '/sign-up',
@@ -91,13 +91,10 @@ export default (async (app) => {
   );
 
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/sign-in \
-    --header 'content-type: application/json' \
-    --data '{
-      "username": "shyam.chen",
-      "password": "12345678"
-    }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/auth/sign-in \
+         --header 'content-type: application/json' \
+         --data '{ "username": "shyam.chen", "password": "12345678" }'
   */
   app.post(
     '/sign-in',
@@ -137,6 +134,7 @@ export default (async (app) => {
       const uuid = randomUUID();
       const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
       const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
+      await app.redis.set(`${username}+${uuid}`, refreshToken, 'EX', 12 * 60 * 60);
 
       return reply.send({
         message: 'OK',
@@ -149,10 +147,10 @@ export default (async (app) => {
   );
 
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/token \
-    --header 'content-type: application/json' \
-    --data '{ "accessToken": "xxx", "refreshToken": "xxx" }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/auth/token \
+         --header 'content-type: application/json' \
+         --data '{ "accessToken": "xxx", "refreshToken": "xxx" }'
   */
   app.post(
     '/token',
@@ -172,12 +170,21 @@ export default (async (app) => {
 
       if (decodedAccessToken?.uuid === decodedRefreshToken?.uuid) {
         if (decodedAccessToken?.uuid) {
-          const accessToken = app.jwt.sign(
-            { username: decodedAccessToken?.username, uuid: decodedAccessToken.uuid },
-            { expiresIn: '20m' },
-          );
+          const username = decodedAccessToken.username;
+          const uuid = decodedAccessToken.uuid;
+          const originalRefreshToken = await app.redis.get(`${username}+${uuid}`);
 
-          return reply.send({ message: 'OK', accessToken });
+          if (originalRefreshToken === refreshToken) {
+            const newAccessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
+            const newRefreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
+            await app.redis.set(`${username}+${uuid}`, newRefreshToken, 'EX', 12 * 60 * 60);
+
+            return reply.send({
+              message: 'OK',
+              accessToken: newAccessToken,
+              refreshToken: newRefreshToken,
+            });
+          }
         }
       }
 
@@ -186,12 +193,12 @@ export default (async (app) => {
   );
 
   /*
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/auth/user
+  $ curl --request GET \
+         --url http://127.0.0.1:3000/api/auth/user
 
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/auth/user \
-    --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
+  $ curl --request GET \
+         --url http://127.0.0.1:3000/api/auth/user \
+         --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
   app.get('/user', { onRequest: [auth] }, async (req, reply) => {
     const user = await users?.findOne(
@@ -208,10 +215,10 @@ export default (async (app) => {
   });
 
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/reset-password/send \
-    --header 'content-type: application/json' \
-    --data '{ "email": "shyam.chen@example.com" }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/auth/reset-password/send \
+         --header 'content-type: application/json' \
+         --data '{ "email": "shyam.chen@example.com" }'
   */
   app.post(
     '/reset-password/send',
@@ -249,10 +256,10 @@ export default (async (app) => {
   );
 
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/reset-password/validate \
-    --header 'content-type: application/json' \
-    --data '{ "code": "325198", "messageId": "xxx", "email": "shyam.chen@example.com" }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/auth/reset-password/validate \
+         --header 'content-type: application/json' \
+         --data '{ "code": "325198", "messageId": "xxx", "email": "shyam.chen@example.com" }'
   */
   app.post(
     '/reset-password/validate',
@@ -287,11 +294,11 @@ export default (async (app) => {
   );
 
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/reset-password/change \
-    --header 'content-type: application/json' \
-    --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
-    --data '{ "password": "qwerty123", "confirmPassword": "qwerty123" }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/auth/reset-password/change \
+         --header 'content-type: application/json' \
+         --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
+         --data '{ "password": "qwerty123", "confirmPassword": "qwerty123" }'
   */
   app.post(
     '/reset-password/change',
