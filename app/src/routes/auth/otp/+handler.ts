@@ -93,6 +93,7 @@ export default (async (app) => {
       const uuid = randomUUID();
       const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
       const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
+      await app.redis.set(`${username}+${uuid}`, refreshToken, 'EX', 12 * 60 * 60);
 
       return reply.send({ message: 'OK', accessToken, refreshToken });
     },
