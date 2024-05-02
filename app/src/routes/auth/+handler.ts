@@ -8,6 +8,8 @@ import pbkdf2 from 'pbkdf2-passworder';
 import useMailer from '~/composables/useMailer';
 import auth from '~/middleware/auth';
 
+import service from './service';
+
 const body = Type.Object({
   username: Type.String(),
   fullName: Type.String(),
@@ -132,9 +134,7 @@ export default (async (app) => {
       }
 
       const uuid = randomUUID();
-      const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
-      const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
-      await app.redis.set(`${username}+${uuid}`, refreshToken, 'EX', 12 * 60 * 60);
+      const { accessToken, refreshToken } = await service.signToken(app, { username, uuid });
 
       return reply.send({
         message: 'OK',
@@ -175,9 +175,8 @@ export default (async (app) => {
           const originalRefreshToken = await app.redis.get(`${username}+${uuid}`);
 
           if (originalRefreshToken === refreshToken) {
-            const newAccessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
-            const newRefreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
-            await app.redis.set(`${username}+${uuid}`, newRefreshToken, 'EX', 12 * 60 * 60);
+            const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+              await service.signToken(app, { username, uuid });
 
             return reply.send({
               message: 'OK',

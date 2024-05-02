@@ -6,6 +6,8 @@ import pbkdf2 from 'pbkdf2-passworder';
 
 import auth from '~/middleware/auth';
 
+import authService from '../service';
+
 export default (async (app) => {
   const users = app.mongo.db?.collection('users');
 
@@ -91,9 +93,7 @@ export default (async (app) => {
       if (!isValid) return reply.badRequest();
 
       const uuid = randomUUID();
-      const accessToken = app.jwt.sign({ username, uuid }, { expiresIn: '20m' });
-      const refreshToken = app.jwt.sign({ uuid }, { expiresIn: '12h' });
-      await app.redis.set(`${username}+${uuid}`, refreshToken, 'EX', 12 * 60 * 60);
+      const { accessToken, refreshToken } = await authService.signToken(app, { username, uuid });
 
       return reply.send({ message: 'OK', accessToken, refreshToken });
     },
