@@ -12,9 +12,9 @@ export default (async (app) => {
   const users = app.mongo.db?.collection('users');
 
   /*
-  curl --request GET \
-    --url http://127.0.0.1:3000/api/auth/otp/setup \
-    --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
+  $ curl --request GET \
+         --url http://127.0.0.1:3000/api/auth/otp/setup \
+         --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
   app.get('/setup', { onRequest: [auth] }, async (req, reply) => {
     const user = await users?.findOne({ username: { $eq: req.user.username } });
@@ -31,11 +31,11 @@ export default (async (app) => {
   });
 
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/otp/verify \
-    --header 'Content-Type: application/json' \
-    --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
-    --data '{ "code": "469457" }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/auth/otp/verify \
+         --header 'Content-Type: application/json' \
+         --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M" \
+         --data '{ "code": "469457" }'
   */
   app.post(
     '/verify',
@@ -65,10 +65,10 @@ export default (async (app) => {
   );
 
   /*
-  curl --request POST \
-    --url http://127.0.0.1:3000/api/auth/otp/validate \
-    --header 'Content-Type: application/json' \
-    --data '{ "code": "469457", "username": "shyam.chen", "password": "12345678" }'
+  $ curl --request POST \
+         --url http://127.0.0.1:3000/api/auth/otp/validate \
+         --header 'Content-Type: application/json' \
+         --data '{ "code": "469457", "username": "shyam.chen", "password": "12345678" }'
   */
   app.post(
     '/validate',
