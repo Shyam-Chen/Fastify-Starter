@@ -1,7 +1,7 @@
 localhost {
-  route {
-    reverse_proxy /api/* 0.0.0.0:3000
-  }
+  handle {
+    reverse_proxy 192.168.100.202:3000
+	}
 
   header {
     -Server
