@@ -28,7 +28,8 @@ ENV SECRET_KEY=$SECRET_KEY
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+RUN corepack enable pnpm
+RUN corepack use pnpm@9
 
 RUN pnpm install
 RUN pnpm build
@@ -40,11 +41,15 @@ WORKDIR /usr/src/app
 COPY --from=base /usr/src/app/app/package.json /usr/src/app/package.json
 COPY --from=base /usr/src/app/app/dist /usr/src/app/dist
 
+ENV NODE_ENV=production
+
+ARG PORT
+ENV PORT=$PORT
+
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
-
-ENV NODE_ENV=production
+RUN corepack enable pnpm
+RUN corepack use pnpm@9
 
 RUN pnpm install
 
