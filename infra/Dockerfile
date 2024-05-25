@@ -31,7 +31,6 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable pnpm
 RUN corepack use pnpm@9
 
-RUN pnpm install
 RUN pnpm build
 
 FROM node:20
@@ -50,8 +49,6 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable pnpm
 RUN corepack use pnpm@9
-
-RUN pnpm install
 
 USER node
 EXPOSE ${PORT}
