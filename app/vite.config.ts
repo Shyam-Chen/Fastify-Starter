@@ -23,6 +23,8 @@ export default defineConfig({
     SMTP_URL: process.env.SMTP_URL || `smtp://${user}:${pass}@smtp.ethereal.email:587`,
 
     SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
+
+    MONGOMS_VERSION: process.env.MONGOMS_VERSION || '7.0.11',
   }),
   plugins: [
     fastify({
