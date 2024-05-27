@@ -2,9 +2,9 @@
   "private": true,
   "main": "./src/index.ts",
   "dependencies": {
-    "@pulumi/azure-native": "2.42.0",
-    "@pulumi/docker": "4.5.3",
-    "@pulumi/pulumi": "3.116.1"
+    "@pulumi/azure-native": "2.42.1",
+    "@pulumi/docker": "4.5.4",
+    "@pulumi/pulumi": "3.117.0"
   },
   "devDependencies": {
     "ts-node": "10.9.2",
