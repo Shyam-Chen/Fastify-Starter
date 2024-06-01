@@ -4,7 +4,7 @@
 
 :rainbow: View Demo: [Live](https://vue-starter-6fa6.onrender.com) | Windows | macOS | Android | iOS
 
-:octocat: Source Code: [Web-side](https://github.com/Shyam-Chen/Vue-Starter) | [Native-side](https://github.com/Shyam-Chen/Tauri-Starter) | [Server-side](https://github.com/Shyam-Chen/Fastify-Starter)
+:octocat: Source Code: [Web-side](https://github.com/Shyam-Chen/Vue-Starter) | [Native-side](https://github.com/Shyam-Chen/Tauri-Starter) | [Server-side](https://github.com/Shyam-Chen/Fastify-Starter) | [Cloud-side](https://github.com/Shyam-Chen/Pulumi-Starter)
 
 ## Table of Contents
 
@@ -204,6 +204,8 @@ Set your local environment variables.
     SMTP_URL: process.env.SMTP_URL || `smtp://${user}:${pass}@smtp.ethereal.email:587`,
 
     SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
+
+    MONGOMS_VERSION: process.env.MONGOMS_VERSION || '7.0.11',
   }),
 ```
 
@@ -221,13 +223,10 @@ Add environment variables to the Render build.
 
 ```sh
 SITE_URL=xxx
-
 MONGODB_URL=xxx
 REDIS_URL=xxx
 CLOUDINARY_URL=xxx
 SMTP_URL=xxx
-
-SECRET_KEY=xxx
 ```
 
 ## Directory Structure
