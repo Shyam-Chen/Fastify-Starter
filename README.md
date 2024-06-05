@@ -1,6 +1,6 @@
 # Fastify Starter
 
-:leopard: A boilerplate for API Server with Node.js, Fastify, and MongoDB on Vite.
+:leopard: A boilerplate for server applications with Fastify and Mongo using TypeScript on Vite.
 
 :rainbow: View Demo: [Live](https://vue-starter-6fa6.onrender.com) | Windows | macOS | Android | iOS
 
@@ -20,9 +20,7 @@ Prerequisites:
 
 - Node.js v20
 - PNPM v9
-- Docker (Optional)
-- Pulumi (Optional)
-- Azure (Optional)
+- Docker v4 (Optional)
 
 Get started with Fastify Starter.
 
@@ -54,7 +52,7 @@ $ pnpm mock
 Or use barebones scaffolding for your new Fastify app
 
 ```sh
-$ pnpm dlx degit Shyam-Chen/Starter-Templates/fastify my-fastify-app
+$ pnpm dlx degit Shyam-Chen/Barebones-Templates/fastify my-fastify-app
 ```
 
 ## Project Setup
@@ -96,7 +94,7 @@ $ pnpm preview
 
 ### Lints and fixes files
 
-Files: `{app,db,mock,e2e,docs,infra}/**/*.ts`
+Files: `**/*.ts`
 
 ```sh
 $ pnpm lint
@@ -158,7 +156,7 @@ This seed repository provides the following features:
 - [x] [Playwright](https://github.com/microsoft/playwright) - Test Automation
 - ---------- **Environments** ----------
 - [x] [Node.js](https://nodejs.org/en/) - JavaScript Runtime Environment
-- [x] [Pnpm](https://pnpm.io/) - Package Manager
+- [x] [PNPM](https://pnpm.io/) - Package Manager
 - [x] [Caddy](https://caddyserver.com/) - Web Server
 - [x] [Docker](https://www.docker.com/) - Containerized Application Development
 - [x] [GitHub Actions](https://github.com/features/actions) - Continuous Integration and Delivery
@@ -269,11 +267,6 @@ The structure follows the LIFT Guidelines.
 │   ├── src
 │   ├── package.json
 │   ├── playwright.config.ts
-│   └── tsconfig.json
-├── infra -> Infrastructure as code
-│   ├── src
-│   ├── package.json
-│   ├── Pulumi.yaml
 │   └── tsconfig.json
 ├── mock -> Mocking third-party or private API calls
 │   ├── src
