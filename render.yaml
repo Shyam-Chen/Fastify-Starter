@@ -10,12 +10,6 @@ services:
     dockerfilePath: ./infra/Dockerfile
 
     envVars:
-      - key: NODE_VERSION
-        value: 20.12.2
-      - key: HOST
-        value: 0.0.0.0
-      - key: PORT
-        value: 10000
       - key: SITE_URL
         sync: false
       - key: MONGODB_URL
@@ -29,16 +23,15 @@ services:
       - key: SECRET_KEY
         generateValue: true
 
-  # - type: worker
-  #   name: fastify-starter-queue
-  #   runtime: node
-  #   region: oregon
+  # - name: fastify-starter-worker
+  #   type: worker
+  #   runtime: docker
   #   plan: starter
+  #   region: oregon
   #   branch: main
+
+  #   dockerfilePath: ./infra/worker.Dockerfile
+
   #   envVars:
-  #     - key: NODE_VERSION
-  #       value: 20.12.2
   #     - key: REDIS_URL
   #       sync: false
-  #   buildCommand: pnpm install; pnpm build
-  #   startCommand: node app/dist/worker.js
