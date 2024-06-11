@@ -94,7 +94,7 @@ $ pnpm preview
 
 ### Lints and fixes files
 
-Files: `**/*.ts`
+Files: `**/*.{js,ts}`
 
 ```sh
 $ pnpm lint
@@ -110,7 +110,7 @@ $ pnpm check
 
 ### Runs unit tests
 
-Files: `app/src/**/*.spec.ts`
+Files: `app/src/**/*.test.ts`
 
 ```sh
 $ pnpm test
@@ -118,7 +118,7 @@ $ pnpm test
 
 ### Runs end-to-end tests
 
-Files: `e2e/src/**/*.spec.ts`
+Files: `e2e/src/**/*.test.ts`
 
 ```sh
 # Before running the `e2e` command, make sure to run the following commands.
@@ -233,7 +233,7 @@ The structure follows the LIFT Guidelines.
 
 ```coffee
 .
-├── .github/workflows/ci.yml
+├── .github/workflows/ci.yaml
 ├── app
 │   ├── public
 │   ├── src

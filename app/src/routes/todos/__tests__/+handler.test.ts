@@ -31,22 +31,22 @@ test('POST /todos', async () => {
   await app.mongo.db?.collection('todos').insertMany(data);
 
   const res = await app.inject({ method: 'POST', url: '/todos', payload: {} });
-  expect(res.json().result.length).toBe(10);
-  expect(res.json().total).toBe(31);
+  expect(res.json().result.length).toEqual(10);
+  expect(res.json().total).toEqual(31);
 
   const res2 = await app.inject({ method: 'POST', url: '/todos', payload: { title: '7' } });
-  expect(res2.json().result.length).toBe(3);
-  expect(res2.json().total).toBe(3);
+  expect(res2.json().result.length).toEqual(3);
+  expect(res2.json().total).toEqual(3);
 
   const res3 = await app.inject({ method: 'POST', url: '/todos', payload: { filter: 2 } });
-  expect(res3.json().result.length).toBe(10);
-  expect(res3.json().total).toBe(16);
+  expect(res3.json().result.length).toEqual(10);
+  expect(res3.json().total).toEqual(16);
 
   const res4 = await app.inject({ method: 'POST', url: '/todos', payload: { title: 'Vue' } });
-  expect(res4.json().result.length).toBe(0);
-  expect(res4.json().total).toBe(0);
+  expect(res4.json().result.length).toEqual(0);
+  expect(res4.json().total).toEqual(0);
 
   const res5 = await app.inject({ method: 'POST', url: '/todos', payload: { filter: 1 } });
-  expect(res5.json().result.length).toBe(10);
-  expect(res5.json().total).toBe(15);
+  expect(res5.json().result.length).toEqual(10);
+  expect(res5.json().total).toEqual(15);
 });
