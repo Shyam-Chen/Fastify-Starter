@@ -4,7 +4,7 @@ import * as local from './local';
 
 const currentStack = pulumi.getStack();
 
-export = async () => {
+export default async () => {
   if (currentStack === 'local') {
     return {
       mongoContainerName: local.mongoContainer.name,

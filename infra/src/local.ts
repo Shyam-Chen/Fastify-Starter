@@ -18,7 +18,7 @@ export const mongoContainer = new docker.Container('local-mongo', {
       containerPath: '/data',
     },
     {
-      hostPath: path.resolve(__dirname, '../../db'),
+      hostPath: path.resolve(import.meta.dirname, '../../db'),
       containerPath: '/docker-entrypoint-initdb.d',
       readOnly: true,
     },

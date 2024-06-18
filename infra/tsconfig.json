@@ -5,7 +5,7 @@
     "strictNullChecks": true,
 
     "baseUrl": ".",
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "paths": {},
     "resolveJsonModule": true,
