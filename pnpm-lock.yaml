@@ -72,8 +72,8 @@ importers:
         specifier: 4.4.0
         version: 4.4.0
       fastify:
-        specifier: 4.28.1
-        version: 4.28.1
+        specifier: 4.28.0
+        version: 4.28.0
       fastify-cloudinary:
         specifier: 1.2.0
         version: 1.2.0
@@ -178,8 +178,8 @@ importers:
         specifier: 1.4.0
         version: 1.4.0
       fastify:
-        specifier: 4.28.1
-        version: 4.28.1
+        specifier: 4.28.0
+        version: 4.28.0
       fastify-plugin:
         specifier: 4.5.1
         version: 4.5.1
@@ -1469,8 +1469,8 @@ packages:
   fastify-uws@0.7.1:
     resolution: {integrity: sha512-6XloWH0WpojejiZZNKAPT5SHwYTbUIFslhJ6YE/BNMFzpuXG1PyfZJQzNf3ITLdm/VqlsQEpm3tSeZLleH1O9Q==}
 
-  fastify@4.28.1:
-    resolution: {integrity: sha512-kFWUtpNr4i7t5vY2EJPCN2KgMVpuqfU4NjnJNCgiNB900oiDeYqaNDRcAfeBbOF5hGixixxcKnOU4KN9z6QncQ==}
+  fastify@4.28.0:
+    resolution: {integrity: sha512-HhW7UHW07YlqH5qpS0af8d2Gl/o98DhJ8ZDQWHRNDnzeOhZvtreWsX8xanjGgXmkYerGbo8ax/n40Dpwqkot8Q==}
 
   fastparallel@2.4.1:
     resolution: {integrity: sha512-qUmhxPgNHmvRjZKBFUNI0oZuuH9OlSIOXmJ98lhKPxMZZ7zS/Fi0wRHOihDSz0R1YiIOjxzOY4bq65YTcdBi2Q==}
@@ -4428,7 +4428,7 @@ snapshots:
       streamx: 2.16.1
       uWebSockets.js: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06
 
-  fastify@4.28.1:
+  fastify@4.28.0:
     dependencies:
       '@fastify/ajv-compiler': 3.6.0
       '@fastify/error': 3.4.1

@@ -30,7 +30,7 @@
     "bullmq": "5.8.3",
     "cache-manager": "5.6.1",
     "exceljs": "4.4.0",
-    "fastify": "4.28.1",
+    "fastify": "4.28.0",
     "fastify-cloudinary": "1.2.0",
     "fastify-i18n": "2.0.0",
     "fastify-plugin": "4.5.1",
