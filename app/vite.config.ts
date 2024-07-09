@@ -1,7 +1,7 @@
 import { resolve } from 'node:path';
 import nodemailer from 'nodemailer';
 import envify from 'process-envify';
-import { defineConfig } from 'vite';
+import { defineConfig, normalizePath } from 'vite';
 import fastify from 'vite-plugin-fastify';
 import fastifyRoutes from 'vite-plugin-fastify-routes';
 import { viteStaticCopy as staticCopy } from 'vite-plugin-static-copy';
@@ -35,15 +35,15 @@ export default defineConfig({
     staticCopy({
       targets: [
         {
-          src: resolve(__dirname, './src/jobs'),
-          dest: './',
+          src: normalizePath(resolve(import.meta.dirname, './src/jobs/**/*.js')),
+          dest: 'jobs',
         },
       ],
     }),
   ],
   resolve: {
     alias: {
-      '~': resolve(__dirname, 'src'),
+      '~': resolve(import.meta.dirname, 'src'),
     },
   },
   build: {

@@ -1,8 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import url from 'node:url';
-
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 export default (file: string) => {
   let filePath = '';
@@ -12,7 +9,7 @@ export default (file: string) => {
   }
 
   if (process.env.NODE_ENV === 'production') {
-    filePath = path.resolve(__dirname, '../', file);
+    filePath = path.resolve(import.meta.dirname, '../', file);
   }
 
   return fs.readFileSync(filePath);
