@@ -145,7 +145,7 @@ This seed repository provides the following features:
 - [x] [WebSocket](https://github.com/fastify/fastify-websocket) - Two-way Interactive Communication Session
 - [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2) - Server-sent Events
 - [x] [Mailer](https://github.com/nodemailer/nodemailer) - Email Sending
-- [x] [Email](https://github.com/Shyam-Chen/Email-Builder) - Email Builder
+- [x] [MJML](https://github.com/Shyam-Chen/MJML-Starter) - Email Builder
 - [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Email Rendering
 - [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
 - ---------- **Tools** ----------
@@ -177,6 +177,7 @@ This seed repository provides the following features:
 - [x] [Cache Deduplication](./app/src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts) (Or use [Redis Store](./app/src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts))
 - [x] [Background Workers](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/+handler.ts))
 - [x] [Cron Jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/cron/+handler.ts))
+- [x] [Delayed jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/delay/+handler.ts))
 
 ## Configuration
 
