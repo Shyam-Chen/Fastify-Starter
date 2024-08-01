@@ -35,6 +35,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: ${{ contains(fromJSON('["refs/heads/main", "refs/heads/release", "refs/heads/prod"]'), github.ref) }}
+    environment: ${{ github.ref_name }}
     steps:
       - name: Trigger deployment
         run: |
