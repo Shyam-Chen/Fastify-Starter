@@ -1,9 +1,6 @@
-import stream from 'node:stream';
-import util from 'node:util';
+import { pipeline } from 'node:stream/promises';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
-
-const pipeline = util.promisify(stream.pipeline);
 
 export default (async (app) => {
   /*
