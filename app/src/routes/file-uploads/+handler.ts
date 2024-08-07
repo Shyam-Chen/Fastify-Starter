@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
@@ -26,16 +28,17 @@ export default (async (app) => {
 
       if (!data) return reply.badRequest();
 
+      const public_id = path.basename(data.filename, path.extname(data.filename));
+
       if (process.env.NODE_ENV === 'production') {
-        await pipeline(
-          data.file,
-          app.cloudinary.uploader.upload_stream({ public_id: data.fieldname }),
-        );
+        await pipeline(data.file, app.cloudinary.uploader.upload_stream({ public_id }));
       } else {
-        console.log('data =', data);
+        const dir = path.resolve(import.meta.dirname, '../../../dist');
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+        await pipeline(data.file, fs.createWriteStream(path.resolve(dir, data.filename)));
       }
 
-      return reply.send({ message: 'OK', url: app.cloudinary.url(data.fieldname) });
+      return reply.send({ message: 'OK', url: app.cloudinary.url(public_id) });
     },
   );
 
