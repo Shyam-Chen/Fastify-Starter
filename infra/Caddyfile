@@ -1,7 +1,7 @@
 localhost {
   handle {
-    reverse_proxy 192.168.100.202:3000
-	}
+    reverse_proxy {$UPSTREAM_ADDRESS}
+  }
 
   header {
     -Server
