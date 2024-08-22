@@ -7,7 +7,7 @@ services:
     branch: main
     healthCheckPath: /api/healthz
 
-    dockerfilePath: ./infra/Dockerfile
+    dockerfilePath: ./.github/registry/Dockerfile
 
     envVars:
       - key: SITE_URL
@@ -30,7 +30,7 @@ services:
   #   region: oregon
   #   branch: main
 
-  #   dockerfilePath: ./infra/worker.Dockerfile
+  #   dockerfilePath: ./.github/registry/worker.Dockerfile
 
   #   envVars:
   #     - key: REDIS_URL

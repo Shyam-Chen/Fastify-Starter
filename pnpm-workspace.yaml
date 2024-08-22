@@ -4,4 +4,3 @@ packages:
   - 'db'
   - 'mock'
   - 'e2e'
-  - 'docs'

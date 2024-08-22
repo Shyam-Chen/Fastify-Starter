@@ -234,7 +234,7 @@ The structure follows the LIFT Guidelines.
 
 ```coffee
 .
-├── .github/workflows/ci.yaml
+├── .github
 ├── app
 │   ├── public
 │   ├── src
@@ -258,11 +258,6 @@ The structure follows the LIFT Guidelines.
 ├── db -> Set up local data for initializing and testing the database
 │   ├── src
 │   ├── mongo-init.js
-│   └── package.json
-├── docs -> Write API documentation with VitePress
-│   ├── .vitepress
-│   │   └── config.ts
-│   ├── index.md
 │   └── package.json
 ├── e2e -> API End-to-end testing
 │   ├── src
