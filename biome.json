@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": ["**/dist", "**/coverage", "**/.vitepress/cache"]
+    "ignore": ["**/dist", "**/coverage"]
   },
   "formatter": {
     "indentStyle": "space",
