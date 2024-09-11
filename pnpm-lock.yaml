@@ -84,8 +84,8 @@ importers:
         specifier: 4.5.1
         version: 4.5.1
       fastify-uws:
-        specifier: 0.8.1
-        version: 0.8.1
+        specifier: 0.9.0
+        version: 0.9.0
       generate-password:
         specifier: 1.7.1
         version: 1.7.1
@@ -1222,8 +1222,8 @@ packages:
   fastify-plugin@4.5.1:
     resolution: {integrity: sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==}
 
-  fastify-uws@0.8.1:
-    resolution: {integrity: sha512-IzKoOT3Du1vMRn29py38/u9MXFreEoGXmBKDkhMOXYQtzS0x6XR/ZklzUHx0+5Y8rUK9rn3eAsdvbFVPNYCDjQ==}
+  fastify-uws@0.9.0:
+    resolution: {integrity: sha512-CxVzJPe/nBPt1kvAOz8bFprLCpjjp1pBfu4nhkCRKpAUDsSQKJB3SJK2u+Kw7egyrRiKfGIMQMh4OYe04h3aOw==}
 
   fastify@4.28.1:
     resolution: {integrity: sha512-kFWUtpNr4i7t5vY2EJPCN2KgMVpuqfU4NjnJNCgiNB900oiDeYqaNDRcAfeBbOF5hGixixxcKnOU4KN9z6QncQ==}
@@ -2486,9 +2486,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/8fa05571bf6ea95be8966ad313d9d39453e381ae:
-    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/8fa05571bf6ea95be8966ad313d9d39453e381ae}
-    version: 20.44.0
+  uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/51ae1d1fd92dff77cbbdc7c431021f85578da1a6:
+    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/51ae1d1fd92dff77cbbdc7c431021f85578da1a6}
+    version: 20.48.0
 
   ufo@1.5.3:
     resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
@@ -3793,16 +3793,16 @@ snapshots:
 
   fastify-plugin@4.5.1: {}
 
-  fastify-uws@0.8.1:
+  fastify-uws@0.9.0:
     dependencies:
       '@fastify/error': 4.0.0
+      eventemitter3: 5.0.1
       fastify-plugin: 4.5.1
-      fastq: 1.17.1
       ipaddr.js: 2.2.0
       it-pushable: 3.2.3
       it-to-stream: 1.0.0
       streamx: 2.18.0
-      uWebSockets.js: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/8fa05571bf6ea95be8966ad313d9d39453e381ae
+      uWebSockets.js: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/51ae1d1fd92dff77cbbdc7c431021f85578da1a6
 
   fastify@4.28.1:
     dependencies:
@@ -5112,7 +5112,7 @@ snapshots:
 
   typescript@5.5.4: {}
 
-  uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/8fa05571bf6ea95be8966ad313d9d39453e381ae: {}
+  uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/51ae1d1fd92dff77cbbdc7c431021f85578da1a6: {}
 
   ufo@1.5.3: {}
 
