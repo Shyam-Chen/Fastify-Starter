@@ -21,6 +21,7 @@ export default defineConfig({
     REDIS_URL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
     CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'cloudinary://apikey:apisecret@cloudname',
     SMTP_URL: process.env.SMTP_URL || `smtp://${user}:${pass}@smtp.ethereal.email:587`,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
 
     SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
 

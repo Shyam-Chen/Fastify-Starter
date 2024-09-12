@@ -148,6 +148,8 @@ This seed repository provides the following features:
 - [x] [MJML](https://github.com/Shyam-Chen/MJML-Starter) - Email Builder
 - [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Email Rendering
 - [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
+- [ ] [LangChain](https://github.com/langchain-ai/langchainjs) - LLM Composability
+- [ ] [OpenAI](https://github.com/Shyam-Chen/OpenAI-Starter) - Turning Models (Fine-tuning/Embeddings)
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite) - Bundler
 - [x] [TypeScript](https://github.com/microsoft/TypeScript) - JavaScript with Syntax for Types
@@ -201,6 +203,7 @@ Set your local environment variables.
     REDIS_URL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
     CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'cloudinary://apikey:apisecret@cloudname',
     SMTP_URL: process.env.SMTP_URL || `smtp://${user}:${pass}@smtp.ethereal.email:587`,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
 
     SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
 
@@ -222,10 +225,12 @@ Add environment variables to the Render build.
 
 ```sh
 SITE_URL=xxx
+
 MONGODB_URL=xxx
 REDIS_URL=xxx
 CLOUDINARY_URL=xxx
 SMTP_URL=xxx
+OPENAI_API_KEY=xxx
 ```
 
 ## Directory Structure

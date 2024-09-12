@@ -20,6 +20,8 @@ services:
         sync: false
       - key: SMTP_URL
         sync: false
+      - key: OPENAI_API_KEY
+        sync: false
       - key: SECRET_KEY
         generateValue: true
 

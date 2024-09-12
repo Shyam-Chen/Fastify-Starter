@@ -13,6 +13,7 @@ declare namespace NodeJS {
     REDIS_URL: string;
     CLOUDINARY_URL: string;
     SMTP_URL: string;
+    OPENAI_API_KEY: string;
 
     SECRET_KEY: string;
   }
