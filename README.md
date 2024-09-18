@@ -142,14 +142,14 @@ This seed repository provides the following features:
 - [x] [Cloudinary](https://github.com/Vanilla-IceCream/fastify-cloudinary) - Asset Management
 - [x] [I18n](https://github.com/Vanilla-IceCream/fastify-i18n) - Internationalization and Localization
 - [x] [Redis](https://github.com/fastify/fastify-redis) - In-memory Data Structure Store
+- [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
 - [x] [WebSocket](https://github.com/fastify/fastify-websocket) - Two-way Interactive Communication Session
 - [x] [EventSource](https://github.com/nodefactoryio/fastify-sse-v2) - Server-sent Events
 - [x] [Mailer](https://github.com/nodemailer/nodemailer) - Email Sending
 - [x] [MJML](https://github.com/Shyam-Chen/MJML-Starter) - Email Builder
 - [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Email Rendering
-- [x] [BullMQ](https://github.com/taskforcesh/bullmq) - Message Queue
-- [ ] [LangChain](https://github.com/langchain-ai/langchainjs) - LLM Composability
-- [ ] [OpenAI](https://github.com/Shyam-Chen/OpenAI-Starter) - Turning Models (Fine-tuning/Embeddings)
+- [x] [LangChain](https://github.com/langchain-ai/langchainjs) - LLM Composability
+- [x] [OpenAI](https://github.com/Shyam-Chen/OpenAI-Starter) - Fine-tuning/Embeddings Model Builder
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite) - Bundler
 - [x] [TypeScript](https://github.com/microsoft/TypeScript) - JavaScript with Syntax for Types
