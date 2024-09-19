@@ -6,8 +6,8 @@
   },
   "dependencies": {
     "@fastify/one-line-logger": "2.0.0",
-    "fastify": "4.28.1",
-    "fastify-plugin": "4.5.1"
+    "fastify": "5.0.0",
+    "fastify-plugin": "5.0.0"
   },
   "devDependencies": {
     "process-envify": "2.0.0",
