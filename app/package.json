@@ -48,13 +48,12 @@
     "pbkdf2-passworder": "1.0.1"
   },
   "devDependencies": {
-    "@types/ioredis-mock": "8.2.5",
     "@types/nodemailer": "6.4.16",
     "@types/nunjucks": "3.2.6",
     "@vitest/coverage-v8": "2.1.1",
-    "ioredis-mock": "8.9.0",
     "mongodb-memory-server": "10.0.1",
     "process-envify": "2.0.0",
+    "redis-memory-server": "0.11.0",
     "typescript": "5.6.2",
     "vite": "5.4.7",
     "vite-node": "2.1.1",

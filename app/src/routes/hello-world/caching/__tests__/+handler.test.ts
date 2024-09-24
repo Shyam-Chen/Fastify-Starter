@@ -2,13 +2,18 @@ import KeyvRedis from '@keyv/redis';
 import { createCache } from 'cache-manager';
 import { CacheableMemory } from 'cacheable';
 import fastify from 'fastify';
-import Redis from 'ioredis-mock';
+import Redis from 'ioredis';
 import Keyv from 'keyv';
+import { RedisMemoryServer } from 'redis-memory-server';
 
 import cachingHandler from '../+handler';
 
-vi.mock('~/utilities/cache', async () => {
-  const redisInstance = new Redis();
+vi.mock(import('~/utilities/cache'), async () => {
+  const redisServer = new RedisMemoryServer();
+  const host = await redisServer.getHost();
+  const port = await redisServer.getPort();
+
+  const redisInstance = new Redis(`redis://${host}:${port}`);
 
   const cache = createCache({
     stores: [
