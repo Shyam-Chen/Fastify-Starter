@@ -1,10 +1,10 @@
-import { ChatOpenAI } from '@langchain/openai';
+import { ChatOpenAI, type ChatOpenAIFields } from '@langchain/openai';
 
-const model = new ChatOpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  modelName: 'ft-123abc456def', // Fine-tuned/Embedded model ID
-});
+export default (fields: ChatOpenAIFields) => {
+  const model = new ChatOpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    ...fields,
+  });
 
-export default () => {
   return model;
 };
