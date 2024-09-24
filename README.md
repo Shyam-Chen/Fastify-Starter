@@ -175,7 +175,7 @@ This seed repository provides the following features:
 - [x] [Real-time Updates](./app/src/routes/sse/+handler.ts)
 - [x] [Sending Emails](./app/src/routes/email/+handler.ts)
 - [x] [Internationalization](./app/src/routes/hello-i18n)
-- [x] [Caching](./app/src/routes/hello-world/caching-memory/+handler.ts) (Or use [Redis Store](./app/src/routes/hello-world/caching-redis/+handler.ts))
+- [x] [Caching (Includes Redis Store)](./app/src/routes/hello-world/caching/+handler.ts)
 - [x] [Cache Deduplication](./app/src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts) (Or use [Redis Store](./app/src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts))
 - [x] [Background Workers](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/+handler.ts))
 - [x] [Cron Jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/cron/+handler.ts))

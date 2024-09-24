@@ -1,11 +1,9 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 
-import redisCache from '~/utilities/redisCache';
+import cache from '~/utilities/cache';
 
 export default (async (app) => {
-  const cache = await redisCache(5);
-
   /**
    * ```sh
    * $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-redis?text=foo
@@ -29,9 +27,13 @@ export default (async (app) => {
     async (req, reply) => {
       const { text } = req.query;
 
-      const cached = await cache.wrap('redis-text', async () => {
-        return { message: text };
-      });
+      const cached = await cache.wrap(
+        'myText',
+        async () => {
+          return { message: text };
+        },
+        5_000,
+      );
 
       return reply.send(cached);
     },

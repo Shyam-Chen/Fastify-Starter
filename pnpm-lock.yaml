@@ -50,6 +50,9 @@ importers:
       '@fastify/websocket':
         specifier: 11.0.1
         version: 11.0.1
+      '@keyv/redis':
+        specifier: 3.0.1
+        version: 3.0.1
       '@langchain/core':
         specifier: 0.3.3
         version: 0.3.3(openai@4.63.0(zod@3.23.8))
@@ -59,9 +62,6 @@ importers:
       '@sinclair/typebox':
         specifier: 0.33.12
         version: 0.33.12
-      '@tirke/node-cache-manager-ioredis':
-        specifier: 3.6.0
-        version: 3.6.0
       async-cache-dedupe:
         specifier: 2.2.0
         version: 2.2.0
@@ -72,8 +72,11 @@ importers:
         specifier: 5.13.2
         version: 5.13.2
       cache-manager:
-        specifier: 5.7.6
-        version: 5.7.6
+        specifier: 6.0.0
+        version: 6.0.0
+      cacheable:
+        specifier: 1.3.0
+        version: 1.3.0
       exceljs:
         specifier: 4.4.0
         version: 4.4.0
@@ -98,6 +101,9 @@ importers:
       ioredis:
         specifier: 5.4.1
         version: 5.4.1
+      keyv:
+        specifier: 5.0.3
+        version: 5.0.3
       nodemailer:
         specifier: 6.9.15
         version: 6.9.15
@@ -125,7 +131,7 @@ importers:
         version: 3.2.6
       '@vitest/coverage-v8':
         specifier: 2.1.1
-        version: 2.1.1(vitest@2.1.1(@types/node@22.5.5))
+        version: 2.1.1(vitest@2.1.1(@types/node@22.6.1))
       ioredis-mock:
         specifier: 8.9.0
         version: 8.9.0(@types/ioredis-mock@8.2.5)(ioredis@5.4.1)
@@ -140,10 +146,10 @@ importers:
         version: 5.6.2
       vite:
         specifier: 5.4.7
-        version: 5.4.7(@types/node@22.5.5)
+        version: 5.4.7(@types/node@22.6.1)
       vite-node:
         specifier: 2.1.1
-        version: 2.1.1(@types/node@22.5.5)
+        version: 2.1.1(@types/node@22.6.1)
       vite-plugin-fastify:
         specifier: 1.2.5
         version: 1.2.5
@@ -152,10 +158,10 @@ importers:
         version: 1.1.1
       vite-plugin-static-copy:
         specifier: 1.0.6
-        version: 1.0.6(vite@5.4.7(@types/node@22.5.5))
+        version: 1.0.6(vite@5.4.7(@types/node@22.6.1))
       vitest:
         specifier: 2.1.1
-        version: 2.1.1(@types/node@22.5.5)
+        version: 2.1.1(@types/node@22.6.1)
 
   db:
     dependencies:
@@ -169,8 +175,8 @@ importers:
         specifier: 1.47.2
         version: 1.47.2
       '@types/node':
-        specifier: 20.16.5
-        version: 20.16.5
+        specifier: 20.16.6
+        version: 20.16.6
 
   mock:
     dependencies:
@@ -189,7 +195,7 @@ importers:
         version: 2.0.0
       vite:
         specifier: 5.4.7
-        version: 5.4.7(@types/node@22.5.5)
+        version: 5.4.7(@types/node@22.6.1)
       vite-plugin-fastify:
         specifier: 1.2.5
         version: 1.2.5
@@ -516,6 +522,13 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
+  '@keyv/redis@3.0.1':
+    resolution: {integrity: sha512-eyqzomQC76LjUOEkPP8rdR2Fk4eZBSS0Ma47i7CNiQuv8NCw3trZvghx8L5Xruk7XPEj/eRAMrAxP//xQFOPdQ==}
+    engines: {node: '>= 18'}
+
+  '@keyv/serialize@1.0.1':
+    resolution: {integrity: sha512-kKXeynfORDGPUEEl2PvTExM2zs+IldC6ZD8jPcfvI351MDNtfMlw9V9s4XZXuJNDK2qR5gbEKxRyoYx3quHUVQ==}
+
   '@langchain/core@0.3.3':
     resolution: {integrity: sha512-WAtkmhbdl2T41qzimTzhb3pXCHQxO4onqxzPxgdf3KftQdTwLq0YYBDhozRMZLNAd/+cfH0ymZGaZSsnc9Ogsg==}
     engines: {node: '>=18'}
@@ -682,10 +695,6 @@ packages:
   '@sinclair/typebox@0.33.12':
     resolution: {integrity: sha512-d5KrXIdPolLp8VpGpZAQvEz8ioVtFlUQSyCIS2sEBi7FKhceIB7nj9BlNfqqvp5wmOfg8v8bP1rAvYYkjz21/Q==}
 
-  '@tirke/node-cache-manager-ioredis@3.6.0':
-    resolution: {integrity: sha512-PmTZ3M8mEo9qSrKJBPF3Bj47A6GIJ9LumnT1gDnbov2D4ZHn40Z77On4/sbSo8lAeKnGiJNyif9juT/IyLvVFQ==}
-    engines: {node: '>=14.20'}
-
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
@@ -707,11 +716,14 @@ packages:
   '@types/node@20.12.12':
     resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
 
-  '@types/node@20.16.5':
-    resolution: {integrity: sha512-VwYCweNo3ERajwy0IUlqqcyZ8/A7Zwa9ZP3MnENWcB11AejO+tLy3pu850goUW2FC/IJMdZUfKpX/yxL1gymCA==}
+  '@types/node@20.16.6':
+    resolution: {integrity: sha512-T7PpxM/6yeDE+AdlVysT62BX6/bECZOmQAgiFg5NoBd5MQheZ3tzal7f1wvzfiEcmrcJNRi2zRr2nY2zF+0uqw==}
 
   '@types/node@22.5.5':
     resolution: {integrity: sha512-Xjs4y5UPO/CLdzpgR6GirZJx36yScjh73+2NlLlkFRSoQN8B0DpfXPdZGnvVmLRLOsqDpOfTNv7D9trgGhmOIA==}
+
+  '@types/node@22.6.1':
+    resolution: {integrity: sha512-V48tCfcKb/e6cVUigLAaJDAILdMP0fUW6BidkPK4GpGjXcfbnoHasCZDwz3N3yVt5we2RHm4XTQCpv0KJz9zqw==}
 
   '@types/nodemailer@6.4.16':
     resolution: {integrity: sha512-uz6hN6Pp0upXMcilM61CoKyjT7sskBoOWpptkjjJp8jIMlTdc3xG01U7proKkXzruMS4hS0zqtHNkNPFB20rKQ==}
@@ -941,9 +953,11 @@ packages:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
 
-  cache-manager@5.7.6:
-    resolution: {integrity: sha512-wBxnBHjDxF1RXpHCBD6HGvKER003Ts7IIm0CHpggliHzN1RZditb7rXoduE1rplc2DEFYKxhLKgFuchXMJje9w==}
-    engines: {node: '>= 18'}
+  cache-manager@6.0.0:
+    resolution: {integrity: sha512-X1sN/GF0FjJo4mDlNr+Ha2IHIjJbEwzrTA0eBbJA08P1x5cOZVva1Hdi2wyLDwJScekvGUPRw4R9OvvPsLZrJA==}
+
+  cacheable@1.3.0:
+    resolution: {integrity: sha512-rpdC+g30S93GkDOI4RNH/nsLRnSMAMKJ+QGsun4XqP1Np25n4zYP0W0Z1/Lc1j4gr3DgdUbGTvqdFsmF7N79hA==}
 
   call-bind@1.0.7:
     resolution: {integrity: sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==}
@@ -1383,6 +1397,10 @@ packages:
   help-me@5.0.0:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
 
+  hookified@1.1.0:
+    resolution: {integrity: sha512-/OqDmsW7CTHUXcMegyLkTXijkKirTK3UjB3X/GrfjFdxQMiAXkXsM2o4z/VtsH5br1VjKDUIbcwcqAkGa5c2LA==}
+    engines: {node: '>=20'}
+
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
 
@@ -1539,6 +1557,9 @@ packages:
   jszip@3.10.1:
     resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
 
+  keyv@5.0.3:
+    resolution: {integrity: sha512-WmefGWaWkWiWDkIasfHxpWmM1lych/LPtRmNj8jnIQVGLsAgFw73Vg9utZ7ss97/JwRlERABb/fSejTPY4hlZQ==}
+
   langsmith@0.1.59:
     resolution: {integrity: sha512-dW+z6s538zBswFFP2w/xzvVef7y2+yNt6GkmRCeLtwfpbMaM4di7JboK3vmnZ+0/LjNb2ukiMmgsTNKu/Y43cg==}
     peerDependencies:
@@ -1584,9 +1605,6 @@ packages:
 
   lodash._stringtopath@4.8.0:
     resolution: {integrity: sha512-SXL66C731p0xPDC5LZg4wI5H+dJo/EO4KTqOMwLYCH3+FmmfAKJEZCm6ohGpI+T1xwsDsJCfL4OnhorllvlTPQ==}
-
-  lodash.clonedeep@4.5.0:
-    resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
 
   lodash.defaults@4.2.0:
     resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
@@ -2016,10 +2034,6 @@ packages:
   process@0.11.10:
     resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
     engines: {node: '>= 0.6.0'}
-
-  promise-coalesce@1.1.2:
-    resolution: {integrity: sha512-zLaJ9b8hnC564fnJH6NFSOGZYYdzrAJn2JUUIwzoQb32fG2QAakpDNM+CZo1km6keXkRXRM+hml1BFAPVnPkxg==}
-    engines: {node: '>=16'}
 
   property-expr@2.0.6:
     resolution: {integrity: sha512-SVtmxhRE/CGkn3eZY1T6pC8Nln6Fr/lu1mKSgRud0eC73whjGfoAogbn78LkD8aFL0zz3bAFerKSnOl7NlErBA==}
@@ -2842,6 +2856,16 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@keyv/redis@3.0.1':
+    dependencies:
+      ioredis: 5.4.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@keyv/serialize@1.0.1':
+    dependencies:
+      buffer: 6.0.3
+
   '@langchain/core@0.3.3(openai@4.63.0(zod@3.23.8))':
     dependencies:
       ansi-styles: 5.2.0
@@ -2984,12 +3008,6 @@ snapshots:
 
   '@sinclair/typebox@0.33.12': {}
 
-  '@tirke/node-cache-manager-ioredis@3.6.0':
-    dependencies:
-      ioredis: 5.4.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@types/estree@1.0.5': {}
 
   '@types/ioredis-mock@8.2.5':
@@ -3003,7 +3021,7 @@ snapshots:
 
   '@types/node-fetch@2.6.11':
     dependencies:
-      '@types/node': 18.19.50
+      '@types/node': 20.16.6
       form-data: 4.0.0
 
   '@types/node@14.18.63': {}
@@ -3016,13 +3034,18 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@20.16.5':
+  '@types/node@20.16.6':
     dependencies:
       undici-types: 6.19.8
 
   '@types/node@22.5.5':
     dependencies:
       undici-types: 6.19.8
+
+  '@types/node@22.6.1':
+    dependencies:
+      undici-types: 6.19.8
+    optional: true
 
   '@types/nodemailer@6.4.16':
     dependencies:
@@ -3040,7 +3063,7 @@ snapshots:
     dependencies:
       '@types/webidl-conversions': 7.0.3
 
-  '@vitest/coverage-v8@2.1.1(vitest@2.1.1(@types/node@22.5.5))':
+  '@vitest/coverage-v8@2.1.1(vitest@2.1.1(@types/node@22.6.1))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -3054,7 +3077,7 @@ snapshots:
       std-env: 3.7.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.1(@types/node@22.5.5)
+      vitest: 2.1.1(@types/node@22.6.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -3065,13 +3088,13 @@ snapshots:
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.1(@vitest/spy@2.1.1)(vite@5.4.7(@types/node@22.5.5))':
+  '@vitest/mocker@2.1.1(@vitest/spy@2.1.1)(vite@5.4.7(@types/node@22.6.1))':
     dependencies:
       '@vitest/spy': 2.1.1
       estree-walker: 3.0.3
       magic-string: 0.30.11
     optionalDependencies:
-      vite: 5.4.7(@types/node@22.5.5)
+      vite: 5.4.7(@types/node@22.6.1)
 
   '@vitest/pretty-format@2.1.1':
     dependencies:
@@ -3299,12 +3322,14 @@ snapshots:
 
   cac@6.7.14: {}
 
-  cache-manager@5.7.6:
+  cache-manager@6.0.0:
     dependencies:
-      eventemitter3: 5.0.1
-      lodash.clonedeep: 4.5.0
-      lru-cache: 10.2.2
-      promise-coalesce: 1.1.2
+      keyv: 5.0.3
+
+  cacheable@1.3.0:
+    dependencies:
+      hookified: 1.1.0
+      keyv: 5.0.3
 
   call-bind@1.0.7:
     dependencies:
@@ -3798,6 +3823,8 @@ snapshots:
 
   help-me@5.0.0: {}
 
+  hookified@1.1.0: {}
+
   html-escaper@2.0.2: {}
 
   http-errors@2.0.0:
@@ -3982,6 +4009,10 @@ snapshots:
       readable-stream: 2.3.8
       setimmediate: 1.0.5
 
+  keyv@5.0.3:
+    dependencies:
+      '@keyv/serialize': 1.0.1
+
   langsmith@0.1.59(openai@4.63.0(zod@3.23.8)):
     dependencies:
       '@types/uuid': 10.0.0
@@ -4033,8 +4064,6 @@ snapshots:
   lodash._stringtopath@4.8.0:
     dependencies:
       lodash._basetostring: 4.12.0
-
-  lodash.clonedeep@4.5.0: {}
 
   lodash.defaults@4.2.0: {}
 
@@ -4459,8 +4488,6 @@ snapshots:
 
   process@0.11.10: {}
 
-  promise-coalesce@1.1.2: {}
-
   property-expr@2.0.6: {}
 
   proxy-addr@2.0.7:
@@ -4813,12 +4840,12 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-node@2.1.1(@types/node@22.5.5):
+  vite-node@2.1.1(@types/node@22.6.1):
     dependencies:
       cac: 6.7.14
       debug: 4.3.7
       pathe: 1.1.2
-      vite: 5.4.7(@types/node@22.5.5)
+      vite: 5.4.7(@types/node@22.6.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -4837,27 +4864,27 @@ snapshots:
 
   vite-plugin-fastify@1.2.5: {}
 
-  vite-plugin-static-copy@1.0.6(vite@5.4.7(@types/node@22.5.5)):
+  vite-plugin-static-copy@1.0.6(vite@5.4.7(@types/node@22.6.1)):
     dependencies:
       chokidar: 3.6.0
       fast-glob: 3.3.2
       fs-extra: 11.2.0
       picocolors: 1.0.1
-      vite: 5.4.7(@types/node@22.5.5)
+      vite: 5.4.7(@types/node@22.6.1)
 
-  vite@5.4.7(@types/node@22.5.5):
+  vite@5.4.7(@types/node@22.6.1):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
       rollup: 4.22.4
     optionalDependencies:
-      '@types/node': 22.5.5
+      '@types/node': 22.6.1
       fsevents: 2.3.3
 
-  vitest@2.1.1(@types/node@22.5.5):
+  vitest@2.1.1(@types/node@22.6.1):
     dependencies:
       '@vitest/expect': 2.1.1
-      '@vitest/mocker': 2.1.1(@vitest/spy@2.1.1)(vite@5.4.7(@types/node@22.5.5))
+      '@vitest/mocker': 2.1.1(@vitest/spy@2.1.1)(vite@5.4.7(@types/node@22.6.1))
       '@vitest/pretty-format': 2.1.1
       '@vitest/runner': 2.1.1
       '@vitest/snapshot': 2.1.1
@@ -4872,11 +4899,11 @@ snapshots:
       tinyexec: 0.3.0
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.7(@types/node@22.5.5)
-      vite-node: 2.1.1(@types/node@22.5.5)
+      vite: 5.4.7(@types/node@22.6.1)
+      vite-node: 2.1.1(@types/node@22.6.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.5.5
+      '@types/node': 22.6.1
     transitivePeerDependencies:
       - less
       - lightningcss
