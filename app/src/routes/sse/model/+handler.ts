@@ -14,7 +14,13 @@ export default (async (app) => {
       },
     },
     async (request, reply) => {
-      const model = useModel({ model: 'gpt-4o-mini', temperature: 0 });
+      const model = useModel({
+        // Replace the model with a fine-tuned model or an embedding model
+        model: 'gpt-4o-mini',
+
+        // Allow some creative flexibility to handle variations in phrasing, while maintaining accuracy in responses
+        temperature: 0.3,
+      });
 
       const stream = await model.stream(request.body.message);
 

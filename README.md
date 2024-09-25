@@ -180,6 +180,7 @@ This seed repository provides the following features:
 - [x] [Background Workers](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/+handler.ts))
 - [x] [Cron Jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/cron/+handler.ts))
 - [x] [Delayed jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/delay/+handler.ts))
+- [x] [Streaming LLM Output](./app/src/routes/sse/model/+handler.ts)
 
 ## Configuration
 
