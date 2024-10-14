@@ -6,6 +6,8 @@
   },
   "devDependencies": {
     "@playwright/test": "1.47.2",
-    "@types/node": "20.16.10"
+    "@types/node": "20.16.10",
+    "@types/ws": "8.5.12",
+    "ws": "8.18.0"
   }
 }
