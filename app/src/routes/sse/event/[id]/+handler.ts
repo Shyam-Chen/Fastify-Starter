@@ -17,12 +17,14 @@ export default (async (app) => {
     (req, reply) => {
       const { id } = req.params;
 
-      sseEmitter.on(`/sse/event/${id}`, (data) => {
+      function eventId(data?: string | object) {
         reply.sse({ id, data });
-      });
+      }
+
+      sseEmitter.on(`/sse/event/${id}`, eventId);
 
       req.raw.on('close', () => {
-        reply.sse({ event: 'close' });
+        sseEmitter.off(`/sse/event/${id}`, eventId);
       });
     },
   );

@@ -30,7 +30,6 @@ export default (async (app) => {
 
       request.raw.on('close', async () => {
         await stream.cancel();
-        reply.sse({ event: 'close' });
       });
     },
   );
