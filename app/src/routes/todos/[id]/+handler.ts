@@ -75,7 +75,6 @@ export default (async (app) => {
       schema: {
         params,
         body: Type.Object({
-          _id: Type.String(),
           title: Type.String(),
           completed: Type.Boolean(),
         }),

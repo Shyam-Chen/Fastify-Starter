@@ -37,11 +37,7 @@ test('POST /todos/new', async () => {
   await app.inject({
     method: 'PUT',
     url: `/todos/${id}`,
-    payload: {
-      _id: id,
-      ...payload,
-      completed: true,
-    },
+    payload: { ...payload, completed: true },
   });
 
   const res2 = await app.inject({ method: 'GET', url: `/todos/${id}` });
