@@ -8,6 +8,7 @@
     "@playwright/test": "1.47.2",
     "@types/node": "20.16.10",
     "@types/ws": "8.5.12",
+    "fetch-event-stream": "0.1.5",
     "ws": "8.18.0"
   }
 }
