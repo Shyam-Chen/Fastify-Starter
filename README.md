@@ -148,9 +148,8 @@ This seed repository provides the following features:
 - [x] [Mailer](https://github.com/nodemailer/nodemailer) - Email Sending
 - [x] [MJML](https://github.com/Shyam-Chen/MJML-Starter) - Email Builder
 - [x] [Nunjucks](https://github.com/mozilla/nunjucks) - Email Rendering
-- [x] [LlamaIndex](https://github.com/run-llama/LlamaIndexTS) - Data Indexing for LLM
-- [x] [LangChain](https://github.com/langchain-ai/langchainjs) - LLM Composability
-- [x] [OpenAI](https://github.com/openai/openai-node) - LLM
+- [x] [LangChain](https://github.com/langchain-ai/langchainjs) - Vector Embeddings
+- [x] [OpenAI](https://github.com/openai/openai-node) - Large Language Model
 - [x] [MongoDB Vector Search](https://github.com/fastify/fastify-mongodb) - Vector Store
 - ---------- **Tools** ----------
 - [x] [Vite](https://github.com/vitejs/vite) - Bundler
