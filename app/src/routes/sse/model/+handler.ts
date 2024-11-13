@@ -7,7 +7,7 @@ import { Type } from '@sinclair/typebox';
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents';
 import { createRetrievalChain } from 'langchain/chains/retrieval';
 
-import useModel, { embeddings } from '~/composables/useModel';
+import useModel, { useEmbeddings } from '~/composables/useModel';
 
 export default (async (app) => {
   app.post(
@@ -42,6 +42,8 @@ export default (async (app) => {
 
   app.get('/docs', async (request, reply) => {
     const collection = app.mongo.db?.collection('vector') as mongodb.Collection<mongodb.Document>;
+
+    const embeddings = useEmbeddings();
 
     const vectorStore = new MongoDBAtlasVectorSearch(embeddings, {
       collection,
@@ -85,6 +87,7 @@ export default (async (app) => {
 
   app.get('/query', async (request, reply) => {
     const model = useModel({ model: 'gpt-4o-mini', temperature: 0.3 });
+    const embeddings = useEmbeddings();
 
     const collection = app.mongo.db?.collection('vector') as mongodb.Collection<mongodb.Document>;
 

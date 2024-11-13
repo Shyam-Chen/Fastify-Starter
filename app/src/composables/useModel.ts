@@ -10,9 +10,13 @@ export default (fields: ChatOpenAIFields) => {
   return model;
 };
 
-export const embeddings = new OpenAIEmbeddings({
-  apiKey: process.env.OPENAI_API_KEY,
+export const useEmbeddings = () => {
+  const embeddings = new OpenAIEmbeddings({
+    apiKey: process.env.OPENAI_API_KEY,
 
-  // https://platform.openai.com/docs/guides/embeddings/#embedding-models
-  model: 'text-embedding-3-small',
-});
+    // https://platform.openai.com/docs/guides/embeddings/#embedding-models
+    model: 'text-embedding-3-small',
+  });
+
+  return embeddings;
+};
