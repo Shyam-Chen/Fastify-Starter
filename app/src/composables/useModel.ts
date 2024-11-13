@@ -1,4 +1,5 @@
-import { ChatOpenAI, type ChatOpenAIFields } from '@langchain/openai';
+import type { ChatOpenAIFields } from '@langchain/openai';
+import { ChatOpenAI, OpenAIEmbeddings } from '@langchain/openai';
 
 export default (fields: ChatOpenAIFields) => {
   const model = new ChatOpenAI({
@@ -8,3 +9,10 @@ export default (fields: ChatOpenAIFields) => {
 
   return model;
 };
+
+export const embeddings = new OpenAIEmbeddings({
+  apiKey: process.env.OPENAI_API_KEY,
+
+  // https://platform.openai.com/docs/guides/embeddings/#embedding-models
+  model: 'text-embedding-3-small',
+});
