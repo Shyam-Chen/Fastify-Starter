@@ -21,7 +21,7 @@ export default (async (app) => {
     },
     async (request, reply) => {
       const model = useModel({
-        // Replace the model with a fine-tuned model or an embedding model
+        // Replace the model with a fine-tuned model
         model: 'gpt-4o-mini',
 
         // Allow some creative flexibility to handle variations in phrasing, while maintaining accuracy in responses
