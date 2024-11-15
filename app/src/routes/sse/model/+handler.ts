@@ -17,6 +17,8 @@ export default (async (app) => {
     method: 'POST',
     body: JSON.stringify({ message: 'What is GenAI?' }),
   });
+
+  JSON.parse(event.data as string)?.kwargs?.content;
   ```
   */
   app.post('', async (request, reply) => {
@@ -33,7 +35,7 @@ export default (async (app) => {
     const stream = await model.stream(body.message);
 
     for await (const chunk of stream) {
-      reply.sse({ data: chunk.content });
+      reply.sse({ data: chunk.toJSON() });
     }
 
     request.raw.on('close', async () => {
@@ -116,6 +118,8 @@ export default (async (app) => {
   import { stream } from 'fetch-event-stream';
 
   await stream('http://127.0.0.1:3000/api/sse/model/query');
+
+  JSON.parse(event.data as string)?.answer || '';
   ```
   */
   app.get('/query', async (request, reply) => {
@@ -155,7 +159,7 @@ export default (async (app) => {
     const stream = await ragChain.stream({ input: 'biology' });
 
     for await (const chunk of stream) {
-      reply.sse({ data: chunk.answer });
+      reply.sse({ data: chunk });
     }
 
     request.raw.on('close', async () => {
