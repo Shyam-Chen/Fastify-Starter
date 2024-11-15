@@ -9,16 +9,16 @@ import { createRetrievalChain } from 'langchain/chains/retrieval';
 import useModel, { useEmbeddings } from '~/composables/useModel';
 
 export default (async (app) => {
-  /**
-   * ```ts
-   * import { stream } from 'fetch-event-stream';
-   *
-   * await stream('http://127.0.0.1:3000/api/sse/model', {
-   *   method: 'POST',
-   *   body: JSON.stringify({ message: 'What is GenAI?' }),
-   * });
-   * ```
-   */
+  /*
+  ```ts
+  import { stream } from 'fetch-event-stream';
+
+  await stream('http://127.0.0.1:3000/api/sse/model', {
+    method: 'POST',
+    body: JSON.stringify({ message: 'What is GenAI?' }),
+  });
+  ```
+  */
   app.post('', async (request, reply) => {
     const body = JSON.parse(request.body as string) as { message: string };
 
@@ -41,6 +41,31 @@ export default (async (app) => {
     });
   });
 
+  /*
+  This must be directly connected to MongoDB Atlas Vector Search.
+
+
+  JSON Editor settings:
+
+  ```json
+  {
+    "fields": [
+      {
+        "numDimensions": 1536,
+        "path": "embedding",
+        "similarity": "euclidean",
+        "type": "vector"
+      }
+    ]
+  }
+  ```
+
+
+  ```sh
+  $ curl --request GET \
+         --url http://127.0.0.1:3000/api/sse/model/docs
+  ```
+  */
   app.get('/docs', async (request, reply) => {
     const collection = app.mongo.db?.collection('vector') as mongodb.Collection<mongodb.Document>;
 
@@ -86,6 +111,13 @@ export default (async (app) => {
     return reply.send({ message: 'OK' });
   });
 
+  /*
+  ```ts
+  import { stream } from 'fetch-event-stream';
+
+  await stream('http://127.0.0.1:3000/api/sse/model/query');
+  ```
+  */
   app.get('/query', async (request, reply) => {
     const model = useModel({ model: 'gpt-4o-mini', temperature: 0.3 });
     const embeddings = useEmbeddings();
