@@ -3,42 +3,43 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import type { Document } from '@langchain/core/documents';
 import { ChatPromptTemplate } from '@langchain/core/prompts';
 import { MongoDBAtlasVectorSearch } from '@langchain/mongodb';
-import { Type } from '@sinclair/typebox';
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents';
 import { createRetrievalChain } from 'langchain/chains/retrieval';
 
 import useModel, { useEmbeddings } from '~/composables/useModel';
 
 export default (async (app) => {
-  app.post(
-    '',
-    {
-      schema: {
-        body: Type.Object({
-          message: Type.String(),
-        }),
-      },
-    },
-    async (request, reply) => {
-      const model = useModel({
-        // Replace the model with a fine-tuned model
-        model: 'gpt-4o-mini',
+  /**
+   * ```ts
+   * import { stream } from 'fetch-event-stream';
+   *
+   * await stream('http://127.0.0.1:3000/api/sse/model', {
+   *   method: 'POST',
+   *   body: JSON.stringify({ message: 'What is GenAI?' }),
+   * });
+   * ```
+   */
+  app.post('', async (request, reply) => {
+    const body = JSON.parse(request.body as string) as { message: string };
 
-        // Allow some creative flexibility to handle variations in phrasing, while maintaining accuracy in responses
-        temperature: 0.3,
-      });
+    const model = useModel({
+      // Replace the model with a fine-tuned model
+      model: 'gpt-4o-mini',
 
-      const stream = await model.stream(request.body.message);
+      // Allow some creative flexibility to handle variations in phrasing, while maintaining accuracy in responses
+      temperature: 0.3,
+    });
 
-      for await (const chunk of stream) {
-        reply.sse({ data: chunk.content });
-      }
+    const stream = await model.stream(body.message);
 
-      request.raw.on('close', async () => {
-        await stream.cancel();
-      });
-    },
-  );
+    for await (const chunk of stream) {
+      reply.sse({ data: chunk.content });
+    }
+
+    request.raw.on('close', async () => {
+      await stream.cancel();
+    });
+  });
 
   app.get('/docs', async (request, reply) => {
     const collection = app.mongo.db?.collection('vector') as mongodb.Collection<mongodb.Document>;
