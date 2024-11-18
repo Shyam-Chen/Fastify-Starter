@@ -4,12 +4,12 @@ import { Type } from '@sinclair/typebox';
 import cache from '~/utilities/cache';
 
 export default (async (app) => {
-  /**
-   * ```sh
-   * $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-redis?text=foo
-   * $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-redis?text=bar
-   * ```
-   */
+  /*
+  ```sh
+  $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-redis?text=foo
+  $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-redis?text=bar
+  ```
+  */
   app.get(
     '',
     {

@@ -15,21 +15,21 @@ export default (async (app) => {
     return { message: 'OK', id };
   });
 
-  /**
-   * ```sh
-   * # this will trigger the log: id = 1
-   * $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-dedupe/1-redis
-   * # response: { "message": "OK", "id": "1" }
-   *
-   * # this won't trigger the log
-   * $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-dedupe/1-redis
-   * # response: { "message": "OK", "id": "1" }
-   *
-   * # this will trigger the log: id = 2
-   * $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-dedupe/2-redis
-   * # response: { "message": "OK", "id": "2" }
-   * ```
-   */
+  /*
+  ```sh
+  # this will trigger the log: id = 1
+  $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-dedupe/1-redis
+  # response: { "message": "OK", "id": "1" }
+
+  # this won't trigger the log
+  $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-dedupe/1-redis
+  # response: { "message": "OK", "id": "1" }
+
+  # this will trigger the log: id = 2
+  $ curl --request GET --url http://127.0.0.1:3000/api/hello-world/caching-dedupe/2-redis
+  # response: { "message": "OK", "id": "2" }
+  ```
+  */
   app.get(
     '',
     {

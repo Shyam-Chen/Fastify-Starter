@@ -191,9 +191,14 @@ export default (async (app) => {
     },
   );
 
-  /**
-   * Log out of all devices.
-   */
+  /*
+  Log out of all devices.
+
+  ```sh
+  $ curl --request GET \
+         --url http://127.0.0.1:3000/api/auth/revoke
+  ```
+  */
   app.get('/revoke', { onRequest: [auth] }, async (req, reply) => {
     const keys = await app.redis.keys(`${req.user.username}+*`);
     if (keys?.length) await app.redis.del(...keys);
