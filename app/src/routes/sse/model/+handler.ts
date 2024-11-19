@@ -13,12 +13,14 @@ export default (async (app) => {
   ```ts
   import { stream } from 'fetch-event-stream';
 
-  await stream('http://127.0.0.1:3000/api/sse/model', {
+  const events = await stream('http://127.0.0.1:3000/api/sse/model', {
     method: 'POST',
     body: JSON.stringify({ message: 'What is GenAI?' }),
   });
 
-  JSON.parse(event.data as string)?.kwargs?.content;
+  for await (const event of events) {
+    JSON.parse(event.data as string)?.kwargs?.content;
+  }
   ```
   */
   app.post('', async (request, reply) => {
@@ -117,9 +119,11 @@ export default (async (app) => {
   ```ts
   import { stream } from 'fetch-event-stream';
 
-  await stream('http://127.0.0.1:3000/api/sse/model/query');
+  const events = await stream('http://127.0.0.1:3000/api/sse/model/query');
 
-  JSON.parse(event.data as string)?.answer || '';
+  for await (const event of events) {
+    JSON.parse(event.data as string)?.answer || '';
+  }
   ```
   */
   app.get('/query', async (request, reply) => {
