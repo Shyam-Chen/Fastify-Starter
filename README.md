@@ -182,6 +182,7 @@ This seed repository provides the following features:
 - [x] [Cron Jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/cron/+handler.ts))
 - [x] [Delayed jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/delay/+handler.ts))
 - [x] [Streaming LLM Output](./app/src/routes/sse/model/+handler.ts)
+- [x] [LLM Conversational Q&A Chatbot](./app/src/routes/conversation/+handler.ts)
 
 ## Configuration
 
