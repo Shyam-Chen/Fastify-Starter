@@ -29,9 +29,6 @@ export default (async (app) => {
   ```
   */
   app.post('', async (request, reply) => {
-    /** TODO */
-    // const conversations = app.mongo.db?.collection('conversations');
-
     type Message = { id: string; content: string; role: 'user' };
     const body = JSON.parse(request.body as string) as { messages: Message[] };
 
@@ -46,6 +43,8 @@ export default (async (app) => {
     });
 
     const retriever = vectorStore.asRetriever({ k: 2 });
+
+    // TODO: Query the user's data based on the current `username` (with the data for the query already stored in the vector database).
 
     const systemPrompt = `
       You are an assistant for question-answering tasks.
@@ -68,7 +67,13 @@ export default (async (app) => {
       combineDocsChain: questionAnswerChain,
     });
 
-    const stream = await ragChain.stream({ input: body.messages[0].content });
+    const stream = await ragChain.stream(
+      { input: body.messages[0].content },
+      // TODO: Message History (`@langchain/langgraph`)
+      // 1. Use a 10-minute time difference check to determine whether to create a new message history for a user and delete all existing message histories when the user sends a message.
+      // 2. Set up a scheduled task to clean up all message histories where the time difference exceeds 10 minutes from the current system time.
+      // { configurable: { thread_id: body.messages[0].id } },
+    );
 
     for await (const chunk of stream) {
       reply.sse({ data: chunk });
