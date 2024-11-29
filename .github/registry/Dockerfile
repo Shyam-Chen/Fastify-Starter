@@ -3,7 +3,7 @@ FROM node:20 AS base
 WORKDIR /usr/src/app
 ADD . .
 
-ENV HOST 0.0.0.0
+ENV HOST=0.0.0.0
 
 ARG PORT
 ENV PORT=$PORT
@@ -55,4 +55,5 @@ RUN corepack use pnpm@9
 
 USER node
 EXPOSE ${PORT}
-CMD [ "node", "/usr/src/app/dist/main.js" ]
+ENTRYPOINT [ "node" ]
+CMD [ "/usr/src/app/dist/main.js" ]
