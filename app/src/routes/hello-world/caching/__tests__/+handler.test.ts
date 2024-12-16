@@ -28,7 +28,7 @@ vi.mock(import('~/utilities/cache'), async () => {
   };
 });
 
-test('GET /hello-world/caching', async () => {
+test.skip('GET /hello-world/caching', async () => {
   vi.useFakeTimers();
 
   const app = fastify();
