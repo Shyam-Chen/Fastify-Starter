@@ -19,12 +19,18 @@ export default (async (app) => {
           username: Type.String(),
           email: Type.String({ format: 'email' }),
           fullName: Type.String(),
+          role: Type.Union([
+            Type.Literal('viewer'),
+            Type.Literal('editor'),
+            Type.Literal('admin'),
+            Type.Literal('custom'),
+          ]),
         }),
         response: { 200: Type.Object({ message: Type.String() }) },
       },
     },
     async (req, reply) => {
-      const { username, email, fullName } = req.body;
+      const { username, email, fullName, role } = req.body;
 
       const users = app.mongo.db?.collection('users');
       const roles = app.mongo.db?.collection('roles');
@@ -54,8 +60,33 @@ export default (async (app) => {
 
       await roles?.insertOne({
         userId: { $ref: 'users', $id: userId },
-        role: 'user',
-        permissions: [{ resource: '', action: '' }],
+        role,
+        permissions: [
+          {
+            resource: 'articles',
+            operations: ['read', 'create', 'update', 'delete'],
+            path: '/articles',
+            children: [
+              {
+                resource: 'articlesId',
+                operations: ['read', 'create', 'update', 'delete'],
+                path: '/articles/:id',
+              },
+            ],
+          },
+          {
+            resource: 'users',
+            operations: ['read', 'create', 'update', 'delete'],
+            path: '/users',
+            children: [
+              {
+                resource: 'usersId',
+                operations: ['read', 'create', 'update', 'delete'],
+                path: '/users/:id',
+              },
+            ],
+          },
+        ],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });
