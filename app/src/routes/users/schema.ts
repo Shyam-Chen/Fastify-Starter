@@ -5,6 +5,12 @@ export const UserBox = Type.Object({
   username: Type.String(),
   email: Type.String({ format: 'email' }),
   fullName: Type.String(),
+  role: Type.Union([
+    Type.Literal('viewer'),
+    Type.Literal('editor'),
+    Type.Literal('admin'),
+    Type.Literal('custom'),
+  ]),
   status: Type.Boolean(),
   otpEnabled: Type.Boolean(),
   otpVerified: Type.Boolean(),
