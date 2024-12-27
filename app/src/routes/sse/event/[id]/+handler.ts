@@ -27,6 +27,8 @@ export default (async (app) => {
       req.raw.on('close', () => {
         sseEmitter.off(`/sse/event/${id}`, eventId);
       });
+
+      return reply.sse({ event: 'end' });
     },
   );
 

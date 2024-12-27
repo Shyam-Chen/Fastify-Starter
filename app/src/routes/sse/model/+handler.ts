@@ -43,6 +43,8 @@ export default (async (app) => {
     request.raw.on('close', async () => {
       await stream.cancel();
     });
+
+    return reply.sse({ event: 'end' });
   });
 
   /*
@@ -169,5 +171,7 @@ export default (async (app) => {
     request.raw.on('close', async () => {
       await stream.cancel();
     });
+
+    return reply.sse({ event: 'end' });
   });
 }) as FastifyPluginAsyncTypebox;

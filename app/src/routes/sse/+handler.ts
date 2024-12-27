@@ -19,5 +19,7 @@ export default async (app: FastifyInstance) => {
     req.raw.on('close', () => {
       clearInterval(interval);
     });
+
+    return reply.sse({ event: 'end' });
   });
 };
