@@ -20,6 +20,7 @@ export default (async (app) => {
 
       function eventId(data?: string | object) {
         reply.sse({ id, data });
+        reply.sse({ event: 'end' });
       }
 
       sseEmitter.on(`/sse/event/${id}`, eventId);
@@ -27,8 +28,6 @@ export default (async (app) => {
       req.raw.on('close', () => {
         sseEmitter.off(`/sse/event/${id}`, eventId);
       });
-
-      return reply.sse({ event: 'end' });
     },
   );
 

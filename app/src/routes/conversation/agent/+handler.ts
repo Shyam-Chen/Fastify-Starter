@@ -7,6 +7,11 @@ import { createRetrievalChain } from 'langchain/chains/retrieval';
 
 import useModel, { useEmbeddings } from '~/composables/useModel';
 
+// TODO: LangGraph Integration
+//
+// - Chat Memory
+// - Tool Calling Agents
+
 export default (async (app) => {
   /*
   User sends conversation

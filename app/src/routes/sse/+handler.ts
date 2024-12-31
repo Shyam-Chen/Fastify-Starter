@@ -13,13 +13,12 @@ export default async (app: FastifyInstance) => {
 
       if (index === 10) {
         clearInterval(interval);
+        reply.sse({ event: 'end' });
       }
     }, 1000);
 
     req.raw.on('close', () => {
       clearInterval(interval);
     });
-
-    return reply.sse({ event: 'end' });
   });
 };
