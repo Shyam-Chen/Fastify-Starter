@@ -4,7 +4,7 @@ import generatePassword from 'generate-password';
 import pbkdf2 from 'pbkdf2-passworder';
 // import nunjucks from 'nunjucks';
 
-import useMailer from '~/composables/useMailer';
+// import useMailer from '~/composables/useMailer';
 // import accountOpening from '~/templates/accountOpening.html?raw';
 
 import { RoleBox, UserBox } from '../schema';
@@ -25,12 +25,21 @@ export default (async (app) => {
             Type.Literal('admin'),
             Type.Literal('custom'),
           ]),
+          permissions: Type.Array(
+            Type.Recursive((Self) =>
+              Type.Object({
+                resource: Type.String(),
+                operations: Type.Array(Type.String()),
+                children: Type.Optional(Type.Array(Self)),
+              }),
+            ),
+          ),
         }),
         response: { 200: Type.Object({ message: Type.String() }) },
       },
     },
     async (req, reply) => {
-      const { username, email, fullName, role } = req.body;
+      const { username, email, fullName, role, permissions } = req.body;
 
       const users = app.mongo.db?.collection('users');
       const roles = app.mongo.db?.collection('roles');
@@ -42,63 +51,49 @@ export default (async (app) => {
       const password = generatePassword.generate({ numbers: true });
       const hashedPassword = await pbkdf2.hash(password);
 
-      await users?.insertOne({
-        _id: userId,
-        username,
-        password: hashedPassword,
-        email,
-        fullName,
-        status: true,
+      const now = new Date().toISOString();
 
-        secret: null,
-        otpEnabled: false,
-        otpVerified: false,
+      const results = await Promise.allSettled([
+        users?.insertOne({
+          _id: userId,
+          username,
+          password: hashedPassword,
+          email,
+          fullName,
+          status: true,
 
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      });
+          secret: null,
+          otpEnabled: false,
+          otpVerified: false,
 
-      await roles?.insertOne({
-        userId: { $ref: 'users', $id: userId },
-        role,
-        permissions: [
-          {
-            resource: 'articles',
-            operations: ['read', 'create', 'update', 'delete'],
-            path: '/articles',
-            children: [
-              {
-                resource: 'articlesId',
-                operations: ['read', 'create', 'update', 'delete'],
-                path: '/articles/:id',
-              },
-            ],
-          },
-          {
-            resource: 'users',
-            operations: ['read', 'create', 'update', 'delete'],
-            path: '/users',
-            children: [
-              {
-                resource: 'usersId',
-                operations: ['read', 'create', 'update', 'delete'],
-                path: '/users/:id',
-              },
-            ],
-          },
-        ],
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      });
+          createdAt: now,
+          updatedAt: now,
+        }),
+        roles?.insertOne({
+          userId: { $ref: 'users', $id: userId },
+          role,
+          permissions,
+          createdAt: now,
+          updatedAt: now,
+        }),
+      ]);
 
-      const mailer = useMailer();
+      if (results[0].status === 'rejected' && results[1].status === 'fulfilled') {
+        await roles?.deleteOne({ 'userId.$id': { $eq: userId } });
+      }
 
-      await mailer.sendMail({
-        to: email,
-        subject: `[Platform] Account Opening - ${fullName}`,
-        // html: nunjucks.renderString(accountOpening, { username, password }),
-        text: password,
-      });
+      if (results[0].status === 'fulfilled' && results[1].status === 'rejected') {
+        await users?.deleteOne({ _id: { $eq: userId } });
+      }
+
+      // const mailer = useMailer();
+
+      // await mailer.sendMail({
+      //   to: email,
+      //   subject: `[Platform] Account Opening - ${fullName}`,
+      //   // html: nunjucks.renderString(accountOpening, { username, password }),
+      //   text: password,
+      // });
 
       return reply.send({ message: 'OK' });
     },
