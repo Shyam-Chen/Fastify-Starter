@@ -60,6 +60,8 @@ export default (async (app) => {
           password: hashedPassword,
           email,
           fullName,
+          role,
+          permissions,
           status: true,
 
           secret: null,
@@ -137,9 +139,7 @@ export default (async (app) => {
         params: Type.Object({ id: Type.String() }),
         body: UserBox,
         response: {
-          200: Type.Object({
-            message: Type.String(),
-          }),
+          200: Type.Object({ message: Type.String() }),
         },
       },
     },
@@ -161,9 +161,24 @@ export default (async (app) => {
         },
       );
 
-      return reply.send({
-        message: 'OK',
-      });
+      return reply.send({ message: 'OK' });
+    },
+  );
+
+  app.delete(
+    '',
+    {
+      schema: {
+        params: Type.Object({ id: Type.String() }),
+        response: {
+          200: Type.Object({ message: Type.String() }),
+        },
+      },
+    },
+    async (request, reply) => {
+      const users = app.mongo.db?.collection('users');
+      await users?.deleteOne({ _id: { $eq: new app.mongo.ObjectId(request.params.id) } });
+      return reply.send({ message: 'OK' });
     },
   );
 }) as FastifyPluginAsyncTypebox;
