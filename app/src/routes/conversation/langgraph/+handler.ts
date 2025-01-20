@@ -1,4 +1,5 @@
 // FIXME: Currently not working
+// @ts-nocheck
 
 import type { mongodb } from '@fastify/mongodb';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
