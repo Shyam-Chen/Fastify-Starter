@@ -1,3 +1,5 @@
+// FIXME: Currently not working
+
 import type { mongodb } from '@fastify/mongodb';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { ChatPromptTemplate } from '@langchain/core/prompts';
@@ -19,7 +21,7 @@ export default (async (app) => {
   ```ts
   import { stream } from 'fetch-event-stream';
 
-  await stream('http://127.0.0.1:3000/api/conversation', {
+  await stream('http://127.0.0.1:3000/api/conversation/langgraph', {
     method: 'POST',
     body: JSON.stringify({
       messages: [
