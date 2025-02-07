@@ -139,7 +139,10 @@ export default (async (app) => {
       indexName: 'vector_index',
     });
 
-    const retriever = vectorStore.asRetriever({ k: 2 });
+    const retriever = vectorStore.asRetriever({
+      // The number of neighbors to find through approximate search before exact reordering is performed
+      k: 30,
+    });
 
     const systemPrompt = `
       You are an assistant for question-answering tasks.
