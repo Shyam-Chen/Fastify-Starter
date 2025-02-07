@@ -29,10 +29,11 @@ ENV OPENAI_API_KEY=$OPENAI_API_KEY
 ARG SECRET_KEY
 ENV SECRET_KEY=$SECRET_KEY
 
+ENV COREPACK_INTEGRITY_KEYS="0"
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable pnpm
-RUN corepack use pnpm@9
+RUN corepack use pnpm@9.x
 
 RUN pnpm build
 
@@ -48,10 +49,11 @@ ENV NODE_ENV=production
 ARG PORT
 ENV PORT=$PORT
 
+ENV COREPACK_INTEGRITY_KEYS="0"
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable pnpm
-RUN corepack use pnpm@9
+RUN corepack use pnpm@9.x
 
 USER node
 EXPOSE ${PORT}
