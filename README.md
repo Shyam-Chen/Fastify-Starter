@@ -18,8 +18,8 @@
 
 Prerequisites:
 
-- Node.js v20
-- PNPM v9
+- Node.js v22
+- PNPM v10
 - Docker v4 (Optional)
 
 Get started with Fastify Starter.

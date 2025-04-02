@@ -1,4 +1,4 @@
-FROM node:20 AS base
+FROM node:22 AS base
 
 WORKDIR /usr/src/app
 ADD . .
@@ -10,11 +10,11 @@ ENV COREPACK_INTEGRITY_KEYS="0"
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable pnpm
-RUN corepack use pnpm@9.x
+RUN corepack use pnpm@10.x
 
 RUN pnpm build
 
-FROM node:20
+FROM node:22
 
 WORKDIR /usr/src/app
 
@@ -27,7 +27,7 @@ ENV COREPACK_INTEGRITY_KEYS="0"
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable pnpm
-RUN corepack use pnpm@9.x
+RUN corepack use pnpm@10.x
 
 USER node
 CMD [ "node", "/usr/src/app/dist/worker.js" ]
