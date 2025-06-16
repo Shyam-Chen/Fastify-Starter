@@ -163,8 +163,8 @@ importers:
         specifier: 2.1.8
         version: 2.1.8(@types/node@22.10.7)
       vite-plugin-fastify:
-        specifier: 1.2.5
-        version: 1.2.5
+        specifier: 1.2.6
+        version: 1.2.6
       vite-plugin-fastify-routes:
         specifier: 1.1.1
         version: 1.1.1
@@ -215,8 +215,8 @@ importers:
         specifier: 5.4.11
         version: 5.4.11(@types/node@22.10.7)
       vite-plugin-fastify:
-        specifier: 1.2.5
-        version: 1.2.5
+        specifier: 1.2.6
+        version: 1.2.6
       vite-plugin-fastify-routes:
         specifier: 1.1.1
         version: 1.1.1
@@ -4150,8 +4150,8 @@ packages:
   vite-plugin-fastify-routes@1.1.1:
     resolution: {integrity: sha512-sGuYU4wm0tFT0ilE+d2M7rJKWku0g6TbdZMd1olVdSI5z+CgF8adYvK/oMPm5mkYVij8PVIFeDS3Xh0bT0DoHw==}
 
-  vite-plugin-fastify@1.2.5:
-    resolution: {integrity: sha512-+6QG4AkJVLF38SgjmN9heIg2tuZedzdqZts1fCHi8fZNYTKzagd+xYVGdaVD7SoDSrJ2Z2vfONUEt50RsYQGvQ==}
+  vite-plugin-fastify@1.2.6:
+    resolution: {integrity: sha512-cD6U3k3MgXoMjDDfTiDOzOGQ4xh1jyeGQfJaemQ+OalW08EcEf1GZAGOlF/TTfF3ZNq650RbBsirOb01gRksTw==}
 
   vite-plugin-static-copy@2.2.0:
     resolution: {integrity: sha512-ytMrKdR9iWEYHbUxs6x53m+MRl4SJsOSoMu1U1+Pfg0DjPeMlsRVx3RR5jvoonineDquIue83Oq69JvNsFSU5w==}
@@ -9267,7 +9267,7 @@ snapshots:
       glob: 10.4.5
       lodash.maxby: 4.6.0
 
-  vite-plugin-fastify@1.2.5: {}
+  vite-plugin-fastify@1.2.6: {}
 
   vite-plugin-static-copy@2.2.0(vite@5.4.11(@types/node@22.10.7)):
     dependencies:
