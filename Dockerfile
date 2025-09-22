@@ -3,7 +3,7 @@ FROM node:22
 WORKDIR /usr/src/app
 ADD . .
 
-ENV MONGOMS_VERSION=7.0.11
+ENV MONGOMS_VERSION=8.0.13
 ENV MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian12-${MONGOMS_VERSION}.tgz
 
 ENV COREPACK_INTEGRITY_KEYS="0"

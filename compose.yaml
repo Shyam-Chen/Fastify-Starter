@@ -20,7 +20,7 @@ services:
       - REDIS_URL=redis://redis:6379
 
   caddy:
-    image: caddy:2.7-alpine
+    image: caddy:2
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -34,7 +34,7 @@ services:
       - caddy_config:/config
 
   mongo:
-    image: mongo:7
+    image: mongo:8
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -49,8 +49,8 @@ services:
       - back-tier
 
   redis:
+    image: redis:8
     restart: always
-    image: redis:alpine
     command: redis-server --bind redis --port 6379 --save 60 1 --loglevel warning
     ports:
       - 6379:6379
@@ -60,7 +60,7 @@ services:
       - back-tier
 
   local-mongo:
-    image: mongo:7
+    image: mongo:8
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -73,8 +73,8 @@ services:
       - ./db:/docker-entrypoint-initdb.d:ro
 
   local-redis:
+    image: redis:8
     restart: always
-    image: redis:alpine
     command: redis-server --save 60 1 --loglevel warning
     ports:
       - 6379:6379
