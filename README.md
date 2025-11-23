@@ -1,10 +1,10 @@
 # Fastify Starter
 
-:leopard: A boilerplate for server applications with Fastify and Mongo using TypeScript on Vite.
+:leopard: A boilerplate for server applications with Fastify.
 
-:rainbow: View Demo: [Live](https://vue-starter-6fa6.onrender.com) | Windows | macOS | Android | iOS
+:rainbow: View Demo: [Live](https://vue-starter-6fa6.onrender.com) | Windows | macOS | Android | iOS | Linux
 
-:octocat: Source Code: [Web-side](https://github.com/Shyam-Chen/Vue-Starter) | [Native-side](https://github.com/Shyam-Chen/Tauri-Starter) | [Server-side](https://github.com/Shyam-Chen/Fastify-Starter) | [Cloud-side](https://github.com/Shyam-Chen/Pulumi-Starter)
+:octocat: Source Code: [Web-side](https://github.com/Shyam-Chen/Vue-Starter) | [Server-side](https://github.com/Shyam-Chen/Fastify-Starter) | [Cloud-side](https://github.com/Shyam-Chen/Pulumi-Starter) | [Native-side](https://github.com/Shyam-Chen/Tauri-Starter)
 
 ## Table of Contents
 
@@ -18,9 +18,9 @@
 
 Prerequisites:
 
-- Node.js v22
+- Node.js v24
 - PNPM v10
-- Docker v4 (Optional)
+- Docker v29 (Optional)
 
 Get started with Fastify Starter.
 
@@ -180,7 +180,7 @@ This seed repository provides the following features:
 - [x] [Cache Deduplication](./app/src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts) (Or use [Redis Store](./app/src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts))
 - [x] [Background Workers](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/+handler.ts))
 - [x] [Cron Jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/cron/+handler.ts))
-- [x] [Delayed jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/delay/+handler.ts))
+- [x] [Delayed jobs](./app/src/routes/queues/delay/+handler.ts)
 - [x] [Streaming LLM Output](./app/src/routes/sse/model/+handler.ts)
 - [x] [LLM Conversational Q&A Chatbot](./app/src/routes/conversation/+handler.ts)
 
