@@ -1,6 +1,6 @@
 import { resolve } from 'node:path';
 import envify from 'process-envify';
-import { defineConfig, normalizePath } from 'vite';
+import { defineConfig } from 'vite';
 import fastify from 'vite-plugin-fastify';
 import fastifyRoutes from 'vite-plugin-fastify-routes';
 

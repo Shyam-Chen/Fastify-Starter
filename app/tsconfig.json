@@ -12,7 +12,7 @@
       "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "vitest/globals"],
+    "types": ["vite/client", "vitest/config", "vitest/globals"],
 
     "noEmit": true,
 
