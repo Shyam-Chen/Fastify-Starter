@@ -6,12 +6,12 @@
     "mock": "pnpm -C mock mock",
     "build": "pnpm -C app build",
     "preview": "pnpm -C app preview",
-    "lint": "biome check --write ./",
+    "lint": "biome check --write",
     "check": "pnpm -C app check",
     "test": "pnpm -C app test",
     "e2e": "pnpm -C e2e e2e"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4"
+    "@biomejs/biome": "2.3.8"
   }
 }

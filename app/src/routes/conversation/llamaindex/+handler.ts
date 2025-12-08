@@ -3,8 +3,14 @@
 
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { StartEvent, StopEvent, Workflow, WorkflowEvent } from '@llamaindex/workflow';
-import { OpenAI, OpenAIAgent, OpenAIEmbedding, Settings } from 'llamaindex';
-import { MongoDBAtlasVectorSearch, QueryEngineTool, VectorStoreIndex } from 'llamaindex';
+import {
+  MongoDBAtlasVectorSearch,
+  OpenAI,
+  OpenAIAgent,
+  OpenAIEmbedding,
+  QueryEngineTool,
+  VectorStoreIndex,
+} from 'llamaindex';
 
 export default (async (app) => {
   /*
