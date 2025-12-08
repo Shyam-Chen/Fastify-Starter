@@ -3,7 +3,6 @@ import envify from 'process-envify';
 import { defineConfig, normalizePath } from 'vite';
 import fastify from 'vite-plugin-fastify';
 import fastifyRoutes from 'vite-plugin-fastify-routes';
-import { viteStaticCopy as staticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
   define: envify({
@@ -32,14 +31,6 @@ export default defineConfig({
       devMode: false,
     }),
     fastifyRoutes(),
-    staticCopy({
-      targets: [
-        {
-          src: normalizePath(resolve(import.meta.dirname, './src/jobs/**/*.js')),
-          dest: 'jobs',
-        },
-      ],
-    }),
   ],
   resolve: {
     alias: {
