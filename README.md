@@ -178,8 +178,8 @@ This seed repository provides the following features:
 - [x] [Internationalization](./app/src/routes/hello-i18n)
 - [x] [Caching (Includes Redis Store)](./app/src/routes/hello-world/caching/+handler.ts)
 - [x] [Cache Deduplication](./app/src/routes/hello-world/caching-dedupe/[id]-memory/+handler.ts) (Or use [Redis Store](./app/src/routes/hello-world/caching-dedupe/[id]-redis/+handler.ts))
-- [x] [Background Workers](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/+handler.ts))
-- [x] [Cron Jobs](./app/src/jobs) (Or use [Redis Store](./app/src/routes/queues/cron/+handler.ts))
+- [x] [Cron Jobs](./app/src/jobs/repeatable.ts)
+- [x] [Background Workers](./app/src/routes/queues/+handler.ts)
 - [x] [Delayed jobs](./app/src/routes/queues/delay/+handler.ts)
 - [x] [Streaming LLM Output](./app/src/routes/sse/model/+handler.ts)
 - [x] [LLM Conversational Q&A Chatbot](./app/src/routes/conversation/+handler.ts)
@@ -205,12 +205,14 @@ Set your local environment variables.
     MONGODB_URL: process.env.MONGODB_URL || 'mongodb://root:rootpasswd@127.0.0.1:27017/mydb',
     REDIS_URL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
     CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'cloudinary://apikey:apisecret@cloudname',
-    SMTP_URL: process.env.SMTP_URL || `smtp://${user}:${pass}@smtp.ethereal.email:587`,
+    SMTP_URL: process.env.SMTP_URL || 'smtp://user:pass@smtp.ethereal.email:587',
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
 
     SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
 
-    MONGOMS_VERSION: process.env.MONGOMS_VERSION || '7.0.11',
+    // for testing
+    MONGOMS_VERSION: process.env.MONGOMS_VERSION || '8.0.13',
+    REDISMS_VERSION: process.env.REDISMS_VERSION || '8.2.1',
   }),
 ```
 
