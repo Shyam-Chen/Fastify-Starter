@@ -26,12 +26,15 @@ export default (async (app) => {
             Type.Literal('custom'),
           ]),
           permissions: Type.Array(
-            Type.Recursive((Self) =>
-              Type.Object({
-                resource: Type.String(),
-                operations: Type.Array(Type.String()),
-                children: Type.Optional(Type.Array(Self)),
-              }),
+            Type.Cyclic(
+              {
+                Permission: Type.Object({
+                  resource: Type.String(),
+                  operations: Type.Array(Type.String()),
+                  children: Type.Optional(Type.Array(Type.Ref('Permission'))),
+                }),
+              },
+              'Permission',
             ),
           ),
         }),
