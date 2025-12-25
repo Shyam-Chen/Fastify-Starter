@@ -1,6 +1,6 @@
 import type { ObjectId } from '@fastify/mongodb';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type } from '@sinclair/typebox';
+import { Type } from 'typebox';
 
 const querystring = Type.Object({
   value: Type.String(),

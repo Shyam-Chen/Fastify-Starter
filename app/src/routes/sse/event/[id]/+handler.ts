@@ -1,6 +1,6 @@
 import { EventEmitter } from 'node:events';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type } from '@sinclair/typebox';
+import { Type } from 'typebox';
 
 export default (async (app) => {
   // When integrating with BullMQ, Redis Pub/Sub can be used to trigger SSE

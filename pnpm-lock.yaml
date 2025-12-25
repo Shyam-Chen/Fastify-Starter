@@ -42,8 +42,8 @@ importers:
         specifier: 6.0.1
         version: 6.0.1
       '@fastify/type-provider-typebox':
-        specifier: 5.1.0
-        version: 5.1.0(@sinclair/typebox@0.34.11)
+        specifier: 6.1.0
+        version: 6.1.0(typebox@1.0.68)
       '@fastify/under-pressure':
         specifier: 9.0.2
         version: 9.0.2
@@ -68,9 +68,6 @@ importers:
       '@llamaindex/workflow':
         specifier: 0.0.8
         version: 0.0.8(@llamaindex/env@0.1.25(@aws-crypto/sha256-js@5.2.0)(@huggingface/transformers@3.8.1)(gpt-tokenizer@2.9.0)(js-tiktoken@1.0.21)(pathe@1.1.2))
-      '@sinclair/typebox':
-        specifier: 0.34.11
-        version: 0.34.11
       async-cache-dedupe:
         specifier: 2.2.0
         version: 2.2.0
@@ -131,8 +128,11 @@ importers:
       pbkdf2-passworder:
         specifier: 1.0.1
         version: 1.0.1
+      typebox:
+        specifier: 1.0.68
+        version: 1.0.68
       undici:
-        specifier: ^7.16.0
+        specifier: 7.16.0
         version: 7.16.0
     devDependencies:
       '@types/nodemailer':
@@ -765,10 +765,10 @@ packages:
   '@fastify/sensible@6.0.1':
     resolution: {integrity: sha512-D0rN0kMeZKP23f4w9MoCI9e4+n7vASFAsGoRNn9bondSbplLeIfR2HcjCbyElAM04jGrPRLi/edyThEPOyC9cQ==}
 
-  '@fastify/type-provider-typebox@5.1.0':
-    resolution: {integrity: sha512-F1AQHeLiKp1hu6GMWm5W6fZ6zXQ0mTV+qHOzrptAie9AYewvFr5Q3blfy8Qmx9gUgwA3Yj+CWvQQJeTwDgTnIg==}
+  '@fastify/type-provider-typebox@6.1.0':
+    resolution: {integrity: sha512-k29cOitDRcZhMXVjtRq0+caKxdWoArz7su+dQWGzGWnFG+fSKhevgiZ7nexHWuXOEEQzgJlh6cptIMu69beaTA==}
     peerDependencies:
-      '@sinclair/typebox': '>=0.26 <=0.34'
+      typebox: ^1.0.13
 
   '@fastify/under-pressure@9.0.2':
     resolution: {integrity: sha512-zYTy8yYbU4+f//DMBFhbCmpGra3E1peEGcmmRLrwS6hnePJjXf2kNLULyh9y0qj4JldCxpdJBb7GB6jlFnN1kQ==}
@@ -1411,9 +1411,6 @@ packages:
 
   '@selderee/plugin-htmlparser2@0.11.0':
     resolution: {integrity: sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ==}
-
-  '@sinclair/typebox@0.34.11':
-    resolution: {integrity: sha512-zE9pWGVSG82z+sFO+oUmqmqRVm8Wg5sVhmljYi1fDhLOSphBBy939QmC/qXcKFWqTiRJ6keyG4y75bIoTPRBAw==}
 
   '@smithy/abort-controller@4.2.5':
     resolution: {integrity: sha512-j7HwVkBw68YW8UmFRcjZOmssE77Rvk0GWAIN1oFBhsaovQmZWYCIcGa9/pwRB0ExI8Sk9MWNALTjftjHZea7VA==}
@@ -4162,6 +4159,9 @@ packages:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
 
+  typebox@1.0.68:
+    resolution: {integrity: sha512-4h+aK9qiVklt5z2dKMDhi2x6STnahAaVJYooVLiE9EYLfsIvem7knKw/iToD5nD6zfYbFlyGvkJCww0z33qxGg==}
+
   typed-emitter@2.1.0:
     resolution: {integrity: sha512-g/KzbYKbH5C2vPkaXGu8DJlHrGKHLsM25Zg9WuC9pMGfuvT+X25tZQWo5fK1BjBm8+UrVE9LDCvaY0CQk+fXDA==}
 
@@ -5447,9 +5447,9 @@ snapshots:
       type-is: 1.6.18
       vary: 1.1.2
 
-  '@fastify/type-provider-typebox@5.1.0(@sinclair/typebox@0.34.11)':
+  '@fastify/type-provider-typebox@6.1.0(typebox@1.0.68)':
     dependencies:
-      '@sinclair/typebox': 0.34.11
+      typebox: 1.0.68
 
   '@fastify/under-pressure@9.0.2':
     dependencies:
@@ -6173,8 +6173,6 @@ snapshots:
     dependencies:
       domhandler: 5.0.3
       selderee: 0.11.0
-
-  '@sinclair/typebox@0.34.11': {}
 
   '@smithy/abort-controller@4.2.5':
     dependencies:
@@ -9444,6 +9442,8 @@ snapshots:
     dependencies:
       media-typer: 0.3.0
       mime-types: 2.1.35
+
+  typebox@1.0.68: {}
 
   typed-emitter@2.1.0:
     optionalDependencies:

@@ -1,5 +1,5 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { type Static, Type } from '@sinclair/typebox';
+import { type Static, Type } from 'typebox';
 import generatePassword from 'generate-password';
 import pbkdf2 from 'pbkdf2-passworder';
 // import nunjucks from 'nunjucks';
