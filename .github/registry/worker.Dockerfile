@@ -1,4 +1,4 @@
-FROM node:22 AS base
+FROM node:24 AS base
 
 WORKDIR /usr/src/app
 ADD . .
@@ -14,7 +14,7 @@ RUN corepack use pnpm@10.x
 
 RUN pnpm build
 
-FROM node:22
+FROM node:24
 
 WORKDIR /usr/src/app
 
