@@ -23,8 +23,8 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
-      const data = await req.file();
+    async (request, reply) => {
+      const data = await request.file();
 
       if (!data) return reply.badRequest();
 
@@ -65,8 +65,8 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
-      return reply.send({ message: 'OK', url: app.cloudinary.url(req.query.publicId) });
+    async (request, reply) => {
+      return reply.send({ message: 'OK', url: app.cloudinary.url(request.query.publicId) });
     },
   );
 }) as FastifyPluginAsyncTypebox;

@@ -1,9 +1,9 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type } from 'typebox';
 import nodemailer from 'nodemailer';
 import nunjucks from 'nunjucks';
+import { Type } from 'typebox';
 
-import useMailer from '~/composables/useMailer';
+import useMailer from '~/composables/useMailer.ts';
 import helloWorld from '~/templates/hello-world.html?raw';
 
 export default (async (app) => {
@@ -18,7 +18,7 @@ export default (async (app) => {
         response: { '2xx': { messageId: Type.String() } },
       },
     },
-    async (req, reply) => {
+    async (_request, reply) => {
       const mailer = useMailer();
 
       const info = await mailer.sendMail({

@@ -1,12 +1,12 @@
 import { randomUUID } from 'node:crypto';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { type Static, Type } from 'typebox';
 import generatePassword from 'generate-password';
 import { authenticator, totp } from 'otplib';
 import pbkdf2 from 'pbkdf2-passworder';
+import { type Static, Type } from 'typebox';
 
-import useMailer from '~/composables/useMailer';
-import auth from '~/middleware/auth';
+import useMailer from '~/composables/useMailer.ts';
+import auth from '~/middleware/auth.ts';
 
 import service from './service';
 
@@ -54,8 +54,8 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { username, password, email, fullName } = req.body;
+    async (request, reply) => {
+      const { username, password, email, fullName } = request.body;
 
       const user = await users?.findOne({ username: { $eq: username } });
       if (user) return reply.badRequest('#username That username is taken. Try another.');
@@ -108,8 +108,8 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { username, password } = req.body;
+    async (request, reply) => {
+      const { username, password } = request.body;
 
       const user = await users?.findOne({ username: { $eq: username } });
       if (!user) return reply.badRequest(`#username Couldn't find your account.`);
@@ -162,8 +162,8 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { accessToken, refreshToken } = req.body;
+    async (request, reply) => {
+      const { accessToken, refreshToken } = request.body;
 
       const decodedAccessToken = app.jwt.decode<{ uuid: string; username: string }>(accessToken);
       const decodedRefreshToken = app.jwt.decode<{ uuid: string }>(refreshToken);
@@ -199,8 +199,8 @@ export default (async (app) => {
          --url http://127.0.0.1:3000/api/auth/revoke
   ```
   */
-  app.get('/revoke', { onRequest: [auth] }, async (req, reply) => {
-    const keys = await app.redis.keys(`${req.user.username}+*`);
+  app.get('/revoke', { onRequest: [auth] }, async (request, reply) => {
+    const keys = await app.redis.keys(`${request.user.username}+*`);
     if (keys?.length) await app.redis.del(...keys);
     return reply.send({ message: 'OK' });
   });
@@ -213,9 +213,9 @@ export default (async (app) => {
          --url http://127.0.0.1:3000/api/auth/user \
          --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
-  app.get('/user', { onRequest: [auth] }, async (req, reply) => {
+  app.get('/user', { onRequest: [auth] }, async (request, reply) => {
     const user = await users?.findOne(
-      { username: { $eq: req.user.username } },
+      { username: { $eq: request.user.username } },
       { projection: { password: 0, secret: 0 } },
     );
 
@@ -242,8 +242,8 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { email } = req.body;
+    async (request, reply) => {
+      const { email } = request.body;
 
       const mailer = useMailer();
 
@@ -285,8 +285,8 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { code, messageId, email } = req.body;
+    async (request, reply) => {
+      const { code, messageId, email } = request.body;
 
       const session = await sessions?.findOne({ messageId: { $eq: messageId } });
 
@@ -324,8 +324,8 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { password, confirmPassword } = req.body;
+    async (request, reply) => {
+      const { password, confirmPassword } = request.body;
 
       if (password.trim() !== confirmPassword.trim()) return reply.badRequest();
 

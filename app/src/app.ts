@@ -5,15 +5,16 @@ import mongodb from '@fastify/mongodb';
 import multipart from '@fastify/multipart';
 import rateLimit from '@fastify/rate-limit';
 import redis from '@fastify/redis';
+import sensible from '@fastify/sensible';
+// import sse from '@fastify/sse';
 import underPressure from '@fastify/under-pressure';
 import fastify from 'fastify';
 import cloudinary from 'fastify-cloudinary';
 import { eventsource, serverFactory, websocket } from 'fastify-uws';
 
-import error from '~/plugins/error';
-import i18n from '~/plugins/i18n';
-import router from '~/plugins/router';
-import redisInstance from '~/utilities/redisInstance';
+import i18n from '~/plugins/i18n.ts';
+import router from '~/plugins/router.ts';
+import redisInstance from '~/utilities/redisInstance.ts';
 
 export default () => {
   const app = fastify({
@@ -32,12 +33,13 @@ export default () => {
   app.register(multipart);
   app.register(rateLimit, { max: 100 });
   app.register(redis, { client: redisInstance });
+  app.register(sensible);
+  // app.register(sse);
   app.register(underPressure, { exposeStatusRoute: '/api/healthz' });
-  app.register(websocket);
   app.register(cloudinary, { url: process.env.CLOUDINARY_URL });
   app.register(eventsource);
+  app.register(websocket);
 
-  app.register(error);
   app.register(i18n);
   app.register(router);
 

@@ -1,6 +1,6 @@
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { type Static, type TObject, Type } from 'typebox';
 import type { FastifyInstance, RouteShorthandOptions } from 'fastify';
+import { type Static, type TObject, Type } from 'typebox';
 
 const behavior = Type.Object({
   field: Type.Optional(Type.String()),
@@ -69,13 +69,13 @@ export default async (app: FastifyInstance, opts: CollectionDataOptions) => {
     route.options = { ...opts.options, ...route.options };
   }
 
-  router.post('', route.options, async (req, reply) => {
-    const field = req.body.field || 'createdAt';
-    const order = req.body.order || 'desc';
-    const page = Number(req.body.page) || 1;
-    const rows = Number(req.body.rows) || 10;
+  router.post('', route.options, async (request, reply) => {
+    const field = request.body.field || 'createdAt';
+    const order = request.body.order || 'desc';
+    const page = Number(request.body.page) || 1;
+    const rows = Number(request.body.rows) || 10;
 
-    const queryConditions = opts?.queryConditions(req.body) || {};
+    const queryConditions = opts?.queryConditions(request.body) || {};
 
     const result = await collection
       ?.find<Static<typeof entity>>(queryConditions)

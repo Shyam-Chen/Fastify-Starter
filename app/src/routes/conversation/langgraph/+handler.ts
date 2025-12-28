@@ -8,7 +8,7 @@ import { MongoDBAtlasVectorSearch } from '@langchain/mongodb';
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents';
 import { createRetrievalChain } from 'langchain/chains/retrieval';
 
-import useModel, { useEmbeddings } from '~/composables/useModel';
+import useModel, { useEmbeddings } from '~/composables/useModel.ts';
 
 // TODO: LangGraph Integration
 //

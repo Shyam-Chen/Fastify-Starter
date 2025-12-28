@@ -1,6 +1,6 @@
 import fastify from 'fastify';
 
-import router from '~/plugins/router';
+import router from '~/plugins/router.ts';
 
 export default () => {
   const app = fastify({

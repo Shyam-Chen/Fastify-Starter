@@ -17,8 +17,8 @@ const response = {
 };
 
 export default (async (app) => {
-  app.get('', { schema: { querystring, response } }, async (req, reply) => {
-    const { value, category = 'suggestions' } = req.query;
+  app.get('', { schema: { querystring, response } }, async (request, reply) => {
+    const { value, category = 'suggestions' } = request.query;
 
     const col = app.mongo.db?.collection(category);
 

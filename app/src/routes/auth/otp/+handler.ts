@@ -1,12 +1,12 @@
 import { randomUUID } from 'node:crypto';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type } from 'typebox';
 import { authenticator } from 'otplib';
 import pbkdf2 from 'pbkdf2-passworder';
+import { Type } from 'typebox';
 
-import auth from '~/middleware/auth';
+import auth from '~/middleware/auth.ts';
 
-import authService from '../service';
+import authService from '../service.ts';
 
 export default (async (app) => {
   const users = app.mongo.db?.collection('users');
@@ -16,8 +16,8 @@ export default (async (app) => {
          --url http://127.0.0.1:3000/api/auth/otp/setup \
          --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoibWF0dGVvLmNvbGxpbmEiLCJwYXNzd29yZCI6IiQyYiQxMCRUZDRRYUJzYWc2ak1mSjdpVllPS2Z1enVncTJDOXVoVGc1bXZnOHFtRDNwSmo5Rzd5VUwveSIsImlhdCI6MTY2NjkyMjY2OCwiZXhwIjoxNjY2OTgwMjY4fQ.Fkvc0t2kNT8VuvpGbweA6ZErPCJD85kHIgHryyC0W5M"
   */
-  app.get('/setup', { onRequest: [auth] }, async (req, reply) => {
-    const user = await users?.findOne({ username: { $eq: req.user.username } });
+  app.get('/setup', { onRequest: [auth] }, async (request, reply) => {
+    const user = await users?.findOne({ username: { $eq: request.user.username } });
 
     const secret = authenticator.generateSecret();
 
@@ -47,10 +47,10 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { code } = req.body;
+    async (request, reply) => {
+      const { code } = request.body;
 
-      const user = await users?.findOne({ username: { $eq: req.user.username } });
+      const user = await users?.findOne({ username: { $eq: request.user.username } });
 
       const isValid = authenticator.check(code, user?.secret);
       if (!isValid) return reply.badRequest();
@@ -81,8 +81,8 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { code, username, password } = req.body;
+    async (request, reply) => {
+      const { code, username, password } = request.body;
 
       const user = await users?.findOne({ username: { $eq: username } });
 

@@ -1,10 +1,10 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from 'typebox';
 
-import useTableControl, { TableControlBox } from '~/composables/useTableControl';
+import useTableControl, { TableControlBox } from '~/composables/useTableControl.ts';
 
-import { body, entity, message } from './schema';
-import type { TodoItem } from './types';
+import { body, entity, message } from './schema.ts';
+import type { TodoItem } from './types.ts';
 
 export default (async (app) => {
   /*
@@ -23,11 +23,11 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       const todos = app.mongo.db?.collection('todos');
 
-      const { page, rows, field, direction } = useTableControl(req);
-      const { title, filter } = req.body;
+      const { page, rows, field, direction } = useTableControl(request);
+      const { title, filter } = request.body;
 
       let queryTitle = {};
 

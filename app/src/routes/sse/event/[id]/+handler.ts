@@ -15,8 +15,8 @@ export default (async (app) => {
         }),
       },
     },
-    (req, reply) => {
-      const { id } = req.params;
+    (request, reply) => {
+      const { id } = request.params;
 
       function eventId(data?: string | object) {
         reply.sse({ id, data });
@@ -25,7 +25,7 @@ export default (async (app) => {
 
       sseEmitter.on(`/sse/event/${id}`, eventId);
 
-      req.raw.on('close', () => {
+      request.raw.on('close', () => {
         sseEmitter.off(`/sse/event/${id}`, eventId);
       });
     },
@@ -40,9 +40,9 @@ export default (async (app) => {
         }),
       },
     },
-    async (req, reply) => {
-      const { id } = req.params;
-      sseEmitter.emit(`/sse/event/${id}`, req.body);
+    async (request, reply) => {
+      const { id } = request.params;
+      sseEmitter.emit(`/sse/event/${id}`, request.body);
       return reply.send({ message: 'Data sent to client' });
     },
   );

@@ -27,10 +27,10 @@ export default (async (app) => {
         response: { 200: Type.Object({ message }) },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       await todos?.insertOne({
-        title: req.body.title,
-        completed: req.body.completed || false,
+        title: request.body.title,
+        completed: request.body.completed || false,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });
@@ -51,9 +51,9 @@ export default (async (app) => {
         response: { 200: Type.Object({ message, result: Type.Partial(entity) }) },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       const result = await todos?.findOne<TodoItem>({
-        _id: { $eq: new app.mongo.ObjectId(req.params.id) },
+        _id: { $eq: new app.mongo.ObjectId(request.params.id) },
       });
 
       return reply.send({ message: 'OK', result: result || {} });
@@ -81,13 +81,13 @@ export default (async (app) => {
         response: { 200: Type.Object({ message }) },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       await todos?.updateOne(
-        { _id: { $eq: new app.mongo.ObjectId(req.params.id) } },
+        { _id: { $eq: new app.mongo.ObjectId(request.params.id) } },
         {
           $set: {
-            title: req.body.title,
-            completed: req.body.completed,
+            title: request.body.title,
+            completed: request.body.completed,
             updatedAt: new Date().toISOString(),
           },
         },
@@ -109,8 +109,8 @@ export default (async (app) => {
         response: { 200: Type.Object({ message }) },
       },
     },
-    async (req, reply) => {
-      await todos?.deleteOne({ _id: { $eq: new app.mongo.ObjectId(req.params.id) } });
+    async (request, reply) => {
+      await todos?.deleteOne({ _id: { $eq: new app.mongo.ObjectId(request.params.id) } });
       return reply.send({ message: 'OK' });
     },
   );

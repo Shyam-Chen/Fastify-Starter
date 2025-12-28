@@ -13,7 +13,7 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
+    async (_request, reply) => {
       // const users = app.mongo.db?.collection('users');
 
       return reply.send({

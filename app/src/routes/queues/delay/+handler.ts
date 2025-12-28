@@ -1,8 +1,8 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from 'typebox';
 
-import useQueue from '~/composables/useQueue';
-import useWorker from '~/composables/useWorker';
+import useQueue from '~/composables/useQueue.ts';
+import useWorker from '~/composables/useWorker.ts';
 
 export default (async (app) => {
   /*
@@ -17,13 +17,13 @@ export default (async (app) => {
         response: { 200: Type.Object({ message: Type.String() }) },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       const paintQueue = useQueue('Paint');
 
       // Add a job that will be delayed by at least 3 seconds
       await paintQueue.add(
         'wall',
-        { color: req.query.color },
+        { color: request.query.color },
         {
           removeOnComplete: true,
           delay: 3000,

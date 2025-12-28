@@ -20,7 +20,7 @@ test('POST /todos', async () => {
   app.register(mongodb, { url: mongod?.getUri('test') });
   app.register(todos, { prefix: '/todos' });
 
-  const data = Array.from({ length: 31 }).map((item, index) => ({
+  const data = Array.from({ length: 31 }).map((_item, index) => ({
     title: `fastify-${index + 1}`,
     completed: !(index % 2),
     createdAt: new Date(`2020-12-${index + 1}`).toISOString(),

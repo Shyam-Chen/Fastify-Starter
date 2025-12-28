@@ -17,7 +17,7 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
+    async (_request, reply) => {
       return reply.send({
         message: 'Hello, World!',
       });

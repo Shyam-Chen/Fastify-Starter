@@ -6,7 +6,7 @@ import { MongoDBAtlasVectorSearch } from '@langchain/mongodb';
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents';
 import { createRetrievalChain } from 'langchain/chains/retrieval';
 
-import useModel, { useEmbeddings } from '~/composables/useModel';
+import useModel, { useEmbeddings } from '~/composables/useModel.ts';
 
 export default (async (app) => {
   /*
@@ -72,7 +72,7 @@ export default (async (app) => {
          --url http://127.0.0.1:3000/api/sse/model/docs
   ```
   */
-  app.get('/docs', async (request, reply) => {
+  app.get('/docs', async (_request, reply) => {
     const collection = app.mongo.db?.collection('vector') as mongodb.Collection<mongodb.Document>;
 
     const embeddings = useEmbeddings();

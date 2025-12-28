@@ -1,13 +1,13 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { type Static, Type } from 'typebox';
 import generatePassword from 'generate-password';
 import pbkdf2 from 'pbkdf2-passworder';
+import { type Static, Type } from 'typebox';
 // import nunjucks from 'nunjucks';
 
-// import useMailer from '~/composables/useMailer';
+// import useMailer from '~/composables/useMailer.ts';
 // import accountOpening from '~/templates/accountOpening.html?raw';
 
-import { RoleBox, UserBox } from '../schema';
+import { RoleBox, UserBox } from '../schema.ts';
 
 export default (async (app) => {
   app.post(
@@ -41,8 +41,8 @@ export default (async (app) => {
         response: { 200: Type.Object({ message: Type.String() }) },
       },
     },
-    async (req, reply) => {
-      const { username, email, fullName, role, permissions } = req.body;
+    async (request, reply) => {
+      const { username, email, fullName, role, permissions } = request.body;
 
       const users = app.mongo.db?.collection('users');
       const roles = app.mongo.db?.collection('roles');
@@ -117,12 +117,12 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       const users = app.mongo.db?.collection('users');
       const roles = app.mongo.db?.collection('roles');
 
       const user = await users?.findOne<Static<typeof UserBox>>(
-        { _id: { $eq: new app.mongo.ObjectId(req.params.id) } },
+        { _id: { $eq: new app.mongo.ObjectId(request.params.id) } },
         { projection: { password: 0, secret: 0 } },
       );
 
@@ -146,19 +146,19 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       const users = app.mongo.db?.collection('users');
 
       await users?.updateOne(
-        { _id: { $eq: new app.mongo.ObjectId(req.params.id) } },
+        { _id: { $eq: new app.mongo.ObjectId(request.params.id) } },
         {
           $set: {
-            username: req.body.username,
-            email: req.body.email,
-            fullName: req.body.fullName,
-            status: req.body.status,
-            otpEnabled: req.body.otpEnabled,
-            otpVerified: req.body.otpVerified,
+            username: request.body.username,
+            email: request.body.email,
+            fullName: request.body.fullName,
+            status: request.body.status,
+            otpEnabled: request.body.otpEnabled,
+            otpVerified: request.body.otpVerified,
             updatedAt: new Date().toISOString(),
           },
         },

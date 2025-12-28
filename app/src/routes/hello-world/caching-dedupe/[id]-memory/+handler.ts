@@ -1,6 +1,6 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type } from 'typebox';
 import { createCache } from 'async-cache-dedupe';
+import { Type } from 'typebox';
 
 export default (async (app) => {
   const cache = createCache({ ttl: 5 });
@@ -40,8 +40,8 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
-      const { id } = req.params;
+    async (request, reply) => {
+      const { id } = request.params;
 
       const cached = await useCache.memoryText(id);
 

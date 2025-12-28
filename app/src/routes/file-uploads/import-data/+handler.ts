@@ -3,8 +3,8 @@ import type { Row } from 'exceljs';
 import exceljs from 'exceljs';
 
 export default (async (app) => {
-  app.post('', async (req, reply) => {
-    const data = await req.file();
+  app.post('', async (request, reply) => {
+    const data = await request.file();
 
     if (!data) return reply.badRequest();
 

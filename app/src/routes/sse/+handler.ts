@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 
 export default async (app: FastifyInstance) => {
-  app.get('', (req, reply) => {
+  app.get('', (request, reply) => {
     let index = 0;
 
     reply.sse({ id: String(index), data: 'Some message' });
@@ -17,7 +17,7 @@ export default async (app: FastifyInstance) => {
       }
     }, 1000);
 
-    req.raw.on('close', () => {
+    request.raw.on('close', () => {
       clearInterval(interval);
     });
   });

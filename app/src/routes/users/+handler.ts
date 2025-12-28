@@ -1,9 +1,9 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from 'typebox';
 
-import useTableControl from '~/composables/useTableControl';
+import useTableControl from '~/composables/useTableControl.ts';
 
-import { RoleBox, UserBox } from './schema';
+import { RoleBox, UserBox } from './schema.ts';
 
 export default (async (app) => {
   app.post(
@@ -19,10 +19,10 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       const users = app.mongo.db?.collection('users');
 
-      const { page, rows, field, direction } = useTableControl(req);
+      const { page, rows, field, direction } = useTableControl(request);
 
       const conditions = {};
 

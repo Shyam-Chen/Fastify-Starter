@@ -2,15 +2,15 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 
 import libm_wasm from '~/assets/libm.wasm?url';
 import logo_png from '~/assets/logo.png';
-import useAssets from '~/composables/useAssets';
-import usePublic from '~/composables/usePublic';
+import useAssets from '~/composables/useAssets.ts';
+import usePublic from '~/composables/usePublic.ts';
 
 export default (async (app) => {
   /*
   $ curl --request GET \
          --url http://127.0.0.1:3000/api/assets-public
   */
-  app.get('', async (request, reply) => {
+  app.get('', async (_request, reply) => {
     const logo_png_buffer = useAssets(logo_png);
     const libm_wasm_buffer = useAssets(libm_wasm);
     const libmBuf = usePublic('libm.wasm');

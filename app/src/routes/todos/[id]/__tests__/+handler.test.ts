@@ -2,9 +2,9 @@ import mongodb from '@fastify/mongodb';
 import fastify from 'fastify';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-import todos from '~/routes/todos/+handler';
+import todos from '~/routes/todos/+handler.ts';
 
-import todos_id from '../+handler';
+import todos_id from '../+handler.ts';
 
 let mongod = null as MongoMemoryServer | null;
 

@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from 'typebox';
 
-import cache from '~/utilities/cache';
+import cache from '~/utilities/cache.ts';
 
 export default (async (app) => {
   /*
@@ -24,8 +24,8 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
-      const { text } = req.query;
+    async (request, reply) => {
+      const { text } = request.query;
 
       const cached = await cache.wrap(
         'myText',

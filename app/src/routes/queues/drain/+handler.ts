@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from 'typebox';
 
-import useQueue from '~/composables/useQueue';
+import useQueue from '~/composables/useQueue.ts';
 
 export default (async (app) => {
   /*
@@ -15,7 +15,7 @@ export default (async (app) => {
         response: { 200: Type.Object({ message: Type.String() }) },
       },
     },
-    async (req, reply) => {
+    async (_request, reply) => {
       const paintRenewQueue = useQueue('PaintRenew');
       await paintRenewQueue.drain();
       return reply.send({ message: 'OK' });

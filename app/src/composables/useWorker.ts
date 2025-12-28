@@ -1,7 +1,7 @@
 import type { Processor, WorkerOptions } from 'bullmq';
 import { Worker } from 'bullmq';
 
-import redisInstance from '~/utilities/redisInstance';
+import redisInstance from '~/utilities/redisInstance.ts';
 
 export default (name: string, processor: Processor, options?: Partial<WorkerOptions>) => {
   const worker = new Worker(name, processor, {

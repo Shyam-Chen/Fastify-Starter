@@ -1,16 +1,16 @@
-import { type Static, Type } from 'typebox';
 import type { FastifyRequest } from 'fastify';
+import { type Static, Type } from 'typebox';
 
 /**
  * @example
  *
- * import useTableControl, { TableControlBox } from '~/composables/useTableControl';
+ * import useTableControl, { TableControlBox } from '~/composables/useTableControl.ts';
  *
  * schema.body:
  *   Type.Intersect([Type.Partial(body), TableControlBox]),
  *
- * handler(req, reply):
- *   const { page, rows, field, direction } = useTableControl(req);
+ * handler(request, reply):
+ *   const { page, rows, field, direction } = useTableControl(request);
  */
 
 export const TableControlBox = Type.Object({
@@ -22,8 +22,8 @@ export const TableControlBox = Type.Object({
 
 export type TableControl = Static<typeof TableControlBox>;
 
-export default <T extends FastifyRequest>(req: T) => {
-  const body = req.body as TableControl;
+export default <T extends FastifyRequest>(request: T) => {
+  const body = request.body as TableControl;
 
   return {
     page: Number(body.page) || 1, // current page

@@ -1,6 +1,6 @@
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { type Static, type TObject, Type } from 'typebox';
 import type { FastifyInstance } from 'fastify';
+import { type Static, type TObject, Type } from 'typebox';
 
 // POST /:id=new {}
 // GET /:id
@@ -48,9 +48,9 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
         response: { 200: Type.Object({ message }) },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       await collection?.insertOne({
-        ...req.body,
+        ...request.body,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });
@@ -67,9 +67,9 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
         response: { 200: Type.Object({ message, result: Type.Partial(entity) }) },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       const result = await collection?.findOne<Static<typeof entity>>({
-        _id: { $eq: new app.mongo.ObjectId(req.params.id) },
+        _id: { $eq: new app.mongo.ObjectId(request.params.id) },
       });
 
       return reply.send({ message: 'OK', result: result || {} });
@@ -85,12 +85,12 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
         response: { 200: Type.Object({ message }) },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       await collection?.updateOne(
-        { _id: { $eq: new app.mongo.ObjectId(req.params.id) } },
+        { _id: { $eq: new app.mongo.ObjectId(request.params.id) } },
         {
           $set: {
-            ...req.body,
+            ...request.body,
             updatedAt: new Date().toISOString(),
           },
         },
@@ -108,9 +108,9 @@ export default async (app: FastifyInstance, opts: CrudOperationsOptions) => {
         response: { 200: Type.Object({ message }) },
       },
     },
-    async (req, reply) => {
+    async (request, reply) => {
       await collection?.deleteOne({
-        _id: { $eq: new app.mongo.ObjectId(req.params.id) },
+        _id: { $eq: new app.mongo.ObjectId(request.params.id) },
       });
 
       return reply.send({ message: 'OK' });

@@ -1,6 +1,6 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { Type } from 'typebox';
 import { createCache } from 'async-cache-dedupe';
+import { Type } from 'typebox';
 
 import redisInstance from '~/utilities/redisInstance';
 
@@ -45,8 +45,8 @@ export default (async (app) => {
         },
       },
     },
-    async (req, reply) => {
-      const { id } = req.params;
+    async (request, reply) => {
+      const { id } = request.params;
 
       const cached = await useCache.redisText(id);
 
