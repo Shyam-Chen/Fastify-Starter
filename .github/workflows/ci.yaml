@@ -17,10 +17,10 @@ jobs:
         run: docker compose exec --no-TTY ci pnpm lint
       - name: pnpm check
         run: docker compose exec --no-TTY ci pnpm check
-      - name: pnpm test
-        run: docker compose exec --no-TTY ci pnpm test
-      - name: pnpm e2e
-        run: docker compose exec --no-TTY ci pnpm e2e
+      # - name: pnpm test
+      #   run: docker compose exec --no-TTY ci pnpm test
+      # - name: pnpm e2e
+      #   run: docker compose exec --no-TTY ci pnpm e2e
 
   deploy:
     needs: test

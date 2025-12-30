@@ -22,6 +22,8 @@ export const entity = Type.Object({
   _id: Type.String(),
   title: Type.String(),
   completed: Type.Boolean(),
+
   createdAt: Type.String({ format: 'date-time' }),
   updatedAt: Type.String({ format: 'date-time' }),
+  version: Type.Number(),
 });

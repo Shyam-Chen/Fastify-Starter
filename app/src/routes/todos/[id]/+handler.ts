@@ -24,7 +24,7 @@ export default (async (app) => {
           title: Type.String(),
           completed: Type.Optional(Type.Boolean()),
         }),
-        response: { 201: Type.Object({ message }) },
+        response: { 200: Type.Object({ message }) },
       },
     },
     async (request, reply) => {
@@ -37,7 +37,7 @@ export default (async (app) => {
         version: 1,
       });
 
-      return reply.status(201).send({ message: 'Created successfully.' });
+      return reply.status(200).send({ message: 'Created successfully.' });
     },
   );
 
@@ -52,7 +52,7 @@ export default (async (app) => {
         params,
         response: {
           200: Type.Object({ message, result: entity }),
-          404: Type.Object({ message }),
+          400: Type.Object({ message }),
         },
       },
     },
@@ -62,10 +62,10 @@ export default (async (app) => {
       });
 
       if (!result) {
-        return reply.status(404).send({ message: 'Document not found.' });
+        return reply.status(400).send({ message: 'Document not found.' });
       }
 
-      return reply.send({ message: 'OK', result: result });
+      return reply.send({ message: 'OK', result });
     },
   );
 
@@ -89,7 +89,11 @@ export default (async (app) => {
 
           version: Type.Number(),
         }),
-        response: { 200: Type.Object({ message }) },
+        response: {
+          200: Type.Object({ message }),
+          400: Type.Object({ message }),
+          409: Type.Object({ message, result: Type.Partial(entity) }),
+        },
       },
     },
     async (request, reply) => {
@@ -109,17 +113,18 @@ export default (async (app) => {
       );
 
       if (result?.modifiedCount === 0) {
-        const docExists = await todos?.findOne({
+        const docExists = await todos?.findOne<TodoItem>({
           _id: new app.mongo.ObjectId(request.params.id),
         });
 
         if (docExists) {
           return reply.status(409).send({
             message: 'The document has been modified by another user. Please reload and try again.',
+            result: docExists || {},
           });
         }
 
-        return reply.status(404).send({ message: 'Document not found.' });
+        return reply.status(400).send({ message: 'Document not found.' });
       }
 
       return reply.send({ message: 'Updated successfully.' });

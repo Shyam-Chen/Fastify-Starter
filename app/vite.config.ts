@@ -21,6 +21,7 @@ export default defineConfig({
 
     SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
 
+    /** @deprecated */
     // for testing
     MONGOMS_VERSION: process.env.MONGOMS_VERSION || '8.0.13',
     REDISMS_VERSION: process.env.REDISMS_VERSION || '8.2.1',
