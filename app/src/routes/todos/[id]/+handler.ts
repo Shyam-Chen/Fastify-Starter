@@ -24,18 +24,20 @@ export default (async (app) => {
           title: Type.String(),
           completed: Type.Optional(Type.Boolean()),
         }),
-        response: { 200: Type.Object({ message }) },
+        response: { 201: Type.Object({ message }) },
       },
     },
     async (request, reply) => {
       await todos?.insertOne({
         title: request.body.title,
         completed: request.body.completed || false,
+
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
+        version: 1,
       });
 
-      return reply.send({ message: 'OK' });
+      return reply.status(201).send({ message: 'Created successfully.' });
     },
   );
 
@@ -48,7 +50,10 @@ export default (async (app) => {
     {
       schema: {
         params,
-        response: { 200: Type.Object({ message, result: Type.Partial(entity) }) },
+        response: {
+          200: Type.Object({ message, result: entity }),
+          404: Type.Object({ message }),
+        },
       },
     },
     async (request, reply) => {
@@ -56,7 +61,11 @@ export default (async (app) => {
         _id: { $eq: new app.mongo.ObjectId(request.params.id) },
       });
 
-      return reply.send({ message: 'OK', result: result || {} });
+      if (!result) {
+        return reply.status(404).send({ message: 'Document not found.' });
+      }
+
+      return reply.send({ message: 'OK', result: result });
     },
   );
 
@@ -77,23 +86,43 @@ export default (async (app) => {
         body: Type.Object({
           title: Type.String(),
           completed: Type.Boolean(),
+
+          version: Type.Number(),
         }),
         response: { 200: Type.Object({ message }) },
       },
     },
     async (request, reply) => {
-      await todos?.updateOne(
-        { _id: { $eq: new app.mongo.ObjectId(request.params.id) } },
+      const result = await todos?.updateOne(
+        {
+          _id: { $eq: new app.mongo.ObjectId(request.params.id) },
+          version: request.body.version,
+        },
         {
           $set: {
             title: request.body.title,
             completed: request.body.completed,
             updatedAt: new Date().toISOString(),
           },
+          $inc: { version: 1 },
         },
       );
 
-      return reply.send({ message: 'OK' });
+      if (result?.modifiedCount === 0) {
+        const docExists = await todos?.findOne({
+          _id: new app.mongo.ObjectId(request.params.id),
+        });
+
+        if (docExists) {
+          return reply.status(409).send({
+            message: 'The document has been modified by another user. Please reload and try again.',
+          });
+        }
+
+        return reply.status(404).send({ message: 'Document not found.' });
+      }
+
+      return reply.send({ message: 'Updated successfully.' });
     },
   );
 
@@ -111,7 +140,7 @@ export default (async (app) => {
     },
     async (request, reply) => {
       await todos?.deleteOne({ _id: { $eq: new app.mongo.ObjectId(request.params.id) } });
-      return reply.send({ message: 'OK' });
+      return reply.send({ message: 'Deleted successfully.' });
     },
   );
 }) as FastifyPluginAsyncTypebox;
