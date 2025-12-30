@@ -1,6 +1,6 @@
 import fastify from 'fastify';
 
-import helloWorld from '../+handler';
+import helloWorld from '../+handler.ts';
 
 test('GET /hello-world', async () => {
   const app = fastify();

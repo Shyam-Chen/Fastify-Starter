@@ -5,7 +5,7 @@ import fastify from 'fastify';
 import Keyv from 'keyv';
 import { RedisMemoryServer } from 'redis-memory-server';
 
-import cachingHandler from '../+handler';
+import cachingHandler from '../+handler.ts';
 
 vi.mock(import('~/utilities/cache'), async () => {
   const redisServer = new RedisMemoryServer();

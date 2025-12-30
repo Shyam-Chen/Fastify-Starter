@@ -2,7 +2,7 @@ import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { createCache } from 'async-cache-dedupe';
 import { Type } from 'typebox';
 
-import redisInstance from '~/utilities/redisInstance';
+import redisInstance from '~/utilities/redisInstance.ts';
 
 export default (async (app) => {
   const cache = createCache({

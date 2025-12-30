@@ -1,8 +1,8 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { Type } from 'typebox';
 
-import { entity, message, params } from '../schema';
-import type { TodoItem } from '../types';
+import { entity, message, params } from '../schema.ts';
+import type { TodoItem } from '../types.ts';
 
 export default (async (app) => {
   const todos = app.mongo.db?.collection('todos');

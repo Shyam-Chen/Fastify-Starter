@@ -1,7 +1,7 @@
 import websocket from '@fastify/websocket';
 import fastify from 'fastify';
 
-import echo from '../+handler';
+import echo from '../+handler.ts';
 
 test('WS /echo', async () => {
   const app = fastify();

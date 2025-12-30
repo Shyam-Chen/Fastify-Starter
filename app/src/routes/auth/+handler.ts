@@ -8,7 +8,7 @@ import { type Static, Type } from 'typebox';
 import useMailer from '~/composables/useMailer.ts';
 import auth from '~/middleware/auth.ts';
 
-import service from './service';
+import service from './service.ts';
 
 const body = Type.Object({
   username: Type.String(),
