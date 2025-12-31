@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { QdrantClient } from '@qdrant/js-client-rest';
+import type { ModelMessage } from 'ai';
 import { embedMany, jsonSchema, streamText, tool } from 'ai';
 import Type from 'typebox';
 
@@ -16,11 +17,14 @@ const qdrant = new QdrantClient({ url: process.env.QDRANT_URL });
 
 export default (async (app) => {
   app.post('', { sse: true }, async (request, reply) => {
-    const body = JSON.parse(request.body as string);
+    const body = JSON.parse(request.body as string) as { messages: ModelMessage[] };
+
+    const limitedMessages = body.messages.slice(-10);
 
     const { textStream } = streamText({
       model: llm,
-      prompt: body.message,
+      system: ``,
+      messages: limitedMessages,
     });
 
     for await (const textPart of textStream) {
