@@ -6,8 +6,8 @@
   },
   "devDependencies": {
     "@playwright/test": "1.49.1",
-    "@types/ws": "8.5.13",
-    "fetch-event-stream": "0.1.5",
-    "ws": "8.18.0"
+    "@types/ws": "8.18.1",
+    "fetch-event-stream": "0.1.6",
+    "ws": "8.18.3"
   }
 }

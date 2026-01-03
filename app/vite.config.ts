@@ -18,9 +18,8 @@ export default defineConfig({
     CLOUDINARY_URL: process.env.CLOUDINARY_URL || 'cloudinary://apikey:apisecret@cloudname',
     SMTP_URL: process.env.SMTP_URL || 'smtp://user:pass@smtp.ethereal.email:587',
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-
     GEMINI_API_KEY: process.env.GEMINI_API_KEY,
-    QDRANT_URL: process.env.QDRANT_URL,
+    QDRANT_URL: process.env.QDRANT_URL || 'http://127.0.0.1:6333',
 
     SECRET_KEY: process.env.SECRET_KEY || 'jbmpHPLoaV8N0nEpuLxlpT95FYakMPiu',
 
