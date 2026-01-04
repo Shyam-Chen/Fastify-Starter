@@ -57,6 +57,7 @@
     "undici": "7.16.0"
   },
   "devDependencies": {
+    "@types/node": "24.10.4",
     "@types/nodemailer": "6.4.17",
     "@types/nunjucks": "3.2.6",
     "@vitest/coverage-v8": "4.0.16",
