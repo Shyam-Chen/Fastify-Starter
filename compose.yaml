@@ -43,7 +43,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - mongo-data:/data
+      - mongo-data:/data/db
       - ./db:/docker-entrypoint-initdb.d:ro
     networks:
       - back-tier
