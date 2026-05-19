@@ -1,6 +1,6 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
+import { chromium } from 'playwright';
 import { Type } from 'typebox';
-// import { chromium } from 'playwright';
 
 import cache from '~/utilities/cache.ts';
 
@@ -8,6 +8,51 @@ export default (async (app) => {
   /*
   ```sh
   $ curl "https://<PRERENDER_SERVICE>.run.app/render?url=<TARGET_URL>"
+  ```
+
+  ```Caddyfile
+  {$SITE_ADDRESS} {
+    encode gzip
+    root * /usr/share/caddy
+
+    # Bot/Crawler Detection
+    @bot {
+      header_regexp User-Agent `(?i)(googlebot|bingbot|yandex|baiduspider|duckduckbot|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegrambot|slackbot|applebot|discordbot|embedly|rogerbot|showyoubot|outbrain|pinterestbot|W3C_Validator)`
+    }
+
+    # Bot → Forward to Prerender Service
+    handle @bot {
+      rewrite * /render?url={path}
+      reverse_proxy {$PRERENDER_SERVICE_URL}
+    }
+
+    # Regular users → Normal SPA
+    handle {
+      try_files {path} /index.html
+      file_server browse
+    }
+
+    header /service-worker.js {
+      Cache-Control max-age=0, no-cache, no-store, must-revalidate
+    }
+
+    header {
+      -Server
+      Content-Security-Policy default-src 'self'; base-uri 'self'; font-src 'self' https: data:; form-action 'self'; frame-ancestors 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self' https: 'unsafe-inline'; upgrade-insecure-requests
+      Cross-Origin-Opener-Policy same-origin
+      Cross-Origin-Resource-Policy same-origin
+      Origin-Agent-Cluster ?1
+      Referrer-Policy no-referrer
+      Strict-Transport-Security max-age=15552000; includeSubDomains
+      X-Content-Type-Options nosniff
+      X-DNS-Prefetch-Control off
+      X-Download-Options noopen
+      X-Frame-Options SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies none
+      -X-Powered-By
+      X-XSS-Protection 0
+    }
+  }
   ```
   */
   app.get(
@@ -28,37 +73,24 @@ export default (async (app) => {
       const targetUrl = `${process.env.SITE_URL}${url}`;
 
       const cached = await cache.wrap(
-        'render',
+        `render:${url}`,
         async () => {
-          return /* html */ `
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <title>Page Title ${targetUrl}</title>
-            </head>
-            <body>
-              <h1>This is a Heading ${targetUrl}</h1>
-              <p>This is a paragraph.</p>
-            </body>
-            </html>
-          `;
+          const browser = await chromium.launch({
+            headless: true,
+            args: [
+              '--no-sandbox',
+              '--disable-setuid-sandbox',
+              '--disable-dev-shm-usage',
+              '--disable-gpu',
+            ],
+          });
 
-          // const browser = await chromium.launch({
-          //   headless: true,
-          //   args: [
-          //     '--no-sandbox',
-          //     '--disable-setuid-sandbox',
-          //     '--disable-dev-shm-usage',
-          //     '--disable-gpu',
-          //   ],
-          // });
+          const page = await browser.newPage();
+          await page.goto(targetUrl, { waitUntil: 'networkidle' });
+          const html = await page.content();
+          await browser.close();
 
-          // const page = await browser.newPage();
-          // await page.goto(targetUrl, { waitUntil: 'networkidle' });
-          // const html = await page.content();
-          // await browser.close();
-
-          // return html;
+          return html;
         },
         24 * 60 * 60 * 1000,
       );

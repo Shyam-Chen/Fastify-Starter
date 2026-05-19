@@ -35,6 +35,8 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable pnpm
 RUN corepack use pnpm@10.x
 
+RUN cd app && pnpm exec playwright install --with-deps chromium
+
 RUN pnpm build
 
 FROM node:24
@@ -54,6 +56,8 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable pnpm
 RUN corepack use pnpm@10.x
+
+RUN cd app && pnpm exec playwright install --with-deps chromium
 
 USER node
 EXPOSE ${PORT}
